@@ -1,12 +1,17 @@
+{% extends 'layout.html' %}
+{% block pagename %}Home{% endblock %}
+
 {% block content %}
 
-    <p>Recent posts:
-        {% for e in posts %}
-            <h2> {{ e.title }}</h2> <p>{{ e.topic.name }}</p>
-            <p>{{ e.content }} </p>
-        {% endfor %}
-    </p>
-
-
+    <h1>Recent posts:</h1>
+    {% for e in posts %}
+        <div class="card">
+            <div class="card-header">
+                {{ e.title }}
+            </div>
+            <div class="card-body">{{ e.content }} </div>
+        </div>
+        <br>
+    {% endfor %}
 
 {% endblock %}
