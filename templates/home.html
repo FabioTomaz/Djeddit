@@ -1,0 +1,12 @@
+{% block content %}
+
+    <p>Recent posts:
+        {% for e in posts %}
+            <h2> {{ e.title }}</h2> <p>{{ e.topic.name }}</p>
+            <p>{{ e.content }} </p>
+        {% endfor %}
+    </p>
+
+
+
+{% endblock %}
