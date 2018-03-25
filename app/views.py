@@ -8,9 +8,15 @@ from datetime import datetime
 def mainPage(request):
     tparams = {
         "posts" : Post.objects.order_by("date"),
-
     }
-    return render (request, "home.html", tparams)
+    return render(request, "home.html", tparams)
+
+def topicPage(request, topicName):
+    #topicName = request.GET.get('topicName', '')
+    tparams = {
+        "posts" : Post.objects.filter(topic__name=topicName),
+    }
+    return render (request, "topic.html", tparams)
 
 
 def login(request):

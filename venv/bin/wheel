@@ -1,4 +1,4 @@
-#!/home/bruno/PycharmProjects/Djeedit/venv/bin/python3.6
+#!/home/bruno/PycharmProjects/djeedit/venv/bin/python3.6
 
 # -*- coding: utf-8 -*-
 import re
