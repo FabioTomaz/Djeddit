@@ -14,7 +14,8 @@ def mainPage(request):
 def topicPage(request, topicName):
     #topicName = request.GET.get('topicName', '')
     tparams = {
-        "posts" : Post.objects.filter(topic__name=topicName),
+        "currentTopic" : Topic.objects.get(name=topicName),
+        "posts" : Post.objects.filter(topic__name=topicName).order_by("date"),
     }
     return render (request, "topic.html", tparams)
 
