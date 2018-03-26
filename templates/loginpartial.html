@@ -3,14 +3,18 @@
 
 <form id="logoutForm" action="/logout" method="post" class="form-inline my-2 my-lg-0">
     {% csrf_token %}
-    <span class="navbar-brand">Hello!</span>
-    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    <a class="nav-link">
+        <i class="far fa-user"></i> {{ user.username }}
+    </a>
+    <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
+        <i class="fas fa-sign-out-alt"></i>Logout
+    </a>
 </form>
 
 {% else %}
 
 <ul class="navbar-nav navbar-right">
-    <li><a href="{% url 'login' %}">Log in</a></li>
+    <li><a href="{% url 'login' %}">Log in / Sign Up</a></li>
 </ul>
 
 {% endif %}

@@ -10,16 +10,19 @@
     <title>Djeddit - {% block pagename %} {% endblock %}</title>
 
     {% load staticfiles %}
+      <!-- Font Awesome -->
+      <script defer src="{% static 'fonts/fontawesome-all.js' %}"></script>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'content/bootstrap.min.css' %}" />
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="{% static 'content/site.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.png' %}"/>
   </head>
 
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Djeddit</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Djeddit <i class="far fa-comment-alt"></i></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -27,15 +30,26 @@
       <div class="collapse navbar-collapse" id="navbarDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'home' %}">Home</a>
+            <a class="nav-link" href="{% url 'home' %}">Most Recent</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">About</a>
+            <a class="nav-link">Most Viwed</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Contact</a>
+            <a class="nav-link">Most Liked</a>
           </li>
         </ul>
+          <form class="form-inline my-2 my-lg-0 mr-lg-2" method="post" action="/navbarsearch">
+              {% csrf_token %}
+            <div class="input-group">
+              <input name="searchQuery" class="form-control" type="text" placeholder="Search for...">
+              <span class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
         {% include 'loginpartial.html' %}
       </div>
     </nav>
