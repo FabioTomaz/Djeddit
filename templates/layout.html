@@ -19,59 +19,123 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.png' %}"/>
   </head>
 
-  <body>
+  <body class="bg-light">
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="{% url 'home' %}">Djeddit <i class="far fa-comment-alt"></i></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
+          <a class="navbar-brand" href="{% url 'home' %}">Djeddit <i class="far fa-comment-alt"></i></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'home' %}">Most Recent</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link">Most Viwed</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link">Most Liked</a>
+                  </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0 mr-lg-2" method="post" action="/navbarsearch">
+                  {% csrf_token %}
 
-      <div class="collapse navbar-collapse" id="navbarDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'home' %}">Most Recent</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Most Viwed</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Most Liked</a>
-          </li>
-        </ul>
-          <form class="form-inline my-2 my-lg-0 mr-lg-2" method="post" action="/navbarsearch">
-              {% csrf_token %}
-            <div class="input-group">
-              <input name="searchQuery" class="form-control" type="text" placeholder="Search for...">
-              <span class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-          </form>
-        {% include 'loginpartial.html' %}
+                  <div class="input-group">
+                      <div class="input-group-btn search-panel">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                              <span id="search_concept">Filter by</span> <span class="caret"></span>
+                          </button>
+                          <ul id="filterOptions" class="dropdown-menu" role="menu">
+                              <h6 class="dropdown-header">Filter by</h6>
+                              <li><a class="dropdown-item active" href="#"><i class="far fa-comments"></i> Topics</a></li>
+                              <li><a class="dropdown-item" href="#"><i class="fas fa-align-left"></i> Posts</a></li>
+                              <li><a class="dropdown-item" href="#"><i class="fas fa-users"></i> Users</a></li>
+                          </ul>
+                      </div>
+                      <input name="searchQuery" class="form-control input-group-append" type="text" placeholder="Search for...">
+                      <span class="input-group-append">
+                          <button class="btn btn-primary" type="submit">
+                              <i class="fa fa-search"></i>
+                          </button>
+                      </span>
+                  </div>
+              </form>
+              {% include 'loginpartial.html' %}
+          </div>
+      </nav>
+
+      {% block navbar %}{% endblock %}
+
+      <!-- Log In/Sign In Modal -->
+      <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Login / Sign Up</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      ...
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+              </div>
+          </div>
       </div>
-    </nav>
 
-    <main role="main">
-        <div class="container body-content">
-            <p></p>
-            {% block content %} {% endblock %}
-        </div> <!-- /container -->
-    </main>
+      <!-- Logout Confirmation Modal -->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to log out?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-footer">
+                      <a class="btn btn-success" href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-check"></i> Yes</a>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="far fa-times-circle"></i> No</button>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-    <footer>
-        <hr />
-        <p align="center">&copy; {{ year }} - Djeddit </p>
-    </footer>
+      <main role="main">
+          <div class="container body-content">
+              <p></p>
+              {% block content %} {% endblock %}
+          </div> <!-- /container -->
+      </main>
 
-    <!-- JQuery and Bootstrap core
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'scripts/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'scripts/popper.min.js' %}"></script>
-    <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+      <footer>
+          <hr/>
+          <p align="center">&copy; {{ year }} - Djeddit </p>
+      </footer>
 
+      <!-- JQuery and Bootstrap core
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="{% static 'scripts/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static 'scripts/popper.min.js' %}"></script>
+      <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+      <script>
+          $(document).ready(function (e) {
+              $('.search-panel .dropdown-menu').find('a').click(function (e) {
+                  e.preventDefault();
+                  $('.active').removeClass("active");
+                  $(this).addClass("active");
+              });
+          });
+          {% block scripts %} {% endblock %}
+      </script>
   </body>
 </html>

@@ -4,16 +4,11 @@
 {% block content %}
 
     <h1>Recent posts:</h1>
-    {% for e in posts %}
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">{{ e.title }} </h5>
-                <h6 class="card-subtitle mb-2 text-muted">Submitted by user <a>{{ e.userOP.userName }}<a/>
-                    to topic <a href="{% url "topic"  topicName=e.topic.name %}"> {{ e.topic.name }} <a/> on {{ e.date }}</h6>
-            </div>
-            <div class="card-body">{{ e.content }} </div>
-        </div>
+    {% for p in posts %}
+        {% include "post_preview.html" with post=p %}
         <br>
     {% endfor %}
+{% endblock %}
 
+{% block scripts %}
 {% endblock %}

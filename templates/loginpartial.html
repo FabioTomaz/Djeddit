@@ -1,20 +1,18 @@
 
 {% if user.is_authenticated %}
 
-<form id="logoutForm" action="/logout" method="post" class="form-inline my-2 my-lg-0">
-    {% csrf_token %}
-    <a class="nav-link">
-        <i class="far fa-user"></i> {{ user.username }}
-    </a>
-    <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">
-        <i class="fas fa-sign-out-alt"></i>Logout
-    </a>
-</form>
+    <form id="logoutForm" action="/logout" method="post" class="form-inline my-2 my-lg-0">
+        {% csrf_token %}
+        <a class="nav-link" href="{% url 'home' %}">
+            <i class="far fa-user"></i> {{ user.username }}
+        </a>
+        <a class="nav-link" href="#signIn" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt"></i>Logout
+        </a>
+    </form>
 
 {% else %}
-
-<ul class="navbar-nav navbar-right">
-    <li><a href="{% url 'login' %}">Log in / Sign Up</a></li>
-</ul>
+    <!-- Button trigger modal -->
+    <a class="nav-link" href="#signIn" data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i> Log In</a>
 
 {% endif %}
