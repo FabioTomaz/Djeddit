@@ -1,13 +1,13 @@
 <div class="card border-secondary">
     <div class="card-body">
-        <h5 class="card-title">{{ post.title }} </h5>
-        <h6 class="card-subtitle mb-2 text-muted">Submitted by user <a>{{ post.userOP.userName }}<a/>
+        <h5 class="card-title"><a href="{% url "post" topicName=post.topic.name postID=post.id %}">{{ post.title }}</a> </h5>
+        <h6 class="card-subtitle mb-2 text-muted">Submitted by <a href="#">{{ post.userOP.username }}<a/>
             to topic <a href="{% url "topic"  topicName=post.topic.name %}"> {{ post.topic.name }} <a/> on {{ post.date }}</h6>
     </div>
 
     <div class="card-footer">
         <div class="btn-group" role="group" aria-label="Action Buttons">
-            <button href="#" class="btn btn-sm btn-dark"><i class="far fa-comment"></i> {{ post.comments }} Commments
+            <button href="#" class="btn btn-sm btn-dark"><i class="far fa-comment"></i> {{ post.nComments }} Commments
             </button>
             <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#coll{{ post.id }}"
                     aria-expanded="false" aria-controls="collapseExample">

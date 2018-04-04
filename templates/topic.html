@@ -4,23 +4,60 @@
 {% block content %}
 
     <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-6 px-0">
-          <h1 class="display-4 font-italic">{{currentTopic.name}}</h1>
-          <p class="lead my-3">{{currentTopic.description}}</p>
-        </div>
-      </div>
-
-    <h1>Posts:</h1>
-    {% for e in posts %}
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">{{ e.name }} </h5>
-                <h6 class="card-subtitle mb-2 text-muted">Submitted by user <a>{{ e.userOP.userName }}<a/>
-                    on {{ e.date }}</h6>
+        <div class="row">
+            <div class="col-md-8 px-0">
+              <h1 class="display-4 font-italic">{{currentTopic.name}}</h1>
+              <p class="lead my-3">{{currentTopic.description}}</p>
             </div>
-            <div class="card-body">{{ e.content }} </div>
         </div>
-        <br>
-    {% endfor %}
+        {% if user.is_authenticated %}
 
+            {%  if not isUserSubscribed %}
+                <form action="." method="post">
+                    {% csrf_token %}
+                <div class="col" align="right">
+                  <button class="btn btn-success btn-sm">Subscribe</button>
+                </div>
+                </form>
+            {% else %}
+                <form action="." method="post">
+                    {% csrf_token %}
+                <div class="col-md-4 px-0" align="right">
+                    <button class="btn btn-warning btn-sm">Unsubscribe</button>
+                </div>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Posts:</h1>
+                {% for p in posts %}
+                    {% include "post_preview.html" with post=p%}
+                {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    {% if user.is_authenticated %}
+                        <div class="col" align="center">
+                            <a href="{% url "create_post" topicName=currentTopic.name %}" class="btn btn-primary">New Post</a>
+                        </div>
+                    {% endif %}
+                </div>
+            <br/>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title"> Rules </h5>
+                            <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        </div>
+                        <div class="card-body">{{ currentTopic.rules| linebreaksbr }} </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
