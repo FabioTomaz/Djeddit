@@ -8,30 +8,27 @@
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            <form action="." method="post" class="form-horizontal">
+            <form action="login" method="post" class="form-horizontal">
                 {% csrf_token %}
-                <h4>Use a local account to log in.</h4>
+                <h4>Create a User Account</h4>
                 <hr />
                 <div class="form-group">
-                    {{ form.username.label_tag }}
                     <div class="col-md-10">
-                        {{ form.username }}
-                    </div>
+                        <input class="form-control" type="text" id="username" name="username"  placeholder="Username">                    </div>
                 </div>
                 <div class="form-group">
-                    {{ form.password.label_tag }}
                     <div class="col-md-10">
-                        {{ form.password }}
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="hidden" name="next" value="/" />
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Sign Up</button>
                     </div>
                 </div>
                 {% if form.errors %}
-                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+                    <p class="validation-summary-errors">Please enter a correct user name and password.</p>
                 {% endif %}
             </form>
         </section>

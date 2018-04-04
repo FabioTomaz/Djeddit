@@ -1,11 +1,12 @@
 from datetime import datetime
-from django.http import HttpRequest, HttpResponseRedirect
-from django.shortcuts import render
 
-# Create your views here.
+from django.contrib.auth import authenticate
+from django.contrib.auth.views import login
+from django.http import HttpRequest, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from app.forms import GeneralSearch
+from app.forms import CustomLoginForm, CustomUserCreationForm
 from app.models import Topic, Post, User, Comment, UserSubscriptions
 import urllib.parse
 
@@ -36,22 +37,33 @@ def search(request):
         'year': datetime.now().year
     }
     searchstring = request.GET.get("q", "")
+    filtertype = request.GET.get("filterType", "")
 
-    #if searchstring is not None:
     tparams["searchstring"] = searchstring
-    tparams["topicresults"] = Topic.objects.filter(name__icontains=searchstring)
-    tparams["postresults"] = Post.objects.filter(title__icontains=searchstring)
-    tparams["userresults"] = User.objects.filter(userName__icontains=searchstring)
-    #else:
-    #    tparams["searchstring"] = ""
-    #    tparams["topicresults"] = []
-    #    tparams["postresults"] = []
-    #    tparams["userresults"] = []
+    if filtertype == 'searchTopicsOption':
+        tparams["topicresults"] = Topic.objects.filter(name__icontains=searchstring)
+    elif filtertype == 'searchPostsOption':
+        tparams["postresults"] = Post.objects.filter(title__icontains=searchstring)
+    elif filtertype == 'searchUsersOption':
+        tparams["userresults"] = User.objects.filter(userName__icontains=searchstring)
+
     return render(request, "search.html", tparams)
 
 
 def navbarSearch(request):
-    return custom_redirect('search', q=request.POST["searchQuery"])
+    return custom_redirect('search', q=request.POST["searchQuery"], filterType=request.POST["searchTypeFilter"])
+
+
+def signup(request):
+    next = request.POST.get('next', '/')
+    form = CustomUserCreationForm(request.POST)
+    if form.is_valid():
+        form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        login(request, user)
+    return render(request, next)
 
 
 def custom_redirect(url_name, *args, **kwargs):
