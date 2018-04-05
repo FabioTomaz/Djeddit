@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'content/bootstrap.min.css' %}" />
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="{% static 'content/site.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'content/bootstrap-notifications.css' %}" />
+
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.png' %}"/>
   </head>
 
@@ -39,32 +41,36 @@
                       <a class="nav-link">Most Liked</a>
                   </li>
               </ul>
-              <div class="form-inline my-2 my-lg-0 mr-lg-2">
-                  <div class="input-group">
-                      <div class="input-group-btn search-panel">
-                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                              <span id="search_concept">Filter by</span> <span class="caret"></span>
-                          </button>
-                          <ul id="filterOptions" class="dropdown-menu" role="menu">
-                              <div class="dropdown-header">Filter by</div>
-                              <li><a id="searchTopicsOption" class="btn dropdown-item active"><i class="far fa-comments"></i> Topics</a></li>
-                              <li><a id="searchPostsOption" class="btn dropdown-item"><i class="fas fa-align-left"></i> Posts</a></li>
-                              <li><a id="searchUsersOption" class="btn dropdown-item"><i class="fas fa-users"></i> Users</a></li>
-                          </ul>
+              <ul class="nav navbar-nav">
+                  <li class="form-inline my-2 my-lg-0 mr-lg-2">
+                      <div class="input-group">
+                          <div class="input-group-btn search-panel">
+                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                  <span id="search_concept">Filter by</span> <span class="caret"></span>
+                              </button>
+                              <ul id="filterOptions" class="dropdown-menu" role="menu">
+                                  <div class="dropdown-header">Filter by</div>
+                                  <li><a id="searchTopicsOption" class="btn dropdown-item active"><i class="far fa-comments"></i> Topics</a></li>
+                                  <li><a id="searchPostsOption" class="btn dropdown-item"><i class="fas fa-align-left"></i> Posts</a></li>
+                                  <li><a id="searchUsersOption" class="btn dropdown-item"><i class="fas fa-users"></i> Users</a></li>
+                              </ul>
+                          </div>
+                          <input id="searchQuery" class="form-control input-group-append" type="text" placeholder="Search for..." value="{{ request.GET.q }}">
+                          <span class="input-group-append">
+                              <button id="navbarSearchButton" class="btn btn-primary" type="button">
+                                  <i class="fa fa-search"></i>
+                              </button>
+                          </span>
                       </div>
-                      <input id="searchQuery" class="form-control input-group-append" type="text" placeholder="Search for...">
-                      <span class="input-group-append">
-                          <button id="navbarSearchButton" class="btn btn-primary" type="button">
-                              <i class="fa fa-search"></i>
-                          </button>
-                      </span>
-                  </div>
-              </div>
-              {% include 'loginpartial.html' %}
+                  </li>
+                {% include 'loginpartial.html' %}
+              </ul>
           </div>
       </nav>
 
-      {% block navbar %}{% endblock %}
+      {% block outsideContent %}
+
+      {% endblock %}
 
       <!-- Log In Modal -->
       <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -162,9 +168,11 @@
           </div> <!-- /container -->
       </main>
 
-      <footer>
+      <footer style="padding-top: 50px">
           <hr/>
-          <p align="center">&copy; {{ year }} - Djeddit </p>
+          <div class="container">
+              <p class="text-muted" align="center">&copy; {{ year }} - Djeddit </p>
+          </div>
       </footer>
 
       <!-- JQuery and Bootstrap core
@@ -173,11 +181,14 @@
       <script src="{% static 'scripts/jquery-3.3.1.min.js' %}"></script>
       <script src="{% static 'scripts/popper.min.js' %}"></script>
       <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+      <script src="{% static 'scripts/bootstrap-notify.min.js' %}"></script>
       <script>
           var searchFilter;
           $(document).ready(function (e) {
               updateFilterVariable();
-              console.log(searchFilter);
+              {% block onDocumentReadyBlock %}
+              
+              {% endblock %}
           });
 
           $(document).on('click', '.search-panel .dropdown-menu a', function (e) {
@@ -189,7 +200,7 @@
           $(document).on('click', "#navbarSearchButton", function (e) {
               e.preventDefault();
               var query = $('#searchQuery').val();
-              window.location.replace("{% url 'search' %}?q="+query+"&filterType="+searchFilter)
+              $(location).attr('href', "{% url 'search' %}?q="+query+"&filterType="+searchFilter)
           });
 
           function updateFilterVariable(){

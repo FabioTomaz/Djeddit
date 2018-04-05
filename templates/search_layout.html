@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block outsideContent %}
+    <div class="nav-scroller bg-white box-shadow justify-content-md-center">
+        <nav class="nav nav-underline">
+            <a class="nav-link" href="{% url 'search' %}?q={{ request.GET.q }}&filterType=searchTopicsOption">
+                Topics <i class="far fa-comments"></i>
+            </a>
+            <a class="nav-link" href="{% url 'search' %}?q={{ request.GET.q }}&filterType=searchPostsOption">
+                Posts <i class="fas fa-align-left"></i>
+            </a>
+            <a class="nav-link" href="{% url 'search' %}?q={{ request.GET.q }}&filterType=searchUsersOption">
+                Users <i class="fas fa-users"></i>
+            </a>
+        </nav>
+    </div>
+{% endblock %}
+
+{% block onDocumentReadyBlock %}
+    {{ block.super }}
+    $("#"+{{ request.GET.filterType }}).addClass("active");
+{% endblock %}

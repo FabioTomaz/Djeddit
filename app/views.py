@@ -36,22 +36,23 @@ def search(request):
     tparams = {
         'year': datetime.now().year
     }
-    searchstring = request.GET.get("q", "")
-    filtertype = request.GET.get("filterType", "")
+    searchstring = request.GET.get("q", " ")
+    filtertype = request.GET.get("filterType", "searchPostsOption")
 
-    tparams["searchstring"] = searchstring
     if filtertype == 'searchTopicsOption':
-        tparams["topicresults"] = Topic.objects.filter(name__icontains=searchstring)
-    elif filtertype == 'searchPostsOption':
-        tparams["postresults"] = Post.objects.filter(title__icontains=searchstring)
+        tparams["results"] = Topic.objects.filter(name__icontains=searchstring)
+        template = "search_topics.html"
     elif filtertype == 'searchUsersOption':
-        tparams["userresults"] = User.objects.filter(userName__icontains=searchstring)
+        tparams["results"] = User.objects.filter(userName__icontains=searchstring)
+        template = "search_users.html"
+    else:
+        tparams["results"] = Post.objects.filter(title__icontains=searchstring)
+        template = "search_posts.html"
+    return render(request, template, tparams)
 
-    return render(request, "search.html", tparams)
 
-
-def navbarSearch(request):
-    return custom_redirect('search', q=request.POST["searchQuery"], filterType=request.POST["searchTypeFilter"])
+def notifications(request):
+    return render(request, 'notifications.html')
 
 
 def signup(request):

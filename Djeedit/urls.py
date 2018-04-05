@@ -25,7 +25,7 @@ urlpatterns = [
     path('topic/<str:topicName>/', views.topicPage, name="topic"),
     path('login/', django.contrib.auth.views.login, name="login"),
     path('signup/', views.signup, name="signup"),
+    path('notifications/', views.notifications, name="notifications"),
     path('logout',  auth_views.LogoutView.as_view(next_page='/'), name="logout"),
-    path('navbarsearch', views.navbarSearch, name="navbarSearch"),
     re_path(r'^search$', views.search, name="search")
 ]

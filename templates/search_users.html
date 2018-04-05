@@ -1,22 +1,7 @@
-{% extends "layout.html" %}
+{% extends "search_layout.html" %}
 
-{% block pagename %}Search Results: {{ searchstring }}{% endblock %}
+{% block pagename %}Search User: {{ searchstring }}{% endblock %}
 
-{% block navbar %}
-    <div class="nav-scroller bg-white box-shadow justify-content-md-center">
-        <nav class="nav nav-underline">
-            <a class="nav-link active" href="#">
-                Topics <i class="far fa-comments"></i>
-            </a>
-            <a class="nav-link" href="#">
-                Posts <i class="fas fa-align-left"></i>
-            </a>
-            <a class="nav-link" href="#">
-                Users <i class="fas fa-users"></i>
-            </a>
-        </nav>
-    </div>
-{% endblock %}
 {% block content %}
         <div class="my-3 p-3 bg-white rounded box-shadow">
             <h6 class="border-bottom border-gray pb-2 mb-0">Found Users</h6>

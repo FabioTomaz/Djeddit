@@ -1,0 +1,9 @@
+{% extends 'search_layout.html' %}
+{% block pagename %}Search Post: {{ searchstring }}{% endblock %}
+
+{% block content %}
+    {% for p in results %}
+        {% include "post_preview.html" with post=p%}
+        <br>
+    {% endfor %}
+{% endblock %}
