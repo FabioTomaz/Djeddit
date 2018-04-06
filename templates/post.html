@@ -1,0 +1,161 @@
+{% extends 'layout.html' %}
+{% block styles %}
+
+    <link rel="stylesheet" type="text/css" href="/static/content/comments.css">
+    <script>
+    function myFunction(topic_id) {
+        var x = document.getElementById("add_reply_"+topic_id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    </script>
+
+{% endblock %}
+{% block pagename %}{{post.title}}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <button type="button" class="btn btn-outline-primary">
+            <a href="{% url "topic"  topicName=topicName %}" style="color:inherit; text-decoration:none" >To {{ topicName }} main page</a>
+        </button>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="card-header border border-light rounded">
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col-md-8">
+                                     <h3 align="left" class="float-left">{{ post.title }}</h3>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4 class="float-right">
+                                                <small><em>{{ post.date }}</em></small>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col" style="overflow: hidden">
+                                            <span style="display: inline">
+                                                <span class="badge badge-dark">OP</span>
+                                                <p class="small">{{ post.userOP.username }}</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="card-body border border-secondary rounded">{{ post.content|linebreaks }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    {% if user.is_authenticated %}
+        <div class="container pb-cmnt-container">
+         <form action="." method="post">
+                    {% csrf_token %}
+            <div class="row">
+                    <div class="col-md-8 offset-md-4">
+                        {{ form.comment }}
+                    </div>
+                    <div class="col-md-8 offset-md-4">
+                            <button class="btn btn-primary float-xs-right" type="submit">Save</button>
+                    </div>
+            </div>
+         </form>
+        </div>
+
+    {% endif %}
+    <div class="row">
+        <div class="comments-container">
+            <ul id="comments-list" class="comments-list">
+            {% for comment in comments %}
+
+                {# check if the comment is a reply. #}
+                {% if comment.reply == None %}
+                <li>
+                    <div class="comment-main-level">
+                        <!-- Avatar -->
+                        <div class="comment-avatar"><img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973461_960_720.png" alt=""></div>
+                        <!-- commentary box -->
+                        <div class="comment-box border rounded">
+                            <div class="comment-head">
+                                {% if comment.user.username == post.userOP.username %}
+                                <h6 class="comment-name by-author"> <a href="#">{{ comment.user.username }}</a></h6>
+                                {% else %}
+                                    <h6 class="comment-name by-not_author"> <a href="#">{{ comment.user.username }}</a></h6>
+                                {% endif %}
+                                <span>{{ comment.date }}</span>
+
+                                <button  style="margin-left: 20px;" class="btn-dark sm" onclick="myFunction({{ comment.id }})" >reply</button>
+                                <span style="float:right;">
+                                    <i class="fa fa-chevron-up"></i>
+                                </span>
+                                <span style="float:right;">
+                                    <i class="fa fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <div class="comment-content">
+                                {{ comment.text }}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left:90px; display: none" id="add_reply_{{ comment.id }}">
+                            <form action="." method="post">
+                                {% csrf_token %}
+                                <!-- Hidden input for parent comment.id -->
+                                <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
+                                {{ form.comment }}
+                                <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                            </form>
+                        </div>
+                    <!-- comment replies -->
+                    {% for reply in comment.replies.all %}
+                        <ul class="comments-list reply-list">
+                        <li>
+                            <!-- Avatar -->
+                            <div class="comment-avatar"><img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973461_960_720.png" alt=""></div>
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    {% if reply.user.username == post.userOP.username %}
+                                    <h6 class="comment-name by-author"> <a href="#">{{ reply.user.username }}</a></h6>
+                                    {% else %}
+                                        <h6> <a href="#">{{ reply.user.username }}</a></h6>
+                                    {% endif %}
+                                    <span>{{ reply.date }}</span>
+                                    <span style="float:right;">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </span>
+                                    <span style="float:right;">
+                                        <i class="fa fa-chevron-down"></i>
+                                    </span>
+                                </div>
+                                <div class="comment-content">
+                                    {{ reply.text }}
+                                </div>
+                            </div>
+                        </li>
+
+                        </ul>
+
+                    {% endfor %}
+
+
+                </li>
+                {% endif %}
+
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+<!-- https://bootsnipp.com/snippets/459K9-->
+{% endblock %}

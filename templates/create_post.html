@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% block pagename %}New Post{% endblock %}
+
+{% block content %}
+    {% if not user.is_authenticated %}
+        <div class="alert alert-warning" role="alert">
+            You must be signed in to post something!
+        </div>
+    {% endif %}
+    <h1>Create New Post to {{ topicName }}</h1>
+    {% if user.is_authenticated %}
+        <form action="." method="post">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group ">
+                        {{ form.title.label_tag }}<br/>
+                        {{ form.title }}
+                    </div>
+                </div>
+
+                {% if form.title.errors %}
+                    <div class="col-4 alert alert-danger">
+                            <ul class="errorlist">
+                            {% for error in form.title.errors %}
+                                <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                            </ul>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        {{ form.content.label_tag }}<br/>
+                        {{ form.content }}
+                    </div>
+                </div>
+
+
+            {% if form.content.errors %}
+                <div class="col-4 alert alert-danger">
+                    <ul class="errorlist">
+                        {% for error in form.content.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    {% endif %}
+
+
+{% endblock %}

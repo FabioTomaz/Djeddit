@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    {% block styles %} {% endblock %}
 
     <title>Djeddit - {% block pagename %} {% endblock %}</title>
 
@@ -35,7 +36,7 @@
                       <a class="nav-link" href="{% url 'home' %}">Most Recent</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link">Most Viwed</a>
+                      <a class="nav-link">Most Viewed</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link">Most Liked</a>
@@ -230,7 +231,7 @@
               updateFilterVariable();
 
               {% block onDocumentReadyBlock %}
-              
+
               {% endblock %}
           });
 

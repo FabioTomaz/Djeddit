@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block pagename %}{{  }}Comments{% endblock %}
+
+{% block content %}
+
+    <h1>Recent posts:</h1>
+    {% for p in posts %}
+        {% include "post_preview.html" with post=p%}
+        <br>
+    {% endfor %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
