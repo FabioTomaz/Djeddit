@@ -1,11 +1,12 @@
 from datetime import datetime
 
 from django.contrib.auth import authenticate
-from django.contrib.auth.views import login
-from django.http import HttpRequest, HttpResponseRedirect
+from django.contrib.auth.forms import AuthenticationForm
+import json
+from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
+from django.contrib.auth import login as auth_login
 from app.forms import CustomLoginForm, CustomUserCreationForm
 from app.models import Topic, Post, User, Comment, UserSubscriptions
 import urllib.parse
@@ -71,3 +72,23 @@ def custom_redirect(url_name, *args, **kwargs):
     url = reverse(url_name, args=args)
     params = urllib.parse.urlencode(kwargs)
     return HttpResponseRedirect(url + "?%s" % params)
+
+
+def user_page(request):
+    return render(request, 'profile.html')
+
+
+def login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            # Okay, security check complete. Log the user in.
+            auth_login(request, form.get_user())
+            errors = False
+        else:
+            errors = True
+        dict = {
+            'errors': errors
+        }
+
+        return HttpResponse(json.dumps(dict), content_type="application/json")

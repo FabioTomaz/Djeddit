@@ -82,24 +82,42 @@
                           <span aria-hidden="true">&times;</span>
                       </button>
                   </div>
-                  <form action="{% url 'login' %}" method="post" class="form-horizontal">
+                  <form id="loginForm" action="{% url 'login' %}" method="post" class="form-horizontal">
                       {% csrf_token %}
                       <input type="hidden" name="next" value="{{ request.path }}">
                       <div class="modal-body">
-                              <div class="form-group">
-                                  <div class="col-md-10">
+                          <div class="form-group">
+                              <div class="container">
+                                  <div class="input-group">
+                                      <span class="input-group-prepend">
+                                          <button class="btn btn-primary" disabled>
+                                              <i class="far fa-user"></i>
+                                          </button>
+                                      </span>
                                       <input name="username" class="form-control" type="text" placeholder="Username">
+                                  </div>
                                   <br>
-                                      <input name="password" class="form-control" type="password" placeholder="Password">
+                                  <div class="input-group">
+                                      <span class="input-group-prepend">
+                                          <button class="btn btn-primary" disabled>
+                                              <i class="fas fa-key"></i>
+                                          </button>
+                                      </span>
+                                      <input id="login_password" name="password" class="form-control" type="password" placeholder="Password">
+                                      <button id="show_hide_password" class="btn btn-primary input-group-append" type="button">
+                                          <i id="icon_show_hide_password" class="far fa-eye-slash" aria-hidden="true"></i>
+                                      </button>
+                                  </div>
+                                  <div id="errorsLog">
+                                    <br>
+                                    <p class="validation-summary-errors">Please enter a correct user name and password.</p>
                                   </div>
                               </div>
-                              {% if form.errors %}
-                                  <p class="validation-summary-errors">Please enter a correct user name and password.</p>
-                              {% endif %}
+                          </div>
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal" data-dismiss="modal"><i class="fas fa-user-plus" ></i> Sign Up</button>
-                          <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</button>
+                          <button id="loginButton" type="submit" class="btn btn-success"><i id="loginButtonIcon" class="fas fa-sign-in-alt"></i> Login</button>
                       </div>
                   </form>
               </div>
@@ -129,9 +147,6 @@
                                       <input name="password2" class="form-control" type="password" placeholder="Confirm Password">
                                   </div>
                               </div>
-                              {% if form.errors %}
-                                  <p class="validation-summary-errors">Please enter a correct user name and password.</p>
-                              {% endif %}
                       </div>
                       <div class="modal-footer">
                           <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" data-dismiss="modal"><i class="fas fa-sign-in-alt"></i> Login</button>
@@ -154,7 +169,7 @@
                       </button>
                   </div>
                   <div class="modal-footer">
-                      <a class="btn btn-success" href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-check"></i> Yes</a>
+                      <a class="btn btn-success" href="{% url 'logout' %}"><i class="fas fa-check"></i> Yes</a>
                       <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="far fa-times-circle"></i> No</button>
                   </div>
               </div>
@@ -185,7 +200,35 @@
       <script>
           var searchFilter;
           $(document).ready(function (e) {
+              $('#errorsLog').hide();
+              var form = $('#loginForm');
+              form.submit(function (event) {
+                  event.preventDefault();
+                  $.ajax({
+                      type: "POST",
+                      url: {% url 'login' %},
+                      data: form.serialize(),
+                      dataType: "json",
+                      success: function (resp) {
+                          console.log(resp.errors);
+                          if (resp.errors == false){
+                            $(location).attr('href', "{% url 'home' %}");
+                          }else{
+                            $("#loginButtonIcon").removeClass("fas fa-spinner fa-spin");
+                            $("#loginButtonIcon").addClass("fas fa-sign-in-alt");
+                            $('#errorsLog').show();
+                          }
+                      },
+                      error: function () {
+                          console.error("errrorrrrrrrrrrr");
+                      }
+                  });
+                  $("#loginButtonIcon").removeClass("fas fa-sign-in-alt");
+                  $("#loginButtonIcon").addClass("fas fa-spinner fa-spin");
+              });
+
               updateFilterVariable();
+
               {% block onDocumentReadyBlock %}
               
               {% endblock %}
@@ -201,6 +244,23 @@
               e.preventDefault();
               var query = $('#searchQuery').val();
               $(location).attr('href', "{% url 'search' %}?q="+query+"&filterType="+searchFilter)
+          });
+
+          $(document).on('click', "#show_hide_password", function (e) {
+              e.preventDefault();
+              if ($('#login_password').attr("type") == "text") {
+                  $('#login_password').attr('type', 'password');
+                  $('#icon_show_hide_password').removeClass("fas");
+                  $('#icon_show_hide_password').removeClass("fa-eye");
+                  $('#icon_show_hide_password').addClass("far");
+                  $('#icon_show_hide_password').addClass("fa-eye-slash");
+              } else if ($('#login_password').attr("type") == "password") {
+                  $('#login_password').attr('type', 'text');
+                  $('#icon_show_hide_password').removeClass("far");
+                  $('#icon_show_hide_password').removeClass("fa-eye-slash");
+                  $('#icon_show_hide_password').addClass("fas");
+                  $('#icon_show_hide_password').addClass("fa-eye");
+              }
           });
 
           function updateFilterVariable(){
