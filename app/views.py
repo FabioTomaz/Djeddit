@@ -73,7 +73,7 @@ def custom_redirect(url_name, *args, **kwargs):
     return HttpResponseRedirect(url + "?%s" % params)
 
 
-def user_page(request):
+def user_page(request, username):
     return render(request, 'profile.html')
 
 

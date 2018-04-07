@@ -3,10 +3,11 @@
 
 {% block content %}
     <div class="panel panel-default">
-    <form action="{% url 'search' %}" method="get">
-        
-    </form>
-        <div class="panel-body">A Basic Panel</div>
+        <form action="{% url 'search' %}" method="get">
+            <div class="panel-body">
+                A Basic Panel
+            </div>
+        </form>
     </div>
     {% for p in results %}
         {% include "post_preview.html" with post=p%}

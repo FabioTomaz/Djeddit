@@ -7,7 +7,7 @@
     </li>
 
     <li class="nav-item"><!-- /dropdown -->
-        <a class="nav-link" href="{% url 'home' %}">
+        <a class="nav-link" href="{% url 'user' username=user.username %}">
             <i class="far fa-user"></i> {{ user.username }}
         </a>
     </li>

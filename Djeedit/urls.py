@@ -24,16 +24,33 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.mainPage, name="home"),
-    path('topic/<str:topicName>/', views.topicPage, name="topic"),
+    re_path(r'^search$', views.search, name="search"),
+    # user
     path('user/<str:username>/', views.user_page, name="user"),
+    path('user/<str:username>/settings/', views.user_page, name="user_settings"),
+    # user topics
+    path('user/<str:username>/topics/', views.user_page, name="user_topics_subscriptions"),
+    path('user/<str:username>/topics/created', views.user_page, name="user_topics_created"),
+    # user posts
+    path('user/<str:username>/posts/', views.user_page, name="user_posts"),
+    path('user/<str:username>/posts/upvoted', views.user_page, name="user_posts_upvoted"),
+    path('user/<str:username>/posts/downvoted', views.user_page, name="user_posts_downvoted"),
+    # user comments
+    path('user/<str:username>/comments/', views.user_page, name="user_comments"),
+    path('user/<str:username>/comments/upvoted', views.user_page, name="user_comments_upvoted"),
+    path('user/<str:username>/comments/downvoted', views.user_page, name="user_comments_downvoted"),
+    # user authentication
     path('login/', views.login, name="login"),
     path('signup/', views.signup, name="signup"),
-    path('topic/<str:topicName>/post/<int:postID>/', views.postPage, name="post"),
+    path('logout', auth_views.LogoutView.as_view(next_page='/'), name="logout"),
+    # topic related url's
+    path('topic/<str:topicName>/', views.topicPage, name="topic"),
     path('topic/<str:topicName>/create_post/', views.createPost, name="create_post"),
     path('topic_create/', views.createTopic, name="topic_create"),
+    # post related url's
+    path('topic/<str:topicName>/post/<int:postID>/', views.postPage, name="post"),
+    # provavelmente não vai dar tempo
     path('notifications/', views.notifications, name="notifications"),
-    path('logout',  auth_views.LogoutView.as_view(next_page='/'), name="logout"),
-    re_path(r'^search$', views.search, name="search")
 ]
 
 if settings.DEBUG:

@@ -1,9 +1,81 @@
 {% extends "layout.html" %}
+{% load staticfiles%}
 
-{% block pagename %}{{ user }} User{% endblock %}
+{% block pagename %}{{ user }} Profile{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'content/profile_styles.css' %}"/>
+{% endblock %}
+
+<!-- Navigation-->
 {% block content %}
+    <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fas fa-user-circle"></i> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-cog"></i> Account Settings</a>
+            </li>
+        </ul>
 
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTopics">
+                    <i class="far fa-comments"></i> Topics
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseTopics">
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">My Topics</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Subscribed</a>
+                    </div>
+                </ul>
+            </li>
 
+            <li class="nav-item" data-toggle="tooltip" data-placement="right">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePosts">
+                    <i class="fas fa-align-left"></i> Posts
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapsePosts">
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">My Posts</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Upvoted</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Downvoted</a>
+                    </div>
+                </ul>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComments">
+                    <i class="far fa-comment-alt"></i> Comments
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseComments">
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">My Comments</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Upvoted</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">Downvoted</a>
+                    </div>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
+
+<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+    {% block profileContent %}
+    {% endblock %}
+</div>
+
+{% block scripts %}
 
 {% endblock %}
