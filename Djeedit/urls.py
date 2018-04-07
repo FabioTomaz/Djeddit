@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path, include
+from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 import django.contrib.auth.urls
 from app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,12 +27,14 @@ urlpatterns = [
     path('topic/<str:topicName>/', views.topicPage, name="topic"),
     path('user/<str:username>/', views.user_page, name="user"),
     path('login/', views.login, name="login"),
+    path('signup/', views.signup, name="signup"),
     path('topic/<str:topicName>/post/<int:postID>/', views.postPage, name="post"),
     path('topic/<str:topicName>/create_post/', views.createPost, name="create_post"),
     path('topic_create/', views.createTopic, name="topic_create"),
-    path('login/', django.contrib.auth.views.login, name="login"),
-    path('signup/', views.signup, name="signup"),
     path('notifications/', views.notifications, name="notifications"),
     path('logout',  auth_views.LogoutView.as_view(next_page='/'), name="logout"),
     re_path(r'^search$', views.search, name="search")
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

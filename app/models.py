@@ -10,6 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_details = models.CharField(max_length=200, blank=True)
     birth_date = models.DateField(null=True, blank=True)
+    user_picture = models.ImageField(upload_to='user_data/pictures/', blank=True)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

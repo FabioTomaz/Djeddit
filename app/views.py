@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from django.contrib.auth import authenticate
-from django.contrib.auth.forms import AuthenticationForm
 import json
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.contrib.auth.views import login
 from django.core.exceptions import ValidationError
@@ -10,9 +10,9 @@ from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import login as auth_login
-from app.forms import CustomLoginForm, CustomUserCreationForm
+from app.forms import SignUpForm
 
-from app.forms import CustomLoginForm, CustomUserCreationForm, topicCreateForm, CommentOnPost, CreatePost
+from app.forms import topicCreateForm, CommentOnPost, CreatePost
 from app.models import Topic, Post, User, Comment, UserSubscriptions
 import urllib.parse
 from datetime import datetime
@@ -24,6 +24,7 @@ def mainPage(request):
         'year': datetime.now().year,
     }
     return render(request, "home.html", tparams)
+
 
 def search(request):
     tparams = {
@@ -49,15 +50,21 @@ def notifications(request):
 
 
 def signup(request):
+    dict = {}
     next = request.POST.get('next', '/')
-    form = CustomUserCreationForm(request.POST)
-    if form.is_valid():
-        form.save()
-        username = form.cleaned_data.get('username')
-        raw_password = form.cleaned_data.get('password1')
-        user = authenticate(username=username, password=raw_password)
-        login(request, user)
-    return render(request, next)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.profile.birth_date = form.cleaned_data.get('birth_date')
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            auth_login(request, user)
+            return HttpResponse(json.dumps(dict), content_type="application/json")
+    dict["errors"] = form.errors
+    return HttpResponse(json.dumps(dict), content_type="application/json")
 
 
 def custom_redirect(url_name, *args, **kwargs):
@@ -91,7 +98,7 @@ def createTopic(request):
         form = topicCreateForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            #insert new topic on DB
+            # insert new topic on DB
             topic = form.cleaned_data["topicName"]
             description = form.cleaned_data["description"]
             rules = form.cleaned_data["rules"]
@@ -106,9 +113,9 @@ def createTopic(request):
     return render(request, 'topic_create.html', {'form': form})
 
 
-
 def topicCreatedSuccess(request):
     return render(request, "topic_created_success.html")
+
 
 def topicPage(request, topicName):
     topic = Topic.objects.get(name__iexact=topicName)
@@ -118,17 +125,17 @@ def topicPage(request, topicName):
     except UserSubscriptions.DoesNotExist:
         subscription = None
     if not subscription == None:
-        isUserSubscribed=True
+        isUserSubscribed = True
     if request.method == 'POST':
         if not isUserSubscribed:
-            #add a subscription
-            topic.nSubscribers+=1
+            # add a subscription
+            topic.nSubscribers += 1
             subs = UserSubscriptions(user=request.user, topic=topic)
             topic.save()
             subs.save()
-            isUserSubscribed = True #user will now be subcribed
+            isUserSubscribed = True  # user will now be subcribed
         else:
-            #remove a subscription
+            # remove a subscription
             topic.nSubscribers -= 1
             subscription.delete()
             topic.save()
@@ -150,38 +157,40 @@ def topicPage(request, topicName):
             }
             return render(request, "topic.html", tparams)
 
+
 def postPage(request, topicName, postID):
     post = Post.objects.get(id=postID)
-    #add a commentary to post
+    # add a commentary to post
     if request.method == 'POST':
         form = CommentOnPost(request.POST)
         if form.is_valid():
-            #insert new comment on DB
+            # insert new comment on DB
             # if this is a reply, get the comment id from hidden input
             try:
                 # id integer e.g. 15
                 comment_id = int(request.POST.get('comment_id'))
             except:
-                comment_id = None #not a reply
+                comment_id = None  # not a reply
             text = form.cleaned_data["comment"]
-            #no point in checking if user is logged because the comment box only shows
-            #if user is logged in
-            #this comment was a reply
+            # no point in checking if user is logged because the comment box only shows
+            # if user is logged in
+            # this comment was a reply
             if not comment_id == None:
                 c = Comment(user=request.user, post=post, date=datetime.now(),
                             text=text, reply=Comment.objects.get(id=comment_id))
-            #the comment is just a comment, not a reply
+            # the comment is just a comment, not a reply
             else:
                 c = Comment(user=request.user, post=post, date=datetime.now(),
                             text=text, reply=None)
                 # increment the number of commentaries this post has
-                post.nComments+=1
+                post.nComments += 1
                 post.save()
             c.save()
-            form = CommentOnPost() #clear fields
+            form = CommentOnPost()  # clear fields
             text = ""
             return render(request, 'post.html', {"post": post,
-             "comments" : Comment.objects.filter(post__id=postID), "topicName": topicName, 'form': form})
+                                                 "comments": Comment.objects.filter(post__id=postID),
+                                                 "topicName": topicName, 'form': form})
     else:
         form = CommentOnPost()
     if post is None:
@@ -189,12 +198,13 @@ def postPage(request, topicName, postID):
     else:
         comments = Comment.objects.filter(post__id=postID)
         tparams = {
-             "post": post,
-             "topicName": topicName,
-             "comments" : comments,
-             'form': form
-         }
+            "post": post,
+            "topicName": topicName,
+            "comments": comments,
+            'form': form
+        }
     return render(request, "post.html", tparams)
+
 
 def createPost(request, topicName):
     topic = Topic.objects.get(name=topicName)
@@ -202,13 +212,14 @@ def createPost(request, topicName):
         form = CreatePost(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            #insert new post on DB
+            # insert new post on DB
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]
             post = Post(userOP=request.user, title=title, content=content, date=datetime.datetime.now(), topic=topic)
             post.save()
             return render(request, "topic.html", {"currentTopic": Topic.objects.get(name__iexact=topicName),
-            "posts": Post.objects.filter(topic__name__iexact=topicName).order_by("date"),})
+                                                  "posts": Post.objects.filter(topic__name__iexact=topicName).order_by(
+                                                      "date"), })
     else:
         form = CreatePost()
-    return render(request, "create_post.html", {"form": form, "topicName":topic.name, "topic":topic})
+    return render(request, "create_post.html", {"form": form, "topicName": topic.name, "topic": topic})
