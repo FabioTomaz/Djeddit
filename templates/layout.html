@@ -37,17 +37,17 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
 
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-th-list"></i> New</a>
+                    <li class="nav-item {% if nbar == 'new' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'new' %}"><i class="fas fa-th-list"></i> New</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"><i class="fas fa-fire"></i> Popular</a>
+                    <li class="nav-item {% if nbar == 'popular' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'popular' %}"><i class="fas fa-fire"></i> Popular</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"><i class="far fa-thumbs-up"></i> Top Rated</a>
+                    <li class="nav-item {% if nbar == 'top_rated' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'top_rated' %}"><i class="far fa-thumbs-up"></i> Top Rated</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"><i class="fas fa-comment-slash"></i> Controversial</a>
+                    <li class="nav-item {% if nbar == 'controversial' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'controversial' %}"><i class="fas fa-comments"></i> Controversial</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav">
@@ -248,7 +248,7 @@
             </div> <!-- /container -->
         </main>
 
-        <footer style="padding-top: 50px">
+        <footer style=":sticky-footer">
             <hr/>
             <div class="container">
                 <p class="text-muted" align="center">&copy; {{ year }} - Djeddit </p>

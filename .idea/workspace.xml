@@ -1,138 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="Registo agora apresenta erros corretamente">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/static/content/profile_styles.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/static/scripts/profile_scripts.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libfreetype-550560cb.so.6.16.0" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libjpeg-4268453f.so.9.2.0" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/liblcms2-a6801db4.so.2.0.8" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/liblzma-90de1f11.so.5.2.2" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libopenjp2-e366d6b0.so.2.1.0" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libpng16-ae2ecf4b.so.16.25.0" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libtiff-8a6d997d.so.5.3.0" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libwebp-bfdb2e44.so.7.0.1" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libwebpdemux-8c59f8fd.so.2.0.3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libwebpmux-91d7e317.so.3.0.1" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/.libs/libz-a147dcb0.so.1.2.3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/BdfFontFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/BlpImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/BmpImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/BufrStubImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ContainerIO.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/CurImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/DcxImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/DdsImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/EpsImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ExifTags.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/FitsStubImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/FliImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/FontFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/FpxImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/FtexImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/GbrImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/GdImageFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/GifImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/GimpGradientFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/GimpPaletteFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/GribStubImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/Hdf5StubImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/IcnsImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/IcoImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/Image.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageChops.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageCms.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageColor.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageDraw.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageDraw2.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageEnhance.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageFilter.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageFont.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageGrab.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageMath.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageMode.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageMorph.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageOps.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImagePalette.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImagePath.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageQt.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageSequence.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageShow.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageStat.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageTk.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageTransform.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImageWin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/ImtImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/IptcImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/Jpeg2KImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/JpegImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/JpegPresets.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/McIdasImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/MicImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/MpegImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/MpoImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/MspImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/OleFileIO.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PSDraw.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PaletteFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PalmImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PcdImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PcfFontFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PcxImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PdfImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PdfParser.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PixarImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PngImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PpmImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PsdImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/PyAccess.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/SgiImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/SpiderImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/SunImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/TarIO.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/TgaImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/TiffImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/TiffTags.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/WalImageFile.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/WebPImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/WmfImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/XVThumbImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/XbmImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/XpmImagePlugin.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_binary.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_imaging.cpython-36m-x86_64-linux-gnu.so" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_imagingcms.cpython-36m-x86_64-linux-gnu.so" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_imagingft.cpython-36m-x86_64-linux-gnu.so" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_imagingmath.cpython-36m-x86_64-linux-gnu.so" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_imagingmorph.cpython-36m-x86_64-linux-gnu.so" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_imagingtk.cpython-36m-x86_64-linux-gnu.so" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_tkinter_finder.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_util.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/_webp.cpython-36m-x86_64-linux-gnu.so" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/features.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/PIL/version.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/DESCRIPTION.rst" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/INSTALLER" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/LICENSE.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/METADATA" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/RECORD" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/WHEEL" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/metadata.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/top_level.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Pillow-5.1.0.dist-info/zip-safe" />
+    <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Djeedit/urls.py" afterPath="$PROJECT_DIR$/Djeedit/urls.py" />
+      <change beforePath="$PROJECT_DIR$/app/forms.py" afterPath="$PROJECT_DIR$/app/forms.py" />
       <change beforePath="$PROJECT_DIR$/app/static/content/site.css" afterPath="$PROJECT_DIR$/app/static/content/site.css" />
       <change beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html" afterPath="$PROJECT_DIR$/templates/layout.html" />
-      <change beforePath="$PROJECT_DIR$/templates/loginpartial.html" afterPath="$PROJECT_DIR$/templates/loginpartial.html" />
       <change beforePath="$PROJECT_DIR$/templates/profile.html" afterPath="$PROJECT_DIR$/templates/profile.html" />
-      <change beforePath="$PROJECT_DIR$/templates/search_posts.html" afterPath="$PROJECT_DIR$/templates/search_posts.html" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -146,11 +23,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+            <state relative-caret-position="90">
+              <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+              <folding>
+                <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loginpartial.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/loginpartial.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="10" column="57" lean-forward="false" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="117" column="27" lean-forward="true" selection-start-line="117" selection-start-column="14" selection-end-line="117" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -159,8 +58,28 @@
       <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+            <state relative-caret-position="162">
+              <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/static/content/site.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="100" column="5" lean-forward="false" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -169,8 +88,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+            <state relative-caret-position="295">
+              <caret line="46" column="80" lean-forward="false" selection-start-line="46" selection-start-column="80" selection-end-line="46" selection-end-column="80" />
               <folding>
                 <element signature="e#631#663#0" expanded="true" />
               </folding>
@@ -202,7 +121,7 @@
         <entry file="file://$PROJECT_DIR$/templates/search_layout.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
-              <caret line="12" column="50" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="50" />
+              <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -222,14 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>template</find>
-      <find>processrs</find>
-      <find>searchstring</find>
-      <find>footer</find>
-      <find>addclass</find>
-      <find>login m</find>
-      <find>search</find>
-      <find>input-group-append</find>
       <find>show_hide</find>
       <find>show_hide_password</find>
       <find>username</find>
@@ -250,9 +161,20 @@
       <find>usercreationform</find>
       <find>navbar-sidenav</find>
       <find>console</find>
-      <find>static</find>
       <find>most</find>
+      <find>main</find>
+      <find>static</find>
+      <find>user_page</find>
+      <find>tparams</find>
+      <find>nbar</find>
+      <find>user</find>
+      <find>user_comments</find>
+      <find>footer</find>
+      <find>sticky</find>
     </findStrings>
+    <replaceStrings>
+      <replace>sidebar</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -274,16 +196,16 @@
         <option value="$PROJECT_DIR$/templates/notifications.html" />
         <option value="$PROJECT_DIR$/Djeedit/settings.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
-        <option value="$PROJECT_DIR$/app/forms.py" />
         <option value="$PROJECT_DIR$/templates/loginpartial.html" />
-        <option value="$PROJECT_DIR$/app/views.py" />
-        <option value="$PROJECT_DIR$/app/static/content/site.css" />
         <option value="$PROJECT_DIR$/app/static/scripts/profile_scripts.js" />
         <option value="$PROJECT_DIR$/app/static/content/profile_styles.css" />
-        <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/templates/search_posts.html" />
+        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/Djeedit/urls.py" />
+        <option value="$PROJECT_DIR$/templates/profile.html" />
+        <option value="$PROJECT_DIR$/app/forms.py" />
         <option value="$PROJECT_DIR$/templates/layout.html" />
+        <option value="$PROJECT_DIR$/app/static/content/site.css" />
       </list>
     </option>
   </component>
@@ -538,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523065404025</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Diversas alteraçoes no perfil">
+      <created>1523115610412</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1523115610412</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -584,7 +513,8 @@
     <MESSAGE value="Correção de commit" />
     <MESSAGE value="Merge branch 'master' of https://code.ua.pt/git/djeedit&#10;&#10;# Conflicts:&#10;#&#9;Djeedit/__pycache__/__init__.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/settings.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/urls.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/wsgi.cpython-36.pyc&#10;#&#9;Djeedit/urls.py&#10;#&#9;app/__pycache__/__init__.cpython-36.pyc&#10;#&#9;app/__pycache__/admin.cpython-36.pyc&#10;#&#9;app/__pycache__/apps.cpython-36.pyc&#10;#&#9;app/__pycache__/forms.cpython-36.pyc&#10;#&#9;app/__pycache__/models.cpython-36.pyc&#10;#&#9;app/__pycache__/views.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/0001_initial.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/0002_auto_20180323_1926.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/__init__.cpython-36.pyc&#10;#&#9;app/views.py&#10;#&#9;db.sqlite3&#10;#&#9;templates/layout.html&#10;#&#9;venv/lib/python3.6/__pycache__/site.cpython-36.pyc" />
     <MESSAGE value="Registo agora apresenta erros corretamente" />
-    <option name="LAST_COMMIT_MESSAGE" value="Registo agora apresenta erros corretamente" />
+    <MESSAGE value="Diversas alteraçoes no perfil" />
+    <option name="LAST_COMMIT_MESSAGE" value="Diversas alteraçoes no perfil" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -631,7 +561,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
           <caret line="51" column="54" lean-forward="false" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -820,42 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="68" column="91" lean-forward="false" selection-start-line="68" selection-start-column="91" selection-end-line="68" selection-end-column="91" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/content/site.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/loginpartial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="10" column="57" lean-forward="false" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="76" column="41" lean-forward="false" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/content/profile_styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="601">
@@ -877,15 +773,7 @@
     <entry file="file://$PROJECT_DIR$/templates/search_layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="12" column="50" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <caret line="12" column="50" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -906,20 +794,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="117" column="27" lean-forward="true" selection-start-line="117" selection-start-column="14" selection-end-line="117" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        <state relative-caret-position="295">
+          <caret line="46" column="80" lean-forward="false" selection-start-line="46" selection-start-column="80" selection-end-line="46" selection-end-column="80" />
           <folding>
             <element signature="e#631#663#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="54" column="1" lean-forward="true" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+        <state relative-caret-position="90">
+          <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/loginpartial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="57" lean-forward="false" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/content/site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="100" column="5" lean-forward="false" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
           <folding />
         </state>
       </provider>

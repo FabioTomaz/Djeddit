@@ -1,20 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator, MinLengthValidator
-
-from app.models import Profile
-
-
-class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(max_length=100, label="", widget=forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Enter Username'
-    }))
-    password = forms.CharField(max_length=100, label="", widget=forms.PasswordInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Enter Username'
-    }))
 
 
 class topicCreateForm(forms.Form):

@@ -1,21 +1,19 @@
 {% extends "layout.html" %}
+
 {% load staticfiles%}
-
-{% block pagename %}{{ user }} Profile{% endblock %}
-
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'content/profile_styles.css' %}"/>
 {% endblock %}
 
 <!-- Navigation-->
 {% block content %}
-    <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+    <nav class="col-sm-3 col-md-2 hidden-xs-down bg-dark sidebar">
         <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="#"><i class="fas fa-user-circle"></i> Profile</a>
+                <a class="nav-link {% if sidebar == 'user_page' %}active{% endif %}" href="{% url 'user' username=user.username %}"><i class="fas fa-user-circle"></i> Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-cog"></i> Account Settings</a>
+                <a class="nav-link {% if sidebar == 'user_settings' %}active{% endif %}" href="{% url 'user_settings' username=user.username %}"><i class="fas fa-cog"></i> Account Settings</a>
             </li>
         </ul>
 
@@ -26,10 +24,10 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseTopics">
                     <div class="nav-item">
-                        <a href="#" class="nav-link">My Topics</a>
+                        <a href="{% url 'user_topics_created' username=user.username %}" class="nav-link {% if sidebar == 'user_topic_created' %}active{% endif %}">My Topics</a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">Subscribed</a>
+                        <a href="{% url 'user_topics_subscriptions' username=user.username %}" class="nav-link  {% if sidebar == 'user_topic__subscription' %}active{% endif %}">Subscribed</a>
                     </div>
                 </ul>
             </li>
@@ -40,13 +38,13 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapsePosts">
                     <div class="nav-item">
-                        <a href="#" class="nav-link">My Posts</a>
+                        <a href="{% url 'user_posts' username=user.username %}" class="nav-link {% if sidebar == 'user_posts' %}active{% endif %}">My Posts</a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">Upvoted</a>
+                        <a href="{% url 'user_posts_upvoted' username=user.username %}" class="nav-link {% if sidebar == 'user_posts_upvoted' %}active{% endif %}">Upvoted</a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">Downvoted</a>
+                        <a href="{% url 'user_posts_downvoted' username=user.username %}" class="nav-link {% if sidebar == 'user_posts_downvoted' %}active{% endif %}">Downvoted</a>
                     </div>
                 </ul>
             </li>
@@ -57,13 +55,13 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComments">
                     <div class="nav-item">
-                        <a href="#" class="nav-link">My Comments</a>
+                        <a href="{% url 'user_comments' username=user.username %}" class="nav-link {% if sidebar == 'user_comments' %}active{% endif %}">My Comments</a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">Upvoted</a>
+                        <a href="{% url 'user_comments_upvoted' username=user.username %}" class="nav-link {% if sidebar == 'user_comments_upvoted' %}active{% endif %}">Upvoted</a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">Downvoted</a>
+                        <a href="{% url 'user_comments_downvoted' username=user.username %}" class="nav-link {% if sidebar == 'user_comments_downvoted' %}active{% endif %}">Downvoted</a>
                     </div>
                 </ul>
             </li>
@@ -71,11 +69,7 @@
     </nav>
 {% endblock %}
 
-<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 bg-white">
     {% block profileContent %}
     {% endblock %}
 </div>
-
-{% block scripts %}
-
-{% endblock %}

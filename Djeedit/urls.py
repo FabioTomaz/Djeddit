@@ -23,22 +23,28 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # main pages
     path('', views.mainPage, name="home"),
+    path('new/', views.mainPage, name="new"),
+    path('popular/', views.popularPage, name="popular"),
+    path('top_rated/', views.topRatedPage, name="top_rated"),
+    path('controversial/', views.controversialPage, name="controversial"),
+    # search
     re_path(r'^search$', views.search, name="search"),
     # user
     path('user/<str:username>/', views.user_page, name="user"),
-    path('user/<str:username>/settings/', views.user_page, name="user_settings"),
+    path('user/<str:username>/settings/', views.user_settings, name="user_settings"),
     # user topics
-    path('user/<str:username>/topics/', views.user_page, name="user_topics_subscriptions"),
-    path('user/<str:username>/topics/created', views.user_page, name="user_topics_created"),
+    path('user/<str:username>/topics/', views.user_topic_subscriptions, name="user_topics_subscriptions"),
+    path('user/<str:username>/topics/created', views.user_topic_created, name="user_topics_created"),
     # user posts
-    path('user/<str:username>/posts/', views.user_page, name="user_posts"),
-    path('user/<str:username>/posts/upvoted', views.user_page, name="user_posts_upvoted"),
-    path('user/<str:username>/posts/downvoted', views.user_page, name="user_posts_downvoted"),
+    path('user/<str:username>/posts/', views.user_posts, name="user_posts"),
+    path('user/<str:username>/posts/upvoted', views.user_posts_upvoted, name="user_posts_upvoted"),
+    path('user/<str:username>/posts/downvoted', views.user_posts_downvoted, name="user_posts_downvoted"),
     # user comments
-    path('user/<str:username>/comments/', views.user_page, name="user_comments"),
-    path('user/<str:username>/comments/upvoted', views.user_page, name="user_comments_upvoted"),
-    path('user/<str:username>/comments/downvoted', views.user_page, name="user_comments_downvoted"),
+    path('user/<str:username>/comments/', views.user_comments, name="user_comments"),
+    path('user/<str:username>/comments/upvoted', views.user_comments_upvoted, name="user_comments_upvoted"),
+    path('user/<str:username>/comments/downvoted', views.user_comments_downvoted, name="user_comments_downvoted"),
     # user authentication
     path('login/', views.login, name="login"),
     path('signup/', views.signup, name="signup"),

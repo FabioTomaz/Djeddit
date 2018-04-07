@@ -22,6 +22,34 @@ def mainPage(request):
     tparams = {
         "posts": Post.objects.order_by("date"),
         'year': datetime.now().year,
+        "nbar": "new"
+    }
+    return render(request, "home.html", tparams)
+
+
+def popularPage(request):
+    tparams = {
+        "posts": Post.objects.order_by("date"),
+        'year': datetime.now().year,
+        "nbar": "popular"
+    }
+    return render(request, "home.html", tparams)
+
+
+def topRatedPage(request):
+    tparams = {
+        "posts": Post.objects.order_by("date"),
+        'year': datetime.now().year,
+        "nbar": "top_rated"
+    }
+    return render(request, "home.html", tparams)
+
+
+def controversialPage(request):
+    tparams = {
+        "posts": Post.objects.order_by("date"),
+        'year': datetime.now().year,
+        "nbar": "controversial"
     }
     return render(request, "home.html", tparams)
 
@@ -74,7 +102,73 @@ def custom_redirect(url_name, *args, **kwargs):
 
 
 def user_page(request, username):
-    return render(request, 'profile.html')
+    tparams = {
+        "sidebar": "user_page"
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_settings(request, username):
+    tparams = {
+        'sidebar': 'user_settings'
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_topic_subscriptions(request, username):
+    tparams = {
+        'sidebar': 'user_topic_subscriptions'
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_topic_created(request, username):
+    tparams = {
+        'sidebar': 'user_topic_created'
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_posts(request, username):
+    tparams = {
+        'sidebar': 'user_posts'
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_posts_upvoted(request, username):
+    tparams = {
+        'sidebar': 'user_posts_upvoted'
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_posts_downvoted(request, username):
+    tparams = {
+        'sidebar': 'user_posts_downvoted'
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_comments(request, username):
+    tparams = {
+        'sidebar': 'user_comments'
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_comments_upvoted(request, username):
+    tparams = {
+        'sidebar': 'user_comments_upvoted'
+    }
+    return render(request, 'profile.html', tparams)
+
+
+def user_comments_downvoted(request, username):
+    tparams = {
+        'sidebar': 'user_comments_downvoted'
+    }
+    return render(request, 'profile.html', tparams)
 
 
 def login(request):
