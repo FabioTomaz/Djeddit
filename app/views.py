@@ -38,7 +38,7 @@ def popularPage(request):
 
 def topRatedPage(request):
     tparams = {
-        "posts": Post.objects.order_by("date"),
+        "posts": Post.objects.order_by("vote_score"), #order by most upvoted posts first
         'year': datetime.now().year,
         "nbar": "top_rated"
     }

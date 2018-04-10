@@ -4,6 +4,7 @@ from django.db import models
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from vote.models import VoteModel
 
 
 class Profile(models.Model):
@@ -21,7 +22,6 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
-
 class Topic(models.Model):
     name = models.CharField(max_length=80, blank=False, primary_key=True)
     rules = models.CharField(max_length=500)
@@ -33,13 +33,13 @@ class Topic(models.Model):
         return self.name
 
 
-class Post(models.Model):
+class Post(VoteModel, models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     title = models.CharField(max_length=120, blank=False)  # campo obrigatório
     content = models.CharField(max_length=100000, blank=False)
-    score = models.IntegerField(default=0)
+    #score = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now=True)
-    # type = models.CharField(max_lenght = 50)
+    #type = models.CharField(max_lenght = 50)
     userOP = models.ForeignKey(User, on_delete=models.CASCADE)
     nComments = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
@@ -58,11 +58,11 @@ class UserSubscriptions(models.Model):
         unique_together = (("user", "topic"),)
 
 
-class Comment(models.Model):
+class Comment(VoteModel, models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
-    score = models.IntegerField(default=0)
+    #score = models.IntegerField(default=0)
     text = models.CharField(max_length=10000, blank=False)
     reply = models.ForeignKey("self", null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
     nReplies = models.IntegerField(default=0)

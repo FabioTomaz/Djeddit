@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import User, Topic, Comment, UserSubscriptions, Post, Profile, User_votes_comment, User_votes_post
+from app.models import Topic, Comment, UserSubscriptions, Post, Profile, User_votes_comment, User_votes_post
 # Register your models here.
 
 admin.site.register(Topic)
