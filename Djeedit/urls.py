@@ -33,6 +33,7 @@ urlpatterns = [
     re_path(r'^search$', views.search, name="search"),
     # user
     path('user/<str:username>/', views.user_page, name="user"),
+    path('user/<str:username>/edit/', views.user_edit, name="user_edit"),
     path('user/<str:username>/settings/', views.user_settings, name="user_settings"),
     # user topics
     path('user/<str:username>/topics/', views.user_topic_subscriptions, name="user_topics_subscriptions"),
@@ -57,7 +58,4 @@ urlpatterns = [
     path('topic/<str:topicName>/post/<int:postID>/', views.postPage, name="post"),
     # provavelmente não vai dar tempo
     path('notifications/', views.notifications, name="notifications"),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

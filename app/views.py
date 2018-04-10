@@ -2,18 +2,17 @@ from datetime import datetime
 
 import json
 from django.contrib.auth import authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
-from django.contrib.auth.views import login
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import login as auth_login
-from app.forms import SignUpForm
+from app.forms import SignUpForm, UserForm, ProfileForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
-from app.models import Topic, Post, User, Comment, UserSubscriptions
+from app.models import Topic, Post, User, Comment, UserSubscriptions, Profile
 import urllib.parse
 from datetime import datetime
 
@@ -102,10 +101,45 @@ def custom_redirect(url_name, *args, **kwargs):
 
 
 def user_page(request, username):
-    tparams = {
-        "sidebar": "user_page"
-    }
-    return render(request, 'profile.html', tparams)
+    try:
+        tparams = {
+            "sidebar": "user_page",
+            "url_username": username
+        }
+        return render(request, 'profile_page.html', tparams)
+    except Profile.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
+
+
+def user_edit(request, username):
+    if request.user.is_authenticated and request.user.username == username:
+        if request.method == 'POST':
+            user_form = UserForm(request.POST, instance=request.user)
+            profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+            if user_form.is_valid() and profile_form.is_valid():
+                user_form.save()
+                profile_form.save()
+                return user_page(request, username)
+        else:
+            user_form = UserForm(instance=request.user)
+            profile_form = ProfileForm(instance=request.user.profile)
+        return render(request, 'profile_edit.html', {
+            'user_form': user_form,
+            'profile_form': profile_form
+        })
+
+
+
+    try:
+        tparams = {
+            "sidebar": "user_page",
+            "profile": Profile.objects.get(user__username=username)
+        }
+        return render(request, 'profile_edit.html', tparams)
+    except Profile.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def user_settings(request, username):
@@ -123,10 +157,12 @@ def user_topic_subscriptions(request, username):
 
 
 def user_topic_created(request, username):
+    myTopic = Topic.objects.filter(userCreator=request.user)
     tparams = {
-        'sidebar': 'user_topic_created'
+        'sidebar': 'user_topic_created',
+        'myTopics': myTopic
     }
-    return render(request, 'profile.html', tparams)
+    return render(request, 'profile_my_topics.html', tparams)
 
 
 def user_posts(request, username):
@@ -309,7 +345,7 @@ def createPost(request, topicName):
             # insert new post on DB
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]
-            post = Post(userOP=request.user, title=title, content=content, date=datetime.datetime.now(), topic=topic)
+            post = Post(userOP=request.user, title=title, content=content, topic=topic)
             post.save()
             return render(request, "topic.html", {"currentTopic": Topic.objects.get(name__iexact=topicName),
                                                   "posts": Post.objects.filter(topic__name__iexact=topicName).order_by(

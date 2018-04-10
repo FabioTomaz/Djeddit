@@ -1,7 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator, MinLengthValidator
+
+from app.models import Profile
 
 
 class topicCreateForm(forms.Form):
@@ -54,3 +56,30 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = {'username', 'email', 'password1', 'password2', 'first_name', 'last_name'}
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+
+        self.fields['first_name'].widget.attrs['class'] = 'form-control'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('birth_date', 'user_details', 'user_picture', 'gender')
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['gender'].widget.attrs['class'] = 'form-control'
+        self.fields['user_details'].widget = forms.Textarea(
+            attrs={'class': 'form-control', 'placeholder': 'Describe yourself...'})
+        self.fields['birth_date'].widget = forms.DateInput(
+            attrs={'class': 'form-control', 'placeholder': 'Insert the Date of your Birth...', 'type':'date'})

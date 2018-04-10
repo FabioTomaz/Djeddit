@@ -1,0 +1,54 @@
+{% extends 'profile.html' %}
+
+{% block profileContent %}
+    <div class="card bg-white">
+        <div class="card-header">
+            <strong>Username: {{ user.username }} </strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center">
+                    <img src="{{ MEDIA_URL }}{{ user.profile.user_picture }}" class="img-circle img-fluid">
+                </div>
+                <div class=" col-md-9 col-lg-9 ">
+                    <table class="table table-user-information">
+                        <tbody>
+                        <tr>
+                            <td>Name:</td>
+                            <td>{{ user.profile.user.get_full_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>User Bio:</td>
+                            <td>{{ user.profile.user_details }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>{{ user.profile.user.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>{{ user.profile.birth_date }}</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Registration</td>
+                            <td>{{ user.profile.user.date_joined }}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>{{ user.profile.get_gender_display }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        {% if request.user.is_authenticated %}
+            {% ifequal url_username user.username %}
+                <div class="card-footer">
+                    <a href="{% url 'user_edit' username=user.username %}" class="btn btn-dark float-right"><i class="fas fa-edit"></i> Edit Profile</a>
+                </div>
+            {% endifequal %}
+        {% endif %}
+    </div>
+{% endblock %}

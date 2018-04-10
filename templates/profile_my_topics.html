@@ -1,0 +1,8 @@
+{% extends "profile.html" %}
+{% block profileContent %}
+    <a href="{% url 'topic_create' %}">Create Topic</a>
+    <br/>
+    {% for t in myTopics %}
+        {% include "topic_preview.html" with topic=t%}
+    {% endfor %}
+{% endblock %}
