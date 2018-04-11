@@ -1,1 +1,9 @@
-<a href="{% url "topic"  topicName=topic.name %}">{{ topic.name }}</a>
+<div class="card border-secondary">
+    <div class="card-header">
+        <a class="btn btn-link" href="{% url "topic"  topicName=topic.name %}">{{ topic.name }}</a>
+    </div>
+
+    <div class="card-body">
+        <div class="text-muted">{{ topic.description }}</div>
+    </div>
+</div>

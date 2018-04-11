@@ -12,7 +12,7 @@ from django.contrib.auth import login as auth_login
 from app.forms import SignUpForm, UserForm, ProfileForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
-from app.models import Topic, Post, User, Comment, UserSubscriptions, Profile
+from app.models import Topic, Post, User, Comment, Profile
 import urllib.parse
 from datetime import datetime
 
@@ -28,7 +28,7 @@ def mainPage(request):
 
 def popularPage(request):
     tparams = {
-        "posts": Post.objects.order_by("date"),
+        "posts": Post.objects.order_by("-clicks"),
         'year': datetime.now().year,
         "nbar": "popular"
     }
@@ -37,7 +37,7 @@ def popularPage(request):
 
 def topRatedPage(request):
     tparams = {
-        "posts": Post.objects.order_by("vote_score"), #order by most upvoted posts first
+        "posts": Post.objects.order_by("-vote_score"), #order by most upvoted posts first
         'year': datetime.now().year,
         "nbar": "top_rated"
     }
@@ -151,18 +151,18 @@ def user_settings(request, username):
 
 def user_topic_subscriptions(request, username):
     tparams = {
-        'sidebar': 'user_topic_subscriptions'
+        'sidebar': 'user_topic_subscriptions',
+        'topics': Topic.objects.filter(profile__user__username=username)
     }
-    return render(request, 'profile.html', tparams)
+    return render(request, 'profile_topics.html', tparams)
 
 
 def user_topic_created(request, username):
-    myTopic = Topic.objects.filter(userCreator=request.user)
     tparams = {
         'sidebar': 'user_topic_created',
-        'myTopics': myTopic
+        'topics': Topic.objects.filter(userCreator=request.user)
     }
-    return render(request, 'profile_my_topics.html', tparams)
+    return render(request, 'profile_topics.html', tparams)
 
 
 def user_posts(request, username):

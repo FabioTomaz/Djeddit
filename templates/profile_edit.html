@@ -1,5 +1,7 @@
 {% extends 'profile.html' %}
 
+{% block pagename %} Edit Profile: {{ user.username }} {% endblock %}
+
 {% block profileContent %}
     <form method="post" action="." enctype="multipart/form-data">
     {% csrf_token %}

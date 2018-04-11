@@ -1,21 +1,7 @@
 {% extends 'layout.html' %}
 {% block pagename %}Home{% endblock %}
-{% block styles %}
 
-{% endblock %}
-<script type="text/javascript">
-    $('li').click(function(vote){
-    $.ajax({
-        url: postUrl,
-        type: 'POST',
-        value: {'terid': vote},
-        traditional: true,
-        dataType: 'html',
-        });
-    });
-</script>
 {% block content %}
-
     <h1>Recent posts:</h1>
     {% for p in posts %}
         {% include "post_preview.html" with post=p%}

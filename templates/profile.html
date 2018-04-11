@@ -23,6 +23,10 @@
                     <i class="far fa-comments"></i> Topics
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseTopics">
+
+                    <div class="nav-item">
+                        <a href="{% url 'topic_create' %}" class="nav-link">Create Topic</a>
+                    </div>
                     <div class="nav-item">
                         <a href="{% url 'user_topics_created' username=user.username %}" class="nav-link {% if sidebar == 'user_topic_created' %}active{% endif %}">My Topics</a>
                     </div>
