@@ -2,28 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/djeddit.iml" afterPath="$PROJECT_DIR$/.idea/djeddit.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/migrations/0002_auto_20180411_1449.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/admin.py" afterPath="$PROJECT_DIR$/app/admin.py" />
-      <change beforePath="$PROJECT_DIR$/app/migrations/0001_initial.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/migrations/0003_auto_20180409_1059.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/migrations/0004_auto_20180409_1415.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/migrations/0005_profile_registration_date.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/migrations/0006_profile_gender.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/migrations/0007_auto_20180410_0902.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/migrations/__init__.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
       <change beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/media/media/user_data/pictures/pic.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" afterPath="$PROJECT_DIR$/templates/home.html" />
-      <change beforePath="$PROJECT_DIR$/templates/loginpartial.html" afterPath="$PROJECT_DIR$/templates/loginpartial.html" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" afterPath="$PROJECT_DIR$/templates/profile.html" />
-      <change beforePath="$PROJECT_DIR$/templates/profile_edit.html" afterPath="$PROJECT_DIR$/templates/profile_edit.html" />
-      <change beforePath="$PROJECT_DIR$/templates/profile_my_topics.html" afterPath="$PROJECT_DIR$/templates/profile_topics.html" />
-      <change beforePath="$PROJECT_DIR$/templates/profile_page.html" afterPath="$PROJECT_DIR$/templates/profile_page.html" />
-      <change beforePath="$PROJECT_DIR$/templates/topic_preview.html" afterPath="$PROJECT_DIR$/templates/topic_preview.html" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html" afterPath="$PROJECT_DIR$/templates/layout.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,41 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="20" column="84" lean-forward="false" selection-start-line="20" selection-start-column="82" selection-end-line="20" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loginpartial.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/loginpartial.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-486">
-              <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="39" column="41" lean-forward="false" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
+            <state relative-caret-position="302">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -79,55 +32,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile_topics.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/profile_topics.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/profile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="252">
+              <caret line="54" column="46" lean-forward="true" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1188">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -147,7 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>datepicker</find>
       <find>password</find>
       <find>logout</find>
       <find>scroll-to-top</find>
@@ -177,6 +87,7 @@
       <find>notifications</find>
       <find>subscri</find>
       <find>many</find>
+      <find>vote_score</find>
     </findStrings>
     <replaceStrings>
       <replace>sidebar</replace>
@@ -203,7 +114,6 @@
         <option value="$PROJECT_DIR$/templates/search_posts.html" />
         <option value="$PROJECT_DIR$/Djeedit/urls.py" />
         <option value="$PROJECT_DIR$/app/forms.py" />
-        <option value="$PROJECT_DIR$/templates/layout.html" />
         <option value="$PROJECT_DIR$/app/static/content/site.css" />
         <option value="$PROJECT_DIR$/Djeedit/settings.py" />
         <option value="$PROJECT_DIR$/app/static/content/comments.css" />
@@ -217,9 +127,10 @@
         <option value="$PROJECT_DIR$/templates/profile_topics.html" />
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/loginpartial.html" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/admin.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
+        <option value="$PROJECT_DIR$/templates/layout.html" />
+        <option value="$PROJECT_DIR$/app/views.py" />
       </list>
     </option>
   </component>
@@ -313,42 +224,40 @@
         <subPane>
           <expand>
             <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="djeddit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeddit" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="djeddit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeddit" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="content" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="djeddit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeddit" type="462c0819:PsiDirectoryNode" />
               <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="djeddit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeddit" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeddit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeddit" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="user_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeddit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeddit" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
+              <item name="user_data" type="462c0819:PsiDirectoryNode" />
+              <item name="pictures" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeddit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeddit" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -492,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523115610412</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Diversas alteraçoes">
+      <created>1523458308325</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1523458308325</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -556,7 +472,8 @@
     <MESSAGE value="Merge branch 'master' of https://code.ua.pt/git/djeedit&#10;&#10;# Conflicts:&#10;#&#9;Djeedit/__pycache__/__init__.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/settings.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/urls.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/wsgi.cpython-36.pyc&#10;#&#9;Djeedit/urls.py&#10;#&#9;app/__pycache__/__init__.cpython-36.pyc&#10;#&#9;app/__pycache__/admin.cpython-36.pyc&#10;#&#9;app/__pycache__/apps.cpython-36.pyc&#10;#&#9;app/__pycache__/forms.cpython-36.pyc&#10;#&#9;app/__pycache__/models.cpython-36.pyc&#10;#&#9;app/__pycache__/views.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/0001_initial.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/0002_auto_20180323_1926.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/__init__.cpython-36.pyc&#10;#&#9;app/views.py&#10;#&#9;db.sqlite3&#10;#&#9;templates/layout.html&#10;#&#9;venv/lib/python3.6/__pycache__/site.cpython-36.pyc" />
     <MESSAGE value="Registo agora apresenta erros corretamente" />
     <MESSAGE value="Diversas alteraçoes no perfil" />
-    <option name="LAST_COMMIT_MESSAGE" value="Diversas alteraçoes no perfil" />
+    <MESSAGE value="Diversas alteraçoes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Diversas alteraçoes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -852,24 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="20" column="84" lean-forward="false" selection-start-line="20" selection-start-column="82" selection-end-line="20" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="39" column="41" lean-forward="false" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -888,12 +787,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="194" column="65" lean-forward="false" selection-start-line="194" selection-start-column="65" selection-end-line="194" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="252">
+          <caret line="54" column="46" lean-forward="true" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>

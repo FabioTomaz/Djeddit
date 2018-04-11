@@ -27,8 +27,9 @@ def mainPage(request):
 
 
 def popularPage(request):
+    ordered = sorted(Post.objects.all(), key=lambda post: post.clicks, reverse=True)
     tparams = {
-        "posts": Post.objects.order_by("-clicks"),
+        "posts": ordered,
         'year': datetime.now().year,
         "nbar": "popular"
     }
@@ -36,8 +37,9 @@ def popularPage(request):
 
 
 def topRatedPage(request):
+    ordered = sorted(Post.objects.all(), key=lambda post: post.clicks, reverse=True)
     tparams = {
-        "posts": Post.objects.order_by("-vote_score"), #order by most upvoted posts first
+        "posts": ordered,
         'year': datetime.now().year,
         "nbar": "top_rated"
     }
