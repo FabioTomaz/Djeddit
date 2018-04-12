@@ -10,11 +10,17 @@
     <nav class="col-sm-3 col-md-2 hidden-xs-down bg-dark sidebar">
         <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-                <a class="nav-link {% if sidebar == 'user_page' %}active{% endif %}" href="{% url 'user' username=user.username %}"><i class="fas fa-user-circle"></i> Profile</a>
+                <a class="nav-link {% if sidebar == 'user_page' %}active{% endif %}" href="{% url 'user' username=profile_user.username %}"><i class="fas fa-user-circle"></i> Profile</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {% if sidebar == 'user_settings' %}active{% endif %}" href="{% url 'user_settings' username=user.username %}"><i class="fas fa-cog"></i> Account Settings</a>
-            </li>
+            {% if request.user.is_authenticated %}
+                {% ifequal profile_user.username request.user.username %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if sidebar == 'user_settings' %}active{% endif %}"
+                           href="{% url 'user_settings' username=profile_user.username %}"><i class="fas fa-cog"></i>
+                            Account Settings</a>
+                    </li>
+                {% endifequal %}
+            {% endif %}
         </ul>
 
         <ul class="nav nav-pills flex-column">
@@ -23,15 +29,18 @@
                     <i class="far fa-comments"></i> Topics
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseTopics">
-
+                    {% if request.user.is_authenticated %}
+                        {% ifequal profile_user.username request.user.username %}
+                            <div class="nav-item">
+                                <a href="{% url 'topic_create' %}" class="nav-link">Create Topic</a>
+                            </div>
+                        {% endifequal %}
+                    {% endif %}
                     <div class="nav-item">
-                        <a href="{% url 'topic_create' %}" class="nav-link">Create Topic</a>
+                        <a href="{% url 'user_topics_created' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_topic_created' %}active{% endif %}">My Topics</a>
                     </div>
                     <div class="nav-item">
-                        <a href="{% url 'user_topics_created' username=user.username %}" class="nav-link {% if sidebar == 'user_topic_created' %}active{% endif %}">My Topics</a>
-                    </div>
-                    <div class="nav-item">
-                        <a href="{% url 'user_topics_subscriptions' username=user.username %}" class="nav-link  {% if sidebar == 'user_topic__subscription' %}active{% endif %}">Subscribed</a>
+                        <a href="{% url 'user_topics_subscriptions' username=profile_user.username %}" class="nav-link  {% if sidebar == 'user_topic__subscription' %}active{% endif %}">Subscribed</a>
                     </div>
                 </ul>
             </li>
@@ -42,13 +51,13 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapsePosts">
                     <div class="nav-item">
-                        <a href="{% url 'user_posts' username=user.username %}" class="nav-link {% if sidebar == 'user_posts' %}active{% endif %}">My Posts</a>
+                        <a href="{% url 'user_posts' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_posts' %}active{% endif %}">My Posts</a>
                     </div>
                     <div class="nav-item">
-                        <a href="{% url 'user_posts_upvoted' username=user.username %}" class="nav-link {% if sidebar == 'user_posts_upvoted' %}active{% endif %}">Upvoted</a>
+                        <a href="{% url 'user_posts_upvoted' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_posts_upvoted' %}active{% endif %}">Upvoted</a>
                     </div>
                     <div class="nav-item">
-                        <a href="{% url 'user_posts_downvoted' username=user.username %}" class="nav-link {% if sidebar == 'user_posts_downvoted' %}active{% endif %}">Downvoted</a>
+                        <a href="{% url 'user_posts_downvoted' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_posts_downvoted' %}active{% endif %}">Downvoted</a>
                     </div>
                 </ul>
             </li>
@@ -59,13 +68,13 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComments">
                     <div class="nav-item">
-                        <a href="{% url 'user_comments' username=user.username %}" class="nav-link {% if sidebar == 'user_comments' %}active{% endif %}">My Comments</a>
+                        <a href="{% url 'user_comments' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_comments' %}active{% endif %}">My Comments</a>
                     </div>
                     <div class="nav-item">
-                        <a href="{% url 'user_comments_upvoted' username=user.username %}" class="nav-link {% if sidebar == 'user_comments_upvoted' %}active{% endif %}">Upvoted</a>
+                        <a href="{% url 'user_comments_upvoted' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_comments_upvoted' %}active{% endif %}">Upvoted</a>
                     </div>
                     <div class="nav-item">
-                        <a href="{% url 'user_comments_downvoted' username=user.username %}" class="nav-link {% if sidebar == 'user_comments_downvoted' %}active{% endif %}">Downvoted</a>
+                        <a href="{% url 'user_comments_downvoted' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_comments_downvoted' %}active{% endif %}">Downvoted</a>
                     </div>
                 </ul>
             </li>

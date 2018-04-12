@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Count
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponseRedirect
@@ -27,9 +28,8 @@ def mainPage(request):
 
 
 def popularPage(request):
-    ordered = sorted(Post.objects.all(), key=lambda post: post.clicks, reverse=True)
     tparams = {
-        "posts": ordered,
+        "posts": Post.objects.annotate(Count("clicks")).order_by("-clicks"),
         'year': datetime.now().year,
         "nbar": "popular"
     }
@@ -37,9 +37,8 @@ def popularPage(request):
 
 
 def topRatedPage(request):
-    ordered = sorted(Post.objects.all(), key=lambda post: post.clicks, reverse=True)
     tparams = {
-        "posts": ordered,
+        "posts": Post.objects.annotate(Count("userUpVotesPost")).order_by("-userUpVotesPost"),
         'year': datetime.now().year,
         "nbar": "top_rated"
     }
@@ -80,7 +79,6 @@ def notifications(request):
 
 def signup(request):
     dict = {}
-    next = request.POST.get('next', '/')
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -106,7 +104,7 @@ def user_page(request, username):
     try:
         tparams = {
             "sidebar": "user_page",
-            "url_username": username
+            "profile_user": User.objects.get(username=username)
         }
         return render(request, 'profile_page.html', tparams)
     except Profile.DoesNotExist:
@@ -130,18 +128,8 @@ def user_edit(request, username):
             'user_form': user_form,
             'profile_form': profile_form
         })
-
-
-
-    try:
-        tparams = {
-            "sidebar": "user_page",
-            "profile": Profile.objects.get(user__username=username)
-        }
-        return render(request, 'profile_edit.html', tparams)
-    except Profile.DoesNotExist:
-        tparams = {"user": username}
-        return render(request, 'user_not_found.html', tparams)
+    else:
+        return redirect('/user/'+username)
 
 
 def user_settings(request, username):
@@ -219,7 +207,7 @@ def login(request):
         else:
             errors = True
         dict = {
-            'errors': errors
+            'errors': errors,
         }
 
         return HttpResponse(json.dumps(dict), content_type="application/json")

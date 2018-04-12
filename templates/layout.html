@@ -27,7 +27,7 @@
 
     <body class="fixed-nav sticky-footer bg-light">
 
-        <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark" style="-webkit-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); -moz-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75);">
             <a class="navbar-brand" href="{% url 'home' %}">Djeddit <i class="far fa-comment-alt"></i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,7 @@
                                 </ul>
                             </div>
                             <input id="searchQuery" class="form-control input-group-append" type="text"
-                                   placeholder="Search for..." value="{{ request.GET.q }}">
+                                   placeholder="Search for..." value="{{ request.GET.q }}" required>
                             <span class="input-group-append">
                                       <button id="navbarSearchButton" class="btn btn-primary" type="button">
                                           <i class="fa fa-search"></i>
@@ -97,34 +97,34 @@
                     </div>
                     <form id="loginForm" action="{% url 'login' %}" method="post" class="form-horizontal">
                         {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ request.path }}">
                         <div class="modal-body">
                             <div class="form-group">
                                 <div class="container">
                                     <div class="input-group">
-                                              <span class="input-group-prepend">
-                                                  <button class="btn btn-primary" disabled>
-                                                      <i class="far fa-user"></i>
-                                                  </button>
-                                              </span>
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="far fa-user"></i>
+                                            </button>
+                                        </span>
                                         <input name="username" class="form-control" type="text" placeholder="Username" required>
                                     </div>
                                     <br>
+
                                     <div class="input-group">
-                                              <span class="input-group-prepend">
-                                                  <button class="btn btn-primary" disabled>
-                                                      <i class="fas fa-key"></i>
-                                                  </button>
-                                              </span>
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="fas fa-key"></i>
+                                            </button>
+                                        </span>
                                         <input id="login_password" name="password" class="form-control" type="password"
                                                placeholder="Password" required>
                                         <span class="input-group-append">
-                                                  <button id="show_hide_password" class="btn btn-primary" type="button">
-                                                      <i id="icon_show_hide_password" class="far fa-eye-slash"
-                                                         aria-hidden="true"></i>
-                                                  </button>
-                                              </span>
+                                            <button id="show_hide_password" class="btn btn-primary" type="button">
+                                                <i id="icon_show_hide_password" class="far fa-eye-slash" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
                                     </div>
+
                                     <div id="loginErrorsLog">
                                         <br>
                                         <p class="validation-summary-errors">Please enter a correct user name and password.</p>
@@ -158,7 +158,6 @@
                     </div>
                     <form id="signupForm" action="{% url 'signup' %}" method="post" class="form-horizontal">
                         {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ request.path }}">
                         <div class="modal-body">
                             <div class="form-group">
                                 <div class="col-md-10">
@@ -294,7 +293,7 @@
                         success: function (resp) {
                             console.log(resp.errors.toString());
                             if (resp.errors == false) {
-                                $(location).attr('href', "{% url 'home' %}");
+                                location.reload();
                             } else {
                                 $("#loginButtonIcon").removeClass("fas fa-spinner fa-spin");
                                 $("#loginButtonIcon").addClass("fas fa-sign-in-alt");
@@ -320,7 +319,7 @@
                         dataType: "json",
                         success: function (resp) {
                             if (!resp.hasOwnProperty("errors")) {
-                                $(location).attr('href', "{% url 'home' %}");
+                                location.reload();
                             } else {
                                 console.log(resp.errors);
                                 $("#signupButtonIcon").removeClass("fas fa-spinner fa-spin");
