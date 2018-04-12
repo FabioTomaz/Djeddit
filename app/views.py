@@ -73,6 +73,30 @@ def search(request):
     return render(request, template, tparams)
 
 
+def search_post(request):
+    searchstring = request.GET.get("q", " ")
+    tparams = {'year': datetime.now().year,
+               "results": Post.objects.filter(title__icontains=searchstring)
+               }
+    return render(request, "search_posts.html", tparams)
+
+
+def search_topic(request):
+    searchstring = request.GET.get("q", " ")
+    tparams = {'year': datetime.now().year,
+               "results": Topic.objects.filter(name__icontains=searchstring)
+               }
+    return render(request, "search_topics.html", tparams)
+
+
+def search_user(request):
+    searchstring = request.GET.get("q", " ")
+    tparams = {'year': datetime.now().year,
+               "results": User.objects.filter(userName__icontains=searchstring)
+               }
+    return render(request, "search_users.html", tparams)
+
+
 def notifications(request):
     return render(request, 'notifications.html')
 
@@ -107,7 +131,7 @@ def user_page(request, username):
             "profile_user": User.objects.get(username=username)
         }
         return render(request, 'profile_page.html', tparams)
-    except Profile.DoesNotExist:
+    except User.DoesNotExist:
         tparams = {"user": username}
         return render(request, 'user_not_found.html', tparams)
 
@@ -124,10 +148,17 @@ def user_edit(request, username):
         else:
             user_form = UserForm(instance=request.user)
             profile_form = ProfileForm(instance=request.user.profile)
-        return render(request, 'profile_edit.html', {
-            'user_form': user_form,
-            'profile_form': profile_form
-        })
+        try:
+            tparams = {
+                "sidebar": "user_page",
+                "profile_user": User.objects.get(username=username),
+                'user_form': user_form,
+                'profile_form': profile_form
+            }
+            return render(request, 'profile_edit.html', tparams)
+        except User.DoesNotExist:
+            tparams = {"user": username}
+            return render(request, 'user_not_found.html', tparams)
     else:
         return redirect('/user/'+username)
 
@@ -140,61 +171,133 @@ def user_settings(request, username):
 
 
 def user_topic_subscriptions(request, username):
-    tparams = {
-        'sidebar': 'user_topic_subscriptions',
-        'topics': Topic.objects.filter(profile__user__username=username)
-    }
-    return render(request, 'profile_topics.html', tparams)
+    try:
+        tparams = {
+            'sidebar': 'user_topic_subscriptions',
+            "profile_user": User.objects.get(username=username),
+            'topics': Topic.objects.filter(profile__user__username=username)
+        }
+        return render(request, 'profile_topics.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def user_topic_created(request, username):
-    tparams = {
-        'sidebar': 'user_topic_created',
-        'topics': Topic.objects.filter(userCreator=request.user)
-    }
-    return render(request, 'profile_topics.html', tparams)
+    try:
+        tparams = {
+            'sidebar': 'user_topic_created',
+            "profile_user": User.objects.get(username=username),
+            'topics': Topic.objects.filter(userCreator=User.objects.get(username=username))
+        }
+        return render(request, 'profile_topics.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def user_posts(request, username):
-    tparams = {
-        'sidebar': 'user_posts'
-    }
-    return render(request, 'profile.html', tparams)
+    try:
+        tparams = {
+            'sidebar': 'user_posts',
+            "profile_user": User.objects.get(username=username),
+            'posts': Post.objects.filter(userOP=User.objects.get(username=username))
+        }
+        return render(request, 'profile_posts.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
+
+
+def user_posts_saved(request, username):
+    try:
+        tparams = {
+            'sidebar': 'user_posts_saved',
+            "profile_user": User.objects.get(username=username),
+            'posts': Post.objects.filter(userSaved=Profile.objects.get(user__username=username))
+        }
+        return render(request, 'profile_posts.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
+
+
+def user_posts_hidden(request, username):
+    try:
+        tparams = {
+            'sidebar': 'user_posts_hidden',
+            "profile_user": User.objects.get(username=username),
+            'posts': Post.objects.filter(userHidden=Profile.objects.get(user__username=username))
+        }
+        return render(request, 'profile_posts.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def user_posts_upvoted(request, username):
-    tparams = {
-        'sidebar': 'user_posts_upvoted'
-    }
-    return render(request, 'profile.html', tparams)
+    try:
+        tparams = {
+            'sidebar': 'user_posts_upvoted',
+            "profile_user": User.objects.get(username=username),
+            'posts': Post.objects.filter(userUpVotesPost=Profile.objects.get(user__username=username))
+        }
+        return render(request, 'profile_posts.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def user_posts_downvoted(request, username):
-    tparams = {
-        'sidebar': 'user_posts_downvoted'
-    }
-    return render(request, 'profile.html', tparams)
+    try:
+        tparams = {
+            'sidebar': 'user_posts_downvoted',
+            "profile_user": User.objects.get(username=username),
+            'posts': Post.objects.filter(userDownVotesPost=Profile.objects.get(user__username=username))
+        }
+        return render(request, 'profile_posts.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def user_comments(request, username):
-    tparams = {
-        'sidebar': 'user_comments'
-    }
-    return render(request, 'profile.html', tparams)
+    try:
+        tparams = {
+            'sidebar': 'user_comments',
+            "profile_user": User.objects.get(username=username),
+            'comments': Comment.objects.filter(user=Profile.objects.get(user__username=username))
+        }
+        return render(request, 'profile_comments.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def user_comments_upvoted(request, username):
-    tparams = {
-        'sidebar': 'user_comments_upvoted'
-    }
-    return render(request, 'profile.html', tparams)
+    try:
+        tparams = {
+            'sidebar': 'user_comments',
+            "profile_user": User.objects.get(username=username),
+            'comments': Comment.objects.filter(userUpVotesComments=Profile.objects.get(user__username=username))
+        }
+        return render(request, 'profile_comments.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def user_comments_downvoted(request, username):
-    tparams = {
-        'sidebar': 'user_comments_downvoted'
-    }
-    return render(request, 'profile.html', tparams)
+    try:
+        tparams = {
+            'sidebar': 'user_comments',
+            "profile_user": User.objects.get(username=username),
+            'comments': Comment.objects.filter(userDownVotesComments=Profile.objects.get(user__username=username))
+        }
+        return render(request, 'profile_comments.html', tparams)
+    except User.DoesNotExist:
+        tparams = {"user": username}
+        return render(request, 'user_not_found.html', tparams)
 
 
 def login(request):

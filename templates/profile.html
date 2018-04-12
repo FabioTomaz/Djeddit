@@ -40,7 +40,7 @@
                         <a href="{% url 'user_topics_created' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_topic_created' %}active{% endif %}">My Topics</a>
                     </div>
                     <div class="nav-item">
-                        <a href="{% url 'user_topics_subscriptions' username=profile_user.username %}" class="nav-link  {% if sidebar == 'user_topic__subscription' %}active{% endif %}">Subscribed</a>
+                        <a href="{% url 'user_topics_subscriptions' username=profile_user.username %}" class="nav-link  {% if sidebar == 'user_topic_subscriptions' %}active{% endif %}">Subscribed</a>
                     </div>
                 </ul>
             </li>
@@ -52,6 +52,12 @@
                 <ul class="sidenav-second-level collapse" id="collapsePosts">
                     <div class="nav-item">
                         <a href="{% url 'user_posts' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_posts' %}active{% endif %}">My Posts</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{% url 'user_posts_saved' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_posts_saved' %}active{% endif %}">Saved</a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{% url 'user_posts_hidden' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_posts_hidden' %}active{% endif %}">Hidden</a>
                     </div>
                     <div class="nav-item">
                         <a href="{% url 'user_posts_upvoted' username=profile_user.username %}" class="nav-link {% if sidebar == 'user_posts_upvoted' %}active{% endif %}">Upvoted</a>

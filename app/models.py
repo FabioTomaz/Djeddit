@@ -52,6 +52,8 @@ class Post(models.Model):
     clicks = models.IntegerField(blank=False, default=0)
     userUpVotesPost = models.ManyToManyField(Profile, related_name='post_user_up', blank=True)
     userDownVotesPost = models.ManyToManyField(Profile, related_name='post_user_down', blank=True)
+    userSaved = models.ManyToManyField(Profile, blank=True, related_name='user_post_saved')
+    userHidden = models.ManyToManyField(Profile, blank=True, related_name='user_post_hidden')
     date = models.DateTimeField(auto_now=True)
     # type = models.CharField(max_lenght = 50)
     userOP = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -40,6 +40,8 @@ urlpatterns = [
     path('user/<str:username>/topics/created', views.user_topic_created, name="user_topics_created"),
     # user posts
     path('user/<str:username>/posts/', views.user_posts, name="user_posts"),
+    path('user/<str:username>/posts/saved', views.user_posts_saved, name="user_posts_saved"),
+    path('user/<str:username>/posts/hidden', views.user_posts_hidden, name="user_posts_hidden"),
     path('user/<str:username>/posts/upvoted', views.user_posts_upvoted, name="user_posts_upvoted"),
     path('user/<str:username>/posts/downvoted', views.user_posts_downvoted, name="user_posts_downvoted"),
     # user comments
