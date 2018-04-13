@@ -1,22 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block outsideContent %}
-    <div class="nav-scroller bg-white box-shadow justify-content-md-center">
-        <nav class="nav nav-underline">
-            <a class="nav-link" href="{% url 'search' %}?q={{ request.GET.q }}&filterType=searchTopicsOption">
+    <div class="navbar bg-white box-shadow justify-content-center">
+        <nav class="nav nav-pills">
+            <a class="nav-link {% if searchbar == 'search_topic' %}active{% endif %}" href="{% url 'search_topic' %}?q={{ request.GET.q }}">
                 Topics <i class="far fa-comments"></i>
             </a>
-            <a class="nav-link" href="{% url 'search' %}?q={{ request.GET.q }}&filterType=searchPostsOption">
-                Posts <i class="fas fa-align-left"></i>
-            </a>
-            <a class="nav-link" href="{% url 'search' %}?q={{ request.GET.q }}&filterType=searchUsersOption">
+                <a class="nav-link {% if searchbar == 'search_post' %}active{% endif %}" href="{% url 'search_post' %}?q={{ request.GET.q }}">
+                    Posts <i class="fas fa-align-left"></i>
+                </a>
+            <a class="nav-link {% if searchbar == 'search_user' %}active{% endif %}" href="{% url 'search_user' %}?q={{ request.GET.q }}">
                 Users <i class="fas fa-users"></i>
             </a>
         </nav>
     </div>
-{% endblock %}
-
-{% block onDocumentReadyBlock %}
-    {{ block.super }}
-    $("#"+{{ request.GET.filterType }}).addClass("active");
 {% endblock %}

@@ -77,24 +77,30 @@ def search(request):
 
 def search_post(request):
     searchstring = request.GET.get("q", " ")
-    tparams = {'year': datetime.now().year,
-               "results": Post.objects.filter(title__icontains=searchstring)
+    tparams = {
+               'searchbar': 'search_post',
+                    'year': datetime.now().year,
+                 "results": Post.objects.filter(title__icontains=searchstring)
                }
     return render(request, "search_posts.html", tparams)
 
 
 def search_topic(request):
     searchstring = request.GET.get("q", " ")
-    tparams = {'year': datetime.now().year,
+    tparams = {
+             'searchbar': 'search_topic',
+                  'year': datetime.now().year,
                "results": Topic.objects.filter(name__icontains=searchstring)
                }
     return render(request, "search_topics.html", tparams)
 
 
 def search_user(request):
-    searchstring = request.GET.get("q", " ")
-    tparams = {'year': datetime.now().year,
-               "results": User.objects.filter(userName__icontains=searchstring)
+    searchstring = request.GET.get("q", "")
+    tparams = {
+             'searchbar': 'search_user',
+                  'year': datetime.now().year,
+               "results": Profile.objects.filter(user__username__icontains=searchstring)
                }
     return render(request, "search_users.html", tparams)
 
