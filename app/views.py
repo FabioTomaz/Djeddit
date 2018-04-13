@@ -381,6 +381,7 @@ def topicPage(request, topicName):
             }
             return render(request, "topic.html", tparams)
 
+
 @csrf_exempt
 def vote_comment(request):
     prof = Profile.objects.get(user=request.user)
