@@ -78,30 +78,30 @@ def search(request):
 def search_post(request):
     searchstring = request.GET.get("q", " ")
     tparams = {
-               'searchbar': 'search_post',
-                    'year': datetime.now().year,
-                 "results": Post.objects.filter(title__icontains=searchstring)
-               }
+        'searchbar': 'search_post',
+        'year': datetime.now().year,
+        "results": Post.objects.filter(title__icontains=searchstring)
+    }
     return render(request, "search_posts.html", tparams)
 
 
 def search_topic(request):
     searchstring = request.GET.get("q", " ")
     tparams = {
-             'searchbar': 'search_topic',
-                  'year': datetime.now().year,
-               "results": Topic.objects.filter(name__icontains=searchstring)
-               }
+        'searchbar': 'search_topic',
+        'year': datetime.now().year,
+        "results": Topic.objects.filter(name__icontains=searchstring)
+    }
     return render(request, "search_topics.html", tparams)
 
 
 def search_user(request):
     searchstring = request.GET.get("q", "")
     tparams = {
-             'searchbar': 'search_user',
-                  'year': datetime.now().year,
-               "results": Profile.objects.filter(user__username__icontains=searchstring)
-               }
+        'searchbar': 'search_user',
+        'year': datetime.now().year,
+        "results": Profile.objects.filter(user__username__icontains=searchstring)
+    }
     return render(request, "search_users.html", tparams)
 
 
@@ -168,7 +168,7 @@ def user_edit(request, username):
             tparams = {"user": username}
             return render(request, 'user_not_found.html', tparams)
     else:
-        return redirect('/user/'+username)
+        return redirect('/user/' + username)
 
 
 def user_settings(request, username):
@@ -359,7 +359,7 @@ def topicPage(request, topicName):
             if not isUserSubscribed:
                 # add a subscription
                 topic.nSubscribers += 1
-                profile.topics.add(topic) #add this topic to his list of subscribed topics
+                profile.topics.add(topic)  # add this topic to his list of subscribed topics
                 profile.save()
                 topic.save()
                 isUserSubscribed = True  # user will now be subscribed
@@ -390,38 +390,46 @@ def topicPage(request, topicName):
 
 @csrf_exempt
 def vote_comment(request):
-    prof = Profile.objects.get(user=request.user)
-    result="error"
     if request.is_ajax() and request.method == 'POST':
         data = json.loads(request.body)
         comment = Comment.objects.get(id=data["comment_id"])
         if data["vote"] == "up":
-            comment.userUpVotesComments.add(prof)
-            comment.save()
-            # check if there is downvote, if so, delete it
-            if comment in comment.userDownVotesComments.all():
-                comment.userDownVotesComments.remove(prof)
-                prof.comment_user_down.remove(comment)
-                prof.save()
+            if request.user.profile in comment.userUpVotesComments.all():
+                comment.userUpVotesComments.remove(request.user.profile)
+                request.user.profile.comment_user_up.remove(comment)
+                request.user.profile.save()
                 comment.save()
-
-            result="upvoted"#for test
+            else:
+                comment.userUpVotesComments.add(request.user.profile)
+                comment.save()
+                # check if there is downvote, if so, delete it
+                if request.user.profile in comment.userDownVotesComments.all():
+                    comment.userDownVotesComments.remove(request.user.profile)
+                    request.user.profile.comment_user_down.remove(comment)
+                    request.user.profile.save()
+                    comment.save()
         elif data["vote"] == "down":
-            comment.userDownVotesComments.add(prof)
-            comment.save()
-            #check if there is upvote, if so, delete it
-            if comment in comment.userUpVotesComments.all():
-                comment.userUpVotesComments.remove(prof)
-                prof.comment_user_up.remove(comment)
-                prof.save()
+            if request.user.profile in comment.userDownVotesComments.all():
+                comment.userDownVotesComments.remove(request.user.profile)
+                request.user.profile.comment_user_down.remove(comment)
+                request.user.profile.save()
                 comment.save()
-            #downvote
-            result = "downvoted" #for test
+            else:
+                comment.userDownVotesComments.add(request.user.profile)
+                comment.save()
+                # check if there is upvote, if so, delete it
+                if request.user.profile in comment.userUpVotesComments.all():
+                    comment.userUpVotesComments.remove(request.user.profile)
+                    request.user.profile.comment_user_up.remove(comment)
+                    request.user.profile.save()
+                    comment.save()
+        result = 'success'
     else:
         raise Http404("Page not found :(")
 
     dict = {"result": result}
     return HttpResponse(json.dumps(dict), content_type="application/json")
+
 
 def postPage(request, topicName, postID):
     post = Post.objects.get(id=postID)
