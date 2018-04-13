@@ -357,7 +357,12 @@
             $(document).on('click', "#navbarSearchButton", function (e) {
                 e.preventDefault();
                 var query = $('#searchQuery').val();
-                $(location).attr('href', "{% url 'search' %}?q=" + query + "&filterType=" + searchFilter)
+                if(searchFilter=="searchTopicsOption")
+                    $(location).attr('href', "{% url 'search_topic' %}?q=" + query)
+                else if(searchFilter=="searchPostsOption")
+                    $(location).attr('href', "{% url 'search_post' %}?q=" + query)
+                else if(searchFilter=="searchUsersOption")
+                    $(location).attr('href', "{% url 'search_user' %}?q=" + query)
             });
 
             $(document).on('click', "#show_hide_password", function (e) {

@@ -31,6 +31,9 @@ urlpatterns = [
     path('controversial/', views.controversialPage, name="controversial"),
     # search
     re_path(r'^search$', views.search, name="search"),
+    re_path(r'^search/topic$', views.search_topic, name="search_topic"),
+    re_path(r'^search/post$', views.search_post, name="search_post"),
+    re_path(r'^search/user$', views.search_user, name="search_user"),
     # user
     path('user/<str:username>/', views.user_page, name="user"),
     path('user/<str:username>/edit/', views.user_edit, name="user_edit"),

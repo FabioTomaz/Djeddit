@@ -1,11 +1,9 @@
 {% extends 'search_layout.html' %}
-{% block pagename %}Search Topic: {{ searchstring }}{% endblock %}
+{% block pagename %}Search Topic: {{ request.GET.q }}{% endblock %}
 
 {% block content %}
-
-    <h1>Recent posts:</h1>
-    {% for p in results %}
-        {% include "post_preview.html" with post=results%}
+    {% for t in results %}
+        {% include "topic_preview.html" with topic=t%}
         <br>
     {% endfor %}
 {% endblock %}
