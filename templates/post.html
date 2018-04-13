@@ -1,47 +1,11 @@
+
 {% extends 'layout.html' %}
 {% block styles %}
 
     <link rel="stylesheet" type="text/css" href="/static/content/comments.css">
-    <script>
-    function myFunction(topic_id) {
-        var x = document.getElementById("add_reply_"+topic_id);
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-
-    function upvote_comment(comment_id) {
-        var upbtn = document.getElementById('upvote_comment_'+comment_id)
-        var downbtn = document.getElementById('downvote_comment_'+comment_id)
-            if (upbtn.style.color === "green"){
-                upbtn.style.color = "black"
-            }
-            else{
-                upbtn.style.color = "green"
-                if (downbtn.style.color === "red"){ //remove downvote
-                downbtn.style.color = "black"
-                }
-            }
-    }
-
-    function downvote_comment(comment_id) {
-        var downbtn = document.getElementById('downvote_comment_'+comment_id)
-        var upbtn = document.getElementById('upvote_comment_'+comment_id)
-            if (downbtn.style.color === "red"){ //remove downvote
-                downbtn.style.color = "black"
-            }
-            else{
-                downbtn.style.color = "red" //downvote
-                if (upbtn.style.color === "green"){ //remove upvote if there is one
-                upbtn.style.color = "black"
-            }
-            }
-    }
-    </script>
 
 {% endblock %}
+{% load app_extras %}
 {% block pagename %}{{post.title}}{% endblock %}
 
 {% block content %}
@@ -123,15 +87,18 @@
                                 <span>{{ comment.date }}</span>
 
                                 <button  style="margin-left: 20px;" class="btn-dark sm" onclick="myFunction({{ comment.id }})" >reply</button>
-                                <button onclick="downvote_comment({{ comment.id }})" style="float:right; cursor: pointer">
-                                    <i id="downvote_comment_{{ comment.id }}" class="fa fa-chevron-down"></i>
-                                </button>
-                                <button onclick="upvote_comment({{ comment.id }})" style="float:right; cursor: pointer">
-                                    <i id="upvote_comment_{{ comment.id }}" class="fa fa-chevron-up"></i>
-                                </button>
+
+                                    <button onclick="downvote_comment({{ comment.id }})" style="float:right; cursor: pointer">
+                                        <i id="downvote_comment_{{ comment.id }}" class="fa fa-chevron-down"></i>
+                                    </button>
+                                    {{ comment.userUpVotesComments.count|subtract:comment.userDownVotesComments.count }}
+                                    <button onclick="upvote_comment({{ comment.id }})" style="float:right; cursor: pointer">
+                                        <i id="upvote_comment_{{ comment.id }}" class="fa fa-chevron-up"></i>
+                                    </button>
+
                             </div>
                             <div class="comment-content">
-                                {{ comment.text }}
+                                {{ comment.text }} : {{ comment.userUpVotesComments.user.username }} ; {{ comment.userDownVotesComments.user.username }}
                             </div>
                         </div>
                     </div>
@@ -185,4 +152,72 @@
     </div>
 
 <!-- https://bootsnipp.com/snippets/459K9-->
+{% endblock %}
+{% block scripts %}
+    <script>
+    function myFunction(topic_id) {
+        var x = document.getElementById("add_reply_"+topic_id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function upvote_comment(comment_id) {
+        var upbtn = document.getElementById('upvote_comment_'+comment_id)
+        var value = 0;
+        var vote_type="";
+        var downbtn = document.getElementById('downvote_comment_'+comment_id)
+            if (upbtn.style.color === "green"){ //remove upvote
+                upbtn.style.color = "black"
+                value -=1
+            }
+            else{
+                upbtn.style.color = "green"
+                if (downbtn.style.color === "red"){ //remove downvote, and upvote
+                    downbtn.style.color = "black"
+                    value+=2
+                }
+            }
+        $.ajax(
+          {
+                type: "POST",
+                url: "/vote_comment/",
+                data: JSON.stringify({'vote': "up", "comment_id": comment_id}),
+              dataType: "json",
+            success: function(result){
+              alert(result.result.toString());
+            }
+          });
+    }
+
+    function downvote_comment(comment_id) {
+        var downbtn = document.getElementById('downvote_comment_'+comment_id)
+        var upbtn = document.getElementById('upvote_comment_'+comment_id)
+        var value = 0;
+            if (downbtn.style.color === "red"){ //remove downvote
+                downbtn.style.color = "black"
+                value+=1
+            }
+            else{
+                downbtn.style.color = "red" //downvote
+                if (upbtn.style.color === "green"){ //remove upvote if there is one, and downvote
+                    upbtn.style.color = "black"
+                    value-=2
+            }
+        }
+        $.ajax(
+          {
+                type: "POST",
+                url: "/vote_comment/",
+                data: JSON.stringify({'vote': "down", "comment_id": comment_id}),
+              dataType: "json",
+            success: function(result)
+            {
+              alert(result.result.toString());
+            }
+          });
+    }
+    </script>
 {% endblock %}

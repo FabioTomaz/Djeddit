@@ -58,6 +58,8 @@ urlpatterns = [
     path('topic_create/', views.createTopic, name="topic_create"),
     # post related url's
     path('topic/<str:topicName>/post/<int:postID>/', views.postPage, name="post"),
+    #comment up/down vote
+    path('vote_comment/', views.vote_comment, name="vote_comment"),
     # provavelmente não vai dar tempo
     path('notifications/', views.notifications, name="notifications"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

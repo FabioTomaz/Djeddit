@@ -4,12 +4,14 @@ import json
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Count
-from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
+from django.http import HttpRequest, HttpResponseRedirect, HttpResponse, Http404
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import login as auth_login
+from django.views.decorators.csrf import csrf_exempt
+
 from app.forms import SignUpForm, UserForm, ProfileForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
@@ -343,26 +345,25 @@ def topicCreatedSuccess(request):
 def topicPage(request, topicName):
     topic = Topic.objects.get(name__iexact=topicName)
     isUserSubscribed = False
-    try:
-        subscription = UserSubscriptions.objects.get(topic=topic, user=request.user)
-    except UserSubscriptions.DoesNotExist:
-        subscription = None
-    if not subscription == None:
-        isUserSubscribed = True
-    if request.method == 'POST':
-        if not isUserSubscribed:
-            # add a subscription
-            topic.nSubscribers += 1
-            subs = UserSubscriptions(user=request.user, topic=topic)
-            topic.save()
-            subs.save()
-            isUserSubscribed = True  # user will now be subcribed
-        else:
-            # remove a subscription
-            topic.nSubscribers -= 1
-            subscription.delete()
-            topic.save()
-            isUserSubscribed = False
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        if topic in profile.topics.all():
+            isUserSubscribed = True
+        if request.method == 'POST':
+            if not isUserSubscribed:
+                # add a subscription
+                topic.nSubscribers += 1
+                profile.topics.add(topic) #add this topic to his list of subscribed topics
+                profile.save()
+                topic.save()
+                isUserSubscribed = True  # user will now be subscribed
+            else:
+                # remove a subscription
+                topic.nSubscribers -= 1
+                profile.topics.remove(topic)
+                profile.save()
+                topic.save()
+                isUserSubscribed = False
         tparams = {
             "isUserSubscribed": isUserSubscribed,
             "currentTopic": Topic.objects.get(name__iexact=topicName),
@@ -380,6 +381,40 @@ def topicPage(request, topicName):
             }
             return render(request, "topic.html", tparams)
 
+@csrf_exempt
+def vote_comment(request):
+    prof = Profile.objects.get(user=request.user)
+    result="error"
+    if request.is_ajax() and request.method == 'POST':
+        data = json.loads(request.body)
+        comment = Comment.objects.get(id=data["comment_id"])
+        if data["vote"] == "up":
+            comment.userUpVotesComments.add(prof)
+            comment.save()
+            # check if there is downvote, if so, delete it
+            if comment in comment.userDownVotesComments.all():
+                comment.userDownVotesComments.remove(prof)
+                prof.comment_user_down.remove(comment)
+                prof.save()
+                comment.save()
+
+            result="upvoted"#for test
+        elif data["vote"] == "down":
+            comment.userDownVotesComments.add(prof)
+            comment.save()
+            #check if there is upvote, if so, delete it
+            if comment in comment.userUpVotesComments.all():
+                comment.userUpVotesComments.remove(prof)
+                prof.comment_user_up.remove(comment)
+                prof.save()
+                comment.save()
+            #downvote
+            result = "downvoted" #for test
+    else:
+        raise Http404("Page not found :(")
+
+    dict = {"result": result}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
 
 def postPage(request, topicName, postID):
     post = Post.objects.get(id=postID)

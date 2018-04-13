@@ -12,7 +12,7 @@
         </div>
         {% if user.is_authenticated %}
 
-            {%  if not isUserSubscribed %}
+            {% if not isUserSubscribed %}
                 <form action="." method="post">
                     {% csrf_token %}
                 <div class="col" align="right">
@@ -22,7 +22,7 @@
             {% else %}
                 <form action="." method="post">
                     {% csrf_token %}
-                <div class="col-md-4 px-0" align="right">
+                <div class="col" align="right">
                     <button class="btn btn-warning btn-sm">Unsubscribe</button>
                 </div>
                 </form>
