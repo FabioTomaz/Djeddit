@@ -59,6 +59,9 @@ urlpatterns = [
     path('topic/<str:topicName>/', views.topicPage, name="topic"),
     path('topic/<str:topicName>/create_post/', views.createPost, name="create_post"),
     path('topic_create/', views.createTopic, name="topic_create"),
+    path('topic/<str:topicName>/new', views.topic_new, name="topic_new"),
+    path('topic/<str:topicName>/popular', views.topic_popular, name="topic_popular"),
+    path('topic/<str:topicName>/top_rated', views.topic_top_rated, name="topic_top_rated"),
     # post related url's
     path('topic/<str:topicName>/post/<int:postID>/', views.postPage, name="post"),
     #comment up/down vote

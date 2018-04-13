@@ -17,13 +17,15 @@ class topicCreateForm(forms.Form):
                                   required=True, validators=[MaxLengthValidator(300), MinLengthValidator(0)],
                                   widget=forms.Textarea(attrs={
                                       'class': 'form-control',
+                                      'rows': 3,
                                       'placeholder': 'Describe here what others should post on this topic...'
                                   }))
     rules = forms.CharField(label='Rules (Optional)', max_length=300,
                             validators=[MaxLengthValidator(500)],
                             widget=forms.Textarea(attrs={
                                 'class': 'form-control',
-                                'placeholder': 'Describe here the rules the users must obey on order to post in this topic...'
+                                'rows':4,
+                                'placeholder': 'Describe here the rules the users must obey in this topic...'
                             }))
 
 

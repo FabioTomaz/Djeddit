@@ -10,6 +10,7 @@
               <p class="lead my-3">{{currentTopic.description}}</p>
             </div>
         </div>
+
         {% if user.is_authenticated %}
 
             {% if not isUserSubscribed %}
@@ -28,6 +29,19 @@
                 </form>
             {% endif %}
         {% endif %}
+    </div>
+    <div class="navbar bg-white box-shadow justify-content-center">
+        <nav class="nav nav-pills">
+            <a class="nav-link {% if postOrder == 'new' %}active{% endif %}" href="{% url 'topic_new' currentTopic.name %}">
+                New <i class="far fa-clock"></i>
+            </a>
+                <a class="nav-link {% if postOrder == 'popular' %}active{% endif %}" href="{% url 'topic_popular' currentTopic.name %}">
+                    Popular <i class="fas fa-fire"></i>
+                </a>
+            <a class="nav-link {% if postOrder == 'top_rated' %}active{% endif %}" href="{% url 'topic_top_rated' currentTopic.name %}">
+                Top Rated <i class="fas fa-thumbs-up"></i>
+            </a>
+        </nav>
     </div>
     <div class="container">
         <div class="row">

@@ -3,7 +3,19 @@
 
 {% block content %}
 
-    <h1>Topic Created succesfully!</h1>
+    <div class="container" style="align-content: center">
+	<div class="row text-center">
+        <div class="col-12">
+        <br><br> <h2 style="color:#0fad00">Success!</h2>
+        <h3>{{ topic.name }} has been created!</h3>
+        <p style="font-size:20px;color:#5C5C5C;">You can go there now and start posting!
+        Tell about your created topic to your friends so that they can use it as well!</p>
+            <a href="{% url "topic"  topicName=topic.name %}" class="btn btn-success">     To {{ topic.name }}      </a>
+            <br><br>
+        </div>
+
+	</div>
+</div>
 
 
 

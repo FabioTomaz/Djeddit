@@ -22,7 +22,7 @@ from datetime import datetime
 
 def mainPage(request):
     tparams = {
-        "posts": Post.objects.order_by("date"),
+        "posts": Post.objects.order_by("-date"),
         'year': datetime.now().year,
         "nbar": "new"
     }
@@ -334,11 +334,12 @@ def createTopic(request):
             description = form.cleaned_data["description"]
             rules = form.cleaned_data["rules"]
 
-            if Topic.objects.filter(name=topic).exists():
-                raise ValidationError("A topic with this name already exists. Please, choose a different name")
+            if Topic.objects.filter(name__iexact=topic).exists(): #topic with same name exists
+                return render(request, 'topic_create.html', {'form': form, 'error': "A topic with this"
+                        +" name already exists. Please, choose a different name"})
             t = Topic(name=topic, description=description, rules=rules, userCreator=request.user)
             t.save()
-            return render(request, 'topic_created_success.html', {"topic": topic})
+            return render(request, 'topic_created_success.html', {"topic": t})
     else:
         form = topicCreateForm()
     return render(request, 'topic_create.html', {'form': form})
@@ -348,7 +349,7 @@ def topicCreatedSuccess(request):
     return render(request, "topic_created_success.html")
 
 
-def topicPage(request, topicName):
+def topicPage(request, topicName, postOrder="popular"):
     topic = Topic.objects.get(name__iexact=topicName)
     isUserSubscribed = False
     if request.user.is_authenticated:
@@ -372,6 +373,7 @@ def topicPage(request, topicName):
                 isUserSubscribed = False
         tparams = {
             "isUserSubscribed": isUserSubscribed,
+             "postOrder": postOrder,
             "currentTopic": Topic.objects.get(name__iexact=topicName),
             "posts": Post.objects.filter(topic__name__iexact=topicName).order_by("date"),
         }
@@ -380,12 +382,28 @@ def topicPage(request, topicName):
         if topic is None:
             return custom_redirect('search', q=topicName)
         else:
+            if (postOrder == "new"):
+                p = Post.objects.filter(topic__name__iexact=topicName).order_by("-date")
+            elif (postOrder == "popular"):
+                p = Post.objects.filter(topic__name__iexact=topicName).order_by("-date")
+            else:
+                p = Post.objects.filter(topic__name__iexact=topicName).order_by("-date")
             tparams = {
                 "isUserSubscribed": isUserSubscribed,
+                "postOrder": postOrder,
                 "currentTopic": Topic.objects.get(name__iexact=topicName),
-                "posts": Post.objects.filter(topic__name__iexact=topicName).order_by("date"),
+                "posts": p,
             }
             return render(request, "topic.html", tparams)
+
+def topic_new(request, topicName):
+    return topicPage(request, topicName, "new")
+
+def topic_popular(request, topicName):
+    return topicPage(request, topicName, "popular")
+
+def topic_top_rated(request, topicName):
+    return topicPage(request, topicName, "top_rated")
 
 
 @csrf_exempt

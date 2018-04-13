@@ -2,71 +2,63 @@
 {% block pagename %}Create Topic{% endblock %}
 
 {% block content %}
-
+<div class="container">
+    {% if error %}
+    <div class="alert alert-danger" style="align:center" role="alert">
+      {{ error }}
+    </div>
+    {% endif %}
     <h1>Create New Topic</h1>
         <form action="." method="post">
             {% csrf_token %}
-
-            <div class="row">
-                <div class="col-10">
-                    <div class="form-group ">
-                        {{ form.topicName.label_tag }}<br/>
-                        {{ form.topicName }}
-                    </div>
-                </div>
-
-                {% if form.topicName.errors %}
-                    <div class="col-4 alert alert-danger">
-                            <ul class="errorlist">
-                            {% for error in form.topicName.errors %}
-                                <li><strong>{{ error|escape }}</strong></li>
-                            {% endfor %}
-                            </ul>
-                    </div>
-                {% endif %}
-            </div>
-
-            <div class="row">
-                <div class="col-10">
-                    <div class="form-group">
-                        {{ form.description.label_tag }}<br/>
-                        {{ form.description }}
-                    </div>
-                </div>
-
-
-            {% if form.description.errors %}
-                <div class="col-4 alert alert-danger">
-                    <ul class="errorlist">
-                        {% for error in form.description.errors %}
-                            <li><strong>{{ error|escape }}</strong></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-            </div>
-            <div class="row">
-                <div class="col-10">
-                    <div class="form-group">
-                        {{ form.rules.label_tag }}<br/>
-                        {{ form.rules }}
-                    </div>
-                </div>
-
-
-            {% if form.rules.errors %}
-                <div class="col-4 alert alert-danger">
-                    <ul class="errorlist">
-                        {% for error in form.rules.errors %}
-                            <li><strong>{{ error|escape }}</strong></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+            <table class="table table-user-information">
+                <tbody>
+                <tr>
+                    <td>Topic Name</td>
+                    <td>{{ form.topicName }}
+                        {% if form.topicName.errors %}
+                            <div class="col-4 alert alert-danger">
+                                <ul class="errorlist">
+                                    {% for error in form.topicName.errors %}
+                                        <li><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description and Information</td>
+                    <td>{{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="col-4 alert alert-danger">
+                                <ul class="errorlist">
+                                    {% for error in form.description.errors %}
+                                        <li><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rules</td>
+                    <td>{{ form.rules }}
+                        {% if form.rules.errors %}
+                            <div class="col-4 alert alert-danger">
+                                <ul class="errorlist">
+                                    {% for error in form.rules.errors %}
+                                        <li><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        <button type="submit" class="btn btn-success"><i class="fas fa-plus-square"></i> Create</button>
         </form>
-
+    </div>
 
 {% endblock %}
