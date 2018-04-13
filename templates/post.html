@@ -2,6 +2,7 @@
 {% block styles %}
 
     <link rel="stylesheet" type="text/css" href="/static/content/comments.css">
+    <link rel="stylesheet" type="text/css" href="/static/content/jquery.upvote.css">
 
 {% endblock %}
 {% load app_extras %}
@@ -16,6 +17,15 @@
     </nav>
     <div class="container">
         <div class="row">
+        <div class="col-2">
+            <div id="topic" class="upvote">
+            <a class="upvote upvote-on"></a>
+            <span class="count">6</span>
+            <a class="downvote"></a>
+            <a class="star"></a>
+        </div>
+
+        </div>
             <div class="card text-center">
                 <div class="card-header">
                     <h5 class="card-title">{{ post.title }}</h5>
@@ -117,8 +127,7 @@
                                         </div>
                                     </div>
                                     <div class="comment-content">
-                                        {{ comment.text }} : {{ comment.userUpVotesComments.user.username }}
-                                        ; {{ comment.userDownVotesComments.user.username }}
+                                        {{ comment.text }}
                                     </div>
                                 </div>
                             </div>
@@ -148,12 +157,19 @@
                                                     <h6><a href="#">{{ reply.user.username }}</a></h6>
                                                 {% endif %}
                                                 <span>{{ reply.date }}</span>
-                                                <span style="float:right;">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </span>
-                                                <span style="float:right;">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </span>
+                                                <span> {{ comment.date }}, Score: {{ comment.userUpVotesComments.count|subtract:comment.userDownVotesComments.count }}</span>
+
+                                            <div class="btn-group-sm float-right" role="group" aria-label="...">
+                                                <button class="btn btn-dark btn-sm" onclick="myFunction({{ comment.id }})">
+                                                    <i class="fas fa-reply"></i> Reply
+                                                </button>
+                                                <button id="downvote_comment_{{ comment.id }}" onclick="downvote_comment({{ comment.id }})" class="btn {% if request.user.profile in comment.userDownVotesComments.all %} btn-danger {% endif %}">
+                                                    <i class="fa fa-chevron-down"></i>
+                                                </button>
+                                                <button id="upvote_comment_{{ comment.id }}" onclick="upvote_comment({{ comment.id }})" class="btn {% if request.user.profile in comment.userUpVotesComments.all %} btn-success {% endif %}">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </button>
+                                            </div>
                                             </div>
                                             <div class="comment-content">
                                                 {{ reply.text }}
@@ -182,7 +198,6 @@
 {% endblock %}
 
 {% block scripts %}
-    <script>
         function myFunction(topic_id) {
             var x = document.getElementById("add_reply_" + topic_id);
             if (x.style.display === "none") {
@@ -235,5 +250,4 @@
                     }
                 });
         }
-    </script>
 {% endblock %}
