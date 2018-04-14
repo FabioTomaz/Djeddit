@@ -334,9 +334,9 @@ def createTopic(request):
             description = form.cleaned_data["description"]
             rules = form.cleaned_data["rules"]
 
-            if Topic.objects.filter(name__iexact=topic).exists(): #topic with same name exists
+            if Topic.objects.filter(name__iexact=topic).exists():  # topic with same name exists
                 return render(request, 'topic_create.html', {'form': form, 'error': "A topic with this"
-                        +" name already exists. Please, choose a different name"})
+                                                                                    + " name already exists. Please, choose a different name"})
             t = Topic(name=topic, description=description, rules=rules, userCreator=request.user)
             t.save()
             return render(request, 'topic_created_success.html', {"topic": t})
@@ -373,7 +373,7 @@ def topicPage(request, topicName, postOrder="popular"):
                 isUserSubscribed = False
         tparams = {
             "isUserSubscribed": isUserSubscribed,
-             "postOrder": postOrder,
+            "postOrder": postOrder,
             "currentTopic": Topic.objects.get(name__iexact=topicName),
             "posts": Post.objects.filter(topic__name__iexact=topicName).order_by("date"),
         }
@@ -396,11 +396,14 @@ def topicPage(request, topicName, postOrder="popular"):
             }
             return render(request, "topic.html", tparams)
 
+
 def topic_new(request, topicName):
     return topicPage(request, topicName, "new")
 
+
 def topic_popular(request, topicName):
     return topicPage(request, topicName, "popular")
+
 
 def topic_top_rated(request, topicName):
     return topicPage(request, topicName, "top_rated")
@@ -495,6 +498,62 @@ def postPage(request, topicName, postID):
             'form': form
         }
     return render(request, "post.html", tparams)
+
+
+@csrf_exempt
+def post_save(request, postID):
+    post = Post.objects.get(id=postID)
+    # add a commentary to post
+    if request.method == 'POST' and request.user.is_authenticated:
+        post.userSaved.add(request.user.profile)
+        post.save()
+        dict = {'result': 'success'}
+    else:
+        dict = {'result': 'error'}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
+
+
+@csrf_exempt
+def post_unsave(request, postID):
+    post = Post.objects.get(id=postID)
+    # add a commentary to post
+    if request.method == 'POST' and request.user.is_authenticated:
+        post.userSaved.remove(request.user.profile)
+        request.user.profile.user_post_saved.remove(post)
+        request.user.profile.save()
+        post.save()
+        dict = {'result': 'success'}
+    else:
+        dict = {'result': 'error'}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
+
+
+@csrf_exempt
+def post_hide(request, postID):
+    post = Post.objects.get(id=postID)
+    # add a commentary to post
+    if request.method == 'POST' and request.user.is_authenticated:
+        post.userHidden.add(request.user.profile)
+        post.save()
+        dict = {'result': 'success'}
+    else:
+        dict = {'result': 'error'}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
+
+
+@csrf_exempt
+def post_show(request, postID):
+    post = Post.objects.get(id=postID)
+    # add a commentary to post
+    if request.method == 'POST' and request.user.is_authenticated:
+        post.userHidden.remove(request.user.profile)
+        request.user.profile.user_post_hidden.remove(post)
+        request.user.profile.save()
+        post.save()
+        dict = {'result': 'success'}
+    else:
+        dict = {'result': 'error'}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
 
 
 def createPost(request, topicName):
