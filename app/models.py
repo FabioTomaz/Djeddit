@@ -13,7 +13,6 @@ class Topic(models.Model):
     rules = models.CharField(max_length=500)
     description = models.CharField(max_length=300, blank=False)
     userCreator = models.ForeignKey(User, on_delete=models.CASCADE)
-    nSubscribers = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     creation_date = models.DateField(blank=False, default=datetime.now)
 
     def __str__(self):
@@ -33,7 +32,7 @@ class Profile(models.Model):
     user_picture = models.ImageField(upload_to='user_data/pictures/', default='user_data/pictures/pic.png',
                                      blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
-    topics = models.ManyToManyField(Topic)
+    subscriptions = models.ManyToManyField(Topic)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -43,6 +42,28 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+
+class Friend(models.Model):
+    users = models.ManyToManyField(Profile)
+    current_user = models.ForeignKey(Profile, related_name="owner", null=True, on_delete=models.CASCADE)
+
+    @classmethod
+    def make_friend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.users.add(new_friend)
+
+    @classmethod
+    def remove_friend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.users.remove(new_friend)
+
+    def __str__(self):
+        return str(self.current_user)
 
 
 class Post(models.Model):

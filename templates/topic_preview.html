@@ -1,6 +1,7 @@
 <div class="card border-secondary">
     <div class="card-header">
-        <a class="btn btn-link" href="{% url "topic"  topicName=topic.name %}">{{ topic.name }}</a>
+        <a class="card-link" href="{% url "topic"  topicName=topic.name %}">{{ topic.name }}</a>
+        <div class="card-subtitle text-muted"> This community was created at {{ topic.creation_date }} </div>
     </div>
 
     <div class="card-body">

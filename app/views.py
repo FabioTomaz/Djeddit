@@ -7,7 +7,7 @@ from django.db.models import Count
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse, Http404
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import login as auth_login
 from django.views.decorators.csrf import csrf_exempt
@@ -15,7 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from app.forms import SignUpForm, UserForm, ProfileForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
-from app.models import Topic, Post, User, Comment, Profile
+from app.models import Topic, Post, User, Comment, Profile, Friend
 import urllib.parse
 from datetime import datetime
 
@@ -183,7 +183,7 @@ def user_topic_subscriptions(request, username):
         tparams = {
             'sidebar': 'user_topic_subscriptions',
             "profile_user": User.objects.get(username=username),
-            'topics': Topic.objects.filter(profile__user__username=username)
+            'topics': User.objects.get(username=username).profile.subscriptions.all
         }
         return render(request, 'profile_topics.html', tparams)
     except User.DoesNotExist:
@@ -573,3 +573,38 @@ def createPost(request, topicName):
     else:
         form = CreatePost()
     return render(request, "create_post.html", {"form": form, "topicName": topic.name, "topic": topic})
+
+
+def list_friends(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        friend_object, created = Friend.objects.get_or_create(current_user=request.user.userprofile)
+        friends = [friend for friend in friend_object.users.all() if friend != request.user.userprofile]
+    return render(request, 'profile_friends.html', {"friends": friends})
+
+
+@csrf_exempt
+def add_friend(request, username):
+    result = {}
+    try:
+        new_friend = User.objects.get(username=username).profile
+        owner = request.user.profile
+
+        Friend.make_friend(owner, new_friend)
+        result['result'] = 'success'
+    except:
+        result['result'] = 'error'
+    return HttpResponse(json.dumps(result), content_type="application/json")
+
+
+@csrf_exempt
+def remove_friend(request, username):
+    result = {}
+    try:
+        new_friend = User.objects.get(username=username).profile
+        owner = request.user.profile
+
+        Friend.remove_friend(owner, new_friend)
+        result['result'] = 'success'
+    except:
+        result['result'] = 'error'
+    return HttpResponse(json.dumps(result), content_type="application/json")

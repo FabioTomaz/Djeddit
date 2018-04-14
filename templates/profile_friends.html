@@ -1,7 +1,6 @@
 {% extends "profile.html" %}
 {% block profileContent %}
-    {% for t in topics %}
-        {% include "topic_preview.html" with topic=t%} <br>
+    {% for f in friends %}
+        {% include "user_preview.html" with user=f%}
     {% endfor %}
-
 {% endblock %}

@@ -1,4 +1,5 @@
-<div class="card border-secondary" id="post_n_{{ post.id }}" {% if request.user.profile in post.userHidden.all %} hidden {% endif %}>
+<div class="card border-secondary" id="post_n_{{ post.id }}"
+        {% if request.user.profile in post.userHidden.all %} {% ifnotequal sidebar 'user_posts_hidden'  %} hidden  {% endifnotequal %}{% endif %}>
     <div class="card-body">
         <h5 class="card-title"><a href="{% url "post" topicName=post.topic.name postID=post.id %}">{{ post.title }}</a> </h5>
         <h6 class="card-subtitle mb-2 text-muted">Submitted by <a href="#">{{ post.userOP.username }}<a/>
