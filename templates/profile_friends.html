@@ -1,6 +1,17 @@
 {% extends "profile.html" %}
 {% block profileContent %}
-    {% for f in friends %}
-        {% include "user_preview.html" with user=f%}
-    {% endfor %}
+    <div class="card bg-white">
+        <div class="card-header">
+            <div class="card-title">
+                {{ profile_user.username }} friends
+            </div>
+        </div>
+        <div class="card-body">
+            <hr>
+            {% for f in friends %}
+                {% include "user_preview.html" with user=f%}
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

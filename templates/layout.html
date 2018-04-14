@@ -343,6 +343,10 @@
 
                 updateFilterVariable();
 
+                {% if loginModal %}
+                    $('#loginModal').modal();
+                {% endif %}
+
                 {% block onDocumentReadyBlock %}
 
                 {% endblock %}
@@ -387,7 +391,6 @@
             }
             {% block scripts %} {% endblock %}
         </script>
-
 
     </body>
 </html>

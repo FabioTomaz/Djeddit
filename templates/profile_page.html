@@ -11,6 +11,8 @@
             <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center">
                     <img src="{{ MEDIA_URL }}{{ profile_user.profile.user_picture }}" class="img-circle img-fluid">
+                    <hr>
+                    <a data-placement="bottom" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Points Details" data-content="{{ karma_posts }} Post Points and {{ karma_comments }} Comment Points" class="btn btn-primary" >{{ karma_posts|add:karma_comments }} Points <i class="fas fa-chevron-circle-up"></i></a>
                 </div>
                 <div class=" col-md-9 col-lg-9 ">
                     <table class="table table-user-information">
@@ -46,11 +48,48 @@
             </div>
         </div>
         {% if request.user.is_authenticated %}
+            <div class="card-footer">
+            {% ifnotequal profile_user.username request.user.username %}
+                <button id="btn_add_friend" class="float-right btn btn-success" onclick="add_friend('{{ profile_user.username }}')" {% if friends %} hidden {% endif %}><i class="fas fa-user-plus"></i> Add Friend {{ request.user.profile.friend.users.all }}</button>
+                <button id="btn_remove_friend" class="float-right btn btn-danger" onclick="remove_friend('{{ profile_user.username }}')" {% if not friends %} hidden {% endif %}><i class="fas fa-user-times"></i> Remove Friend</button>
+            {% endifnotequal %}
             {% ifequal profile_user.username request.user.username %}
-                <div class="card-footer">
                     <a href="{% url 'user_edit' username=request.user.username %}" class="btn btn-dark float-right"><i class="fas fa-edit"></i> Edit Profile</a>
-                </div>
             {% endifequal %}
+             </div>
         {% endif %}
     </div>
+
+    <script>
+        function add_friend(username) {
+            console.log(username);
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "{% url 'user_add_friend' username="usr" %}".replace("usr", username),
+                    success: function (result) {
+                        console.log(result);
+                        $('#btn_remove_friend').attr("hidden", false);
+                        $('#btn_add_friend').attr("hidden", true);
+                    }
+                });
+        }
+
+        function remove_friend(username) {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "{% url 'user_remove_friend' username="usr" %}".replace("usr", username),
+                    success: function (result) {
+                        console.log(result);
+                        $('#btn_remove_friend').attr("hidden", true);
+                        $('#btn_add_friend').attr("hidden", false);
+                    }
+                });
+        }
+    </script>
+{% endblock %}
+
+{% block onDocumentReadyBlock %}
+    $('[data-toggle="popover"]').popover()
 {% endblock %}

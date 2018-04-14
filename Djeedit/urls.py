@@ -36,6 +36,9 @@ urlpatterns = [
                   re_path(r'^search/user$', views.search_user, name="search_user"),
                   # user
                   path('user/<str:username>/', views.user_page, name="user"),
+                  path('user/<str:username>/add', views.add_friend, name="user_add_friend"),
+                  path('user/<str:username>/remove', views.remove_friend, name="user_remove_friend"),
+                  path('user/<str:username>/friends', views.profile_friends, name="user_friends"),
                   path('user/<str:username>/edit/', views.user_edit, name="user_edit"),
                   path('user/<str:username>/settings/', views.user_settings, name="user_settings"),
                   # user topics

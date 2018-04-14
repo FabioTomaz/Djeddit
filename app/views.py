@@ -1,11 +1,8 @@
-from datetime import datetime
-
 import json
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from django.db.models import Count
+from django.db.models import Count, Sum, F
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse, Http404
-from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -31,7 +28,7 @@ def mainPage(request):
 
 def popularPage(request):
     tparams = {
-        "posts": Post.objects.annotate(Count("clicks")).order_by("-clicks"),
+        "posts": Post.objects.order_by("-clicks"),
         'year': datetime.now().year,
         "nbar": "popular"
     }
@@ -40,7 +37,8 @@ def popularPage(request):
 
 def topRatedPage(request):
     tparams = {
-        "posts": Post.objects.annotate(Count("userUpVotesPost")).order_by("-userUpVotesPost"),
+        "posts": Post.objects.annotate(numUp=Count("userUpVotesPost")).annotate(
+            numDown=Count("userDownVotesPost")).annotate(score=F("numUp") - F("numDown")).order_by("-score"),
         'year': datetime.now().year,
         "nbar": "top_rated"
     }
@@ -48,8 +46,15 @@ def topRatedPage(request):
 
 
 def controversialPage(request):
+    Post.objects.annotate(Count("userUpVotesPost")).annotate(Count('userDownVotesPost'))
     tparams = {
-        "posts": Post.objects.order_by("date"),
+        "posts": Post.objects.annotate(numUp=Count("userUpVotesPost"))
+            .annotate(numDown=Count("userDownVotesPost"))
+            .annotate(score=F("numUp") - F("numDown"))
+            .annotate(numVotes=F("numUp") + F("numDown"))
+            .filter(numVotes__gte=10)
+            .filter(score__lte=3)
+            .filter(score__gte=-3),
         'year': datetime.now().year,
         "nbar": "controversial"
     }
@@ -133,11 +138,37 @@ def custom_redirect(url_name, *args, **kwargs):
 
 
 def user_page(request, username):
+    tparams = {}
     try:
-        tparams = {
-            "sidebar": "user_page",
-            "profile_user": User.objects.get(username=username)
-        }
+        if request.user.is_authenticated:
+            friend_object, created = Friend.objects.get_or_create(current_user=request.user.profile)
+            friends = [friend for friend in friend_object.users.all() if friend != request.user.profile]
+            if User.objects.get(username=username).profile in friends:
+                tparams["friends"] = True
+            else:
+                tparams["friends"] = False
+        up_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
+            .annotate(countUp=Count("userUpVotesPost"))
+        down_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
+            .annotate(countDown=Count("userDownVotesPost"))
+        score_posts = 0
+        for i in up_posts_count:
+            score_posts += i.countUp
+        for i in down_posts_count:
+            score_posts -= i.countDown
+        up_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
+            .annotate(countUp=Count("userUpVotesComments"))
+        down_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
+            .annotate(countDown=Count("userDownVotesComments"))
+        score_comments = 0
+        for i in up_comments_count:
+            score_comments += i.countUp
+        for i in down_comments_count:
+            score_comments -= i.countDown
+        tparams["karma_posts"] = score_posts
+        tparams["karma_comments"] = score_comments
+        tparams["sidebar"] = "user_page"
+        tparams["profile_user"] = User.objects.get(username=username)
         return render(request, 'profile_page.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -575,11 +606,14 @@ def createPost(request, topicName):
     return render(request, "create_post.html", {"form": form, "topicName": topic.name, "topic": topic})
 
 
-def list_friends(request):
-    if request.method == 'POST' and request.user.is_authenticated:
-        friend_object, created = Friend.objects.get_or_create(current_user=request.user.userprofile)
-        friends = [friend for friend in friend_object.users.all() if friend != request.user.userprofile]
-    return render(request, 'profile_friends.html', {"friends": friends})
+@csrf_exempt
+def profile_friends(request, username):
+    if request.user.is_authenticated:
+        friend_object, created = Friend.objects.get_or_create(current_user=request.user.profile)
+        friends = [friend for friend in friend_object.users.all() if friend != request.user.profile]
+    return render(request, 'profile_friends.html',
+                  {"friends": friends, "profile_user": User.objects.get(username=username),
+                   "sidebar": "profile_friends"})
 
 
 @csrf_exempt
