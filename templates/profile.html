@@ -24,6 +24,10 @@
         </ul>
 
         <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link {% if sidebar == 'user_friends' %}active{% endif %}" href="{% url 'user_friends' username=profile_user.username %}"><i class="fas fa-users"></i> Friends</a>
+            </li>
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTopics">
                     <i class="far fa-comments"></i> Topics

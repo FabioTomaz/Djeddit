@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
-{% block pagename %}Home{% endblock %}
+{% block pagename %}{{ nbar }} Posts{% endblock %}
 
 {% block content %}
-    <h1>Recent posts:</h1>
-    {% for p in posts %}
+    {% for p in items %}
         {% include "post_preview.html" with post=p%}
         <br>
     {% endfor %}
+    {% include 'pagination.html' %}
 {% endblock %}

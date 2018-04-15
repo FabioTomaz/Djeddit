@@ -1,11 +1,18 @@
 <div class="media text-muted pt-3">
-    <div class="col-md-1 col-lg-1 " align="center">
+    <div class="col-md-2 col-lg-2 " align="center">
         <img src="{{ MEDIA_URL }}{{ user.user_picture }}" class="img-circle img-fluid" id="profile_pic">
     </div>
-    <div class=" col-md-9 col-lg-9 ">
-    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <a href="{% url 'user' username=user.user.username %}"><strong class="d-block text-gray-dark">@{{ user.user.username }}</strong></a>
-        {{ user.user_details }}
+    <div class=" col-md-10 col-lg-10 ">
+    <p class="media-body small">
+        <p>
+            <a class="card-link" href="{% url 'user' username=user.user.username %}">
+                <strong>@{{ user.user.username }}</strong>
+            </a>
+        </p>
+        <hr>
+        <p>
+            {{ user.user_details }}
+        </p>
     </p>
     </div>
 </div>

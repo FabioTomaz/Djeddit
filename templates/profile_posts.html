@@ -1,6 +1,6 @@
 {% extends "profile.html" %}
 {% block profileContent %}
     {% for p in posts %}
-        {% include "post_preview.html" with post=p%}
+        {% include "post_preview.html" with post=p%} <br>
     {% endfor %}
 {% endblock %}

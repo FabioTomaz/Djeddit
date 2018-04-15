@@ -5,7 +5,6 @@ from datetime import datetime
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from vote.models import VoteModel
 
 
 class Topic(models.Model):
@@ -13,7 +12,6 @@ class Topic(models.Model):
     rules = models.CharField(max_length=500)
     description = models.CharField(max_length=300, blank=False)
     userCreator = models.ForeignKey(User, on_delete=models.CASCADE)
-    nSubscribers = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     creation_date = models.DateField(blank=False, default=datetime.now)
 
     def __str__(self):
@@ -30,10 +28,11 @@ class Profile(models.Model):
     user_details = models.CharField(max_length=200, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     registration_date = models.DateField(null=False, default=datetime.now)
-    user_picture = models.ImageField(upload_to='user_data/pictures/', default='user_data/pictures/pic.png',
+    user_picture = models.ImageField(upload_to='user_data/pictures/',
+                                     default='user_data/pictures/pic.png',
                                      blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
-    topics = models.ManyToManyField(Topic)
+    subscriptions = models.ManyToManyField(Topic)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -43,6 +42,29 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+
+class Friend(models.Model):
+    users = models.ManyToManyField(Profile)
+    current_user = models.ForeignKey(Profile, related_name="owner", null=True,
+                                     on_delete=models.CASCADE)
+
+    @classmethod
+    def make_friend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.users.add(new_friend)
+
+    @classmethod
+    def remove_friend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.users.remove(new_friend)
+
+    def __str__(self):
+        return str(self.current_user)
 
 
 class Post(models.Model):
@@ -67,10 +89,13 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
-    userUpVotesComments = models.ManyToManyField(Profile, related_name='comment_user_up', blank=True)
-    userDownVotesComments = models.ManyToManyField(Profile, related_name='comment_user_down', blank=True)
+    userUpVotesComments = models.ManyToManyField(Profile, related_name='comment_user_up',
+                                                 blank=True)
+    userDownVotesComments = models.ManyToManyField(Profile, related_name='comment_user_down',
+                                                   blank=True)
     text = models.CharField(max_length=10000, blank=False)
-    reply = models.ForeignKey("self", null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+    reply = models.ForeignKey("self", null=True, blank=True, related_name='replies',
+                              on_delete=models.CASCADE)
     nReplies = models.IntegerField(default=0)
 
     def __str__(self):

@@ -1,6 +1,7 @@
 {% extends "profile.html" %}
 {% block profileContent %}
     {% for t in topics %}
-        {% include "topic_preview.html" with topic=t%}
+        {% include "topic_preview.html" with topic=t%} <br>
     {% endfor %}
+
 {% endblock %}

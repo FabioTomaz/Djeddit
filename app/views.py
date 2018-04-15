@@ -1,67 +1,96 @@
-import logging
-from datetime import datetime
-
 import json
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Count, F, Q
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Count, Sum, F
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse, Http404
-from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import login as auth_login
 from django.views.decorators.csrf import csrf_exempt
 
+from Djeedit.config import pagination
 from app.forms import SignUpForm, UserForm, ProfileForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
-from app.models import Topic, Post, User, Comment, Profile
+from app.models import Topic, Post, User, Comment, Profile, Friend
 import urllib.parse
 from datetime import datetime
 
 
 def mainPage(request):
+    posts = Post.objects.order_by("-date")
+
+    pages = pagination(request, posts, num=10)
+
     tparams = {
-        "posts": Post.objects.order_by("-date"),
+        'items': pages[0],
+        'page_range': pages[1],
         'year': datetime.now().year,
-        "nbar": "new"
+        "nbar": "New"
     }
     return render(request, "home.html", tparams)
 
 
 def popularPage(request):
+    posts = Post.objects.order_by("-clicks")
+
+    pages = pagination(request, posts, num=10)
+
     tparams = {
-        "posts": Post.objects.annotate(Count("clicks")).order_by("-clicks"),
+        'items': pages[0],
+        'page_range': pages[1],
         'year': datetime.now().year,
-        "nbar": "popular"
+        "nbar": "Popular"
     }
     return render(request, "home.html", tparams)
 
 
 def topRatedPage(request):
+    posts = Post.objects.annotate(numUp=Count("userUpVotesPost"))\
+        .annotate(numDown=Count("userDownVotesPost"))\
+        .annotate(score=F("numUp") - F("numDown"))\
+        .order_by("-score")
+
+    pages = pagination(request, posts, num=10)
+
     tparams = {
-        "posts": reversed(Post.objects.annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by("score").distinct()),
+        'items': pages[0],
+        'page_range': pages[1],
         'year': datetime.now().year,
-        "nbar": "top_rated"
+        "nbar": "Top Rated"
     }
     return render(request, "home.html", tparams)
 
 
 def controversialPage(request):
+    posts = Post.objects.annotate(numUp=Count("userUpVotesPost"))\
+            .annotate(numDown=Count("userDownVotesPost"))\
+            .annotate(score=F("numUp") - F("numDown"))\
+            .annotate(numVotes=F("numUp") + F("numDown"))\
+            .filter(numVotes__gte=10)\
+            .filter(score__lte=3)\
+            .filter(score__gte=-3)
+
+    pages = pagination(request, posts, num=10)
+
     tparams = {
-        "posts": Post.objects.order_by("date"),
+        'items': pages[0],
+        'page_range': pages[1],
         'year': datetime.now().year,
-        "nbar": "controversial"
+        "nbar": "Controversial"
     }
     return render(request, "home.html", tparams)
 
 def search(request):
-    searchstring = request.GET.get("q", " ")
     tparams = {
         'year': datetime.now().year
     }
+    searchstring = request.GET.get("q", " ")
     filtertype = request.GET.get("filterType", "searchPostsOption")
+
     if filtertype == 'searchTopicsOption':
         tparams["results"] = Topic.objects.filter(name__icontains=searchstring)
         template = "search_topics.html"
@@ -122,7 +151,6 @@ def search_topic(request):
         # if orderby == "Least subscribers":
             # t = t.order_by()
     tparams = {
-        'us':user_creator,
         'searchbar': 'search_topic',
         'year': datetime.now().year,
         "results": t
@@ -187,11 +215,37 @@ def custom_redirect(url_name, *args, **kwargs):
 
 
 def user_page(request, username):
+    tparams = {}
     try:
-        tparams = {
-            "sidebar": "user_page",
-            "profile_user": User.objects.get(username=username)
-        }
+        if request.user.is_authenticated:
+            friend_object, created = Friend.objects.get_or_create(current_user=request.user.profile)
+            friends = [friend for friend in friend_object.users.all() if friend != request.user.profile]
+            if User.objects.get(username=username).profile in friends:
+                tparams["friends"] = True
+            else:
+                tparams["friends"] = False
+        up_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
+            .annotate(countUp=Count("userUpVotesPost"))
+        down_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
+            .annotate(countDown=Count("userDownVotesPost"))
+        score_posts = 0
+        for i in up_posts_count:
+            score_posts += i.countUp
+        for i in down_posts_count:
+            score_posts -= i.countDown
+        up_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
+            .annotate(countUp=Count("userUpVotesComments"))
+        down_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
+            .annotate(countDown=Count("userDownVotesComments"))
+        score_comments = 0
+        for i in up_comments_count:
+            score_comments += i.countUp
+        for i in down_comments_count:
+            score_comments -= i.countDown
+        tparams["karma_posts"] = score_posts
+        tparams["karma_comments"] = score_comments
+        tparams["sidebar"] = "user_page"
+        tparams["profile_user"] = User.objects.get(username=username)
         return render(request, 'profile_page.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -237,7 +291,7 @@ def user_topic_subscriptions(request, username):
         tparams = {
             'sidebar': 'user_topic_subscriptions',
             "profile_user": User.objects.get(username=username),
-            'topics': Topic.objects.filter(profile__user__username=username)
+            'topics': User.objects.get(username=username).profile.subscriptions.all
         }
         return render(request, 'profile_topics.html', tparams)
     except User.DoesNotExist:
@@ -388,7 +442,7 @@ def createTopic(request):
             description = form.cleaned_data["description"]
             rules = form.cleaned_data["rules"]
 
-            if Topic.objects.filter(name__iexact=topic).exists(): #topic with same name exists
+            if Topic.objects.filter(name__iexact=topic).exists():  # topic with same name exists
                 return render(request, 'topic_create.html', {'form': form, 'error': "A topic with this"
                         +" name already exists. Please, choose a different name"})
             t = Topic(name=topic, description=description, rules=rules, userCreator=request.user)
@@ -433,7 +487,7 @@ def topicPage(request, topicName, postOrder="popular"):
                 isUserSubscribed = False
         tparams = {
             "isUserSubscribed": isUserSubscribed,
-             "postOrder": postOrder,
+            "postOrder": postOrder,
             "currentTopic": Topic.objects.get(name__iexact=topicName),
             "posts": p,
         }
@@ -593,6 +647,62 @@ def postPage(request, topicName, postID):
     return render(request, "post.html", tparams)
 
 
+@csrf_exempt
+def post_save(request, postID):
+    post = Post.objects.get(id=postID)
+    # add a commentary to post
+    if request.method == 'POST' and request.user.is_authenticated:
+        post.userSaved.add(request.user.profile)
+        post.save()
+        dict = {'result': 'success'}
+    else:
+        dict = {'result': 'error'}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
+
+
+@csrf_exempt
+def post_unsave(request, postID):
+    post = Post.objects.get(id=postID)
+    # add a commentary to post
+    if request.method == 'POST' and request.user.is_authenticated:
+        post.userSaved.remove(request.user.profile)
+        request.user.profile.user_post_saved.remove(post)
+        request.user.profile.save()
+        post.save()
+        dict = {'result': 'success'}
+    else:
+        dict = {'result': 'error'}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
+
+
+@csrf_exempt
+def post_hide(request, postID):
+    post = Post.objects.get(id=postID)
+    # add a commentary to post
+    if request.method == 'POST' and request.user.is_authenticated:
+        post.userHidden.add(request.user.profile)
+        post.save()
+        dict = {'result': 'success'}
+    else:
+        dict = {'result': 'error'}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
+
+
+@csrf_exempt
+def post_show(request, postID):
+    post = Post.objects.get(id=postID)
+    # add a commentary to post
+    if request.method == 'POST' and request.user.is_authenticated:
+        post.userHidden.remove(request.user.profile)
+        request.user.profile.user_post_hidden.remove(post)
+        request.user.profile.save()
+        post.save()
+        dict = {'result': 'success'}
+    else:
+        dict = {'result': 'error'}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
+
+
 def createPost(request, topicName):
     topic = Topic.objects.get(name=topicName)
     if request.method == 'POST':
@@ -610,3 +720,41 @@ def createPost(request, topicName):
     else:
         form = CreatePost()
     return render(request, "create_post.html", {"form": form, "topic": topic})
+
+
+@csrf_exempt
+def profile_friends(request, username):
+    if request.user.is_authenticated:
+        friend_object, created = Friend.objects.get_or_create(current_user=request.user.profile)
+        friends = [friend for friend in friend_object.users.all() if friend != request.user.profile]
+    return render(request, 'profile_friends.html',
+                  {"friends": friends, "profile_user": User.objects.get(username=username),
+                   "sidebar": "profile_friends"})
+
+
+@csrf_exempt
+def add_friend(request, username):
+    result = {}
+    try:
+        new_friend = User.objects.get(username=username).profile
+        owner = request.user.profile
+
+        Friend.make_friend(owner, new_friend)
+        result['result'] = 'success'
+    except:
+        result['result'] = 'error'
+    return HttpResponse(json.dumps(result), content_type="application/json")
+
+
+@csrf_exempt
+def remove_friend(request, username):
+    result = {}
+    try:
+        new_friend = User.objects.get(username=username).profile
+        owner = request.user.profile
+
+        Friend.remove_friend(owner, new_friend)
+        result['result'] = 'success'
+    except:
+        result['result'] = 'error'
+    return HttpResponse(json.dumps(result), content_type="application/json")
