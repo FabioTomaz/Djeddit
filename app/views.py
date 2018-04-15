@@ -94,11 +94,14 @@ def search(request):
     if filtertype == 'searchTopicsOption':
         tparams["results"] = Topic.objects.filter(name__icontains=searchstring)
         template = "search_topics.html"
+        tparams['searchbar'] = 'search_topic'
     elif filtertype == 'searchUsersOption':
-        tparams["results"] = User.objects.filter(userName__icontains=searchstring)
+        tparams["results"] = User.objects.filter(username__icontains=searchstring)
         template = "search_users.html"
+        tparams['searchbar'] = 'search_user'
     else:
         tparams["results"] = Post.objects.filter(title__icontains=searchstring)
+        tparams['searchbar'] = 'search_post'
         template = "search_posts.html"
     return render(request, template, tparams)
 
@@ -111,26 +114,33 @@ def search_post(request):
 
     p = Post.objects.all()
     if searchstring != " ":
-        p.filter(title__icontains=searchstring)
-
+        p = p.filter(title__icontains=searchstring)
     if op != None or op != " ":
         p = p.filter(userOP__username__icontains=op)
     if from_topic != None or from_topic != " ":
         p = p.filter(topic__name__icontains=from_topic)
 
     if orderby != None or orderby != " ":
-        if orderby == "Highest score":
-            p = reversed(p.annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by("score").distinct())
         if orderby == "Lowest score":
-            p = p.annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by(
-                "score").distinct()
+            p = p.annotate(numUp=Count("userUpVotesPost"))\
+                .annotate(numDown=Count("userDownVotesPost"))\
+                .annotate(score=F("numUp") - F("numDown"))\
+                .order_by("-score")
         #if orderby == "Most commented":
             #p = p.order_by("-user__username")
         #if orderby == "Least commented":
             #p = p.order_by("-user__username")
+    p = p.annotate(numUp=Count("userUpVotesPost"))\
+        .annotate(numDown=Count("userDownVotesPost"))\
+        .annotate(score=F("numUp") - F("numDown"))\
+        .order_by("-score")
+    pages = pagination(request, p, num=10)
     tparams = {
+        'items': pages[0],
+        'page_range': pages[1],
         'searchbar': 'search_post',
         'year': datetime.now().year,
+        'param': "q=" + searchstring + "&op=" + op + "&from_topic="+from_topic+"&orderby="+orderby,
         "results": p
     }
     return render(request, "search_posts.html", tparams)
@@ -150,9 +160,14 @@ def search_topic(request):
             #t = t.order_by()
         # if orderby == "Least subscribers":
             # t = t.order_by()
+    t = t.order_by("name")
+    pages = pagination(request, t, num=3)
     tparams = {
+        'items': pages[0],
+        'page_range': pages[1],
         'searchbar': 'search_topic',
         'year': datetime.now().year,
+        'param': "q=" + searchstring + "&user_creator=" + user_creator +"&orderby="+orderby,
         "results": t
     }
     return render(request, "search_topics.html", tparams)
@@ -172,16 +187,20 @@ def search_user(request):
     if email != None or email != " ":
         p = p.filter(user__email__icontains=email)
 
-    if orderby != None or orderby != " ":
+    #if orderby != None or orderby != " ":
         #if orderby == "Most karma":
             #p = p.order_by()
         #if orderby == "Least karma":
             #p = p.order_by()
-        if orderby == "Alphabetical order":
-            p = p.order_by("-user__username")
+
+    p = p.order_by("-user__username")
+    pages = pagination(request, p, num=2)
     tparams = {
+        'items': pages[0],
+        'page_range': pages[1],
         'searchbar': 'search_user',
         'year': datetime.now().year,
+        'param': "q=" + searchstring + "&name=" + name + "&email="+email+"&orderby="+orderby,
         "results": p
     }
     return render(request, "search_users.html", tparams)
@@ -468,22 +487,18 @@ def topicPage(request, topicName, postOrder="popular"):
         p = reversed(Post.objects.filter(topic__name__iexact=topicName).annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by("score").distinct())
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
-        if topic in profile.topics.all():
+        if topic in profile.subscriptions.all():
             isUserSubscribed = True
         if request.method == 'POST':
             if not isUserSubscribed:
                 # add a subscription
-                topic.nSubscribers += 1
-                profile.topics.add(topic)  # add this topic to his list of subscribed topics
+                profile.subscriptions.add(topic)  # add this topic to his list of subscribed topics
                 profile.save()
-                topic.save()
                 isUserSubscribed = True  # user will now be subscribed
             else:
                 # remove a subscription
-                topic.nSubscribers -= 1
-                profile.topics.remove(topic)
+                profile.subscriptions.remove(topic)
                 profile.save()
-                topic.save()
                 isUserSubscribed = False
         tparams = {
             "isUserSubscribed": isUserSubscribed,

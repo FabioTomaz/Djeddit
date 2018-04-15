@@ -93,7 +93,7 @@
                             <form action="." method="post">
                                 {% csrf_token %}
                                 <div class="card bg-white text-center">
-                                    <div class="card-header">
+                                    <div class="card-header" style="align-content: center">
                                             {{ form.comment }}
                                     </div>
                                     <div class="card-footer">
@@ -135,7 +135,9 @@
                                         <span> {{ comment.date }}, Score: <p style="display:inline" id="score_{{ comment.id }}">{{ comment.userUpVotesComments.count|subtract:comment.userDownVotesComments.count }}</p></span>
 
                                         <div class="btn-group-sm float-right" role="group" aria-label="...">
-                                            <button class="btn btn-dark btn-sm" onclick="myFunction({{ comment.id }})">
+                                            <button class="btn btn-dark btn-sm" {% if user.is_authenticated %} onclick="myFunction({{ comment.id }})"
+                                                {% else %}data-toggle="tooltip" data-placement="top" data-original-title="You must be logged in to reply to a comment. Please loggin or create an account."
+                                                    aria-describedby="tooltip" {% endif %}>
                                                 <i class="fas fa-reply"></i> Reply
                                             </button>
                                             <button id="downvote_comment_{{ comment.id }}" {% if user.is_authenticated %} onclick="downvote_comment({{ comment.id }})"
@@ -404,7 +406,7 @@
         }
 
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip({ trigger: 'click'});
+        $('[data-toggle="tooltip"]').tooltip({ trigger: 'click', hide: { effect: "explode", duration: 1000 } });
     });
 
 

@@ -2,7 +2,7 @@
         {% if request.user.profile in post.userHidden.all %} {% ifnotequal sidebar 'user_posts_hidden'  %} hidden  {% endifnotequal %}{% endif %}>
     <div class="card-body">
         <h5 class="card-title"><a href="{% url "post" topicName=post.topic.name postID=post.id %}">{{ post.title }}</a> </h5>
-        <h6 class="card-subtitle mb-2 text-muted">Submitted by <a href="#">{{ post.userOP.username }}<a/>
+        <h6 class="card-subtitle mb-2 text-muted">Submitted by <a href="{% url "user" username=post.userOP.username %}">{{ post.userOP.username }}<a/>
             to topic <a href="{% url "topic"  topicName=post.topic.name %}"> {{ post.topic.name }} <a/> on {{ post.date }}</h6>
     </div>
 

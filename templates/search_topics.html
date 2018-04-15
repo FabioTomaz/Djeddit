@@ -2,8 +2,9 @@
 {% block pagename %}Search Topic: {{ request.GET.q }}{% endblock %}
 
 {% block content %}
-    {% for t in results %}
+    {% for t in items %}
         {% include "topic_preview.html" with topic=t%}
         <br>
     {% endfor %}
+    {% include 'pagination.html' with get_param=param %}
 {% endblock %}

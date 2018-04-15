@@ -10,8 +10,9 @@
             </div>
         </form>
     </div>
-    {% for p in results %}
+    {% for p in items %}
         {% include "post_preview.html" with post=p%}
         <br>
     {% endfor %}
+    {% include 'pagination.html' with get_param=param %}
 {% endblock %}
