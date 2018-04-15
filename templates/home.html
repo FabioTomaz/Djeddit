@@ -2,8 +2,9 @@
 {% block pagename %}Home{% endblock %}
 
 {% block content %}
-    {% for p in posts %}
+    {% for p in items %}
         {% include "post_preview.html" with post=p%}
         <br>
     {% endfor %}
+    {% include 'pagination.html' %}
 {% endblock %}

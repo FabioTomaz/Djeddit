@@ -1,6 +1,7 @@
 import json
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Count, Sum, F
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse, Http404
 from django.http import HttpRequest, HttpResponseRedirect
@@ -9,6 +10,7 @@ from django.urls import reverse
 from django.contrib.auth import login as auth_login
 from django.views.decorators.csrf import csrf_exempt
 
+from Djeedit.config import pagination
 from app.forms import SignUpForm, UserForm, ProfileForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
@@ -18,8 +20,13 @@ from datetime import datetime
 
 
 def mainPage(request):
+    posts = Post.objects.order_by("-date")
+
+    pages = pagination(request, posts, num=10)
+
     tparams = {
-        "posts": Post.objects.order_by("-date"),
+        'items': pages[0],
+        'page_range': pages[1],
         'year': datetime.now().year,
         "nbar": "new"
     }
@@ -27,8 +34,13 @@ def mainPage(request):
 
 
 def popularPage(request):
+    posts = Post.objects.order_by("-clicks")
+
+    pages = pagination(request, posts, num=10)
+
     tparams = {
-        "posts": Post.objects.order_by("-clicks"),
+        'items': pages[0],
+        'page_range': pages[1],
         'year': datetime.now().year,
         "nbar": "popular"
     }
@@ -36,9 +48,16 @@ def popularPage(request):
 
 
 def topRatedPage(request):
+    posts = Post.objects.annotate(numUp=Count("userUpVotesPost"))\
+        .annotate(numDown=Count("userDownVotesPost"))\
+        .annotate(score=F("numUp") - F("numDown"))\
+        .order_by("-score")
+
+    pages = pagination(request, posts, num=10)
+
     tparams = {
-        "posts": Post.objects.annotate(numUp=Count("userUpVotesPost")).annotate(
-            numDown=Count("userDownVotesPost")).annotate(score=F("numUp") - F("numDown")).order_by("-score"),
+        'items': pages[0],
+        'page_range': pages[1],
         'year': datetime.now().year,
         "nbar": "top_rated"
     }
@@ -46,15 +65,19 @@ def topRatedPage(request):
 
 
 def controversialPage(request):
-    Post.objects.annotate(Count("userUpVotesPost")).annotate(Count('userDownVotesPost'))
+    posts = Post.objects.annotate(numUp=Count("userUpVotesPost"))\
+            .annotate(numDown=Count("userDownVotesPost"))\
+            .annotate(score=F("numUp") - F("numDown"))\
+            .annotate(numVotes=F("numUp") + F("numDown"))\
+            .filter(numVotes__gte=10)\
+            .filter(score__lte=3)\
+            .filter(score__gte=-3)
+
+    pages = pagination(request, posts, num=10)
+
     tparams = {
-        "posts": Post.objects.annotate(numUp=Count("userUpVotesPost"))
-            .annotate(numDown=Count("userDownVotesPost"))
-            .annotate(score=F("numUp") - F("numDown"))
-            .annotate(numVotes=F("numUp") + F("numDown"))
-            .filter(numVotes__gte=10)
-            .filter(score__lte=3)
-            .filter(score__gte=-3),
+        'items': pages[0],
+        'page_range': pages[1],
         'year': datetime.now().year,
         "nbar": "controversial"
     }
