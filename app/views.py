@@ -28,7 +28,7 @@ def mainPage(request):
         'items': pages[0],
         'page_range': pages[1],
         'year': datetime.now().year,
-        "nbar": "new"
+        "nbar": "New"
     }
     return render(request, "home.html", tparams)
 
@@ -42,7 +42,7 @@ def popularPage(request):
         'items': pages[0],
         'page_range': pages[1],
         'year': datetime.now().year,
-        "nbar": "popular"
+        "nbar": "Popular"
     }
     return render(request, "home.html", tparams)
 
@@ -59,7 +59,7 @@ def topRatedPage(request):
         'items': pages[0],
         'page_range': pages[1],
         'year': datetime.now().year,
-        "nbar": "top_rated"
+        "nbar": "Top Rated"
     }
     return render(request, "home.html", tparams)
 
@@ -79,7 +79,7 @@ def controversialPage(request):
         'items': pages[0],
         'page_range': pages[1],
         'year': datetime.now().year,
-        "nbar": "controversial"
+        "nbar": "Controversial"
     }
     return render(request, "home.html", tparams)
 

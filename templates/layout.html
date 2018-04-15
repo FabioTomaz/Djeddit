@@ -37,16 +37,16 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
 
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {% if nbar == 'new' %}active{% endif %}">
+                    <li class="nav-item {% if nbar == 'New' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'new' %}"><i class="fas fa-th-list"></i> New</a>
                     </li>
-                    <li class="nav-item {% if nbar == 'popular' %}active{% endif %}">
+                    <li class="nav-item {% if nbar == 'Popular' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'popular' %}"><i class="fas fa-fire"></i> Popular</a>
                     </li>
-                    <li class="nav-item {% if nbar == 'top_rated' %}active{% endif %}">
+                    <li class="nav-item {% if nbar == 'Top Rated' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'top_rated' %}"><i class="far fa-thumbs-up"></i> Top Rated</a>
                     </li>
-                    <li class="nav-item {% if nbar == 'controversial' %}active{% endif %}">
+                    <li class="nav-item {% if nbar == 'Controversial' %}active{% endif %}">
                         <a class="nav-link" href="{% url 'controversial' %}"><i class="fas fa-comments"></i> Controversial</a>
                     </li>
                 </ul>

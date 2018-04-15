@@ -57,26 +57,26 @@
                                     hidden {% endif %}><i class="far fa-save"></i> Save
                             </button>
                             <button type="button" id="hide_post" onclick="func_hide_post({{ post.id }})"
-                                    class="btn btn-sm btn-danger"><i class="far fa-eye-slash"></i> Hide
+                                    class="btn btn-sm btn-danger" {% if request.user.profile in post.userHidden.all %}
+                                    hidden {% endif %}><i class="far fa-eye-slash"></i> Hide
+                            </button>
+                            <button type="button" id="show_post" onclick="func_show_post({{ post.id }})"
+                                    class="btn btn-sm btn-secondary"
+                                    {% if not request.user.profile in post.userHidden.all %} hidden {% endif %}><i
+                                    class="fas fa-eye"></i> Show
                             </button>
                         </div>
                         <div class="collapse" id="coll1">
                             <br>
-                            <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.google.com&layout=button&size=large&mobile_iframe=true&width=100&height=28&appId"
-                                    width="100"
-                                    height="28"
-                                    style="border:none;overflow:hidden"
-                                    scrolling="no"
-                                    frameborder="0"
-                                    allowTransparency="true">
-                            </iframe>
-
-                            <iframe src="https://platform.twitter.com/widgets/tweet_button.html?size=l&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev&related=twitterapi%2Ctwitter&text=custom%20share%20text&hashtags=example%2Cdemo"
-                                    width="140"
-                                    height="28"
-                                    title="Twitter Tweet Button"
-                                    style="border: none; overflow: hidden;">
-                            </iframe>
+                            {% load social_share %}
+                            {% url "post" topicName=post.topic.name postID=post.id as relative_url %}
+                            {% with request.get_host|add:relative_url as final_url %}
+                                {% post_to_facebook final_url %}
+                                {% post_to_reddit post.title final_url %}
+                                {% post_to_gplus final_url %}
+                                {% post_to_twitter post.title final_url %}
+                                {% post_to_linkedin final_url %}
+                            {% endwith %}
                         </div>
                         <div class="collapse" id="coll2">
                             <br>
@@ -232,6 +232,22 @@
                     url: "{% url 'post_hide' 1 %}".replace("1", post_id),
                     success: function (result) {
                         console.log(result);
+                        $('#hide_post').attr("hidden", true);
+                        $('#show_post').attr("hidden", false);
+                    }
+                });
+        }
+
+
+        function func_show_post(post_id) {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "{% url 'post_show' 1 %}".replace("1", post_id),
+                    success: function (result) {
+                        console.log(result);
+                        $('#hide_post').attr("hidden", false);
+                        $('#show_post').attr("hidden", true);
                     }
                 });
         }

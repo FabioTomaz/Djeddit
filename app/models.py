@@ -5,7 +5,6 @@ from datetime import datetime
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from vote.models import VoteModel
 
 
 class Topic(models.Model):
@@ -29,7 +28,8 @@ class Profile(models.Model):
     user_details = models.CharField(max_length=200, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     registration_date = models.DateField(null=False, default=datetime.now)
-    user_picture = models.ImageField(upload_to='user_data/pictures/', default='user_data/pictures/pic.png',
+    user_picture = models.ImageField(upload_to='user_data/pictures/',
+                                     default='user_data/pictures/pic.png',
                                      blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
     subscriptions = models.ManyToManyField(Topic)
@@ -46,7 +46,8 @@ class Profile(models.Model):
 
 class Friend(models.Model):
     users = models.ManyToManyField(Profile)
-    current_user = models.ForeignKey(Profile, related_name="owner", null=True, on_delete=models.CASCADE)
+    current_user = models.ForeignKey(Profile, related_name="owner", null=True,
+                                     on_delete=models.CASCADE)
 
     @classmethod
     def make_friend(cls, current_user, new_friend):
@@ -88,10 +89,13 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
-    userUpVotesComments = models.ManyToManyField(Profile, related_name='comment_user_up', blank=True)
-    userDownVotesComments = models.ManyToManyField(Profile, related_name='comment_user_down', blank=True)
+    userUpVotesComments = models.ManyToManyField(Profile, related_name='comment_user_up',
+                                                 blank=True)
+    userDownVotesComments = models.ManyToManyField(Profile, related_name='comment_user_down',
+                                                   blank=True)
     text = models.CharField(max_length=10000, blank=False)
-    reply = models.ForeignKey("self", null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+    reply = models.ForeignKey("self", null=True, blank=True, related_name='replies',
+                              on_delete=models.CASCADE)
     nReplies = models.IntegerField(default=0)
 
     def __str__(self):
