@@ -1,9 +1,10 @@
+import logging
 from datetime import datetime
 
 import json
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from django.db.models import Count
+from django.db.models import Count, F, Q
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse, Http404
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, HttpResponseRedirect
@@ -40,7 +41,7 @@ def popularPage(request):
 
 def topRatedPage(request):
     tparams = {
-        "posts": Post.objects.annotate(Count("userUpVotesPost")).order_by("-userUpVotesPost"),
+        "posts": reversed(Post.objects.annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by("score").distinct()),
         'year': datetime.now().year,
         "nbar": "top_rated"
     }
@@ -55,14 +56,12 @@ def controversialPage(request):
     }
     return render(request, "home.html", tparams)
 
-
 def search(request):
+    searchstring = request.GET.get("q", " ")
     tparams = {
         'year': datetime.now().year
     }
-    searchstring = request.GET.get("q", " ")
     filtertype = request.GET.get("filterType", "searchPostsOption")
-
     if filtertype == 'searchTopicsOption':
         tparams["results"] = Topic.objects.filter(name__icontains=searchstring)
         template = "search_topics.html"
@@ -77,30 +76,85 @@ def search(request):
 
 def search_post(request):
     searchstring = request.GET.get("q", " ")
+    op = request.GET.get("op", " ")
+    from_topic = request.GET.get("from_topic", " ")
+    orderby = request.GET.get("orderby", " ")
+
+    p = Post.objects.all()
+    if searchstring != " ":
+        p.filter(title__icontains=searchstring)
+
+    if op != None or op != " ":
+        p = p.filter(userOP__username__icontains=op)
+    if from_topic != None or from_topic != " ":
+        p = p.filter(topic__name__icontains=from_topic)
+
+    if orderby != None or orderby != " ":
+        if orderby == "Highest score":
+            p = reversed(p.annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by("score").distinct())
+        if orderby == "Lowest score":
+            p = p.annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by(
+                "score").distinct()
+        #if orderby == "Most commented":
+            #p = p.order_by("-user__username")
+        #if orderby == "Least commented":
+            #p = p.order_by("-user__username")
     tparams = {
         'searchbar': 'search_post',
         'year': datetime.now().year,
-        "results": Post.objects.filter(title__icontains=searchstring)
+        "results": p
     }
     return render(request, "search_posts.html", tparams)
 
 
 def search_topic(request):
     searchstring = request.GET.get("q", " ")
+    user_creator = request.GET.get("user_creator", " ")
+    orderby = request.GET.get("orderby", " ")
+    t = Topic.objects.all()
+    if searchstring != " ":
+        t = t.filter(name__icontains=searchstring)
+    if user_creator != None or user_creator != " ":
+        t = t.filter(userCreator__username__icontains=user_creator)
+    #if orderby != None or orderby != " ":
+        #if orderby == "Most subscribers":
+            #t = t.order_by()
+        # if orderby == "Least subscribers":
+            # t = t.order_by()
     tparams = {
+        'us':user_creator,
         'searchbar': 'search_topic',
         'year': datetime.now().year,
-        "results": Topic.objects.filter(name__icontains=searchstring)
+        "results": t
     }
     return render(request, "search_topics.html", tparams)
 
 
 def search_user(request):
-    searchstring = request.GET.get("q", "")
+    searchstring = request.GET.get("q", " ")
+    name = request.GET.get("name", " ")
+    email = request.GET.get("email", " ")
+    orderby = request.GET.get("orderby", " ")
+
+    p = Profile.objects.all()
+    if searchstring != " ":
+        p = p.filter(user__username__icontains=searchstring)
+    if name != None or name != " ":
+        p = p.filter(Q(user__first_name__icontains=name) | Q(user__last_name__icontains=name))
+    if email != None or email != " ":
+        p = p.filter(user__email__icontains=email)
+
+    if orderby != None or orderby != " ":
+        #if orderby == "Most karma":
+            #p = p.order_by()
+        #if orderby == "Least karma":
+            #p = p.order_by()
+        if orderby == "Alphabetical order":
+            p = p.order_by("-user__username")
     tparams = {
         'searchbar': 'search_user',
         'year': datetime.now().year,
-        "results": Profile.objects.filter(user__username__icontains=searchstring)
+        "results": p
     }
     return render(request, "search_users.html", tparams)
 
@@ -352,6 +406,12 @@ def topicCreatedSuccess(request):
 def topicPage(request, topicName, postOrder="popular"):
     topic = Topic.objects.get(name__iexact=topicName)
     isUserSubscribed = False
+    if (postOrder == "new"):
+        p = Post.objects.filter(topic__name__iexact=topicName).order_by("-date")
+    elif (postOrder == "popular"):
+        p = Post.objects.filter(topic__name__iexact=topicName).annotate(Count("clicks")).order_by("-clicks")
+    else:
+        p = reversed(Post.objects.filter(topic__name__iexact=topicName).annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by("score").distinct())
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         if topic in profile.topics.all():
@@ -375,19 +435,13 @@ def topicPage(request, topicName, postOrder="popular"):
             "isUserSubscribed": isUserSubscribed,
              "postOrder": postOrder,
             "currentTopic": Topic.objects.get(name__iexact=topicName),
-            "posts": Post.objects.filter(topic__name__iexact=topicName).order_by("date"),
+            "posts": p,
         }
         return render(request, "topic.html", tparams)
     else:
         if topic is None:
             return custom_redirect('search', q=topicName)
         else:
-            if (postOrder == "new"):
-                p = Post.objects.filter(topic__name__iexact=topicName).order_by("-date")
-            elif (postOrder == "popular"):
-                p = Post.objects.filter(topic__name__iexact=topicName).order_by("-date")
-            else:
-                p = Post.objects.filter(topic__name__iexact=topicName).order_by("-date")
             tparams = {
                 "isUserSubscribed": isUserSubscribed,
                 "postOrder": postOrder,
@@ -441,6 +495,48 @@ def vote_comment(request):
                     request.user.profile.comment_user_up.remove(comment)
                     request.user.profile.save()
                     comment.save()
+        result = 'success'
+    else:
+        raise Http404("Page not found :(")
+
+    dict = {"result": result}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
+
+@csrf_exempt
+def vote_post(request):
+    if request.is_ajax() and request.method == 'POST':
+        data = json.loads(request.body)
+        post = Post.objects.get(id=data["post_id"])
+        if data["vote"] == "up":
+            if request.user.profile in post.userUpVotesPost.all():
+                post.userUpVotesPost.remove(request.user.profile)
+                request.user.profile.post_user_up.remove(post)
+                request.user.profile.save()
+                post.save()
+            else:
+                post.userUpVotesPost.add(request.user.profile)
+                post.save()
+                # check if there is downvote, if so, delete it
+                if request.user.profile in post.userDownVotesPost.all():
+                    post.userDownVotesPost.remove(request.user.profile)
+                    request.user.profile.post_user_down.remove(post)
+                    request.user.profile.save()
+                    post.save()
+        elif data["vote"] == "down":
+            if request.user.profile in post.userDownVotesPost.all():
+                post.userDownVotesPost.remove(request.user.profile)
+                request.user.profile.post_user_down.remove(post)
+                request.user.profile.save()
+                post.save()
+            else:
+                post.userDownVotesPost.add(request.user.profile)
+                post.save()
+                # check if there is upvote, if so, delete it
+                if request.user.profile in post.userUpVotesPost.all():
+                    post.userUpVotesPost.remove(request.user.profile)
+                    request.user.profile.post_user_up.remove(post)
+                    request.user.profile.save()
+                    post.save()
         result = 'success'
     else:
         raise Http404("Page not found :(")
@@ -513,4 +609,4 @@ def createPost(request, topicName):
                                                       "date"), })
     else:
         form = CreatePost()
-    return render(request, "create_post.html", {"form": form, "topicName": topic.name, "topic": topic})
+    return render(request, "create_post.html", {"form": form, "topic": topic})

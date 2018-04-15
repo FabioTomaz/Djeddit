@@ -52,6 +52,8 @@
                 {% endfor %}
             </div>
             <div class="col-md-4">
+            <br/>
+            <br/>
                 <div class="row">
                     {% if user.is_authenticated %}
                         <div class="col" align="center">
@@ -63,12 +65,12 @@
                 <div class="row">
                     <div class="col">
                         <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title"> Rules </h5>
-                            <h6 class="card-subtitle mb-2 text-muted"></h6>
+                            <div class="card-header">
+                                <h5 class="card-title"> Rules </h5>
+                                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                            </div>
+                            <div class="card-body">{{ currentTopic.rules| linebreaksbr }} </div>
                         </div>
-                        <div class="card-body">{{ currentTopic.rules| linebreaksbr }} </div>
-                    </div>
                     </div>
                 </div>
             </div>

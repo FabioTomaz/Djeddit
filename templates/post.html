@@ -3,7 +3,7 @@
 
     <link rel="stylesheet" type="text/css" href="/static/content/comments.css">
     <link rel="stylesheet" type="text/css" href="/static/content/jquery.upvote.css">
-
+    <script scr="/static/script/jquery.upvote.js"></script>
 {% endblock %}
 {% load app_extras %}
 {% block pagename %}{{ post.title }}{% endblock %}
@@ -16,20 +16,30 @@
         </ol>
     </nav>
     <div class="container">
-        <div class="row">
-        <div class="col-2">
-            <div id="topic" class="upvote">
-            <a class="upvote upvote-on"></a>
-            <span class="count">6</span>
-            <a class="downvote"></a>
-            <a class="star"></a>
-        </div>
-
-        </div>
             <div class="card text-center">
                 <div class="card-header">
-                    <h5 class="card-title">{{ post.title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Submited by {{ post.userOP.username }} at {{ post.date }}</h6>
+                    <div class="row">
+                        <div class="col-2">
+                            <!-- upvote/downvote post -->
+                            <div id="topic" class="upvote">
+                                <a id="upvote_post" class="upvote{% if request.user.profile in post.userUpVotesPost.all %} upvote-on {% endif %}"
+                                   {% if user.is_authenticated %} onclick="upvote_post({{ post.id }})"
+                                   {% else %} data-toggle="tooltip" data-placement="top"
+                                    data-original-title="You must be logged in to upvote a post. Please login or create an account first." aria-describedby="tooltip" {% endif %}
+                                   style="cursor: pointer;"></a>
+                                <span id="post_score" class="count">{{ post.userUpVotesPost.count|subtract:post.userDownVotesPost.count }}</span>
+                                <a id="downvote_post" class="downvote{% if request.user.profile in post.userDownVotesPost.all %} downvote-on {% endif %}"
+                                   {% if user.is_authenticated %}onclick="downvote_post({{ post.id }})"
+                                   {% else %} data-toggle="tooltip" data-placement="bottom"
+                                   data-original-title="You must be logged in to upvote a post. Please login or create an account first." aria-describedby="tooltip" {% endif %}style="cursor: pointer;"></a>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Submited by {{ post.userOP.username }} at {{ post.date }}</h6>
+                            <h7 class="card-subtitle mb-3 text-muted"> {{ post.nComments }} comment(s) </h7>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ post.content|linebreaks }}</p>
@@ -112,16 +122,20 @@
                                                 </a>
                                             </span>
                                         {% endif %}
-                                        <span> {{ comment.date }}, Score: {{ comment.userUpVotesComments.count|subtract:comment.userDownVotesComments.count }}</span>
+                                        <span> {{ comment.date }}, Score: <p style="display:inline" id="score_{{ comment.id }}">{{ comment.userUpVotesComments.count|subtract:comment.userDownVotesComments.count }}</p></span>
 
                                         <div class="btn-group-sm float-right" role="group" aria-label="...">
                                             <button class="btn btn-dark btn-sm" onclick="myFunction({{ comment.id }})">
                                                 <i class="fas fa-reply"></i> Reply
                                             </button>
-                                            <button id="downvote_comment_{{ comment.id }}" onclick="downvote_comment({{ comment.id }})" class="btn {% if request.user.profile in comment.userDownVotesComments.all %} btn-danger {% endif %}">
+                                            <button id="downvote_comment_{{ comment.id }}" {% if user.is_authenticated %} onclick="downvote_comment({{ comment.id }})"
+                                            {% else %} data-toggle="tooltip" data-placement="bottom" data-original-title="You must be logged in to downvote a comment. Please loggin or create an account." aria-describedby="tooltip"{% endif %}
+                                                    class="btn {% if request.user.profile in comment.userDownVotesComments.all %} btn-danger {% endif %}">
                                                 <i class="fa fa-chevron-down"></i>
                                             </button>
-                                            <button id="upvote_comment_{{ comment.id }}" onclick="upvote_comment({{ comment.id }})" class="btn {% if request.user.profile in comment.userUpVotesComments.all %} btn-success {% endif %}">
+                                            <button id="upvote_comment_{{ comment.id }}" {% if user.is_authenticated %} onclick="upvote_comment({{ comment.id }})"
+                                            {% else %}data-toggle="tooltip" data-placement="top" data-original-title="You must be logged in to upvote a comment. Please loggin or create an account." aria-describedby="tooltip"{% endif %}
+                                                    class="btn {% if request.user.profile in comment.userUpVotesComments.all %} btn-success {% endif %}">
                                                 <i class="fa fa-chevron-up"></i>
                                             </button>
                                         </div>
@@ -145,28 +159,33 @@
                                 <ul class="comments-list reply-list">
                                     <li>
                                         <!-- Avatar -->
-                                        <div class="comment-avatar"><img
-                                                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973461_960_720.png"
-                                                alt=""></div>
+                                        <div class="comment-avatar">
+                                            <img src="{{ MEDIA_URL }}{{ reply.user.profile.user_picture }}" alt="">
+                                        </div>
                                         <div class="comment-box">
                                             <div class="comment-head">
                                                 {% if reply.user.username == post.userOP.username %}
-                                                    <h6 class="comment-name by-author"><a
-                                                            href="#">{{ reply.user.username }}</a></h6>
-                                                {% else %}
-                                                    <h6><a href="#">{{ reply.user.username }}</a></h6>
-                                                {% endif %}
+                                            <span style="padding-right: 10px">
+                                                <a class="badge badge-pill badge-dark" href="{% url 'user' username=reply.user.username %}">{{ reply.user.username }}</a>
+                                            </span>
+                                            {% else %}
+                                            <span style="padding-right: 10px">
+                                                <a class="badge badge-pill badge-primary" href="{% url 'user' username=reply.user.username %}">{{ reply.user.username }}
+                                                </a>
+                                            </span>
+                                            {% endif %}
                                                 <span>{{ reply.date }}</span>
-                                                <span> {{ comment.date }}, Score: {{ comment.userUpVotesComments.count|subtract:comment.userDownVotesComments.count }}</span>
+                                                <span> {{ comment.date }}, Score: <p style="display:inline" id="score_{{ reply.id }}">{{ reply.userUpVotesComments.count|subtract:reply.userDownVotesComments.count }}</p></span>
 
                                             <div class="btn-group-sm float-right" role="group" aria-label="...">
-                                                <button class="btn btn-dark btn-sm" onclick="myFunction({{ comment.id }})">
-                                                    <i class="fas fa-reply"></i> Reply
-                                                </button>
-                                                <button id="downvote_comment_{{ comment.id }}" onclick="downvote_comment({{ comment.id }})" class="btn {% if request.user.profile in comment.userDownVotesComments.all %} btn-danger {% endif %}">
+                                                <button id="downvote_comment_{{ reply.id }}" {% if user.is_authenticated %} onclick="downvote_comment({{ reply.id }})"
+                                                {% else %} data-toggle="tooltip" data-placement="bottom" data-original-title="You must be logged in to downvote a reply. Please loggin or create an account."
+                                                {% endif %} class="btn {% if request.user.profile in reply.userDownVotesComments.all %} btn-danger {% endif %}">
                                                     <i class="fa fa-chevron-down"></i>
                                                 </button>
-                                                <button id="upvote_comment_{{ comment.id }}" onclick="upvote_comment({{ comment.id }})" class="btn {% if request.user.profile in comment.userUpVotesComments.all %} btn-success {% endif %}">
+                                                <button id="upvote_comment_{{ reply.id }}" {% if user.is_authenticated %} onclick="upvote_comment({{ reply.id }})"
+                                                {% else %}data-toggle="tooltip" data-placement="top" data-original-title="You must be logged in to upvote a reply. Please loggin or create an account."
+                                                {% endif %} class="btn {% if request.user.profile in reply.userUpVotesComments.all %} btn-success {% endif %}">
                                                     <i class="fa fa-chevron-up"></i>
                                                 </button>
                                             </div>
@@ -210,13 +229,20 @@
         function upvote_comment(comment_id) {
             var upbtn = $('#upvote_comment_'+comment_id);
             var downbtn = $('#downvote_comment_'+comment_id);
+            var counterText = $('#score_'+comment_id).text()
+            var counter =  parseInt(counterText, 10);
             if (upbtn.hasClass("btn-success")) { //remove upvote
                 upbtn.removeClass('btn-success');
+                counter--
+                $('#score_'+comment_id).text(counter)
             } else {
                 upbtn.addClass('btn-success');
+                counter++
                 if (downbtn.hasClass('btn-danger')) { //remove downvote, and upvote
                     downbtn.removeClass('btn-danger');
+                    counter++
                 }
+                $('#score_'+comment_id).text(counter)
             }
             $.ajax(
                 {
@@ -232,13 +258,21 @@
         function downvote_comment(comment_id) {
             var upbtn = $('#upvote_comment_'+comment_id);
             var downbtn = $('#downvote_comment_'+comment_id);
-            if (downbtn.hasClass("btn-danger")) { //remove upvote
+            var counterText = $('#score_'+comment_id).text()
+            var counter =  parseInt(counterText, 10);
+
+            if (downbtn.hasClass("btn-danger")) { //remove downvote
                 downbtn.removeClass('btn-danger');
+                counter++
+                $('#score_'+comment_id).text(counter)
             } else {
                 downbtn.addClass('btn-danger');
-                if (upbtn.hasClass('btn-success')) { //remove downvote, and upvote
+                counter--
+                if (upbtn.hasClass('btn-success')) { //remove upvote, and downvote
                     upbtn.removeClass('btn-success');
+                    counter--
                 }
+                $('#score_'+comment_id).text(counter)
             }
             $.ajax(
                 {
@@ -250,4 +284,68 @@
                     }
                 });
         }
+    function upvote_post(post_id) {
+            var upbtn = $('#upvote_post');
+            var downbtn = $('#downvote_post');
+            var counterText = $('#post_score').text()
+            var counter =  parseInt(counterText, 10);
+            if (upbtn.hasClass('upvote-on')) { //if user has previously upvoted, remove upvote
+                upbtn.removeClass('upvote-on');
+                counter--   //-1 upvote
+                $('#post_score').text(counter)
+            } else {
+                upbtn.addClass('upvote-on');
+                counter++
+                if (downbtn.hasClass('downvote-on')) { //remove downvote, and upvote
+                    downbtn.removeClass('downvote-on');
+                    counter++
+                }
+                $('#post_score').text(counter)
+            }
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/vote_post/",
+                    data: JSON.stringify({'vote': "up", "post_id": post_id}),
+                    dataType: "json",
+                    success: function (result) {
+                    }
+                });
+        }
+
+        function downvote_post(post_id) {
+            var upbtn = $('#upvote_post');
+            var downbtn = $('#downvote_post');
+            var counterText = $('#post_score').text()
+            var counter =  parseInt(counterText, 10);
+
+            if (downbtn.hasClass("downvote-on")) { //remove downvote
+                downbtn.removeClass('downvote-on');
+                counter++
+                $('#post_score').text(counter)
+            } else {
+                downbtn.addClass('downvote-on');
+                counter--
+                if (upbtn.hasClass('upvote-on')) { //remove upvote, and downvote
+                    upbtn.removeClass('upvote-on');
+                    counter--
+                }
+                $('#post_score').text(counter)
+            }
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "/vote_post/",
+                    data: JSON.stringify({'vote': "down", "post_id": post_id}),
+                    dataType: "json",
+                    success: function (result) {
+                    }
+                });
+        }
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({ trigger: 'click'});
+    });
+
+
 {% endblock %}
