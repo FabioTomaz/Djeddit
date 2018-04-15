@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 
@@ -24,7 +24,7 @@ class topicCreateForm(forms.Form):
                             validators=[MaxLengthValidator(500)],
                             widget=forms.Textarea(attrs={
                                 'class': 'form-control',
-                                'rows':4,
+                                'rows': 4,
                                 'placeholder': 'Describe here the rules the users must obey in this topic...'
                             }))
 
@@ -84,4 +84,12 @@ class ProfileForm(forms.ModelForm):
         self.fields['user_details'].widget = forms.Textarea(
             attrs={'class': 'form-control', 'placeholder': 'Describe yourself...'})
         self.fields['birth_date'].widget = forms.DateInput(
-            attrs={'class': 'form-control', 'placeholder': 'Insert the Date of your Birth...', 'type':'date'})
+            attrs={'class': 'form-control', 'placeholder': 'Insert the Date of your Birth...', 'type': 'date'})
+
+
+class ChangePasswordForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs['class'] = 'form-control'
+        self.fields['new_password1'].widget.attrs['class'] = 'form-control'
+        self.fields['new_password2'].widget.attrs['class'] = 'form-control'

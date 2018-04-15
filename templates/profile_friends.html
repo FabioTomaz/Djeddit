@@ -1,9 +1,10 @@
 {% extends "profile.html" %}
+{% block pagename %} Friends {% endblock %}
 {% block profileContent %}
     <div class="card bg-white">
-        <div class="card-header">
-            <div class="card-title">
-                {{ profile_user.username }} friends
+        <div class="card-header bg-dark text-white">
+            <div>
+                <strong>{{ profile_user.username }} friends </strong>
             </div>
         </div>
         <div class="card-body">

@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% block pagename %} {{ profile_user.username }} {% endblock %}
+
 {% load staticfiles%}
 {% block styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'content/profile_styles.css' %}"/>
@@ -12,15 +14,6 @@
             <li class="nav-item">
                 <a class="nav-link {% if sidebar == 'user_page' %}active{% endif %}" href="{% url 'user' username=profile_user.username %}"><i class="fas fa-user-circle"></i> Profile</a>
             </li>
-            {% if request.user.is_authenticated %}
-                {% ifequal profile_user.username request.user.username %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if sidebar == 'user_settings' %}active{% endif %}"
-                           href="{% url 'user_settings' username=profile_user.username %}"><i class="fas fa-cog"></i>
-                            Account Settings</a>
-                    </li>
-                {% endifequal %}
-            {% endif %}
         </ul>
 
         <ul class="nav nav-pills flex-column">

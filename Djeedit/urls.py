@@ -40,7 +40,8 @@ urlpatterns = [
                   path('user/<str:username>/remove', views.remove_friend, name="user_remove_friend"),
                   path('user/<str:username>/friends', views.profile_friends, name="user_friends"),
                   path('user/<str:username>/edit/', views.user_edit, name="user_edit"),
-                  path('user/<str:username>/settings/', views.user_settings, name="user_settings"),
+                  path('user/<str:username>/change_password/', views.user_change_password, name="user_change_password"),
+                  path('user/<str:username>/privacy/', views.user_privacy, name="user_privacy"),
                   # user topics
                   path('user/<str:username>/topics/', views.user_topic_subscriptions, name="user_topics_subscriptions"),
                   path('user/<str:username>/topics/created', views.user_topic_created, name="user_topics_created"),

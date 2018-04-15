@@ -1,5 +1,5 @@
 import json
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Count, Sum, F
@@ -11,7 +11,7 @@ from django.contrib.auth import login as auth_login
 from django.views.decorators.csrf import csrf_exempt
 
 from Djeedit.config import pagination
-from app.forms import SignUpForm, UserForm, ProfileForm
+from app.forms import SignUpForm, UserForm, ProfileForm, ChangePasswordForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
 from app.models import Topic, Post, User, Comment, Profile, Friend
@@ -22,7 +22,7 @@ from datetime import datetime
 def mainPage(request):
     posts = Post.objects.order_by("-date")
 
-    pages = pagination(request, posts, num=10)
+    pages = pagination(request, posts, num=1)
 
     tparams = {
         'items': pages[0],
@@ -48,9 +48,9 @@ def popularPage(request):
 
 
 def topRatedPage(request):
-    posts = Post.objects.annotate(numUp=Count("userUpVotesPost"))\
-        .annotate(numDown=Count("userDownVotesPost"))\
-        .annotate(score=F("numUp") - F("numDown"))\
+    posts = Post.objects.annotate(numUp=Count("userUpVotesPost")) \
+        .annotate(numDown=Count("userDownVotesPost")) \
+        .annotate(score=F("numUp") - F("numDown")) \
         .order_by("-score")
 
     pages = pagination(request, posts, num=10)
@@ -65,13 +65,13 @@ def topRatedPage(request):
 
 
 def controversialPage(request):
-    posts = Post.objects.annotate(numUp=Count("userUpVotesPost"))\
-            .annotate(numDown=Count("userDownVotesPost"))\
-            .annotate(score=F("numUp") - F("numDown"))\
-            .annotate(numVotes=F("numUp") + F("numDown"))\
-            .filter(numVotes__gte=10)\
-            .filter(score__lte=3)\
-            .filter(score__gte=-3)
+    posts = Post.objects.annotate(numUp=Count("userUpVotesPost")) \
+        .annotate(numDown=Count("userDownVotesPost")) \
+        .annotate(score=F("numUp") - F("numDown")) \
+        .annotate(numVotes=F("numUp") + F("numDown")) \
+        .filter(numVotes__gte=10) \
+        .filter(score__lte=3) \
+        .filter(score__gte=-3)
 
     pages = pagination(request, posts, num=10)
 
@@ -225,11 +225,30 @@ def user_edit(request, username):
         return redirect('/user/' + username)
 
 
-def user_settings(request, username):
+def user_change_password(request, username):
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            return redirect('change_password')
+    else:
+        form = ChangePasswordForm(request.user)
+
     tparams = {
-        'sidebar': 'user_settings'
+        'sidebar': 'user_page',
+        "profile_user": User.objects.get(username=username),
+        "form": form
     }
-    return render(request, 'profile.html', tparams)
+    return render(request, 'profile_change_password.html', tparams)
+
+
+def user_privacy(request, username):
+    tparams = {
+        'sidebar': 'user_page',
+        "profile_user": User.objects.get(username=username),
+    }
+    return render(request, 'profile_settings.html', tparams)
 
 
 def user_topic_subscriptions(request, username):

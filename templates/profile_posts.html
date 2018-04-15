@@ -1,4 +1,5 @@
 {% extends "profile.html" %}
+{% block pagename %} Posts {% endblock %}
 {% block profileContent %}
     {% for p in posts %}
         {% include "post_preview.html" with post=p%} <br>

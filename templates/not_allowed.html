@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="alert alert-danger" role="alert">
+      You are not allowed to perform that action. <button onclick="goBack()" class="alert-link">Go Back.</button>
+    </div>
+{% endblock %}
+{% block scripts %}
+    function goBack() {
+        window.history.back();
+    }
+{% endblock %}
