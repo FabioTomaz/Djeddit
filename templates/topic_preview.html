@@ -1,7 +1,7 @@
 <div class="card border-secondary">
     <div class="card-header">
         <a class="card-link" href="{% url "topic"  topicName=topic.name %}">{{ topic.name }}</a>
-        <div class="card-subtitle text-muted"> This community was created at {{ topic.creation_date }} </div>
+        <div class="card-subtitle text-muted"> This community was created at {{ topic.creation_date }}, by <a href="{% url "user" username=topic.userCreator.username %}">{{ topic.userCreator.username }}</a> </div>
     </div>
 
     <div class="card-body">

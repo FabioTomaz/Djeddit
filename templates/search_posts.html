@@ -6,12 +6,13 @@
     <div class="panel panel-default">
         <form action="{% url 'search' %}" method="get">
             <div class="panel-body">
-                A Basic Panel
+
             </div>
         </form>
     </div>
-    {% for p in results %}
+    {% for p in items %}
         {% include "post_preview.html" with post=p%}
         <br>
     {% endfor %}
+    {% include 'pagination.html' with get_param=param %}
 {% endblock %}

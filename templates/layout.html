@@ -362,11 +362,11 @@
                 e.preventDefault();
                 var query = $('#searchQuery').val();
                 if(searchFilter=="searchTopicsOption")
-                    $(location).attr('href', "{% url 'search_topic' %}?q=" + query)
+                    $(location).attr('href', "{% url 'search_topic' %}?q=" + query+ "&user_creator=&orderby=")
                 else if(searchFilter=="searchPostsOption")
-                    $(location).attr('href', "{% url 'search_post' %}?q=" + query)
+                    $(location).attr('href', "{% url 'search_post' %}?q=" + query+ "&op=&from_topic=&orderby=")
                 else if(searchFilter=="searchUsersOption")
-                    $(location).attr('href', "{% url 'search_user' %}?q=" + query)
+                    $(location).attr('href', "{% url 'search_user' %}?q=" + query+ "&email=&name=&orderby=")
             });
 
             $(document).on('click', "#show_hide_password", function (e) {

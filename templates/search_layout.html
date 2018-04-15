@@ -1,17 +1,115 @@
 {% extends 'layout.html' %}
-
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="/static/content/filter-box.css"/>
+{% endblock %}
 {% block outsideContent %}
     <div class="navbar bg-white box-shadow justify-content-center">
         <nav class="nav nav-pills">
-            <a class="nav-link {% if searchbar == 'search_topic' %}active{% endif %}" href="{% url 'search_topic' %}?q={{ request.GET.q }}">
+            <a id="nav_topics" class="nav-link {% if searchbar == 'search_topic' %}active{% endif %}" href="{% url 'search_topic' %}?q={{ request.GET.q }}">
                 Topics <i class="far fa-comments"></i>
             </a>
-                <a class="nav-link {% if searchbar == 'search_post' %}active{% endif %}" href="{% url 'search_post' %}?q={{ request.GET.q }}">
+                <a id="nav_posts" class="nav-link {% if searchbar == 'search_post' %}active{% endif %}" href="{% url 'search_post' %}?q={{ request.GET.q }}">
                     Posts <i class="fas fa-align-left"></i>
                 </a>
-            <a class="nav-link {% if searchbar == 'search_user' %}active{% endif %}" href="{% url 'search_user' %}?q={{ request.GET.q }}">
+            <a id="nav_users" class="nav-link {% if searchbar == 'search_user' %}active{% endif %}" href="{% url 'search_user' %}?q={{ request.GET.q }}">
                 Users <i class="fas fa-users"></i>
             </a>
         </nav>
     </div>
+<br/>
+    <div class="container">
+	<div class="row">
+		<div class="col-12">
+            <div class="input-group" id="adv-search">
+                <input id="filteredSearchQuery" type="text" class="form-control" value="{{ request.GET.q }}" placeholder="Advanced search" />
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <div class="dropdown dropdown-lg">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                <form class="form-horizontal" role="form">
+                                  <div class="form-group">
+                                    <label for="filter">Order by</label>
+
+                                      {% if searchbar == 'search_topic' %}
+                                        <select id="select_topic" class="form-control">
+                                            <option value="0" selected>Most subscribers</option>
+                                            <option value="1">Least subscribers</option><
+                                        </select>
+                                        </div>
+                                          <div class="form-group">
+                                            <label for="contain">User Creator</label>
+                                            <input value="{% if request.GET.user_creator %}{{ request.GET.user_creator }}{% endif %}" id="user_creator" class="form-control" type="text" />
+                                          </div>
+
+                                        {% elif searchbar == 'search_post'%}
+                                        <select id="select_post" class="form-control">
+                                            <option value="0" selected>Highest score</option>
+                                            <option value="1">Lowest score</option>
+                                            <option value="2">Most commented</option>
+                                            <option value="3">Least commented</option>
+                                        </select>
+                                        </div>
+                                          <div class="form-group">
+                                            <label for="contain">Original Poster</label>
+                                            <input value="{% if request.GET.op %}{{ request.GET.op }}{% endif %}" id="op" class="form-control" type="text" />
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="contain">From Topic</label>
+                                            <input value="{% if request.GET.from_topic %}{{ request.GET.from_topic }}{% endif %}" id="from_topic" class="form-control" type="text" />
+                                          </div>
+
+                                        {% elif searchbar == 'search_user'%}
+                                        <select id="select_user" class="form-control">
+                                            <option value="0" {% if request.GET.orderby == "Most karma" %} selected {% endif %}>Most karma</option>
+                                            <option value="1" {% if request.GET.orderby == "Least karma" %} selected {% endif %}>Least karma</option>
+                                            <option value="2" {% if request.GET.orderby == "Alphabetical order" %} selected {% endif %}>Alphabetical order</option>
+                                        </select>
+                                        </div>
+                                          <div class="form-group">
+                                            <label for="contain">Name</label>
+                                            <input value="{% if request.GET.name %}{{ request.GET.name }}{% endif %}" id="name" class="form-control" type="text" />
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="contain">Email</label>
+                                            <input value="{% if request.GET.email %}{{ request.GET.email }}{% endif %}" id="email" class="form-control" type="text" />
+                                          </div>
+                                      {% endif %}
+                                  </form>
+                            </div>
+                        </div>
+                        <button id="filteredSearch" type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+	</div>
+</div>
+{% endblock %}
+{% block scripts %}
+    $(document).on('click', "#filteredSearch", function (e) {
+                e.preventDefault();
+                var query = $('#filteredSearchQuery').val();
+                //advanced search for topics:
+                if($( "#nav_topics" ).hasClass( "nav-link active" )){
+                    var user_creator = $('#user_creator').val();
+                    var orderby = $('#select_topic').find(":selected").text();
+                    $(location).attr('href', "{% url 'search_topic' %}?q=" + query + "&user_creator=" + user_creator + "&orderby=" + orderby)
+                }
+                //advanced search for posts:
+                else if($( "#nav_posts" ).hasClass( "nav-link active" )){
+                    var op = $('#op').val();
+                    var from_topic = $('#from_topic').val();
+                    var orderby = $('#select_post').find(":selected").text();
+                    $(location).attr('href', "{% url 'search_post' %}?q=" + query + "&op=" + op + "&from_topic=" + from_topic + "&orderby=" + orderby)
+                }
+                //advanced search for users:
+                else if($( "#nav_users" ).hasClass( "nav-link active" )){
+                    var name = $('#name').val();
+                    var email = $('#email').val();
+                    var orderby = $('#select_user').find(":selected").text();
+                    $(location).attr('href', "{% url 'search_user' %}?q=" + query + "&email=" + email + "&name=" + name + "&orderby=" + orderby)
+                }
+            });
 {% endblock %}

@@ -6,7 +6,7 @@
                     {% if items.has_previous %}
                         <li class="page-item"><a class="page-link"
                                                  style="background-color: #ffd536; color: #1e415e; border: #1e415e;"
-                                                 href="?page={{ items.previous_page_number }}">Previous</a>
+                                                 href="?page={{ items.previous_page_number }}&{{ get_param }}">Previous</a>
                         </li>
                     {% else %}
                         <li class="page-item disabled"><a class="page-link"
@@ -22,14 +22,14 @@
                         {% else %}
                             <li class="page-item"><a class="page-link"
                                                      style="background-color: #ffd536; color: #1e415e; border: #1e415e;"
-                                                     href="?page={{ i }}">{{ i }}</a></li>
+                                                     href="?page={{ i }}&{{ get_param }}">{{ i }}</a></li>
                         {% endif %}
                     {% endfor %}
                     {% if items.has_next %}
                         <li class="page-item"><a class="page-link"
                                                  style="background-color: #ffd536; color: #1e415e; border: #1e415e;"
                                                  aria-label="Next"
-                                                 href="?page={{ items.next_page_number }}">Next</a></li>
+                                                 href="?page={{ items.next_page_number }}&{{ get_param }}">Next</a></li>
                     {% else %}
                         <li class="page-item disabled"><a class="page-link"
                                                           style="background-color: #ffd536; color: #1e415e; border: #1e415e;"><span>Next</span></a>

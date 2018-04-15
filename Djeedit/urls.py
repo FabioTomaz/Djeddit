@@ -76,6 +76,9 @@ urlpatterns = [
                   path('post/<int:postID>/show', views.post_show, name="post_show"),
                   # comment up/down vote
                   path('vote_comment/', views.vote_comment, name="vote_comment"),
+                  # post vote
+                  path('vote_post/', views.vote_post, name="vote_post"),
+
                   # provavelmente não vai dar tempo
                   path('notifications/', views.notifications, name="notifications"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

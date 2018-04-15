@@ -7,53 +7,61 @@
             You must be signed in to post something!
         </div>
     {% endif %}
-    <h1>Create New Post to {{ topicName }}</h1>
+    <div class="row">
+    <div class="col-8">
+    <h1>Submit New Post to {{ topic.name }}</h1>
     {% if user.is_authenticated %}
         <form action="." method="post">
             {% csrf_token %}
-
-            <div class="row">
-                <div class="col-8">
-                    <div class="form-group ">
-                        {{ form.title.label_tag }}<br/>
-                        {{ form.title }}
-                    </div>
-                </div>
-
-                {% if form.title.errors %}
-                    <div class="col-4 alert alert-danger">
-                            <ul class="errorlist">
-                            {% for error in form.title.errors %}
-                                <li><strong>{{ error|escape }}</strong></li>
-                            {% endfor %}
-                            </ul>
-                    </div>
-                {% endif %}
-            </div>
-
-            <div class="row">
-                <div class="col-8">
-                    <div class="form-group">
-                        {{ form.content.label_tag }}<br/>
-                        {{ form.content }}
-                    </div>
-                </div>
-
-
-            {% if form.content.errors %}
-                <div class="col-4 alert alert-danger">
-                    <ul class="errorlist">
-                        {% for error in form.content.errors %}
-                            <li><strong>{{ error|escape }}</strong></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+        {% csrf_token %}
+            <table class="table table-user-information">
+                <tbody>
+                <tr>
+                    <td>Title</td>
+                    <td>{{ form.title }}
+                        {% if form.title.errors %}
+                            <div class="col-4 alert alert-danger">
+                                <ul class="errorlist">
+                                    {% for error in form.title.errors %}
+                                        <li><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Your Post</td>
+                    <td>{{ form.content }}
+                        {% if form.content.errors %}
+                            <div class="col-4 alert alert-danger">
+                                <ul class="errorlist">
+                                    {% for error in form.content.errors %}
+                                        <li><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success"><i class="fas fa-plus-square"></i> Submit Post</button>
         </form>
     {% endif %}
+    </div>
+    <div class="col-4">
+        <br/>
+        <br/>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title"> Remember the rules! </h5>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+            </div>
+            <div class="card-body">{{ topic.rules| linebreaksbr }} </div>
+        </div>
+    </div>
+    </div>
 
 
 {% endblock %}
