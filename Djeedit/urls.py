@@ -72,7 +72,7 @@ urlpatterns = [
                   path('post/<int:postID>/save', views.post_save, name="post_save"),
                   path('post/<int:postID>/unsave', views.post_unsave, name="post_unsave"),
                   path('post/<int:postID>/hide', views.post_hide, name="post_hide"),
-                  path('topic/<str:topicName>/post/<int:postID>/show', views.post_show, name="post_show"),
+                  path('post/<int:postID>/show', views.post_show, name="post_show"),
                   # comment up/down vote
                   path('vote_comment/', views.vote_comment, name="vote_comment"),
                   # provavelmente não vai dar tempo
