@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block pagename %}Success!{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="align-content: center">
+	<div class="row text-center">
+        <div class="col-12">
+        <br><br> <h2 style="color:#0fad00">Are you sure you want to delete this post?</h2>
+        <p style="font-size:25px;color:#5C5C5C;">Every vote and comments will be eliminated and you cannot undo this action.
+            This action will also affect your karma points</p>
+            <a href="{% url "remove_post"  topicName=post.topic.name %}?e={{ post.id }}" class="btn btn-danger">    Yes, im sure i want to delete it     </a>
+            <a href="{% url "post" topicName=post.topic.name postID=post.id %}" class="btn btn-success">    No, take me back     </a>
+            <br><br>
+        </div>
+	</div>
+</div>
+
+
+
+{% endblock %}

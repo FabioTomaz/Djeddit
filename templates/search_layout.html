@@ -33,8 +33,9 @@
 
                                       {% if searchbar == 'search_topic' %}
                                         <select id="select_topic" class="form-control">
-                                            <option value="0" selected>Most subscribers</option>
-                                            <option value="1">Least subscribers</option><
+                                            <option value="0" selected>Alphabetical order</option>
+                                            <option value="1">Most subscribers</option>
+                                            <option value="2">Least subscribers</option><
                                         </select>
                                         </div>
                                           <div class="form-group">
@@ -44,10 +45,10 @@
 
                                         {% elif searchbar == 'search_post'%}
                                         <select id="select_post" class="form-control">
-                                            <option value="0" selected>Highest score</option>
-                                            <option value="1">Lowest score</option>
-                                            <option value="2">Most commented</option>
-                                            <option value="3">Least commented</option>
+                                            <option value="0" {% if request.GET.orderby == "Highest score" %} selected {% endif %}>Highest score</option>
+                                            <option value="1" {% if request.GET.orderby == "Lowest score" %} selected {% endif %}>Lowest score</option>
+                                            <option value="2" {% if request.GET.orderby == "Most commented" %} selected {% endif %}>Most commented</option>
+                                            <option value="3" {% if request.GET.orderby == "Least commented" %} selected {% endif %}>Least commented</option>
                                         </select>
                                         </div>
                                           <div class="form-group">

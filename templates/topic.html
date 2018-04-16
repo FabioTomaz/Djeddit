@@ -47,9 +47,10 @@
         <div class="row">
             <div class="col-md-8">
                 <h1>Posts:</h1>
-                {% for p in posts %}
+                {% for p in items %}
                     {% include "post_preview.html" with post=p%}
                 {% endfor %}
+            {% include 'pagination.html' with get_param=param %}
             </div>
             <div class="col-md-4">
             <br/>
@@ -57,6 +58,11 @@
                 <div class="row">
                     {% if user.is_authenticated %}
                         <div class="col" align="center">
+                            {% if request.user == currentTopic.userCreator %}
+                                <a href="{% url "topic_create" %}?e={{ currentTopic.name }}" class="btn btn-warning">Edit Topic</a>
+                                <br/>
+                                <br/>
+                            {% endif %}
                             <a href="{% url "create_post" topicName=currentTopic.name %}" class="btn btn-primary">New Post</a>
                         </div>
                     {% endif %}

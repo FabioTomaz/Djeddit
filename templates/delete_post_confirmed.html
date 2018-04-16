@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block pagename %}Success!{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="align-content: center">
+	<div class="row text-center">
+        <div class="col-12">
+        <br><br> <h2 style="color:#0fad00">Your post has been deleted!</h2>
+            <a href="{% url "topic"  topicName=topicName %}" class="btn btn-danger">    Go to {{ topicName }}     </a>
+            <br><br>
+        </div>
+	</div>
+</div>
+
+
+
+{% endblock %}

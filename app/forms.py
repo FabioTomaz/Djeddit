@@ -27,6 +27,7 @@ class topicCreateForm(forms.Form):
                                 'rows':4,
                                 'placeholder': 'Describe here the rules the users must obey in this topic...'
                             }))
+    check_if_isedit = forms.CharField(widget=forms.HiddenInput())
 
 
 class CommentOnPost(forms.Form):
@@ -50,7 +51,7 @@ class CreatePost(forms.Form):
                                   'class': 'form-control',
                                   'placeholder': 'Your post...'
                               }))
-
+    check_if_isedit = forms.CharField(widget=forms.HiddenInput())
 
 class SignUpForm(UserCreationForm):
     birth_date = forms.DateField(required=False)

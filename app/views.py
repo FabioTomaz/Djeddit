@@ -1,5 +1,6 @@
 import json
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Count, F, Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -122,18 +123,20 @@ def search_post(request):
 
     if orderby != None or orderby != " ":
         if orderby == "Lowest score":
+            p = p.annotate(numUp=Count("userUpVotesPost")) \
+                .annotate(numDown=Count("userDownVotesPost")) \
+                .annotate(score=F("numUp") - F("numDown")) \
+                .order_by("score")
+        elif orderby == "Most commented":
+            p = p.order_by("-nComments")
+        elif orderby == "Least commented":
+            p = p.order_by("nComments")
+        else:
+            #by default it orders by highest score
             p = p.annotate(numUp=Count("userUpVotesPost"))\
-                .annotate(numDown=Count("userDownVotesPost"))\
-                .annotate(score=F("numUp") - F("numDown"))\
-                .order_by("-score")
-        #if orderby == "Most commented":
-            #p = p.order_by("-user__username")
-        #if orderby == "Least commented":
-            #p = p.order_by("-user__username")
-    p = p.annotate(numUp=Count("userUpVotesPost"))\
-        .annotate(numDown=Count("userDownVotesPost"))\
-        .annotate(score=F("numUp") - F("numDown"))\
-        .order_by("-score")
+            .annotate(numDown=Count("userDownVotesPost"))\
+            .annotate(score=F("numUp") - F("numDown"))\
+            .order_by("-score")
     pages = pagination(request, p, num=10)
     tparams = {
         'items': pages[0],
@@ -155,13 +158,14 @@ def search_topic(request):
         t = t.filter(name__icontains=searchstring)
     if user_creator != None or user_creator != " ":
         t = t.filter(userCreator__username__icontains=user_creator)
-    #if orderby != None or orderby != " ":
-        #if orderby == "Most subscribers":
-            #t = t.order_by()
-        # if orderby == "Least subscribers":
-            # t = t.order_by()
-    t = t.order_by("name")
-    pages = pagination(request, t, num=3)
+    if orderby != None or orderby != " ":
+        if orderby == "Least subscribers":
+            t = t.annotate(nsubs=Count("profile__subscriptions")).order_by("nsubs")
+        if orderby == "Most subscribers":
+            t = t.annotate(nsubs=Count("profile__subscriptions")).order_by("-nsubs")
+        else:
+            t = t.order_by("name")
+    pages = pagination(request, t, num=10)
     tparams = {
         'items': pages[0],
         'page_range': pages[1],
@@ -187,14 +191,14 @@ def search_user(request):
     if email != None or email != " ":
         p = p.filter(user__email__icontains=email)
 
-    #if orderby != None or orderby != " ":
-        #if orderby == "Most karma":
-            #p = p.order_by()
+    if orderby != None or orderby != " ":
+        if orderby == "Most karma":
+            p = p.order_by()
         #if orderby == "Least karma":
             #p = p.order_by()
-
-    p = p.order_by("-user__username")
-    pages = pagination(request, p, num=2)
+        else:
+            p = p.order_by("user__username")
+    pages = pagination(request, p, num=10)
     tparams = {
         'items': pages[0],
         'page_range': pages[1],
@@ -243,24 +247,10 @@ def user_page(request, username):
                 tparams["friends"] = True
             else:
                 tparams["friends"] = False
-        up_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
-            .annotate(countUp=Count("userUpVotesPost"))
-        down_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
-            .annotate(countDown=Count("userDownVotesPost"))
-        score_posts = 0
-        for i in up_posts_count:
-            score_posts += i.countUp
-        for i in down_posts_count:
-            score_posts -= i.countDown
-        up_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
-            .annotate(countUp=Count("userUpVotesComments"))
-        down_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
-            .annotate(countDown=Count("userDownVotesComments"))
-        score_comments = 0
-        for i in up_comments_count:
-            score_comments += i.countUp
-        for i in down_comments_count:
-            score_comments -= i.countDown
+
+        score_posts = get_user_karma_posts(username)
+        score_comments = get_user_karma_comments(username)
+
         tparams["karma_posts"] = score_posts
         tparams["karma_comments"] = score_comments
         tparams["sidebar"] = "user_page"
@@ -270,6 +260,32 @@ def user_page(request, username):
         tparams = {"user": username}
         return render(request, 'user_not_found.html', tparams)
 
+def get_user_karma_posts(username):
+    up_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
+    .annotate(countUp=Count("userUpVotesPost"))
+    down_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
+        .annotate(countDown=Count("userDownVotesPost"))
+    score_posts = 0
+    for i in up_posts_count:
+        score_posts += i.countUp
+    for i in down_posts_count:
+        score_posts -= i.countDown
+    return score_posts
+
+def get_user_karma_comments(username):
+    up_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
+        .annotate(countUp=Count("userUpVotesComments"))
+    down_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
+        .annotate(countDown=Count("userDownVotesComments"))
+    score_comments = 0
+    for i in up_comments_count:
+        score_comments += i.countUp
+    for i in down_comments_count:
+        score_comments -= i.countDown
+    return score_comments
+
+def get_user_karma_total(username):
+    return get_user_karma_comments(username) + get_user_karma_posts(username)
 
 def user_edit(request, username):
     if request.user.is_authenticated and request.user.username == username:
@@ -452,6 +468,8 @@ def login(request):
 
 
 def createTopic(request):
+    editGET = request.GET.get("e")
+    edit = False
     if request.method == 'POST':
         form = topicCreateForm(request.POST)
         # check whether it's valid:
@@ -460,16 +478,33 @@ def createTopic(request):
             topic = form.cleaned_data["topicName"]
             description = form.cleaned_data["description"]
             rules = form.cleaned_data["rules"]
-
-            if Topic.objects.filter(name__iexact=topic).exists():  # topic with same name exists
-                return render(request, 'topic_create.html', {'form': form, 'error': "A topic with this"
-                        +" name already exists. Please, choose a different name"})
-            t = Topic(name=topic, description=description, rules=rules, userCreator=request.user)
-            t.save()
-            return render(request, 'topic_created_success.html', {"topic": t})
+            check_if_isedit = form.cleaned_data["check_if_isedit"] # this field is to check if the form is for edit or create
+            if check_if_isedit == "false":
+                # create topic
+                if Topic.objects.filter(name__iexact=topic).exists():  # topic with same name exists
+                    return render(request, 'topic_create.html', {'form': form, 'error': "A topic with this"
+                            +" name already exists. Please, choose a different name"})
+                t = Topic(name=topic, description=description, rules=rules, userCreator=request.user)
+                t.save()
+                return render(request, 'topic_created_success.html', {"topic": t})
+            else:
+                t = Topic.objects.get(name=check_if_isedit)
+                t.name=topic
+                t.description = description
+                t.rules = rules
+                t.save()
+                return topicPage(request, topic)
     else:
-        form = topicCreateForm()
-    return render(request, 'topic_create.html', {'form': form})
+        if editGET == None:
+            #creating topic
+            form = topicCreateForm(initial={'check_if_isedit':"false"})
+        else:
+            # edit topic
+            edit = True
+            topic = Topic.objects.get(name=editGET)
+            form = topicCreateForm(initial={'topicName': topic.name,
+                        'description': topic.description, 'rules': topic.rules, 'check_if_isedit': topic.name})
+    return render(request, 'topic_create.html', {'form': form, "edit":edit})
 
 
 def topicCreatedSuccess(request):
@@ -482,9 +517,12 @@ def topicPage(request, topicName, postOrder="popular"):
     if (postOrder == "new"):
         p = Post.objects.filter(topic__name__iexact=topicName).order_by("-date")
     elif (postOrder == "popular"):
-        p = Post.objects.filter(topic__name__iexact=topicName).annotate(Count("clicks")).order_by("-clicks")
+        p = Post.objects.filter(topic__name__iexact=topicName).order_by("-clicks")
     else:
-        p = reversed(Post.objects.filter(topic__name__iexact=topicName).annotate(score=Count(F("userUpVotesPost")) - Count(F("userDownVotesPost"))).order_by("score").distinct())
+        p = Post.objects.filter(topic__name__iexact=topicName).annotate(numUp=Count("userUpVotesPost"))\
+        .annotate(numDown=Count("userDownVotesPost"))\
+        .annotate(score=F("numUp") - F("numDown"))\
+        .order_by("-score")
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         if topic in profile.subscriptions.all():
@@ -500,7 +538,10 @@ def topicPage(request, topicName, postOrder="popular"):
                 profile.subscriptions.remove(topic)
                 profile.save()
                 isUserSubscribed = False
+        pages = pagination(request, p, num=10)
         tparams = {
+            'items': pages[0],
+            'page_range': pages[1],
             "isUserSubscribed": isUserSubscribed,
             "postOrder": postOrder,
             "currentTopic": Topic.objects.get(name__iexact=topicName),
@@ -717,9 +758,11 @@ def post_show(request, postID):
         dict = {'result': 'error'}
     return HttpResponse(json.dumps(dict), content_type="application/json")
 
-
+@login_required
 def createPost(request, topicName):
     topic = Topic.objects.get(name=topicName)
+    editGET = request.GET.get("e")
+    edit = False
     if request.method == 'POST':
         form = CreatePost(request.POST)
         # check whether it's valid:
@@ -727,14 +770,38 @@ def createPost(request, topicName):
             # insert new post on DB
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]
-            post = Post(userOP=request.user, title=title, content=content, topic=topic)
+            check_if_isedit = form.cleaned_data["check_if_isedit"] #this field is to check if the form is for edit or create
+            if check_if_isedit == "false": #create post
+                post = Post(userOP=request.user, title=title, content=content, topic=topic)
+            else:
+                #post exists, we are editing
+                post = Post.objects.get(id=int(check_if_isedit))
+                post.title = title
+                post.content = content
             post.save()
-            return render(request, "topic.html", {"currentTopic": Topic.objects.get(name__iexact=topicName),
-                                                  "posts": Post.objects.filter(topic__name__iexact=topicName).order_by(
-                                                      "date"), })
+            return topicPage(request, topicName)
     else:
-        form = CreatePost()
-    return render(request, "create_post.html", {"form": form, "topic": topic})
+        if editGET == None:
+            form = CreatePost(initial={'check_if_isedit':"false"}) #we are creating a post
+        else:
+            #edit post
+            edit=True
+            post = Post.objects.get(id=int(editGET))
+            form = CreatePost(initial={'title': post.title, 'content': post.content, 'check_if_isedit':post.id})
+    return render(request, "create_post.html", {"form": form, "topic": topic, "edit":edit})
+
+@login_required
+def removePost(request, topicName):
+    postID = request.GET.get("e")
+    post = Post.objects.get(id=int(postID))
+    post.delete()
+    return render(request, "delete_post_confirmed.html", {"topicName":topicName})
+
+@login_required
+def removePost_confirm(request, topicName):
+    postID = request.GET.get("e")
+    post = Post.objects.get(id=int(postID))
+    return render(request, "delete_post_confirmation.html", {"post":post})
 
 
 @csrf_exempt

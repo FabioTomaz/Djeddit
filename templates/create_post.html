@@ -9,7 +9,11 @@
     {% endif %}
     <div class="row">
     <div class="col-8">
-    <h1>Submit New Post to {{ topic.name }}</h1>
+    {% if edit == True%}
+        <h1>Edit Post from {{ topic.name }}</h1>
+    {% else %}
+        <h1>Submit New Post to {{ topic.name }}</h1>
+    {% endif %}
     {% if user.is_authenticated %}
         <form action="." method="post">
             {% csrf_token %}
@@ -46,7 +50,9 @@
                 </tr>
                 </tbody>
             </table>
-            <button type="submit" class="btn btn-success"><i class="fas fa-plus-square"></i> Submit Post</button>
+        {{ form.check_if_isedit }}
+            <button type="submit" class="btn btn-success"><i class="fas fa-plus-square"></i>
+                {% if edit == True%}Edit Post{% else %}Submit Post{% endif %}</button>
         </form>
     {% endif %}
     </div>

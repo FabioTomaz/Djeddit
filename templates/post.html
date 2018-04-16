@@ -70,6 +70,16 @@
                                     class="btn btn-sm btn-danger" {% if request.user.profile in post.userHidden.all %}
                                     hidden {% endif %}><i class="far fa-eye-slash"></i> Hide
                             </button>
+                                {% if request.user == post.userOP %}
+                                    <a href="{% url "create_post" topicName=topicName %}?e={{ post.id }}"
+                                    class="btn btn-sm btn-outline-primary"><i class="far fa-edit"></i> Edit
+                                    </a>
+                                {% endif %}
+                                {% if request.user == post.userOP %}
+                                    <a href="{% url "remove_post_confirm" topicName=topicName %}?e={{ post.id }}"
+                                    class="btn btn-sm btn-outline-primary"><i class="far fa-trash-alt"></i> Remove
+                                    </a>
+                                {% endif %}
                             <button type="button" id="show_post" onclick="func_show_post({{ post.id }})"
                                     class="btn btn-sm btn-secondary"
                                     {% if not request.user.profile in post.userHidden.all %} hidden {% endif %}><i
