@@ -31,8 +31,19 @@ class Profile(models.Model):
     user_picture = models.ImageField(upload_to='user_data/pictures/',
                                      default='user_data/pictures/pic.png',
                                      blank=True)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='')
-    subscriptions = models.ManyToManyField(Topic)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='N')
+    subscriptions = models.ManyToManyField(Topic, blank=True)
+    PRIVACY_CHOICES = (
+        ('N', 'No One'),
+        ('F', 'Friends'),
+        ('E', 'Everybody')
+    )
+
+    profile_info_permission = models.CharField(max_length=1, choices=PRIVACY_CHOICES, default='F')
+    profile_friends_permission = models.CharField(max_length=1, choices=PRIVACY_CHOICES, default='F')
+    profile_topics_permission = models.CharField(max_length=1, choices=PRIVACY_CHOICES, default='F')
+    profile_posts_permission = models.CharField(max_length=1, choices=PRIVACY_CHOICES, default='F')
+    profile_comments_permission = models.CharField(max_length=1, choices=PRIVACY_CHOICES, default='F')
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -45,7 +56,7 @@ class Profile(models.Model):
 
 
 class Friend(models.Model):
-    users = models.ManyToManyField(Profile)
+    users = models.ManyToManyField(Profile, blank=True)
     current_user = models.ForeignKey(Profile, related_name="owner", null=True,
                                      on_delete=models.CASCADE)
 
@@ -55,6 +66,10 @@ class Friend(models.Model):
             current_user=current_user
         )
         friend.users.add(new_friend)
+        friend, created = cls.objects.get_or_create(
+            current_user=new_friend
+        )
+        friend.users.add(current_user)
 
     @classmethod
     def remove_friend(cls, current_user, new_friend):
@@ -62,6 +77,10 @@ class Friend(models.Model):
             current_user=current_user
         )
         friend.users.remove(new_friend)
+        friend, created = cls.objects.get_or_create(
+            current_user=new_friend
+        )
+        friend.users.remove(current_user)
 
     def __str__(self):
         return str(self.current_user)

@@ -93,3 +93,21 @@ class ChangePasswordForm(PasswordChangeForm):
         self.fields['old_password'].widget.attrs['class'] = 'form-control'
         self.fields['new_password1'].widget.attrs['class'] = 'form-control'
         self.fields['new_password2'].widget.attrs['class'] = 'form-control'
+
+
+class PrivacyForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('profile_comments_permission',
+                  'profile_friends_permission',
+                  'profile_posts_permission',
+                  'profile_topics_permission',
+                  'profile_info_permission')
+
+    def __init__(self, *args, **kwargs):
+        super(PrivacyForm, self).__init__(*args, **kwargs)
+        self.fields['profile_comments_permission'].widget.attrs['class'] = 'form-control'
+        self.fields['profile_friends_permission'].widget.attrs['class'] = 'form-control'
+        self.fields['profile_posts_permission'].widget.attrs['class'] = 'form-control'
+        self.fields['profile_topics_permission'].widget.attrs['class'] = 'form-control'
+        self.fields['profile_info_permission'].widget.attrs['class'] = 'form-control'

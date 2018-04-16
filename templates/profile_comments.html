@@ -1,6 +1,8 @@
 {% extends "profile.html" %}
+{% block pagename %} Comments {% endblock %}
 {% block profileContent %}
     {% for c in comments %}
         {% include "comment_preview.html" with comment=c%}
+        <br>
     {% endfor %}
 {% endblock %}

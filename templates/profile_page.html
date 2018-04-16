@@ -15,43 +15,50 @@
                     <a data-placement="bottom" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Points Details" data-content="{{ karma_posts }} Post Points and {{ karma_comments }} Comment Points" class="btn btn-primary" >{{ karma_posts|add:karma_comments }} Points <i class="fas fa-chevron-circle-up"></i></a>
                 </div>
                 <div class=" col-md-9 col-lg-9 ">
-                    <table class="table table-user-information">
-                        <tbody>
-                        <tr>
-                            <td>Name:</td>
-                            <td>{{ profile_user.get_full_name }}</td>
-                        </tr>
-                        <tr>
-                            <td>User Bio:</td>
-                            <td>{{ profile_user.profile.user_details }}</td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>{{ profile_user.email }}</td>
-                        </tr>
-                        <tr>
-                            <td>Date of Birth</td>
-                            <td>{{ profile_user.profile.birth_date }}</td>
-                        </tr>
-                        <tr>
-                            <td>Date of Registration</td>
-                            <td>{{ profile_user.date_joined }}</td>
-                        </tr>
-                        <tr>
-                            <td>Gender</td>
-                            <td>{{ profile_user.profile.get_gender_display }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
+                    {% if request.user == profile_user or profile_user.profile.profile_comments_permission == 'E' or request.user.profile in friends and profile_user.profile.profile_comments_permission == 'F' %}
+                        <table class="table table-user-information">
+                            <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{{ profile_user.get_full_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>User Bio:</td>
+                                <td>{{ profile_user.profile.user_details }}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{ profile_user.email }}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth</td>
+                                <td>{{ profile_user.profile.birth_date }}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Registration</td>
+                                <td>{{ profile_user.date_joined }}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>{{ profile_user.profile.get_gender_display }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        {% else %}
+                        {% load staticfiles %}
+                        <div class="container text-center">
+                            <img class="img-fluid" width="400" src="{% static 'images/sad.png' %}">
+                            <h2 class="text-muted">This profile information is private :(</h2>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% if request.user.is_authenticated %}
             <div class="card-footer">
             {% ifnotequal profile_user.username request.user.username %}
-                <button id="btn_add_friend" class="float-right btn btn-success" onclick="add_friend('{{ profile_user.username }}')" {% if friends %} hidden {% endif %}><i class="fas fa-user-plus"></i> Add Friend {{ request.user.profile.friend.users.all }}</button>
-                <button id="btn_remove_friend" class="float-right btn btn-danger" onclick="remove_friend('{{ profile_user.username }}')" {% if not friends %} hidden {% endif %}><i class="fas fa-user-times"></i> Remove Friend</button>
+                <button id="btn_add_friend" class="float-right btn btn-success" onclick="add_friend('{{ profile_user.username }}')" {% if request.user.profile in friends %} hidden {% endif %}><i class="fas fa-user-plus"></i> Add Friend</button>
+                <button id="btn_remove_friend" class="float-right btn btn-danger" onclick="remove_friend('{{ profile_user.username }}')" {% if not request.user.profile in friends %} hidden {% endif %}><i class="fas fa-user-times"></i> Remove Friend</button>
             {% endifnotequal %}
             {% ifequal profile_user.username request.user.username %}
                 <div class="float-right">

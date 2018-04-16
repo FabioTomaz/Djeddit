@@ -1,0 +1,46 @@
+{% extends 'profile.html' %}
+{% block pagename %} Edit Privacy {% endblock %}
+
+{% block profileContent %}
+    <form method="post" action=".">
+        {% csrf_token %}
+        <div class="card bg-white">
+            <div class="card-header">
+                <strong>Privacy </strong>
+            </div>
+            <div class="card-body">
+                <table class="table table-user-information">
+                    <tbody>
+                    <tr>
+                        <td>Users that can see my private information:</td>
+                        <td>{{ form.profile_info_permission }}</td>
+                    </tr>
+                    <tr>
+                        <td>Users that can see my friends in my Profile:</td>
+                        <td>{{ form.profile_friends_permission }}</td>
+                    </tr>
+                    <tr>
+                        <td>Users that can see my topics through my profile:</td>
+                        <td>{{ form.profile_topics_permission }}</td>
+                    </tr>
+                    <tr>
+                        <td>Users that can see my posts through my profile:</td>
+                        <td>{{ form.profile_posts_permission }}</td>
+                    </tr>
+                    <tr>
+                        <td>Users that can see my comments through my profile:</td>
+                        <td>{{ form.profile_comments_permission }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <div class="float-right">
+                    <a href="{% url 'user' username=user.username %}" class="btn btn-danger"><i class="fas fa-ban"></i>
+                            Cancel</a>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Save Privacy Settings</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
