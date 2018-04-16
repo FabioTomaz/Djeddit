@@ -392,5 +392,64 @@
             {% block scripts %} {% endblock %}
         </script>
 
+        <script>
+            function save_post(post_id) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "{% url 'post_save' 1 %}".replace("1", post_id),
+                        success: function (result) {
+                            console.log(result);
+                            $('#save_post_' + post_id).attr("hidden", true);
+                            $('#unsave_post_' + post_id).attr("hidden", false);
+                        }
+                    });
+            }
+
+            function unsave_post(post_id) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "{% url 'post_unsave' 1 %}".replace("1", post_id),
+                        success: function (result) {
+                            console.log(result);
+                            $('#save_post_' + post_id).attr("hidden", false);
+                            $('#unsave_post_' + post_id).attr("hidden", true);
+                        }
+                    });
+            }
+
+            function hide_post(post_id) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "{% url 'post_hide' 1 %}".replace("1", post_id),
+                        success: function (result) {
+                            console.log(result);
+                            $('#hide_post_' + post_id).attr("hidden", true);
+                            $('#show_post_' + post_id).attr("hidden", false);
+                            {% ifnotequal sidebar 'user_posts_hidden' %}
+                                $('#post_n_' + post_id).attr("hidden", true);
+                            {% endifnotequal %}
+                        }
+                    });
+            }
+
+
+            function show_post(post_id) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "{% url 'post_show' 1 %}".replace("1", post_id),
+                        success: function (result) {
+                            console.log(result);
+                            $('#hide_post_' + post_id).attr("hidden", false);
+                            $('#show_post_' + post_id).attr("hidden", true);
+                        }
+                    });
+            }
+        </script>
+
+
     </body>
 </html>

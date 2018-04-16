@@ -1,13 +1,13 @@
 {% extends 'profile.html' %}
 
-{% block pagename %} Edit Profile: {{ user.username }} {% endblock %}
+{% block pagename %} Edit Profile {% endblock %}
 
 {% block profileContent %}
     <form method="post" action="." enctype="multipart/form-data">
     {% csrf_token %}
         <div class="card bg-white">
-            <div class="card-header">
-                <strong>Username: {{ user.username }} </strong>
+            <div class="card-header bg-primary text-white">
+                <strong>Edit Profile</strong>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -20,11 +20,15 @@
                         <table class="table table-user-information">
                             <tbody>
                             <tr>
-                                <td>Name:</td>
-                                <td>{{ user_form.first_name }} {{ user_form.last_name }}</td>
+                                <td>First Name</td>
+                                <td>{{ user_form.first_name }}</td>
                             </tr>
                             <tr>
-                                <td>User Bio:</td>
+                                <td>Last Name</td>
+                                <td>{{ user_form.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>User Bio</td>
                                 <td>{{ profile_form.user_details }}</td>
                             </tr>
                             <tr>
@@ -46,9 +50,11 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{% url 'user' username=user.username %}" class="btn btn-danger"><i class="fas fa-ban"></i>
-                    Cancel</a>
-                <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Save</button>
+                <div class="float-right">
+                    <a href="{% url 'user' username=user.username %}" class="btn btn-danger"><i class="fas fa-ban"></i>
+                        Cancel</a>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Save</button>
+                </div>
             </div>
         </div>
     </form>

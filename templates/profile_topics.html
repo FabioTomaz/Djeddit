@@ -1,4 +1,5 @@
 {% extends "profile.html" %}
+{% block pagename %} {{ block.super }} Topics {% endblock %}
 {% block profileContent %}
     {% for t in topics %}
         {% include "topic_preview.html" with topic=t%} <br>

@@ -1,4 +1,5 @@
 import json
+from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -13,7 +14,7 @@ from django.contrib.auth import login as auth_login
 from django.views.decorators.csrf import csrf_exempt
 
 from Djeedit.config import pagination
-from app.forms import SignUpForm, UserForm, ProfileForm
+from app.forms import SignUpForm, UserForm, ProfileForm, ChangePasswordForm, PrivacyForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
 from app.models import Topic, Post, User, Comment, Profile, Friend
@@ -50,9 +51,9 @@ def popularPage(request):
 
 
 def topRatedPage(request):
-    posts = Post.objects.annotate(numUp=Count("userUpVotesPost"))\
-        .annotate(numDown=Count("userDownVotesPost"))\
-        .annotate(score=F("numUp") - F("numDown"))\
+    posts = Post.objects.annotate(numUp=Count("userUpVotesPost")) \
+        .annotate(numDown=Count("userDownVotesPost")) \
+        .annotate(score=F("numUp") - F("numDown")) \
         .order_by("-score")
 
     pages = pagination(request, posts, num=10)
@@ -67,13 +68,13 @@ def topRatedPage(request):
 
 
 def controversialPage(request):
-    posts = Post.objects.annotate(numUp=Count("userUpVotesPost"))\
-            .annotate(numDown=Count("userDownVotesPost"))\
-            .annotate(score=F("numUp") - F("numDown"))\
-            .annotate(numVotes=F("numUp") + F("numDown"))\
-            .filter(numVotes__gte=10)\
-            .filter(score__lte=3)\
-            .filter(score__gte=-3)
+    posts = Post.objects.annotate(numUp=Count("userUpVotesPost")) \
+        .annotate(numDown=Count("userDownVotesPost")) \
+        .annotate(score=F("numUp") - F("numDown")) \
+        .annotate(numVotes=F("numUp") + F("numDown")) \
+        .filter(numVotes__gte=10) \
+        .filter(score__lte=3) \
+        .filter(score__gte=-3)
 
     pages = pagination(request, posts, num=10)
 
@@ -300,12 +301,9 @@ def user_edit(request, username):
             user_form = UserForm(instance=request.user)
             profile_form = ProfileForm(instance=request.user.profile)
         try:
-            tparams = {
-                "sidebar": "user_page",
-                "profile_user": User.objects.get(username=username),
-                'user_form': user_form,
-                'profile_form': profile_form
-            }
+            tparams = {"sidebar": "user_page", "profile_user": User.objects.get(username=username),
+                       'user_form': user_form, 'profile_form': profile_form,
+                       "friends": get_user_friends(User.objects.get(username=username).profile)}
             return render(request, 'profile_edit.html', tparams)
         except User.DoesNotExist:
             tparams = {"user": username}
@@ -314,20 +312,43 @@ def user_edit(request, username):
         return redirect('/user/' + username)
 
 
-def user_settings(request, username):
-    tparams = {
-        'sidebar': 'user_settings'
-    }
-    return render(request, 'profile.html', tparams)
+def user_change_password(request, username):
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            return redirect('change_password')
+    else:
+        form = ChangePasswordForm(request.user)
+
+    tparams = {'sidebar': 'user_page', "profile_user": User.objects.get(username=username), "form": form,
+               "friends": get_user_friends(User.objects.get(username=username).profile)}
+
+    return render(request, 'profile_change_password.html', tparams)
+
+
+def user_privacy(request, username):
+    if request.method == 'POST':
+        form = PrivacyForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return user_page(request, username)
+    else:
+        form = PrivacyForm(instance=request.user.profile)
+
+    tparams = {'sidebar': 'user_page', "profile_user": User.objects.get(username=username), "form": form,
+               "friends": get_user_friends(User.objects.get(username=username).profile)}
+
+    return render(request, 'profile_privacy.html', tparams)
 
 
 def user_topic_subscriptions(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_topic_subscriptions',
-            "profile_user": User.objects.get(username=username),
-            'topics': User.objects.get(username=username).profile.subscriptions.all
-        }
+        tparams = {'sidebar': 'user_topic_subscriptions', "profile_user": User.objects.get(username=username),
+                   'topics': User.objects.get(username=username).profile.subscriptions.all,
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_topics.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -336,11 +357,10 @@ def user_topic_subscriptions(request, username):
 
 def user_topic_created(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_topic_created',
-            "profile_user": User.objects.get(username=username),
-            'topics': Topic.objects.filter(userCreator=User.objects.get(username=username))
-        }
+        tparams = {'sidebar': 'user_topic_created', "profile_user": User.objects.get(username=username),
+                   'topics': Topic.objects.filter(userCreator=User.objects.get(username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_topics.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -349,11 +369,10 @@ def user_topic_created(request, username):
 
 def user_posts(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_posts',
-            "profile_user": User.objects.get(username=username),
-            'posts': Post.objects.filter(userOP=User.objects.get(username=username))
-        }
+        tparams = {'sidebar': 'user_posts', "profile_user": User.objects.get(username=username),
+                   'posts': Post.objects.filter(userOP=User.objects.get(username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_posts.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -362,11 +381,10 @@ def user_posts(request, username):
 
 def user_posts_saved(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_posts_saved',
-            "profile_user": User.objects.get(username=username),
-            'posts': Post.objects.filter(userSaved=Profile.objects.get(user__username=username))
-        }
+        tparams = {'sidebar': 'user_posts_saved', "profile_user": User.objects.get(username=username),
+                   'posts': Post.objects.filter(userSaved=Profile.objects.get(user__username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_posts.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -375,11 +393,10 @@ def user_posts_saved(request, username):
 
 def user_posts_hidden(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_posts_hidden',
-            "profile_user": User.objects.get(username=username),
-            'posts': Post.objects.filter(userHidden=Profile.objects.get(user__username=username))
-        }
+        tparams = {'sidebar': 'user_posts_hidden', "profile_user": User.objects.get(username=username),
+                   'posts': Post.objects.filter(userHidden=Profile.objects.get(user__username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_posts.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -388,11 +405,10 @@ def user_posts_hidden(request, username):
 
 def user_posts_upvoted(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_posts_upvoted',
-            "profile_user": User.objects.get(username=username),
-            'posts': Post.objects.filter(userUpVotesPost=Profile.objects.get(user__username=username))
-        }
+        tparams = {'sidebar': 'user_posts_upvoted', "profile_user": User.objects.get(username=username),
+                   'posts': Post.objects.filter(userUpVotesPost=Profile.objects.get(user__username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_posts.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -401,11 +417,10 @@ def user_posts_upvoted(request, username):
 
 def user_posts_downvoted(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_posts_downvoted',
-            "profile_user": User.objects.get(username=username),
-            'posts': Post.objects.filter(userDownVotesPost=Profile.objects.get(user__username=username))
-        }
+        tparams = {'sidebar': 'user_posts_downvoted', "profile_user": User.objects.get(username=username),
+                   'posts': Post.objects.filter(userDownVotesPost=Profile.objects.get(user__username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_posts.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -414,11 +429,10 @@ def user_posts_downvoted(request, username):
 
 def user_comments(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_comments',
-            "profile_user": User.objects.get(username=username),
-            'comments': Comment.objects.filter(user=Profile.objects.get(user__username=username))
-        }
+        tparams = {'sidebar': 'user_comments', "profile_user": User.objects.get(username=username),
+                   'comments': Comment.objects.filter(user=User.objects.get(username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_comments.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -427,11 +441,10 @@ def user_comments(request, username):
 
 def user_comments_upvoted(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_comments',
-            "profile_user": User.objects.get(username=username),
-            'comments': Comment.objects.filter(userUpVotesComments=Profile.objects.get(user__username=username))
-        }
+        tparams = {'sidebar': 'user_comments_upvoted', "profile_user": User.objects.get(username=username),
+                   'comments': Comment.objects.filter(userUpVotesComments=Profile.objects.get(user__username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_comments.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -440,11 +453,11 @@ def user_comments_upvoted(request, username):
 
 def user_comments_downvoted(request, username):
     try:
-        tparams = {
-            'sidebar': 'user_comments',
-            "profile_user": User.objects.get(username=username),
-            'comments': Comment.objects.filter(userDownVotesComments=Profile.objects.get(user__username=username))
-        }
+        tparams = {'sidebar': 'user_comments_downvoted', "profile_user": User.objects.get(username=username),
+                   'comments': Comment.objects.filter(
+                       userDownVotesComments=Profile.objects.get(user__username=username)),
+                   "friends": get_user_friends(User.objects.get(username=username).profile)}
+
         return render(request, 'profile_comments.html', tparams)
     except User.DoesNotExist:
         tparams = {"user": username}
@@ -807,11 +820,15 @@ def removePost_confirm(request, topicName):
 @csrf_exempt
 def profile_friends(request, username):
     if request.user.is_authenticated:
-        friend_object, created = Friend.objects.get_or_create(current_user=request.user.profile)
-        friends = [friend for friend in friend_object.users.all() if friend != request.user.profile]
+        friends = get_user_friends(User.objects.get(username=username).profile)
     return render(request, 'profile_friends.html',
                   {"friends": friends, "profile_user": User.objects.get(username=username),
                    "sidebar": "profile_friends"})
+
+
+def get_user_friends(profile):
+    friend_object, created = Friend.objects.get_or_create(current_user=profile)
+    return [friend for friend in friend_object.users.all() if friend != profile]
 
 
 @csrf_exempt
@@ -836,6 +853,7 @@ def remove_friend(request, username):
         owner = request.user.profile
 
         Friend.remove_friend(owner, new_friend)
+
         result['result'] = 'success'
     except:
         result['result'] = 'error'
