@@ -7,7 +7,6 @@
     </div>
 
     <div class="card-footer">
-        <div class="btn-group" role="group" aria-label="Action Buttons">
             <button href="#" class="btn btn-sm btn-dark"><i class="far fa-comment"></i> {{ post.nComments }} Commments
             </button>
             <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#coll{{ post.id }}"
@@ -24,7 +23,6 @@
                     class="btn btn-sm btn-outline-primary"><i class="far fa-edit"></i> Edit</a>
                 {% endif %}
             {% endif %}
-        </div>
 
         <div class="collapse" id="coll{{ post.id }}">
             {% load social_share %}

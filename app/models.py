@@ -119,3 +119,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+class Report(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    comment = models.CharField(blank=True, max_length = 500)
+    accepted = models.BooleanField(default=False, blank=True)

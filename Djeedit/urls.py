@@ -76,6 +76,7 @@ urlpatterns = [
                   path('post/<int:postID>/unsave', views.post_unsave, name="post_unsave"),
                   path('post/<int:postID>/hide', views.post_hide, name="post_hide"),
                   path('post/<int:postID>/show', views.post_show, name="post_show"),
+                  path('post/<int:postID>/report', views.post_report, name="post_report"),
                   # comment up/down vote
                   path('vote_comment/', views.vote_comment, name="vote_comment"),
                   # post vote

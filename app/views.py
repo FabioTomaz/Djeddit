@@ -72,9 +72,9 @@ def controversialPage(request):
         .annotate(numDown=Count("userDownVotesPost")) \
         .annotate(score=F("numUp") - F("numDown")) \
         .annotate(numVotes=F("numUp") + F("numDown")) \
-        .filter(numVotes__gte=10) \
-        .filter(score__lte=3) \
-        .filter(score__gte=-3)
+        .filter(numVotes__gte=3) \
+        .filter(score__lte=1) \
+        .filter(score__gte=-1)
 
     pages = pagination(request, posts, num=10)
 
@@ -254,6 +254,7 @@ def user_page(request, username):
 
         tparams["karma_posts"] = score_posts
         tparams["karma_comments"] = score_comments
+        tparams["friends"] = get_user_friends(User.objects.get(username=username).profile)
         tparams["sidebar"] = "user_page"
         tparams["profile_user"] = User.objects.get(username=username)
         return render(request, 'profile_page.html', tparams)
@@ -536,6 +537,15 @@ def topicPage(request, topicName, postOrder="popular"):
         .annotate(numDown=Count("userDownVotesPost"))\
         .annotate(score=F("numUp") - F("numDown"))\
         .order_by("-score")
+    pages = pagination(request, p, num=10)
+    tparams = {
+        'items': pages[0],
+        'page_range': pages[1],
+        "isUserSubscribed": isUserSubscribed,
+        "postOrder": postOrder,
+        "currentTopic": Topic.objects.get(name__iexact=topicName),
+        "posts": p,
+    }
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         if topic in profile.subscriptions.all():
@@ -551,26 +561,11 @@ def topicPage(request, topicName, postOrder="popular"):
                 profile.subscriptions.remove(topic)
                 profile.save()
                 isUserSubscribed = False
-        pages = pagination(request, p, num=10)
-        tparams = {
-            'items': pages[0],
-            'page_range': pages[1],
-            "isUserSubscribed": isUserSubscribed,
-            "postOrder": postOrder,
-            "currentTopic": Topic.objects.get(name__iexact=topicName),
-            "posts": p,
-        }
         return render(request, "topic.html", tparams)
     else:
         if topic is None:
             return custom_redirect('search', q=topicName)
         else:
-            tparams = {
-                "isUserSubscribed": isUserSubscribed,
-                "postOrder": postOrder,
-                "currentTopic": Topic.objects.get(name__iexact=topicName),
-                "posts": p,
-            }
             return render(request, "topic.html", tparams)
 
 def topic_new(request, topicName):
@@ -670,6 +665,8 @@ def vote_post(request):
 
 def postPage(request, topicName, postID):
     post = Post.objects.get(id=postID)
+    post.clicks+=1
+    post.save()
     # add a commentary to post
     if request.method == 'POST':
         form = CommentOnPost(request.POST)
@@ -706,6 +703,7 @@ def postPage(request, topicName, postID):
     if post is None:
         return custom_redirect('search', q=post)
     else:
+
         comments = Comment.objects.filter(post__id=postID)
         tparams = {
             "post": post,
@@ -771,7 +769,10 @@ def post_show(request, postID):
         dict = {'result': 'error'}
     return HttpResponse(json.dumps(dict), content_type="application/json")
 
-@login_required
+def post_report(request, postID):
+    post = Post.objects.get(id=postID)
+    return render(request, "report_post.html", {"post": post})
+
 def createPost(request, topicName):
     topic = Topic.objects.get(name=topicName)
     editGET = request.GET.get("e")
@@ -803,14 +804,12 @@ def createPost(request, topicName):
             form = CreatePost(initial={'title': post.title, 'content': post.content, 'check_if_isedit':post.id})
     return render(request, "create_post.html", {"form": form, "topic": topic, "edit":edit})
 
-@login_required
 def removePost(request, topicName):
     postID = request.GET.get("e")
     post = Post.objects.get(id=int(postID))
     post.delete()
     return render(request, "delete_post_confirmed.html", {"topicName":topicName})
 
-@login_required
 def removePost_confirm(request, topicName):
     postID = request.GET.get("e")
     post = Post.objects.get(id=int(postID))
