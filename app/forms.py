@@ -5,6 +5,15 @@ from django.core.validators import MaxLengthValidator, MinLengthValidator
 
 from app.models import Profile
 
+class reportPostForm(forms.Form):
+    comment = forms.CharField(max_length=500,
+                                  required=True, validators=[MaxLengthValidator(500), MinLengthValidator(0)],
+                                  widget=forms.Textarea(attrs={
+                                      'class': 'form-control',
+                                      'rows': 4,
+                                      'placeholder': 'Tell us why you are reporting this post'
+                                  }))
+
 
 class topicCreateForm(forms.Form):
     topicName = forms.CharField(label="Topic Name", max_length=80, required=True,
