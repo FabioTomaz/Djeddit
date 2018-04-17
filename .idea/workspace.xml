@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/media/user_data/pictures/meetAveiroLogo_qSjwoiS_w8yzc3t.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/readme.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/report_post_confirmation.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/report_post_list.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/report_post_list_preview.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Djeddit - contexto e descrição de funcionalidades.odt" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Djeedit/urls.py" afterPath="$PROJECT_DIR$/Djeedit/urls.py" />
-      <change beforePath="$PROJECT_DIR$/app/forms.py" afterPath="$PROJECT_DIR$/app/forms.py" />
-      <change beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/templates/post.html" afterPath="$PROJECT_DIR$/templates/post.html" />
-      <change beforePath="$PROJECT_DIR$/templates/report_post.html" afterPath="$PROJECT_DIR$/templates/report_post.html" />
-      <change beforePath="$PROJECT_DIR$/templates/search_layout.html" afterPath="$PROJECT_DIR$/templates/search_layout.html" />
-      <change beforePath="$PROJECT_DIR$/templates/topic.html" afterPath="$PROJECT_DIR$/templates/topic.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -112,7 +100,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
+            <state relative-caret-position="-2615">
               <caret line="682" column="10" lean-forward="false" selection-start-line="682" selection-start-column="4" selection-end-line="682" selection-end-column="10" />
               <folding />
             </state>
@@ -586,7 +574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523876811846</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Correções finais. É agora possivel reportar posts e o user que criou post pode aceitar o report (eliminando o post) ou recusar (mantendo o post).">
+      <created>1523957813033</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1523957813033</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -596,7 +591,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24174175" sideWeight="0.5149885" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.4973262" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24174175" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24174175" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23059185" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -644,7 +639,8 @@
     <MESSAGE value="Merge branch 'master' of https://code.ua.pt/git/djeedit&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;db.sqlite3&#10;#&#9;templates/post_preview.html" />
     <MESSAGE value="correçao de erros. Inicio da implementação de report de posts" />
     <MESSAGE value="another push..." />
-    <option name="LAST_COMMIT_MESSAGE" value="another push..." />
+    <MESSAGE value="Correções finais. É agora possivel reportar posts e o user que criou post pode aceitar o report (eliminando o post) ou recusar (mantendo o post)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correções finais. É agora possivel reportar posts e o user que criou post pode aceitar o report (eliminando o post) ou recusar (mantendo o post)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -784,6 +780,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="43" column="14" lean-forward="false" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -826,6 +823,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="62" column="97" lean-forward="true" selection-start-line="62" selection-start-column="97" selection-end-line="62" selection-end-column="97" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -998,7 +996,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
+        <state relative-caret-position="-2615">
           <caret line="682" column="10" lean-forward="false" selection-start-line="682" selection-start-column="4" selection-end-line="682" selection-end-column="10" />
           <folding />
         </state>
