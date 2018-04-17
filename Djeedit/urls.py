@@ -70,6 +70,7 @@ urlpatterns = [
                   path('topic/<str:topicName>/new', views.topic_new, name="topic_new"),
                   path('topic/<str:topicName>/popular', views.topic_popular, name="topic_popular"),
                   path('topic/<str:topicName>/top_rated', views.topic_top_rated, name="topic_top_rated"),
+                  path('topic/<str:topicName>/report_post_list', views.post_report_list, name="report_post_list"),
                   # post related url's
                   path('topic/<str:topicName>/post/<int:postID>/', views.postPage, name="post"),
                   path('post/<int:postID>/save', views.post_save, name="post_save"),
@@ -77,11 +78,13 @@ urlpatterns = [
                   path('post/<int:postID>/hide', views.post_hide, name="post_hide"),
                   path('post/<int:postID>/show', views.post_show, name="post_show"),
                   path('post/<int:postID>/report', views.post_report, name="post_report"),
+                  path('post/<int:postID>/report_post_confirmation', views.report_post_confirmation, name="report_post_confirmation"),
                   # comment up/down vote
                   path('vote_comment/', views.vote_comment, name="vote_comment"),
                   # post vote
                   path('vote_post/', views.vote_post, name="vote_post"),
-
+                  # handle reports
+                  path('handle_report/', views.handle_report, name="handle_report"),
                   # provavelmente não vai dar tempo
                   path('notifications/', views.notifications, name="notifications"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

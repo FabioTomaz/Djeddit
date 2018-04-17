@@ -14,10 +14,10 @@ from django.contrib.auth import login as auth_login
 from django.views.decorators.csrf import csrf_exempt
 
 from Djeedit.config import pagination
-from app.forms import SignUpForm, UserForm, ProfileForm, ChangePasswordForm, PrivacyForm
+from app.forms import SignUpForm, UserForm, ProfileForm, ChangePasswordForm, PrivacyForm, reportForm
 
 from app.forms import topicCreateForm, CommentOnPost, CreatePost
-from app.models import Topic, Post, User, Comment, Profile, Friend
+from app.models import Topic, Post, User, Comment, Profile, Friend, Report
 import urllib.parse
 from datetime import datetime
 
@@ -72,9 +72,9 @@ def controversialPage(request):
         .annotate(numDown=Count("userDownVotesPost")) \
         .annotate(score=F("numUp") - F("numDown")) \
         .annotate(numVotes=F("numUp") + F("numDown")) \
-        .filter(numVotes__gte=3) \
-        .filter(score__lte=1) \
-        .filter(score__gte=-1)
+        .filter(numVotes__gte=10) \
+        .filter(score__lte=3) \
+        .filter(score__gte=-3)
 
     pages = pagination(request, posts, num=10)
 
@@ -193,12 +193,7 @@ def search_user(request):
         p = p.filter(user__email__icontains=email)
 
     if orderby != None or orderby != " ":
-        if orderby == "Most karma":
-            p = p.order_by()
-        #if orderby == "Least karma":
-            #p = p.order_by()
-        else:
-            p = p.order_by("user__username")
+        p = p.order_by("-user__username")
     pages = pagination(request, p, num=10)
     tparams = {
         'items': pages[0],
@@ -509,15 +504,18 @@ def createTopic(request):
                 t.save()
                 return topicPage(request, topic)
     else:
-        if editGET == None:
-            #creating topic
-            form = topicCreateForm(initial={'check_if_isedit':"false"})
+        if request.user.is_authenticated:
+            if editGET == None:
+                #creating topic
+                form = topicCreateForm(initial={'check_if_isedit':"false"})
+            else:
+                # edit topic
+                edit = True
+                topic = Topic.objects.get(name=editGET)
+                form = topicCreateForm(initial={'topicName': topic.name,
+                            'description': topic.description, 'rules': topic.rules, 'check_if_isedit': topic.name})
         else:
-            # edit topic
-            edit = True
-            topic = Topic.objects.get(name=editGET)
-            form = topicCreateForm(initial={'topicName': topic.name,
-                        'description': topic.description, 'rules': topic.rules, 'check_if_isedit': topic.name})
+            raise Http404("you need to be registered to do this")
     return render(request, 'topic_create.html', {'form': form, "edit":edit})
 
 
@@ -662,6 +660,25 @@ def vote_post(request):
     dict = {"result": result}
     return HttpResponse(json.dumps(dict), content_type="application/json")
 
+@csrf_exempt
+def handle_report(request):
+    if request.is_ajax() and request.method == 'POST':
+        data = json.loads(request.body)
+        report = Report.objects.get(id=data["report_id"])
+        action = data["action"]
+        if action == "refuse": #the post will not be eliminated, only the report
+            report.delete()
+            result = "success"
+        elif action == "accept": #post and report will be eliminated
+            report.post.delete()
+            report.delete()
+            result = "success"
+        else:
+            result = "failed"
+    else:
+        raise Http404("Page not found :(")
+    dict = {"result": result}
+    return HttpResponse(json.dumps(dict), content_type="application/json")
 
 def postPage(request, topicName, postID):
     post = Post.objects.get(id=postID)
@@ -769,9 +786,38 @@ def post_show(request, postID):
         dict = {'result': 'error'}
     return HttpResponse(json.dumps(dict), content_type="application/json")
 
+#page with the form to report a post
 def post_report(request, postID):
     post = Post.objects.get(id=postID)
-    return render(request, "report_post.html", {"post": post})
+    if request.method == 'POST':
+        form = reportForm(request.POST)
+        if form.is_valid():
+            # store report
+            comment = form.cleaned_data["comment"]
+            report = Report(post=post, user=request.user, comment=comment)
+            report.save()
+            return render(request, "report_post_confirmation.html", {"post":post})
+
+    else:
+        form = reportForm()
+    return render(request, "report_post.html", {"post": post, "form":form})
+
+#page with a list of all reports from a topic
+def post_report_list(request, topicName):
+    if request.user.is_authenticated:
+        topic = Topic.objects.get(name=topicName)
+        reports = Report.objects.filter(post__topic=topic)
+        pages = pagination(request, reports, num=10)
+        return render(request, "report_post_list.html", { 'items': pages[0],
+            'page_range': pages[1], "topic": topic})
+    else:
+        raise Http404
+
+def report_post_confirmation(request):
+    if request.user.is_authenticated:
+        return render(request, "report_post_confirmation.html")
+    else:
+        raise Http404
 
 def createPost(request, topicName):
     topic = Topic.objects.get(name=topicName)

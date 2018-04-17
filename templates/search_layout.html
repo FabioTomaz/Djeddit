@@ -62,9 +62,7 @@
 
                                         {% elif searchbar == 'search_user'%}
                                         <select id="select_user" class="form-control">
-                                            <option value="0" {% if request.GET.orderby == "Most karma" %} selected {% endif %}>Most karma</option>
-                                            <option value="1" {% if request.GET.orderby == "Least karma" %} selected {% endif %}>Least karma</option>
-                                            <option value="2" {% if request.GET.orderby == "Alphabetical order" %} selected {% endif %}>Alphabetical order</option>
+                                            <option value="1" {% if request.GET.orderby == "Alphabetical order" %} selected {% endif %}>Alphabetical order</option>
                                         </select>
                                         </div>
                                           <div class="form-group">

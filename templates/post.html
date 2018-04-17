@@ -80,6 +80,12 @@
                                     class="btn btn-sm btn-outline-primary"><i class="far fa-trash-alt"></i> Remove
                                     </a>
                                 {% endif %}
+                                {% if user.is_authenticated and request.user != post.userOP %}
+                                    <!--users cant report their own posts..-->
+                                    <a href="{% url "post_report" postID=post.id %}"
+                                    class="btn btn-sm btn-outline-primary"><i class="far fa-flag"></i> Report
+                                    </a>
+                                {% endif %}
                             <button type="button" id="show_post" onclick="func_show_post({{ post.id }})"
                                     class="btn btn-sm btn-secondary"
                                     {% if not request.user.profile in post.userHidden.all %} hidden {% endif %}><i
