@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block pagename %}Report List for {{ topic.name }}{% endblock %}
+<h3 class="text-center">Reports made by users for posts from {{ topic.name }} </h3>
+{% block content %}
+    {% for r in items %}
+        {% include "report_post_list_preview.html" with report=r%}
+        <br>
+    {% endfor %}
+    {% include 'pagination.html' %}
+{% endblock %}
+{% block scripts %}
+    function acceptReport(report_id){ //the report and the post will be eliminated (we agree that the post should be eliminated)
+        $.ajax(
+                {
+                    type: "POST",
+                    url: "/handle_report/",
+                    data: JSON.stringify({'action': "accept", "report_id": report_id}),
+                    dataType: "json",
+                    success: function (result) {
+                        console.log(result)
+                        location.reload()
+                    }
+                });
+        }
+
+    function refuseReport(report_id){ //the report will be eliminated but not the post
+        $.ajax(
+                {
+                    type: "POST",
+                    url: "/handle_report/",
+                    data: JSON.stringify({'action': "refuse", "report_id": report_id}),
+                    dataType: "json",
+                    success: function (result) {
+                        console.log(result)
+                        location.reload()
+                    }
+                });
+        }
+{% endblock %}
