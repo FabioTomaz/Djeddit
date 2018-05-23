@@ -12,6 +12,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import login as auth_login
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from Djeedit.config import pagination
 from app.forms import SignUpForm, UserForm, ProfileForm, ChangePasswordForm, PrivacyForm, reportForm
@@ -20,6 +23,9 @@ from app.forms import topicCreateForm, CommentOnPost, CreatePost
 from app.models import Topic, Post, User, Comment, Profile, Friend, Report
 import urllib.parse
 from datetime import datetime
+
+from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
+    FriendSerializer
 
 
 def mainPage(request):
@@ -86,6 +92,7 @@ def controversialPage(request):
     }
     return render(request, "home.html", tparams)
 
+
 def search(request):
     tparams = {
         'year': datetime.now().year
@@ -133,18 +140,18 @@ def search_post(request):
         elif orderby == "Least commented":
             p = p.order_by("nComments")
         else:
-            #by default it orders by highest score
-            p = p.annotate(numUp=Count("userUpVotesPost"))\
-            .annotate(numDown=Count("userDownVotesPost"))\
-            .annotate(score=F("numUp") - F("numDown"))\
-            .order_by("-score")
+            # by default it orders by highest score
+            p = p.annotate(numUp=Count("userUpVotesPost")) \
+                .annotate(numDown=Count("userDownVotesPost")) \
+                .annotate(score=F("numUp") - F("numDown")) \
+                .order_by("-score")
     pages = pagination(request, p, num=10)
     tparams = {
         'items': pages[0],
         'page_range': pages[1],
         'searchbar': 'search_post',
         'year': datetime.now().year,
-        'param': "q=" + searchstring + "&op=" + op + "&from_topic="+from_topic+"&orderby="+orderby,
+        'param': "q=" + searchstring + "&op=" + op + "&from_topic=" + from_topic + "&orderby=" + orderby,
         "results": p
     }
     return render(request, "search_posts.html", tparams)
@@ -172,7 +179,7 @@ def search_topic(request):
         'page_range': pages[1],
         'searchbar': 'search_topic',
         'year': datetime.now().year,
-        'param': "q=" + searchstring + "&user_creator=" + user_creator +"&orderby="+orderby,
+        'param': "q=" + searchstring + "&user_creator=" + user_creator + "&orderby=" + orderby,
         "results": t
     }
     return render(request, "search_topics.html", tparams)
@@ -200,7 +207,7 @@ def search_user(request):
         'page_range': pages[1],
         'searchbar': 'search_user',
         'year': datetime.now().year,
-        'param': "q=" + searchstring + "&name=" + name + "&email="+email+"&orderby="+orderby,
+        'param': "q=" + searchstring + "&name=" + name + "&email=" + email + "&orderby=" + orderby,
         "results": p
     }
     return render(request, "search_users.html", tparams)
@@ -257,9 +264,10 @@ def user_page(request, username):
         tparams = {"user": username}
         return render(request, 'user_not_found.html', tparams)
 
+
 def get_user_karma_posts(username):
     up_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
-    .annotate(countUp=Count("userUpVotesPost"))
+        .annotate(countUp=Count("userUpVotesPost"))
     down_posts_count = Post.objects.filter(userOP=User.objects.get(username=username)) \
         .annotate(countDown=Count("userDownVotesPost"))
     score_posts = 0
@@ -268,6 +276,7 @@ def get_user_karma_posts(username):
     for i in down_posts_count:
         score_posts -= i.countDown
     return score_posts
+
 
 def get_user_karma_comments(username):
     up_comments_count = Comment.objects.filter(user=User.objects.get(username=username)) \
@@ -281,8 +290,10 @@ def get_user_karma_comments(username):
         score_comments -= i.countDown
     return score_comments
 
+
 def get_user_karma_total(username):
     return get_user_karma_comments(username) + get_user_karma_posts(username)
+
 
 def user_edit(request, username):
     if request.user.is_authenticated and request.user.username == username:
@@ -487,18 +498,19 @@ def createTopic(request):
             topic = form.cleaned_data["topicName"]
             description = form.cleaned_data["description"]
             rules = form.cleaned_data["rules"]
-            check_if_isedit = form.cleaned_data["check_if_isedit"] # this field is to check if the form is for edit or create
+            check_if_isedit = form.cleaned_data[
+                "check_if_isedit"]  # this field is to check if the form is for edit or create
             if check_if_isedit == "false":
                 # create topic
                 if Topic.objects.filter(name__iexact=topic).exists():  # topic with same name exists
                     return render(request, 'topic_create.html', {'form': form, 'error': "A topic with this"
-                            +" name already exists. Please, choose a different name"})
+                                                                                        + " name already exists. Please, choose a different name"})
                 t = Topic(name=topic, description=description, rules=rules, userCreator=request.user)
                 t.save()
                 return render(request, 'topic_created_success.html', {"topic": t})
             else:
                 t = Topic.objects.get(name=check_if_isedit)
-                t.name=topic
+                t.name = topic
                 t.description = description
                 t.rules = rules
                 t.save()
@@ -506,17 +518,18 @@ def createTopic(request):
     else:
         if request.user.is_authenticated:
             if editGET == None:
-                #creating topic
-                form = topicCreateForm(initial={'check_if_isedit':"false"})
+                # creating topic
+                form = topicCreateForm(initial={'check_if_isedit': "false"})
             else:
                 # edit topic
                 edit = True
                 topic = Topic.objects.get(name=editGET)
                 form = topicCreateForm(initial={'topicName': topic.name,
-                            'description': topic.description, 'rules': topic.rules, 'check_if_isedit': topic.name})
+                                                'description': topic.description, 'rules': topic.rules,
+                                                'check_if_isedit': topic.name})
         else:
             raise Http404("you need to be registered to do this")
-    return render(request, 'topic_create.html', {'form': form, "edit":edit})
+    return render(request, 'topic_create.html', {'form': form, "edit": edit})
 
 
 def topicCreatedSuccess(request):
@@ -531,10 +544,10 @@ def topicPage(request, topicName, postOrder="popular"):
     elif (postOrder == "popular"):
         p = Post.objects.filter(topic__name__iexact=topicName).order_by("-clicks")
     else:
-        p = Post.objects.filter(topic__name__iexact=topicName).annotate(numUp=Count("userUpVotesPost"))\
-        .annotate(numDown=Count("userDownVotesPost"))\
-        .annotate(score=F("numUp") - F("numDown"))\
-        .order_by("-score")
+        p = Post.objects.filter(topic__name__iexact=topicName).annotate(numUp=Count("userUpVotesPost")) \
+            .annotate(numDown=Count("userDownVotesPost")) \
+            .annotate(score=F("numUp") - F("numDown")) \
+            .order_by("-score")
     pages = pagination(request, p, num=10)
     tparams = {
         'items': pages[0],
@@ -566,11 +579,14 @@ def topicPage(request, topicName, postOrder="popular"):
         else:
             return render(request, "topic.html", tparams)
 
+
 def topic_new(request, topicName):
     return topicPage(request, topicName, "new")
 
+
 def topic_popular(request, topicName):
     return topicPage(request, topicName, "popular")
+
 
 def topic_top_rated(request, topicName):
     return topicPage(request, topicName, "top_rated")
@@ -618,6 +634,7 @@ def vote_comment(request):
     dict = {"result": result}
     return HttpResponse(json.dumps(dict), content_type="application/json")
 
+
 @csrf_exempt
 def vote_post(request):
     if request.is_ajax() and request.method == 'POST':
@@ -660,16 +677,17 @@ def vote_post(request):
     dict = {"result": result}
     return HttpResponse(json.dumps(dict), content_type="application/json")
 
+
 @csrf_exempt
 def handle_report(request):
     if request.is_ajax() and request.method == 'POST':
         data = json.loads(request.body)
         report = Report.objects.get(id=data["report_id"])
         action = data["action"]
-        if action == "refuse": #the post will not be eliminated, only the report
+        if action == "refuse":  # the post will not be eliminated, only the report
             report.delete()
             result = "success"
-        elif action == "accept": #post and report will be eliminated
+        elif action == "accept":  # post and report will be eliminated
             report.post.delete()
             report.delete()
             result = "success"
@@ -680,9 +698,10 @@ def handle_report(request):
     dict = {"result": result}
     return HttpResponse(json.dumps(dict), content_type="application/json")
 
+
 def postPage(request, topicName, postID):
     post = Post.objects.get(id=postID)
-    post.clicks+=1
+    post.clicks += 1
     post.save()
     # add a commentary to post
     if request.method == 'POST':
@@ -786,7 +805,8 @@ def post_show(request, postID):
         dict = {'result': 'error'}
     return HttpResponse(json.dumps(dict), content_type="application/json")
 
-#page with the form to report a post
+
+# page with the form to report a post
 def post_report(request, postID):
     post = Post.objects.get(id=postID)
     if request.method == 'POST':
@@ -796,28 +816,31 @@ def post_report(request, postID):
             comment = form.cleaned_data["comment"]
             report = Report(post=post, user=request.user, comment=comment)
             report.save()
-            return render(request, "report_post_confirmation.html", {"post":post})
+            return render(request, "report_post_confirmation.html", {"post": post})
 
     else:
         form = reportForm()
-    return render(request, "report_post.html", {"post": post, "form":form})
+    return render(request, "report_post.html", {"post": post, "form": form})
 
-#page with a list of all reports from a topic
+
+# page with a list of all reports from a topic
 def post_report_list(request, topicName):
     if request.user.is_authenticated:
         topic = Topic.objects.get(name=topicName)
         reports = Report.objects.filter(post__topic=topic)
         pages = pagination(request, reports, num=10)
-        return render(request, "report_post_list.html", { 'items': pages[0],
-            'page_range': pages[1], "topic": topic})
+        return render(request, "report_post_list.html", {'items': pages[0],
+                                                         'page_range': pages[1], "topic": topic})
     else:
         raise Http404
+
 
 def report_post_confirmation(request):
     if request.user.is_authenticated:
         return render(request, "report_post_confirmation.html")
     else:
         raise Http404
+
 
 def createPost(request, topicName):
     topic = Topic.objects.get(name=topicName)
@@ -830,11 +853,12 @@ def createPost(request, topicName):
             # insert new post on DB
             title = form.cleaned_data["title"]
             content = form.cleaned_data["content"]
-            check_if_isedit = form.cleaned_data["check_if_isedit"] #this field is to check if the form is for edit or create
-            if check_if_isedit == "false": #create post
+            check_if_isedit = form.cleaned_data[
+                "check_if_isedit"]  # this field is to check if the form is for edit or create
+            if check_if_isedit == "false":  # create post
                 post = Post(userOP=request.user, title=title, content=content, topic=topic)
             else:
-                #post exists, we are editing
+                # post exists, we are editing
                 post = Post.objects.get(id=int(check_if_isedit))
                 post.title = title
                 post.content = content
@@ -842,24 +866,26 @@ def createPost(request, topicName):
             return topicPage(request, topicName)
     else:
         if editGET == None:
-            form = CreatePost(initial={'check_if_isedit':"false"}) #we are creating a post
+            form = CreatePost(initial={'check_if_isedit': "false"})  # we are creating a post
         else:
-            #edit post
-            edit=True
+            # edit post
+            edit = True
             post = Post.objects.get(id=int(editGET))
-            form = CreatePost(initial={'title': post.title, 'content': post.content, 'check_if_isedit':post.id})
-    return render(request, "create_post.html", {"form": form, "topic": topic, "edit":edit})
+            form = CreatePost(initial={'title': post.title, 'content': post.content, 'check_if_isedit': post.id})
+    return render(request, "create_post.html", {"form": form, "topic": topic, "edit": edit})
+
 
 def removePost(request, topicName):
     postID = request.GET.get("e")
     post = Post.objects.get(id=int(postID))
     post.delete()
-    return render(request, "delete_post_confirmed.html", {"topicName":topicName})
+    return render(request, "delete_post_confirmed.html", {"topicName": topicName})
+
 
 def removePost_confirm(request, topicName):
     postID = request.GET.get("e")
     post = Post.objects.get(id=int(postID))
-    return render(request, "delete_post_confirmation.html", {"post":post})
+    return render(request, "delete_post_confirmation.html", {"post": post})
 
 
 @csrf_exempt
@@ -903,3 +929,155 @@ def remove_friend(request, username):
     except:
         result['result'] = 'error'
     return HttpResponse(json.dumps(result), content_type="application/json")
+
+
+# >>>>  REST FRAMEWORK  <<<<
+
+# GET ALL VIEWS
+
+@api_view(['GET'])
+def rest_all_topics(request):
+    topics = Topic.objects.all()
+    if 'num' in request.GET:
+        num = int(request.GET['num'])
+        topics = topics[:num]
+    serializer = TopicSerializer(topics, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_all_profiles(request):
+    profiles = Profile.objects.all()
+    if 'num' in request.GET:
+        num = int(request.GET['num'])
+        profiles = profiles[:num]
+    serializer = ProfileSerializer(profiles, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_all_posts(request):
+    posts = Post.objects.all()
+    if 'num' in request.GET:
+        num = int(request.GET['num'])
+        posts = posts[:num]
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_all_comments(request):
+    comments = Comment.objects.all()
+    if 'num' in request.GET:
+        num = int(request.GET['num'])
+        comments = comments[:num]
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_all_reports(request):
+    reports = Report.objects.all()
+    if 'num' in request.GET:
+        num = int(request.GET['num'])
+        reports = reports[:num]
+    serializer = ReportSerializer(reports, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_all_friends(request):
+    friends = Friend.objects.all()
+    if 'num' in request.GET:
+        num = int(request.GET['num'])
+        friends = friends[:num]
+    serializer = FriendSerializer(friends, many=True)
+    return Response(serializer.data)
+
+
+# GET SOME VIEWS
+
+@api_view(['GET'])
+def rest_user_posts(request):
+    username = request.GET['user_username']
+    posts = Post.objects.all().filter(userOP__username=username)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_topic_posts(request):
+    topic = request.GET['topic_name']
+    posts = Post.objects.all().filter(topic_name=topic)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_comments(request):
+    username = request.GET['user_username']
+    comments = Comment.objects.all().filter(user__username=username)
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_post_comments(request):
+    post_id = request.GET['post_id']
+    posts = Post.objects.all().filter(post_id=post_id)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_friends(request):
+    user_id = request.GET['user_id']
+    posts = Friend.objects.all().filter(current_user=user_id)
+    serializer = FriendSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+# GET SPECIFIC VIEWS
+
+@api_view(['GET'])
+def rest_topic(request):
+    name = request.GET['name']
+    try:
+        topic = Topic.objects.get(name=name)
+    except Topic.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = TopicSerializer(topic)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_profile(request):
+    name = request.GET['username']
+    try:
+        profile = Profile.objects.get(user__username=name)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProfileSerializer(profile)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_report(request):
+    report_id = request.GET['report_id']
+    try:
+        report = Comment.objects.get(id=report_id)
+    except Report.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ReportSerializer(report)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_comment(request):
+    comment_id = request.GET['id']
+    try:
+        comment = Comment.objects.get(id=comment_id)
+    except Comment.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = CommentSerializer(comment)
+    return Response(serializer.data)

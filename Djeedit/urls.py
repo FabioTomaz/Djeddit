@@ -87,4 +87,36 @@ urlpatterns = [
                   path('handle_report/', views.handle_report, name="handle_report"),
                   # provavelmente não vai dar tempo
                   path('notifications/', views.notifications, name="notifications"),
+
+
+
+                  # >>>>  REST FRAMEWORK  <<<<
+
+                  # GET ALL
+                  path('ws/topics', views.rest_all_topics),
+                  path('ws/profiles', views.rest_all_profiles),
+                  path('ws/posts', views.rest_all_posts),
+                  path('ws/comments', views.rest_all_comments),
+                  path('ws/reports', views.rest_all_reports),
+                  path('ws/friends', views.rest_all_friends),
+
+                  # GET SOME
+                  path('ws/user_posts', views.rest_user_posts),
+                  path('ws/user_comments', views.rest_user_comments),
+                  path('ws/user_friends', views.rest_user_friends),
+                  path('ws/topic_posts', views.rest_topic_posts),
+                  path('ws/post_comments', views.rest_post_comments),
+
+                  # GET ONE
+                  path('ws/topic', views.rest_topic),
+                  path('ws/profile', views.rest_profile),
+                  path('ws/comment', views.rest_comment),
+                  path('ws/report', views.rest_report),
+
+                  # CREATE
+
+                  # EDIT
+
+                  # DELETE
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

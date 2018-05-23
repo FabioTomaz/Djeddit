@@ -1,8 +1,325 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
+    <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="Algumas alteraçoes sobre os endpoints">
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/serializers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/bin/markdown_py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/DESCRIPTION.rst" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/INSTALLER" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/LICENSE.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/METADATA" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/RECORD" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/WHEEL" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/entry_points.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/metadata.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-2.6.11.dist-info/top_level.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-1.1.0.dist-info/DESCRIPTION.rst" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-1.1.0.dist-info/INSTALLER" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-1.1.0.dist-info/LICENSE.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-1.1.0.dist-info/METADATA" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-1.1.0.dist-info/RECORD" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-1.1.0.dist-info/WHEEL" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-1.1.0.dist-info/metadata.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-1.1.0.dist-info/top_level.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/compat.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/conf.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/constants.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/exceptions.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/fields.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/filters.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/filterset.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/de/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/de/LC_MESSAGES/django.po" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/es_AR/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/es_AR/LC_MESSAGES/django.po" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/es_ES/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/es_ES/LC_MESSAGES/django.po" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/fr/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/fr/LC_MESSAGES/django.po" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/pl/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/pl/LC_MESSAGES/django.po" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/ru/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/ru/LC_MESSAGES/django.po" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/zh_CN/LC_MESSAGES/django.po" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/models.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/rest_framework/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/rest_framework/backends.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/rest_framework/filters.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/rest_framework/filterset.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/templates/django_filters/rest_framework/crispy_form.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/templates/django_filters/rest_framework/form.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/templates/django_filters/widgets/multiwidget.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/utils.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/views.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/widgets.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.8.2.dist-info/DESCRIPTION.rst" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.8.2.dist-info/INSTALLER" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.8.2.dist-info/LICENSE.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.8.2.dist-info/METADATA" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.8.2.dist-info/RECORD" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.8.2.dist-info/WHEEL" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.8.2.dist-info/metadata.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.8.2.dist-info/top_level.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__main__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__version__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/blockparser.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/blockprocessors.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/abbr.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/admonition.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/attr_list.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/codehilite.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/def_list.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/extra.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/fenced_code.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/footnotes.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/headerid.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/meta.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/nl2br.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/sane_lists.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/smart_strong.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/smarty.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/tables.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/toc.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/wikilinks.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/inlinepatterns.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/odict.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/postprocessors.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/preprocessors.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/serializers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/treeprocessors.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/util.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/apps.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authentication.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/admin.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/apps.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/management/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/management/commands/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/management/commands/drf_create_token.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/migrations/0001_initial.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/migrations/0002_auto_20160226_1747.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/migrations/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/models.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/serializers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/views.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/checks.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/compat.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/decorators.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/documentation.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/exceptions.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/fields.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/filters.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/generics.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ach/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ar/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/be/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ca/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ca_ES/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/cs/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/da/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/de/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/el/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/el_GR/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/en/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/en_AU/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/en_CA/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/en_US/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/es/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/et/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fa/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fa_IR/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fi/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fr/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fr_CA/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/gl/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/gl_ES/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/he_IL/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/hu/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/id/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/it/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ja/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ko_KR/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/lv/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/mk/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/nb/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/nl/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/nn/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/no/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/pl/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/pt/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/pt_BR/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/pt_PT/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ro/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ru/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/sk/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/sl/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/sv/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/tr/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/tr_TR/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/uk/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/vi/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/zh_CN/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/zh_Hans/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/zh_Hant/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/zh_TW/LC_MESSAGES/django.mo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/metadata.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/mixins.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/models.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/negotiation.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/pagination.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/parsers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/permissions.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/relations.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/renderers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/request.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/response.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/reverse.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/routers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/generators.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/inspectors.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/utils.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/views.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/serializers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/settings.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/bootstrap-theme.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/bootstrap-tweaks.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/bootstrap.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/default.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/font-awesome-4.0.3.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/prettify.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/css/base.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/css/highlight.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/css/jquery.json-view.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/img/favicon.ico" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/img/grid.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/js/api.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/js/highlight.pack.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/js/jquery.json-view.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/fontawesome-webfont.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/fontawesome-webfont.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/fontawesome-webfont.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/fontawesome-webfont.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/img/glyphicons-halflings-white.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/img/glyphicons-halflings.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/img/grid.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/ajax-form.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/bootstrap.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/coreapi-0.1.1.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/csrf.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/default.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/jquery-3.3.1.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/prettify-min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/status.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/detail.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/dict_value.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/list.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/list_value.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/simple_list_value.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/api.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/base.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/auth/basic.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/auth/session.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/auth/token.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/document.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/error.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/interact.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/javascript-intro.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/javascript.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/python-intro.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/python.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/shell-intro.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/shell.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/link.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/sidebar.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/filters/base.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/filters/ordering.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/filters/search.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/checkbox.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/checkbox_multiple.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/dict_field.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/fieldset.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/form.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/input.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/list_field.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/list_fieldset.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/radio.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/select.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/select_multiple.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/textarea.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/checkbox.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/checkbox_multiple.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/dict_field.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/fieldset.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/form.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/input.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/list_field.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/list_fieldset.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/radio.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/select.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/select_multiple.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/textarea.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/login.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/login_base.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/pagination/numbers.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/pagination/previous_and_next.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/raw_data_form.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/schema.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/checkbox.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/checkbox_multiple.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/dict_field.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/fieldset.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/form.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/input.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/list_field.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/list_fieldset.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/radio.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/select.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/select_multiple.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/textarea.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templatetags/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templatetags/rest_framework.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/test.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/throttling.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/urlpatterns.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/urls.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/breadcrumbs.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/encoders.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/field_mapping.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/formatting.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/html.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/humanize_datetime.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/json.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/mediatypes.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/model_meta.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/representation.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/serializer_helpers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/urls.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/validators.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/versioning.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/views.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/viewsets.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/djeddit.iml" afterPath="$PROJECT_DIR$/.idea/djeddit.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Djeedit/settings.py" afterPath="$PROJECT_DIR$/Djeedit/settings.py" />
+      <change beforePath="$PROJECT_DIR$/Djeedit/urls.py" afterPath="$PROJECT_DIR$/Djeedit/urls.py" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
+      <change beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" afterPath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,11 +333,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="126" column="62" lean-forward="true" selection-start-line="126" selection-start-column="62" selection-end-line="126" selection-end-column="62" />
+            <state relative-caret-position="-1305">
+              <caret line="26" column="34" lean-forward="true" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="1032" column="4" lean-forward="false" selection-start-line="1032" selection-start-column="4" selection-end-line="1032" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="67" column="19" lean-forward="true" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__version__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__version__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inspectors.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/inspectors.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="246" column="10" lean-forward="false" selection-start-line="246" selection-start-column="10" selection-end-line="246" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="105" column="56" lean-forward="true" selection-start-line="105" selection-start-column="56" selection-end-line="105" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -33,15 +406,13 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>profile_page</find>
-      <find>username</find>
       <find>user_posts_hidde</find>
       <find>show</find>
       <find>hey</find>
@@ -70,6 +441,8 @@
       <find>postP</find>
       <find>@logi</find>
       <find>topicP</find>
+      <find>response</find>
+      <find>primary</find>
     </findStrings>
     <replaceStrings>
       <replace>sidebar</replace>
@@ -123,17 +496,18 @@
         <option value="$PROJECT_DIR$/templates/comment_preview.html" />
         <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/templates/profile_privacy.html" />
-        <option value="$PROJECT_DIR$/Djeedit/settings.py" />
         <option value="$PROJECT_DIR$/templates/profile_page.html" />
         <option value="$PROJECT_DIR$/templates/post.html" />
         <option value="$PROJECT_DIR$/templates/topic.html" />
         <option value="$PROJECT_DIR$/templates/post_preview.html" />
         <option value="$PROJECT_DIR$/app/admin.py" />
-        <option value="$PROJECT_DIR$/Djeedit/urls.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/templates/report_post.html" />
         <option value="$PROJECT_DIR$/app/forms.py" />
+        <option value="$PROJECT_DIR$/Djeedit/settings.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/Djeedit/urls.py" />
+        <option value="$PROJECT_DIR$/app/serializers.py" />
       </list>
     </option>
   </component>
@@ -143,11 +517,14 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/frontend/djeddit/djeddit/node_modules" />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="398" />
-    <option name="y" value="38" />
-    <option name="width" value="649" />
-    <option name="height" value="712" />
+    <option name="x" value="67" />
+    <option name="y" value="24" />
+    <option name="width" value="655" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -186,33 +563,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Changed Files">
           <expand>
@@ -237,17 +587,34 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
-              <item name=".idea" type="cbb8eebc:String" user=".idea" />
+              <item name="app" type="cbb8eebc:String" user="app" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
-              <item name="Djeedit" type="cbb8eebc:String" user="Djeedit" />
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
-              <item name="templates" type="cbb8eebc:String" user="templates" />
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -484,47 +851,41 @@
     <option name="localTasksCounter" value="24" />
     <servers />
   </component>
+  <component name="TodoView" selected-index="4">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="398" y="38" width="1311" height="780" extended-state="6" />
+    <frame x="57" y="-4" width="1309" height="772" extended-state="6" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24174175" sideWeight="0.5149885" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24174175" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.4973262" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2057057" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23071046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15966387" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24174175" sideWeight="0.5149885" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.4973262" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24174175" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23071046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +915,8 @@
     <MESSAGE value="Merge branch 'master' of https://code.ua.pt/git/djeedit&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;db.sqlite3&#10;#&#9;templates/post_preview.html" />
     <MESSAGE value="correçao de erros. Inicio da implementação de report de posts" />
     <MESSAGE value="Projeto Angular adicionado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Projeto Angular adicionado" />
+    <MESSAGE value="Algumas alteraçoes sobre os endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Algumas alteraçoes sobre os endpoints" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -563,34 +925,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_social_share/templatetags/social_share.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1296">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/topic_preview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/loginpartial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="45" column="75" lean-forward="true" selection-start-line="45" selection-start-column="75" selection-end-line="45" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/search_users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/user_preview.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -765,13 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="43" column="14" lean-forward="false" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -863,20 +1190,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="77" column="61" lean-forward="false" selection-start-line="77" selection-start-column="61" selection-end-line="77" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="773" column="36" lean-forward="true" selection-start-line="773" selection-start-column="36" selection-end-line="773" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/report_post.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -884,18 +1197,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="126" column="62" lean-forward="true" selection-start-line="126" selection-start-column="62" selection-end-line="126" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="9" column="81" lean-forward="false" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/contrib/auth/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-49">
+          <caret line="355" column="6" lean-forward="false" selection-start-line="355" selection-start-column="6" selection-end-line="355" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1305">
+          <caret line="26" column="34" lean-forward="true" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="105" column="56" lean-forward="true" selection-start-line="105" selection-start-column="56" selection-end-line="105" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="1032" column="4" lean-forward="false" selection-start-line="1032" selection-start-column="4" selection-end-line="1032" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="67" column="19" lean-forward="true" selection-start-line="67" selection-start-column="19" selection-end-line="67" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__version__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/inspectors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="246" column="10" lean-forward="false" selection-start-line="246" selection-start-column="10" selection-end-line="246" selection-end-column="10" />
           <folding />
         </state>
       </provider>
