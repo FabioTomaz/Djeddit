@@ -1,20 +1,444 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!DOCTYPE HTML>
 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Djeddit</title>
+
+</head>
+<!--TODO: colocar todos as routes nas hrefs-->
+<!--TODO: nav bar menu ativa : adaptar cdg do django ({% if nbar == 'New' %}active{% endif %}) para angular-->
+<body class="fixed-nav sticky-footer bg-light">
+
+<nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark" style="-webkit-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); -moz-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75);">
+  <a class="navbar-brand" href="#">Djeddit <i class="far fa-comment-alt"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><i class="fas fa-th-list"></i> New</a>
+      </li>
+      <li class="nav-item {% if nbar == 'Popular' %}active{% endif %}">
+        <a class="nav-link" href="#"><i class="fas fa-fire"></i> Popular</a>
+      </li>
+      <li class="nav-item {% if nbar == 'Top Rated' %}active{% endif %}">
+        <a class="nav-link" href="#"><i class="far fa-thumbs-up"></i> Top Rated</a>
+      </li>
+      <li class="nav-item {% if nbar == 'Controversial' %}active{% endif %}">
+        <a class="nav-link" href="#"><i class="fas fa-comments"></i> Controversial</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="form-inline my-2 my-lg-0 mr-lg-2">
+        <div class="input-group">
+          <div class="input-group-btn search-panel">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <span id="search_concept">Filter by</span> <span class="caret"></span>
+            </button>
+            <ul id="filterOptions" class="dropdown-menu" role="menu">
+              <div class="dropdown-header">Filter by</div>
+              <li><a id="searchTopicsOption" class="btn dropdown-item active"><i
+                class="far fa-comments"></i> Topics</a></li>
+              <li><a id="searchPostsOption" class="btn dropdown-item"><i class="fas fa-align-left"></i>
+                Posts</a></li>
+              <li><a id="searchUsersOption" class="btn dropdown-item"><i class="fas fa-users"></i>
+                Users</a></li>
+            </ul>
+          </div>
+          <input id="searchQuery" class="form-control input-group-append" type="text"
+                 placeholder="Search for..." value="{{ request.GET.q }}" required>
+          <span class="input-group-append">
+                                      <button id="navbarSearchButton" class="btn btn-primary" type="button">
+                                          <i class="fa fa-search"></i>
+                                      </button>
+                                  </span>
+        </div>
+      </li>
+      {% include 'loginpartial.html' %}
+    </ul>
+  </div>
+</nav>
+
+{% block outsideContent %}
+
+{% endblock %}
+
+<!-- Log In Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="loginForm" action="{% url 'login' %}" method="post" class="form-horizontal">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="container">
+              <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="far fa-user"></i>
+                                            </button>
+                                        </span>
+                <input name="username" class="form-control" type="text" placeholder="Username" required>
+              </div>
+              <br>
+
+              <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="fas fa-key"></i>
+                                            </button>
+                                        </span>
+                <input id="login_password" name="password" class="form-control" type="password"
+                       placeholder="Password" required>
+                <span class="input-group-append">
+                                            <button id="show_hide_password" class="btn btn-primary" type="button">
+                                                <i id="icon_show_hide_password" class="far fa-eye-slash" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+              </div>
+
+              <div id="loginErrorsLog">
+                <br>
+                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal"
+                  data-dismiss="modal"><i class="fas fa-user-plus"></i> Go to sign up
+          </button>
+          <button id="loginButton" type="submit" class="btn btn-success"><i id="loginButtonIcon"
+                                                                            class="fas fa-sign-in-alt"></i>
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="signupForm" action="{% url 'signup' %}" method="post" class="form-horizontal">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="col-md-10">
+              <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="far fa-user"></i>
+                                            </button>
+                                        </span>
+                <input name="username" class="form-control" type="text" placeholder="Username" required>
+              </div>
+              <br>
+              <p id="usernameErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+
+              <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="fas fa-font"></i>
+                                            </button>
+                                        </span>
+                <input name="first_name" class="form-control" type="text" placeholder="First Name" required>
+                <input name="last_name" class="form-control" type="text" placeholder="Last Name" required>
+              </div>
+              <br>
+              <p id="nameErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-primary" type="button" disabled>
+                    <i class="fas fa-envelope"></i>
+                  </button>
+                </div>
+                <input type="email" name="email" class="form-control"
+                       placeholder="Email">
+              </div>
+              <br>
+              <p id="emailErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+
+              <div class="input-group">
+                                                <span class="input-group-prepend">
+                                                    <button class="btn btn-primary" disabled>
+                                                        <i class="fas fa-key"></i>
+                                                    </button>
+                                                </span>
+                <input name="password1" class="form-control" type="password" placeholder="Password"
+                       required>
+              </div>
+              <br>
+              <p id="password1ErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+
+              <div class="input-group">
+                                                <span class="input-group-prepend">
+                                                    <button class="btn btn-primary" disabled>
+                                                        <i class="fas fa-key"></i>
+                                                    </button>
+                                                </span>
+                <input name="password2" class="form-control" type="password"
+                       placeholder="Confirm Password" required>
+              </div>
+              <br>
+              <p id="password2ErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"
+                  data-dismiss="modal"><i class="fas fa-sign-in-alt"></i> Go to login
+          </button>
+          <button type="submit" class="btn btn-success"><i id="signupButtonIcon" class="fas fa-user-plus"></i>
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Logout Confirmation Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to log out?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" href="{% url 'logout' %}"><i class="fas fa-check"></i> Yes</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="far fa-times-circle"></i> No
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main role="main">
+  <div class="container body-content">
+    <p></p>
+    {% block content %} {% endblock %}
+  </div> <!-- /container -->
+</main>
+
+<footer style=":sticky-footer">
+  <hr/>
+  <div class="container">
+    <p class="text-muted" align="center">&copy; {{ year }} - Djeddit </p>
+  </div>
+</footer>
+
+<!-- JQuery and Bootstrap stuff
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'scripts/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'scripts/jquery.validate.min.js' %}"></script>
+<script src="{% static 'scripts/popper.min.js' %}"></script>
+<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+<script src="{% static 'scripts/bootstrap-notify.min.js' %}"></script>
+<script src="{% static 'scripts/bootstrap-datepicker.min.js' %}"></script>
+<script>
+  var searchFilter;
+  $(document).ready(function (e) {
+    $('#loginErrorsLog').hide();
+    var loginForm = $('#loginForm');
+    loginForm.submit(function (event) {
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: {% url 'login' %},
+      data: loginForm.serialize(),
+        dataType: "json",
+        success: function (resp) {
+        console.log(resp.errors.toString());
+        if (resp.errors == false) {
+          location.reload();
+        } else {
+          $("#loginButtonIcon").removeClass("fas fa-spinner fa-spin");
+          $("#loginButtonIcon").addClass("fas fa-sign-in-alt");
+          $('#loginErrorsLog').show();
+        }
+      },
+      error: function () {
+        $("#loginButtonIcon").removeClass("fas fa-sign-in-alt");
+        $("#loginButtonIcon").addClass("fas fa-spinner fa-spin");
+      }
+    });
+      $("#loginButtonIcon").removeClass("fas fa-sign-in-alt");
+      $("#loginButtonIcon").addClass("fas fa-spinner fa-spin");
+    });
+
+    var signUpForm = $('#signupForm');
+    signUpForm.submit(function (event) {
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: {% url 'signup' %},
+      data: signUpForm.serialize(),
+        dataType: "json",
+        success: function (resp) {
+        if (!resp.hasOwnProperty("errors")) {
+          location.reload();
+        } else {
+          console.log(resp.errors);
+          $("#signupButtonIcon").removeClass("fas fa-spinner fa-spin");
+          $("#signupButtonIcon").addClass("fas fa-sign-in-alt");
+          var str;
+          for (var i in resp.errors) {
+            $('#'+i+'ErrorsMessage').show();
+            $('#'+i+'ErrorsMessage').text(resp.errors[i]);
+          }
+          $('#signupErrorsMessage').text(str);
+        }
+      },
+      error: function () {
+        $("#signupButtonIcon").removeClass("fas fa-sign-in-alt");
+        $("#signupButtonIcon").addClass("fas fa-spinner fa-spin");
+      }
+    });
+      $("#signupButtonIcon").removeClass("fas fa-sign-in-alt");
+      $("#signupButtonIcon").addClass("fas fa-spinner fa-spin");
+    });
+
+    updateFilterVariable();
+
+    {% if loginModal %}
+    $('#loginModal').modal();
+    {% endif %}
+
+    {% block onDocumentReadyBlock %}
+
+    {% endblock %}
+  });
+
+  $(document).on('click', '.search-panel .dropdown-menu a', function (e) {
+    $('.search-panel .dropdown-menu .active').removeClass("active");
+    $(this).addClass("active");
+    updateFilterVariable();
+  });
+
+  $(document).on('click', "#navbarSearchButton", function (e) {
+    e.preventDefault();
+    var query = $('#searchQuery').val();
+    if(searchFilter=="searchTopicsOption")
+      $(location).attr('href', "{% url 'search_topic' %}?q=" + query+ "&user_creator=&orderby=")
+    else if(searchFilter=="searchPostsOption")
+      $(location).attr('href', "{% url 'search_post' %}?q=" + query+ "&op=&from_topic=&orderby=")
+    else if(searchFilter=="searchUsersOption")
+      $(location).attr('href', "{% url 'search_user' %}?q=" + query+ "&email=&name=&orderby=")
+  });
+
+  $(document).on('click', "#show_hide_password", function (e) {
+    e.preventDefault();
+    if ($('#login_password').attr("type") == "text") {
+      $('#login_password').attr('type', 'password');
+      $('#icon_show_hide_password').removeClass("fas");
+      $('#icon_show_hide_password').removeClass("fa-eye");
+      $('#icon_show_hide_password').addClass("far");
+      $('#icon_show_hide_password').addClass("fa-eye-slash");
+    } else if ($('#login_password').attr("type") == "password") {
+      $('#login_password').attr('type', 'text');
+      $('#icon_show_hide_password').removeClass("far");
+      $('#icon_show_hide_password').removeClass("fa-eye-slash");
+      $('#icon_show_hide_password').addClass("fas");
+      $('#icon_show_hide_password').addClass("fa-eye");
+    }
+  });
+
+  function updateFilterVariable() {
+    searchFilter = $('.search-panel .dropdown-menu .active').attr("id");
+  }
+  {% block scripts %} {% endblock %}
+</script>
+
+<script>
+  function save_post(post_id) {
+    $.ajax(
+      {
+        type: "POST",
+        url: "{% url 'post_save' 1 %}".replace("1", post_id),
+        success: function (result) {
+          console.log(result);
+          $('#save_post_' + post_id).attr("hidden", true);
+          $('#unsave_post_' + post_id).attr("hidden", false);
+        }
+      });
+  }
+
+  function unsave_post(post_id) {
+    $.ajax(
+      {
+        type: "POST",
+        url: "{% url 'post_unsave' 1 %}".replace("1", post_id),
+        success: function (result) {
+          console.log(result);
+          $('#save_post_' + post_id).attr("hidden", false);
+          $('#unsave_post_' + post_id).attr("hidden", true);
+        }
+      });
+  }
+
+  function hide_post(post_id) {
+    $.ajax(
+      {
+        type: "POST",
+        url: "{% url 'post_hide' 1 %}".replace("1", post_id),
+        success: function (result) {
+          console.log(result);
+          $('#hide_post_' + post_id).attr("hidden", true);
+          $('#show_post_' + post_id).attr("hidden", false);
+          {% ifnotequal sidebar 'user_posts_hidden' %}
+          $('#post_n_' + post_id).attr("hidden", true);
+          {% endifnotequal %}
+        }
+      });
+  }
+
+
+  function show_post(post_id) {
+    $.ajax(
+      {
+        type: "POST",
+        url: "{% url 'post_show' 1 %}".replace("1", post_id),
+        success: function (result) {
+          console.log(result);
+          $('#hide_post_' + post_id).attr("hidden", false);
+          $('#show_post_' + post_id).attr("hidden", true);
+        }
+      });
+  }
+</script>
+<!-- Font Awesome -->
+<script src="fontawesome-all.js"></script>
+
+
+</body>
+</html>
