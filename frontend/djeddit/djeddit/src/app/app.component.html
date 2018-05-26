@@ -245,7 +245,7 @@
 <main role="main">
   <div class="container body-content">
     <p></p>
-    {% block content %} {% endblock %}
+    <router-outlet></router-outlet>
   </div> <!-- /container -->
 </main>
 
@@ -256,15 +256,6 @@
   </div>
 </footer>
 
-<!-- JQuery and Bootstrap stuff
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="{% static 'scripts/jquery-3.3.1.min.js' %}"></script>
-<script src="{% static 'scripts/jquery.validate.min.js' %}"></script>
-<script src="{% static 'scripts/popper.min.js' %}"></script>
-<script src="{% static 'scripts/bootstrap.min.js' %}"></script>
-<script src="{% static 'scripts/bootstrap-notify.min.js' %}"></script>
-<script src="{% static 'scripts/bootstrap-datepicker.min.js' %}"></script>
 <script>
   var searchFilter;
   $(document).ready(function (e) {

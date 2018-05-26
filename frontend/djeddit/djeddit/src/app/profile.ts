@@ -1,5 +1,7 @@
+import {User} from "./user";
+
 export class Profile {
-  user: number;
+  user: User;
   user_details: string;
   birth_date: string;
   registration_date: string;

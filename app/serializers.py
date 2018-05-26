@@ -1,18 +1,30 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from app.models import Topic, Profile, Post, Comment, Report, Friend
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'id', "first_name", "last_name", "email")
+
+
 class TopicSerializer(serializers.ModelSerializer):
+    userCreator = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Topic
         fields = ('name', 'rules', 'description', 'userCreator', 'creation_date')
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Profile
-        fields = ('user',
+        fields = ('id',
+                  'user',
                   'user_details',
                   'birth_date',
                   'registration_date',
@@ -28,9 +40,13 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
+    topic = TopicSerializer(many=False, read_only=True)
+    userOP = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Post
-        fields = ('topic',
+        fields = ('id',
+                  'topic',
                   'title',
                   'content',
                   'clicks',

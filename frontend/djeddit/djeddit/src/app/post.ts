@@ -1,5 +1,9 @@
+import {Topic} from "./topic";
+import {User} from "./user";
+
 export class Post{
-  topic: string;
+  id: number;
+  topic: Topic;
   title: string;
   content: string;
   clicks: number;
@@ -8,6 +12,6 @@ export class Post{
   userSaved: number[];
   userHidden: number[];
   date: string;
-  userOP: number;
+  userOP: User;
   nComments: number;
 }

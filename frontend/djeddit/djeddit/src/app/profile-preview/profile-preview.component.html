@@ -1,0 +1,18 @@
+<div class="media text-muted pt-3">
+  <div class="col-md-2 col-lg-2 " align="center">
+    <img src="{{ profile.user_picture }}" class="img-circle img-fluid" id="profile_pic">
+  </div>
+  <div class=" col-md-10 col-lg-10 ">
+    <p class="media-body small">
+    <p>
+      <a class="card-link" href="#">
+        <strong>@{{ profile.user.username }}</strong>
+      </a>
+    </p>
+    <hr>
+    <p>
+      {{ profile.user_details }}
+    </p>
+    </p>
+  </div>
+</div>
