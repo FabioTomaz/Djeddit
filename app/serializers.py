@@ -61,6 +61,8 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Comment
         fields = ('user',
@@ -75,9 +77,13 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ReportSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+    post = PostSerializer(many=False, read_only=True)
+
     class Meta:
         model = Report
-        fields = ('post',
+        fields = ('id',
+                  'post',
                   'user',
                   'comment',
                   'accepted'
@@ -85,6 +91,8 @@ class ReportSerializer(serializers.ModelSerializer):
 
 
 class FriendSerializer(serializers.ModelSerializer):
+    current_user = ProfileSerializer(many=False, read_only=True)
+
     class Meta:
         model = Friend
         fields = ('users',

@@ -1,0 +1,14 @@
+<div class="card border-secondary">
+  <div class="card-body">
+    <div class="card-title">Report submitted by <a href="#">{{ report.user }}
+      </a> for post <a href="#">{{ report.post.title }}</a></div>
+    <h6 class="card-subtitle text-muted">
+      Complain: {{ report.comment }}
+    </h6>
+  </div>
+
+  <div class="card-footer">
+    <button type="button" id="report_{{ report.id }}" (click)="acceptReport()" class="btn btn-sm btn-danger" ><i class="fas fa-minus-circle"></i> Accept and Delete Post</button>
+    <button type="button" id="report__{{ report.id }}" (click)="refuseReport()" class="btn btn-sm btn-success"><i class="fas fa-minus"></i> Reject report</button>
+  </div>
+</div>

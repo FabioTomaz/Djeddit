@@ -1,5 +1,8 @@
+import {Post} from "./post";
+
 export class Report{
-  post: number;
+  id: number;
+  post: Post;
   user: number;
   comment: string;
   acepted: boolean;

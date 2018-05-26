@@ -8,6 +8,7 @@ import { NewPostsComponent } from './new-posts/new-posts.component';
 import { PostPreviewComponent } from './post-preview/post-preview.component';
 import { TopicPreviewComponent } from './topic-preview/topic-preview.component';
 import { ProfilePreviewComponent } from './profile-preview/profile-preview.component';
+import { ReportPreviewComponent } from './report-preview/report-preview.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProfilePreviewComponent } from './profile-preview/profile-preview.compo
     NewPostsComponent,
     PostPreviewComponent,
     TopicPreviewComponent,
-    ProfilePreviewComponent
+    ProfilePreviewComponent,
+    ReportPreviewComponent
   ],
   imports: [
     BrowserModule,
