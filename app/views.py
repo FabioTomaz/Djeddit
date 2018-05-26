@@ -1049,6 +1049,15 @@ def rest_topic(request):
     serializer = TopicSerializer(topic)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def rest_post(request):
+    post_id = request.GET['post_id']
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = PostSerializer(post)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def rest_profile(request):
@@ -1074,7 +1083,7 @@ def rest_report(request):
 
 @api_view(['GET'])
 def rest_comment(request):
-    comment_id = request.GET['id']
+    comment_id = request.GET['post_id']
     try:
         comment = Comment.objects.get(id=comment_id)
     except Comment.DoesNotExist:

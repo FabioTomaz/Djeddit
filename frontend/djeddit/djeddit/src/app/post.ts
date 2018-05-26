@@ -1,7 +1,7 @@
 import {Topic} from "./topic";
 import {User} from "./user";
 
-export class Post{
+export class Post {
   id: number;
   topic: Topic;
   title: string;

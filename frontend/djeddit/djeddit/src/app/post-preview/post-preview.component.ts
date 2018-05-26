@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Post} from "../post";
+import {Post} from '../post';
 
 @Component({
   selector: 'app-post-preview',
@@ -12,6 +12,10 @@ export class PostPreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  orderByDate(post: Post[]): Post[] {
+    return post.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
 }

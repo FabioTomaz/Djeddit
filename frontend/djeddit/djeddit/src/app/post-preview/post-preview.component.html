@@ -1,9 +1,9 @@
 <div class="card border-secondary" id="post_n_{{post.title}}">
   <div class="card-body">
-    <div class="card-title"><a routerLink="">{{post.title}}</a>
+    <div class="card-title"><a routerLink="/topic/{{post.topic.name}}/post/{{post.id}}">{{post.title}}</a>
     </div>
     <h6 class="card-subtitle text-muted">Submitted by <a routerLink="">{{post.userOP.username}}</a>
-      to topic <a routerLink=""> {{post.topic.name}} </a> on {{post.date}}</h6>
+      to topic <a routerLink="/topic/{{post.topic.name}}"> {{post.topic.name}} </a> on {{post.date | date: 'dd/MM/yyyy HH:mm'}}</h6>
   </div>
 
   <div class="card-footer">

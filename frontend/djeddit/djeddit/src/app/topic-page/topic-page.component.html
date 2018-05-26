@@ -1,0 +1,38 @@
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+  <div class="row">
+    <div class="col-md-8 px-0">
+      <h1 class="display-4 font-italic">{{topic.name}}</h1>
+      <p class="lead my-3">{{topic.description}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h1>Posts:</h1>
+    <div *ngFor="let post of orderByDate(posts)">
+      <app-post-preview [post]="post"></app-post-preview>
+      <br>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <br/>
+    <br/>
+    <div class="row">
+      <!--topic options: create new post, and if topic creator,
+      another options for post reports and edit topic infos -->
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title"> Rules </h5>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+          </div>
+          <div class="card-body"><pre>{{ topic.rules }}</pre> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

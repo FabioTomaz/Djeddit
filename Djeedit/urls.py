@@ -109,6 +109,7 @@ urlpatterns = [
 
                   # GET ONE
                   path('ws/topic', views.rest_topic),
+                  path('ws/post', views.rest_post),
                   path('ws/profile', views.rest_profile),
                   path('ws/comment', views.rest_comment),
                   path('ws/report', views.rest_report),

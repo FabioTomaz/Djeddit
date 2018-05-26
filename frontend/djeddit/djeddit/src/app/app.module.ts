@@ -12,6 +12,8 @@ import { ReportPreviewComponent } from './report-preview/report-preview.componen
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
+import { TopicPageComponent } from './topic-page/topic-page.component';
+import { PostPageComponent } from './post-page/post-page.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     ProfilePreviewComponent,
     ReportPreviewComponent,
     AppNavbarComponent,
+    TopicPageComponent,
+    PostPageComponent,
   ],
   imports: [
     BrowserModule,

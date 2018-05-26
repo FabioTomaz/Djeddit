@@ -1,0 +1,91 @@
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/topic/{{post.topic.name}}">{{ post.topic.name }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+  </ol>
+</nav>
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-2">
+          <!-- upvote/downvote post -->
+          <div id="topic" class="upvote">
+            <span id="post_score" class="count">{{ getPostScore(post) }}</span>
+
+          </div>
+        </div>
+        <div class="col-10">
+          <h4 class="card-title">{{ post.title }}</h4>
+          <h5 class="card-subtitle mb-2 text-muted">Submited by {{ post.userOP.username }} at {{ post.date| date: 'dd/MM/yyyy HH:mm' }}</h5>
+          <h6 class="card-subtitle mb-3 text-muted"> {{ post.nComments }} comment(s) </h6>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <pre style="font-family: Arial" class="card-text">{{ post.content }}</pre>
+    </div>
+    <div class="card-footer">
+      <div class="btn-group" role="group" aria-label="Action Buttons">
+        <button type="button" class="btn btn-sm btn-dark" data-toggle="collapse"
+                data-target="#coll2"
+                aria-expanded="false" aria-controls="collapseExample2">
+          <i class="far fa-comment"></i> Comment
+        </button>
+        <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse"
+                data-target="#coll1"
+                aria-expanded="false" aria-controls="collapseExample">
+          <i class="fas fa-share-alt"></i> Share
+        </button>
+        <button type="button" id="unsave_post"
+                class="btn btn-sm btn-warning"><i
+          class="fas fa-ban"></i> Don't Save
+        </button>
+        <button type="button" id="save_post"
+                class="btn btn-sm btn-success"><i class="far fa-save"></i> Save
+        </button>
+        <button type="button" id="hide_post"
+                class="btn btn-sm btn-danger"><i class="far fa-eye-slash"></i> Hide
+        </button>
+        <a href=""
+        class="btn btn-sm btn-outline-primary"><i class="far fa-edit"></i> Edit
+        </a>
+        <a href=""
+        class="btn btn-sm btn-outline-primary"><i class="far fa-trash-alt"></i> Remove
+        </a>
+
+        <!--users cant report their own posts..-->
+        <a href=""
+        class="btn btn-sm btn-outline-primary"><i class="far fa-flag"></i> Report
+        </a>
+        <button type="button" id="show_post"
+                class="btn btn-sm btn-secondary"><i
+          class="fas fa-eye"></i> Show
+        </button>
+      </div>
+      <div class="collapse" id="coll1">
+        <br>
+
+      </div>
+      <div class="collapse" id="coll2">
+        <br>
+        <form action="." method="post">
+
+          <div class="card bg-white text-center">
+            <div class="card-header" style="align-content: center">
+
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-light float-right" type="submit">Send <i class="far fa-paper-plane"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

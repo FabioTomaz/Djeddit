@@ -15,8 +15,8 @@ export class PostService {
   private baseUrl = 'http://127.0.0.1:8000/ws/';
   constructor(private http: HttpClient) { }
 
-  getPost(name: string): Observable<Post>{
-    const url = this.baseUrl + 'post?name=' + name;
+  getPost(post_id: number): Observable<Post>{
+    const url = this.baseUrl + 'post?post_id=' + post_id;
     return this.http.get<Post>(url);
   }
 
