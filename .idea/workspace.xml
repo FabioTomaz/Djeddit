@@ -2,48 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/static/content/site.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/static/fonts/fontawesome-all.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.spec.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/checks.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/compat.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/conf.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/defaults.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/middleware.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/models.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/signals.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/DESCRIPTION.rst" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/INSTALLER" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/LICENSE.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/METADATA" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/RECORD" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/WHEEL" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/metadata.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/top_level.txt" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Djeedit/settings.py" afterPath="$PROJECT_DIR$/Djeedit/settings.py" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" afterPath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/angular.json" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/angular.json" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/package-lock.json" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/package-lock.json" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/package.json" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/package.json" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-routing/app-routing.module.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-routing/app-routing.module.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.module.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/fontawesome-all.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/new-posts/new-posts.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/new-posts/new-posts.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-preview/post-preview.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-preview/post-preview.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post.service.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile-preview/profile-preview.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile-preview/profile-preview.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile-preview/profile-preview.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile-preview/profile-preview.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-preview/topic-preview.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-preview/topic-preview.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/index.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/index.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/styles.css" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/styles.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -141,24 +104,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
               <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fontawesome-all.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/static/fonts/fontawesome-all.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -701,7 +652,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527324477388</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Mais Algumas alteraçoes">
+      <created>1527336085768</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1527336085768</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1123,21 +1081,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/fonts/fontawesome-all.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
