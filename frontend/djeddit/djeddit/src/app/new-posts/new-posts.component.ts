@@ -14,9 +14,10 @@ export class NewPostsComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.getPosts();
   }
 
   getPosts(): void{
-    this.postService.getPosts().subscribe(posts => this.posts = posts);
+    this.postService.getPosts().subscribe(posts => {this.posts = posts});
   }
 }

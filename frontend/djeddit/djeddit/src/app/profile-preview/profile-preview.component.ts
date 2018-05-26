@@ -7,7 +7,7 @@ import {Profile} from "../profile";
   styleUrls: ['./profile-preview.component.css']
 })
 export class ProfilePreviewComponent implements OnInit {
-  @Input profile: Profile;
+  @Input() profile: Profile;
 
   constructor() { }
 

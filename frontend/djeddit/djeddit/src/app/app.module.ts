@@ -9,6 +9,9 @@ import { PostPreviewComponent } from './post-preview/post-preview.component';
 import { TopicPreviewComponent } from './topic-preview/topic-preview.component';
 import { ProfilePreviewComponent } from './profile-preview/profile-preview.component';
 import { ReportPreviewComponent } from './report-preview/report-preview.component';
+import { AppNavbarComponent } from './app-navbar/app-navbar.component';
+import {RouterModule} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { ReportPreviewComponent } from './report-preview/report-preview.componen
     PostPreviewComponent,
     TopicPreviewComponent,
     ProfilePreviewComponent,
-    ReportPreviewComponent
+    ReportPreviewComponent,
+    AppNavbarComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    RouterModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

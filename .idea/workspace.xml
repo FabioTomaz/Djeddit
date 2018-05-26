@@ -2,16 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.spec.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/static/content/site.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/static/fonts/fontawesome-all.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.spec.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/checks.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/compat.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/conf.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/defaults.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/middleware.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/models.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/corsheaders/signals.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/DESCRIPTION.rst" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/INSTALLER" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/LICENSE.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/METADATA" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/RECORD" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/WHEEL" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/metadata.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_cors_headers-2.2.0.dist-info/top_level.txt" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/serializers.py" afterPath="$PROJECT_DIR$/app/serializers.py" />
+      <change beforePath="$PROJECT_DIR$/Djeedit/settings.py" afterPath="$PROJECT_DIR$/Djeedit/settings.py" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" afterPath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/angular.json" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/angular.json" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/package-lock.json" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/package.json" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/package.json" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-routing/app-routing.module.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-routing/app-routing.module.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.component.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.component.ts" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.module.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/new-posts/new-posts.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/new-posts/new-posts.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/fontawesome-all.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/new-posts/new-posts.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/new-posts/new-posts.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-preview/post-preview.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-preview/post-preview.component.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post.service.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile-preview/profile-preview.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile-preview/profile-preview.component.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile-preview/profile-preview.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile-preview/profile-preview.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-preview/topic-preview.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-preview/topic-preview.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/index.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/index.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/styles.css" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/styles.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,8 +70,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="243">
+              <caret line="940" column="17" lean-forward="false" selection-start-line="940" selection-start-column="17" selection-end-line="940" selection-end-column="17" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -69,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -99,32 +131,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inspectors.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/inspectors.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4176">
-              <caret line="246" column="10" lean-forward="false" selection-start-line="246" selection-start-column="10" selection-end-line="246" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="26" column="19" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="post_preview.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/post_preview.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="6" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fontawesome-all.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/static/fonts/fontawesome-all.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,8 +177,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>user_posts_hidde</find>
-      <find>show</find>
       <find>hey</find>
       <find>post_show</find>
       <find>nbar</find>
@@ -173,6 +205,8 @@
       <find>topicP</find>
       <find>response</find>
       <find>primary</find>
+      <find>rest_frame</find>
+      <find>cors</find>
     </findStrings>
     <replaceStrings>
       <replace>sidebar</replace>
@@ -233,11 +267,11 @@
         <option value="$PROJECT_DIR$/app/admin.py" />
         <option value="$PROJECT_DIR$/templates/report_post.html" />
         <option value="$PROJECT_DIR$/app/forms.py" />
-        <option value="$PROJECT_DIR$/Djeedit/settings.py" />
         <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/Djeedit/urls.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/app/serializers.py" />
+        <option value="$PROJECT_DIR$/Djeedit/settings.py" />
       </list>
     </option>
   </component>
@@ -350,6 +384,19 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="app" type="cbb8eebc:String" user="app" />
+              <item name="static" type="cbb8eebc:String" user="static" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="app" type="cbb8eebc:String" user="app" />
+              <item name="static" type="cbb8eebc:String" user="static" />
+              <item name="fonts" type="cbb8eebc:String" user="fonts" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
               <item name="Djeedit" type="cbb8eebc:String" user="Djeedit" />
             </path>
             <path>
@@ -361,6 +408,38 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
               <item name="templates" type="cbb8eebc:String" user="templates" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="venv" type="cbb8eebc:String" user="venv" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="venv" type="cbb8eebc:String" user="venv" />
+              <item name="bin" type="cbb8eebc:String" user="bin" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="venv" type="cbb8eebc:String" user="venv" />
+              <item name="lib" type="cbb8eebc:String" user="lib" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="venv" type="cbb8eebc:String" user="venv" />
+              <item name="lib" type="cbb8eebc:String" user="lib" />
+              <item name="python3.6" type="cbb8eebc:String" user="python3.6" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="venv" type="cbb8eebc:String" user="venv" />
+              <item name="lib" type="cbb8eebc:String" user="lib" />
+              <item name="python3.6" type="cbb8eebc:String" user="python3.6" />
+              <item name="site-packages" type="cbb8eebc:String" user="site-packages" />
             </path>
           </expand>
           <select />
@@ -615,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527301327720</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Mais Algumas alteraçoes">
+      <created>1527324477388</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1527324477388</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -636,7 +722,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20532915" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39389312" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39389312" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -685,7 +771,8 @@
     <MESSAGE value="Algumas alteraçoes sobre os endpoints" />
     <MESSAGE value="Serviçoes adicionados ao projeto angular.&#10;Modelos criados no projeto angular." />
     <MESSAGE value="Algumas alteraçoes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Algumas alteraçoes" />
+    <MESSAGE value="Mais Algumas alteraçoes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mais Algumas alteraçoes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -694,13 +781,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_social_share/templates/django_social_share/templatetags/post_to_gplus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_social_share/templates/django_social_share/templatetags/post_to_facebook.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -925,14 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__version__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -953,14 +1025,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="26" column="19" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/post_preview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -997,22 +1061,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1971">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1045,9 +1099,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/post_preview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="940" column="17" lean-forward="false" selection-start-line="940" selection-start-column="17" selection-end-line="940" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/fonts/fontawesome-all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -8,7 +8,7 @@ import {Report} from "../report";
 })
 export class ReportPreviewComponent implements OnInit {
 
-  @Input report: Report;
+  @Input() report: Report;
 
   constructor() { }
 

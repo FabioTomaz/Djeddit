@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark" style="-webkit-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); -moz-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75);">
+  <a class="navbar-brand" routerLink="">Djeddit <i class="far fa-comment-dots"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink=""><i class="fas fa-th-list"></i> New</a>
+      </li>
+      <li class="nav-item {% if nbar == 'Popular' %}active{% endif %}">
+        <a class="nav-link" routerLink=""><i class="fas fa-fire"></i> Popular</a>
+      </li>
+      <li class="nav-item {% if nbar == 'Top Rated' %}active{% endif %}">
+        <a class="nav-link" routerLink=""><i class="far fa-thumbs-up"></i> Top Rated</a>
+      </li>
+      <li class="nav-item {% if nbar == 'Controversial' %}active{% endif %}">
+        <a class="nav-link"routerLink=""><i class="fas fa-comments"></i> Controversial</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="form-inline my-2 my-lg-0 mr-lg-2">
+        <div class="input-group">
+          <div class="input-group-btn search-panel">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <span id="search_concept">Filter by</span> <span class="caret"></span>
+            </button>
+            <ul id="filterOptions" class="dropdown-menu" role="menu" ngbDropdownMenu>
+              <div class="dropdown-header">Filter by</div>
+              <li><a id="searchTopicsOption" class="btn dropdown-item active"><i
+                class="far fa-comments"></i> Topics</a></li>
+              <li><a id="searchPostsOption" class="btn dropdown-item"><i class="fas fa-align-left"></i>
+                Posts</a></li>
+              <li><a id="searchUsersOption" class="btn dropdown-item"><i class="fas fa-users"></i>
+                Users</a></li>
+            </ul>
+          </div>
+          <input id="searchQuery" class="form-control input-group-append" type="text"
+                 placeholder="Search for..." value="{{ request.GET.q }}" required>
+          <span class="input-group-append">
+                                      <button id="navbarSearchButton" class="btn btn-primary" type="button">
+                                          <i class="fa fa-search"></i>
+                                      </button>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

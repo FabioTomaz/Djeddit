@@ -7,7 +7,7 @@ import {Topic} from "../topic";
   styleUrls: ['./topic-preview.component.css']
 })
 export class TopicPreviewComponent implements OnInit {
-  @Input topic: Topic;
+  @Input() topic: Topic;
 
   constructor() { }
 

@@ -1,13 +1,13 @@
-<div class="card border-secondary" id="post_n_{{ post.title }}">
+<div class="card border-secondary" id="post_n_{{post.title}}">
   <div class="card-body">
-    <div class="card-title"><a href="#">{{ post.title }}</a>
+    <div class="card-title"><a routerLink="">{{post.title}}</a>
     </div>
-    <h6 class="card-subtitle text-muted">Submitted by <a href="#">{{ post.userOP.username }}<a/>
-      to topic <a href="#"> {{ post.topic.name }} <a/> on {{ post.date }}</h6>
+    <h6 class="card-subtitle text-muted">Submitted by <a routerLink="">{{post.userOP.username}}</a>
+      to topic <a routerLink=""> {{post.topic.name}} </a> on {{post.date}}</h6>
   </div>
 
   <div class="card-footer">
-    <button class="btn btn-sm btn-dark"><i class="far fa-comment"></i> {{ post.nComments }} Commments
+    <button class="btn btn-sm btn-dark"><i class="far fa-comment"></i> {{post.nComments}} Commments
     </button>
   </div>
 </div>
