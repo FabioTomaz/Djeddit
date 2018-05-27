@@ -8,17 +8,17 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
 
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink=""><i class="fas fa-th-list"></i> New</a>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="new"><i class="fas fa-th-list"></i> New</a>
       </li>
-      <li class="nav-item {% if nbar == 'Popular' %}active{% endif %}">
-        <a class="nav-link" routerLink=""><i class="fas fa-fire"></i> Popular</a>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="popular"><i class="fas fa-fire"></i> Popular</a>
       </li>
-      <li class="nav-item {% if nbar == 'Top Rated' %}active{% endif %}">
-        <a class="nav-link" routerLink=""><i class="far fa-thumbs-up"></i> Top Rated</a>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="top_rated"><i class="far fa-thumbs-up"></i> Top Rated</a>
       </li>
-      <li class="nav-item {% if nbar == 'Controversial' %}active{% endif %}">
-        <a class="nav-link"routerLink=""><i class="fas fa-comments"></i> Controversial</a>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="controversial"><i class="fas fa-comments"></i> Controversial</a>
       </li>
     </ul>
     <ul class="nav navbar-nav">
@@ -39,11 +39,11 @@
             </ul>
           </div>
           <input id="searchQuery" class="form-control input-group-append" type="text"
-                 placeholder="Search for..." value="{{ request.GET.q }}" required>
+                 placeholder="Search for..." required>
           <span class="input-group-append">
-                                      <button id="navbarSearchButton" class="btn btn-primary" type="button">
-                                          <i class="fa fa-search"></i>
-                                      </button>
+            <button id="navbarSearchButton" class="btn btn-primary" type="button">
+              <i class="fa fa-search"></i>
+            </button>
           </span>
         </div>
       </li>

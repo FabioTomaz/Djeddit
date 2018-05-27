@@ -12,6 +12,7 @@ export class ProfilePreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.profile.user_picture = "http://127.0.0.1:8000" + this.profile.user_picture;
   }
 
 }

@@ -11,8 +11,13 @@ export class ProfileService {
   private baseUrl = 'http://127.0.0.1:8000/ws/';
   constructor(private http: HttpClient) { }
 
-  getProfile(name: string): Observable<Profile>{
-    const url = this.baseUrl + 'profile?name=' + name;
+  searchProfilesByUsername(username: string): Observable<Profile[]>{
+    const url = this.baseUrl + 'search/user?q=' + username;
+    return this.http.get<Profile[]>(url);
+  }
+
+  getProfileByUsername(name: string): Observable<Profile>{
+    const url = this.baseUrl + 'profile?username=' + name;
     return this.http.get<Profile>(url);
   }
 

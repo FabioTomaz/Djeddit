@@ -957,10 +957,34 @@ def rest_all_profiles(request):
 
 @api_view(['GET'])
 def rest_all_posts(request):
-    posts = Post.objects.all()
+    if 'order' in request.GET:
+        order = request.GET['order']
+        if 'controversial' == order:
+            posts = Post.objects.annotate(numUp=Count("userUpVotesPost")) \
+                .annotate(numDown=Count("userDownVotesPost")) \
+                .annotate(score=F("numUp") - F("numDown")) \
+                .annotate(numVotes=F("numUp") + F("numDown")) \
+                .filter(numVotes__gte=10) \
+                .filter(score__lte=3) \
+                .filter(score__gte=-3)
+        elif 'most_viewed' == order:
+            posts = Post.objects.order_by("-clicks")
+        elif 'top_rated' == order:
+            posts = Post.objects.annotate(numUp=Count("userUpVotesPost")) \
+                .annotate(numDown=Count("userDownVotesPost")) \
+                .annotate(score=F("numUp") - F("numDown")) \
+                .order_by("-score")
+        elif 'new' == order:
+            posts = Post.objects.order_by("-date")
+        else:
+            posts = Post.objects.all()
+    else:
+        posts = Post.objects.all()
+
     if 'num' in request.GET:
         num = int(request.GET['num'])
         posts = posts[:num]
+
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
@@ -1037,6 +1061,33 @@ def rest_user_friends(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def rest_search_topics(request):
+    topics = []
+    if 'q' in request.GET:
+        topics = Topic.objects.filter(name__icontains=request.GET['q'])
+    serializer = TopicSerializer(topics, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_search_posts(request):
+    posts = []
+    if 'q' in request.GET:
+        posts = Post.objects.filter(title__icontains=request.GET['q'])
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_search_users(request):
+    users = []
+    if 'q' in request.GET:
+        users = Profile.objects.filter(user__username__icontains=request.GET['q'])
+    serializer = ProfileSerializer(users, many=True)
+    return Response(serializer.data)
+
+
 # GET SPECIFIC VIEWS
 
 @api_view(['GET'])
@@ -1049,6 +1100,7 @@ def rest_topic(request):
     serializer = TopicSerializer(topic)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 def rest_post(request):
     post_id = request.GET['post_id']
@@ -1058,6 +1110,7 @@ def rest_post(request):
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = PostSerializer(post)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def rest_profile(request):

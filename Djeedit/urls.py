@@ -106,6 +106,9 @@ urlpatterns = [
                   path('ws/user_friends', views.rest_user_friends),
                   path('ws/topic_posts', views.rest_topic_posts),
                   path('ws/post_comments', views.rest_post_comments),
+                  path('ws/search/topic', views.rest_search_topics),
+                  path('ws/search/post', views.rest_search_posts),
+                  path('ws/search/user', views.rest_search_users),
 
                   # GET ONE
                   path('ws/topic', views.rest_topic),

@@ -14,6 +14,10 @@ import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import { TopicPageComponent } from './topic-page/topic-page.component';
 import { PostPageComponent } from './post-page/post-page.component';
+import { SearchComponent } from './search/search.component';
+import { SearchPostComponent } from './search-post/search-post.component';
+import { SearchTopicComponent } from './search-topic/search-topic.component';
+import { SearchUserComponent } from './search-user/search-user.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { PostPageComponent } from './post-page/post-page.component';
     AppNavbarComponent,
     TopicPageComponent,
     PostPageComponent,
+    SearchComponent,
+    SearchPostComponent,
+    SearchTopicComponent,
+    SearchUserComponent,
   ],
   imports: [
     BrowserModule,
