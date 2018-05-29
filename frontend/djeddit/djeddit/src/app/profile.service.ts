@@ -17,7 +17,7 @@ export class ProfileService {
   }
 
   getProfileByUsername(name: string): Observable<Profile>{
-    const url = this.baseUrl + 'profile?username=' + name;
+    const url = this.baseUrl + 'profile/' + name;
     return this.http.get<Profile>(url);
   }
 

@@ -16,7 +16,7 @@ export class TopicService {
   }
 
   getTopic(name: string): Observable<Topic> {
-    const url = this.baseUrl + 'topic?name=' + name;
+    const url = this.baseUrl + 'topic/' + name;
     return this.http.get<Topic>(url);
   }
 

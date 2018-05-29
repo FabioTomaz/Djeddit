@@ -1,6 +1,9 @@
+import {User} from "./user";
+import {Post} from "./post";
+
 export class Comment {
-  user: number;
-  post: number;
+  user: User;
+  post: Post;
   date: string;
   userUpVotesComments: number[];
   userDownVotesComments: number[];

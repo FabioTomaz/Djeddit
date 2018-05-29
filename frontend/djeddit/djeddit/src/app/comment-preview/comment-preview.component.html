@@ -1,0 +1,11 @@
+<div class="card" id="comment_n_{{ comment.post.id }}">
+  <div class="card-header">
+    <div class="card-title">Commented to <a routerLink="topic/{{comment.post.topic.name}}/post/{{comment.post.id}}">{{ comment.post.title }}</a> </div>
+  </div>
+  <div class="card-body">
+    {{ comment.text }}
+  </div>
+  <div class="card-footer text-muted">
+    by {{ comment.user.username }} at {{ comment.date }}
+  </div>
+</div>

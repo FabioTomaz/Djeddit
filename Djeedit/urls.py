@@ -101,21 +101,37 @@ urlpatterns = [
                   path('ws/friends', views.rest_all_friends),
 
                   # GET SOME
-                  path('ws/user_posts', views.rest_user_posts),
-                  path('ws/user_comments', views.rest_user_comments),
-                  path('ws/user_friends', views.rest_user_friends),
+
+                  # user topics
+                  path('ws/user/<str:username>/topics/', views.rest_user_topic_subscriptions),
+                  path('ws/user/<str:username>/topics/created', views.rest_user_topic_created),
+
+                  # user posts
+                  path('ws/user/<str:username>/posts/', views.rest_user_posts),
+                  path('ws/user/<str:username>/posts/saved', views.rest_user_posts_saved),
+                  path('ws/user/<str:username>/posts/hidden', views.rest_user_posts_hidden),
+                  path('ws/user/<str:username>/posts/upvoted', views.rest_user_posts_upvoted),
+                  path('ws/user/<str:username>/posts/downvoted', views.rest_user_posts_downvoted),
+
+                  # user comments
+                  path('ws/user/<str:username>/comments/', views.rest_user_comments),
+                  path('ws/user/<str:username>/comments/upvoted', views.rest_user_comments_upvoted),
+                  path('ws/user/<str:username>/comments/downvoted', views.rest_user_comments_downvoted),                  path('ws/user_friends', views.rest_user_friends),
+
                   path('ws/topic_posts', views.rest_topic_posts),
                   path('ws/post_comments', views.rest_post_comments),
+
+                  # search
                   path('ws/search/topic', views.rest_search_topics),
                   path('ws/search/post', views.rest_search_posts),
                   path('ws/search/user', views.rest_search_users),
 
                   # GET ONE
-                  path('ws/topic', views.rest_topic),
-                  path('ws/post', views.rest_post),
-                  path('ws/profile', views.rest_profile),
-                  path('ws/comment', views.rest_comment),
-                  path('ws/report', views.rest_report),
+                  path('ws/topic/<str:topic_name>/', views.rest_topic),
+                  path('ws/post/<str:post_id>/', views.rest_post),
+                  path('ws/profile/<str:username>/', views.rest_profile),
+                  path('ws/comment/<str:comment_id>/', views.rest_comment),
+                  path('ws/report/<str:report_id>/', views.rest_report),
 
                   # CREATE
 

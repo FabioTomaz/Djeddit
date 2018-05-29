@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db.models import Count
 from rest_framework import serializers
 
 from app.models import Topic, Profile, Post, Comment, Report, Friend
@@ -7,7 +8,7 @@ from app.models import Topic, Profile, Post, Comment, Report, Friend
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'id', "first_name", "last_name", "email")
+        fields = ('username', 'id', "first_name", "last_name", "email", "date_joined")
 
 
 class TopicSerializer(serializers.ModelSerializer):
@@ -20,6 +21,37 @@ class TopicSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
+
+    karma_posts = serializers.SerializerMethodField('get_user_karma_posts')
+    karma_comments = serializers.SerializerMethodField('get_user_karma_comments')
+    karma_total = serializers.SerializerMethodField('get_user_karma_total')
+
+    def get_user_karma_posts(self, profile):
+        up_posts_count = Post.objects.filter(userOP=User.objects.get(username=profile.user.username)) \
+            .annotate(countUp=Count("userUpVotesPost"))
+        down_posts_count = Post.objects.filter(userOP=User.objects.get(username=profile.user.username)) \
+            .annotate(countDown=Count("userDownVotesPost"))
+        score_posts = 0
+        for i in up_posts_count:
+            score_posts += i.countUp
+        for i in down_posts_count:
+            score_posts -= i.countDown
+        return score_posts
+
+    def get_user_karma_comments(self, profile):
+        up_comments_count = Comment.objects.filter(user=User.objects.get(username=profile.user.username)) \
+            .annotate(countUp=Count("userUpVotesComments"))
+        down_comments_count = Comment.objects.filter(user=User.objects.get(username=profile.user.username)) \
+            .annotate(countDown=Count("userDownVotesComments"))
+        score_comments = 0
+        for i in up_comments_count:
+            score_comments += i.countUp
+        for i in down_comments_count:
+            score_comments -= i.countDown
+        return score_comments
+
+    def get_user_karma_total(self, profile):
+        return self.get_user_karma_comments(profile) + self.get_user_karma_posts(profile)
 
     class Meta:
         model = Profile
@@ -35,7 +67,10 @@ class ProfileSerializer(serializers.ModelSerializer):
                   'profile_friends_permission',
                   'profile_topics_permission',
                   'profile_posts_permission',
-                  'profile_comments_permission'
+                  'profile_comments_permission',
+                  'karma_posts',
+                  'karma_comments',
+                  'karma_total'
                   )
 
 
@@ -62,10 +97,12 @@ class PostSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
+    post = PostSerializer(many=False, read_only=True)
 
     class Meta:
         model = Comment
-        fields = ('user',
+        fields = ('id',
+                  'user',
                   'post',
                   'date',
                   'userUpVotesComments',

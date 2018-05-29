@@ -11,8 +11,8 @@ export class ReportService {
   private baseUrl = 'http://127.0.0.1:8000/ws/';
   constructor(private http: HttpClient) { }
 
-  getReport(name: string): Observable<Report>{
-    const url = this.baseUrl + 'report?name=' + name;
+  getReport(report_id: string): Observable<Report>{
+    const url = this.baseUrl + 'report/' + report_id;
     return this.http.get<Report>(url);
   }
 

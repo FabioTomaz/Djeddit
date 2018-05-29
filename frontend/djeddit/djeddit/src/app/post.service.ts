@@ -21,12 +21,37 @@ export class PostService {
   }
 
   getPost(post_id: number): Observable<Post>{
-    const url = this.baseUrl + 'post?post_id=' + post_id;
+    const url = this.baseUrl + 'post/' + post_id;
     return this.http.get<Post>(url);
   }
 
   getPosts(): Observable<Post[]>{
     const url = this.baseUrl + 'posts';
+    return this.http.get<Post[]>(url);
+  }
+
+  getUserPosts(username: string): Observable<Post[]>{
+    const url = this.baseUrl + "user/" + username + "/posts";
+    return this.http.get<Post[]>(url);
+  }
+
+  getUserPostsSaved(username: string): Observable<Post[]>{
+    const url = this.baseUrl + "user/" + username + "/posts/saved";
+    return this.http.get<Post[]>(url);
+  }
+
+  getUserPostsHidden(username: string): Observable<Post[]>{
+    const url = this.baseUrl + "user/" + username + "/posts/hidden";
+    return this.http.get<Post[]>(url);
+  }
+
+  getUserPostsUpvoted(username: string): Observable<Post[]>{
+    const url = this.baseUrl + "user/" + username + "/posts/upvoted";
+    return this.http.get<Post[]>(url);
+  }
+
+  getUserPostsDownvoted(username: string): Observable<Post[]>{
+    const url = this.baseUrl + "user/" + username + "/posts/downvoted";
     return this.http.get<Post[]>(url);
   }
 

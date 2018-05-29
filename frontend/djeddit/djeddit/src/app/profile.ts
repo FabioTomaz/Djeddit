@@ -7,6 +7,9 @@ export class Profile {
   registration_date: string;
   user_picture: string;
   gender: string;
+  karma_total: number;
+  karma_posts: number;
+  karma_comments: number;
   subscriptions: string[];
   profile_info_permission: string;
   profile_friends_permission: string;

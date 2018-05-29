@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="card-title"><a routerLink="/topic/{{post.topic.name}}/post/{{post.id}}">{{post.title}}</a>
     </div>
-    <h6 class="card-subtitle text-muted">Submitted by <a routerLink="">{{post.userOP.username}}</a>
+    <h6 class="card-subtitle text-muted">Submitted by <a routerLink="/user/{{ post.userOP.username }}/page">{{post.userOP.username}}</a>
       to topic <a routerLink="/topic/{{post.topic.name}}"> {{post.topic.name}} </a> on {{post.date | date: 'dd/MM/yyyy HH:mm'}}</h6>
   </div>
 

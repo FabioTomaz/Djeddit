@@ -1,0 +1,76 @@
+<!-- Navigation-->
+<nav class="col-sm-3 col-md-2 hidden-xs-down bg-dark sidebar">
+  <li class="nav-item bg-transparent">
+    <h5 class="nav-link text-muted" role="button">
+      {{ username }}
+    </h5>
+  </li>
+  <hr>
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" routerLink="/user/{{username}}/page"><i class="fas fa-user-circle"></i> Profile</a>
+    </li>
+  </ul>
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" routerLink="/user/{{username}}/friends"><i class="fas fa-users"></i> Friends</a>
+    </li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right">
+      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTopics">
+        <i class="far fa-comments"></i> Topics
+      </a>
+      <ul class="sidenav-second-level collapse" id="collapseTopics">
+        <div class="nav-item">
+          <a routerLink="/" class="nav-link">Create Topic</a>
+        </div>
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/topics/subscribed" class="nav-link">My Topics</a>
+        </div>
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/topics/created" class="nav-link">Subscribed</a>
+        </div>
+      </ul>
+    </li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right">
+      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePosts">
+        <i class="fas fa-align-left"></i> Posts
+      </a>
+      <ul class="sidenav-second-level collapse" id="collapsePosts">
+        <div class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/{{username}}/posts/created">My Posts</a>
+        </div>
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/posts/saved" class="nav-link">Saved</a>
+        </div>
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/posts/hidden" class="nav-link">Hidden</a>
+        </div>
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/posts/upvoted" class="nav-link">Upvoted</a>
+        </div>
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/posts/downvoted" class="nav-link">Downvoted</a>
+        </div>
+      </ul>
+    </li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right">
+      <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComments">
+        <i class="far fa-comment-alt"></i> Comments
+      </a>
+      <ul class="sidenav-second-level collapse" id="collapseComments">
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/comments/created" class="nav-link">My Comments</a>
+        </div>
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/comments/upvoted" class="nav-link">Upvoted</a>
+        </div>
+        <div class="nav-item">
+          <a routerLinkActive="active" routerLink="/user/{{username}}/comments/downvoted" class="nav-link">Downvoted</a>
+        </div>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+  <router-outlet></router-outlet>
+</div>

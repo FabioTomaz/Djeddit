@@ -1022,51 +1022,18 @@ def rest_all_friends(request):
 # GET SOME VIEWS
 
 @api_view(['GET'])
-def rest_user_posts(request):
-    username = request.GET['user_username']
-    posts = Post.objects.all().filter(userOP__username=username)
-    serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def rest_topic_posts(request):
-    topic = request.GET['topic_name']
-    posts = Post.objects.all().filter(topic_name=topic)
-    serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def rest_user_comments(request):
-    username = request.GET['user_username']
-    comments = Comment.objects.all().filter(user__username=username)
-    serializer = CommentSerializer(comments, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def rest_post_comments(request):
-    post_id = request.GET['post_id']
-    posts = Post.objects.all().filter(post_id=post_id)
-    serializer = PostSerializer(posts, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def rest_user_friends(request):
-    user_id = request.GET['user_id']
-    posts = Friend.objects.all().filter(current_user=user_id)
-    serializer = FriendSerializer(posts, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
 def rest_search_topics(request):
     topics = []
     if 'q' in request.GET:
         topics = Topic.objects.filter(name__icontains=request.GET['q'])
     serializer = TopicSerializer(topics, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_topic_posts(request, topic):
+    posts = Post.objects.all().filter(topic_name=topic)
+    serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
 
@@ -1080,6 +1047,13 @@ def rest_search_posts(request):
 
 
 @api_view(['GET'])
+def rest_post_comments(request, post_id):
+    posts = Post.objects.all().filter(post_id=post_id)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
 def rest_search_users(request):
     users = []
     if 'q' in request.GET:
@@ -1088,13 +1062,90 @@ def rest_search_users(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def rest_user_topic_subscriptions(request, username):
+    topics = User.objects.get(username=username).profile.subscriptions.all
+    serializer = TopicSerializer(topics, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_topic_created(request, username):
+    topics = Topic.objects.filter(userCreator=User.objects.get(username=username))
+    serializer = TopicSerializer(topics, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_posts(request, username):
+    posts = Post.objects.all().filter(userOP__username=username)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_posts_saved(request, username):
+    posts = Post.objects.filter(userSaved=Profile.objects.get(user__username=username))
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_posts_hidden(request, username):
+    posts = Post.objects.filter(userHidden=Profile.objects.get(user__username=username))
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_posts_upvoted(request, username):
+    posts = Post.objects.filter(userUpVotesPost=Profile.objects.get(user__username=username))
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_posts_downvoted(request, username):
+    posts = Post.objects.filter(userDownVotesPost=Profile.objects.get(user__username=username))
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_comments(request, username):
+    comments = Comment.objects.all().filter(user__username=username)
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_comments_upvoted(request, username):
+    comments = Comment.objects.filter(userUpVotesComments=Profile.objects.get(user__username=username))
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_comments_downvoted(request, username):
+    comments = Comment.objects.filter(userDownVotesComments=Profile.objects.get(user__username=username))
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def rest_user_friends(request):
+    user_id = request.GET['user_id']
+    posts = Friend.objects.all().filter(current_user=user_id)
+    serializer = FriendSerializer(posts, many=True)
+    return Response(serializer.data)
+
+
 # GET SPECIFIC VIEWS
 
 @api_view(['GET'])
-def rest_topic(request):
-    name = request.GET['name']
+def rest_topic(request, topic_name):
     try:
-        topic = Topic.objects.get(name=name)
+        topic = Topic.objects.get(name=topic_name)
     except Topic.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = TopicSerializer(topic)
@@ -1102,8 +1153,7 @@ def rest_topic(request):
 
 
 @api_view(['GET'])
-def rest_post(request):
-    post_id = request.GET['post_id']
+def rest_post(request, post_id):
     try:
         post = Post.objects.get(id=post_id)
     except Post.DoesNotExist:
@@ -1113,10 +1163,9 @@ def rest_post(request):
 
 
 @api_view(['GET'])
-def rest_profile(request):
-    name = request.GET['username']
+def rest_profile(request, username):
     try:
-        profile = Profile.objects.get(user__username=name)
+        profile = Profile.objects.get(user__username=username)
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = ProfileSerializer(profile)
@@ -1124,8 +1173,7 @@ def rest_profile(request):
 
 
 @api_view(['GET'])
-def rest_report(request):
-    report_id = request.GET['report_id']
+def rest_report(request, report_id):
     try:
         report = Comment.objects.get(id=report_id)
     except Report.DoesNotExist:
@@ -1135,8 +1183,7 @@ def rest_report(request):
 
 
 @api_view(['GET'])
-def rest_comment(request):
-    comment_id = request.GET['post_id']
+def rest_comment(request, comment_id):
     try:
         comment = Comment.objects.get(id=comment_id)
     except Comment.DoesNotExist:
