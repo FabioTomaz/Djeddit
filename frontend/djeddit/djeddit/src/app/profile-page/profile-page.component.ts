@@ -14,8 +14,6 @@ export class ProfilePageComponent implements OnInit{
 
   profile: Profile;
 
-  username: string;
-
   constructor(private route: ActivatedRoute, private router: Router, private profileService: ProfileService) { }
 
   ngOnInit() {
