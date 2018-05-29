@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TopicService} from "../topic.service";
+import {Topic} from "../topic";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-profile-topics-created',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileTopicsCreatedComponent implements OnInit {
 
-  constructor() { }
+  topics: Topic[];
+
+  constructor(private route: ActivatedRoute, private topicService: TopicService) { }
 
   ngOnInit() {
+    this.getTopics(this.route.snapshot.paramMap.get("username"));
+  }
+
+  getTopics(username: string): void {
+    this.topicService.getUserTopicsCreated(username).subscribe(topics => {this.topics = topics;});
   }
 
 }

@@ -1,44 +1,49 @@
-<div class="card bg-white">
-  <div class="card-header bg-primary text-white">
-    <strong>Username: {{ profile.user.username }} </strong>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-3 col-lg-3 " align="center">
-        <img src="{{ profile.user_picture }}" class="img-circle img-fluid">
-        <hr>
-        <span data-placement="bottom" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Points Details" data-content="getKarmaDescription()" class="btn btn-primary" >{{ profile.karma_total }} Points <i class="fas fa-chevron-circle-up"></i></span>
-      </div>
-      <div class=" col-md-9 col-lg-9 ">
-        <table class="table table-user-information">
-          <tbody>
-          <tr>
-            <td>Name:</td>
-            <td>{{ profile.user.first_name }} {{ profile.user.last_name }}</td>
-          </tr>
-          <tr>
-            <td>User Bio:</td>
-            <td>{{ profile.user_details }}</td>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td>{{ profile.user.email }}</td>
-          </tr>
-          <tr>
-            <td>Date of Birth</td>
-            <td>{{ profile.birth_date }}</td>
-          </tr>
-          <tr>
-            <td>Date of Registration</td>
-            <td>{{ profile.user.date_joined }}</td>
-          </tr>
-          <tr>
-            <td>Gender</td>
-            <td>{{ profile.gender }}</td>
-          </tr>
-          </tbody>
-        </table>
+<app-profile></app-profile>
+<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+
+  <div class="card bg-white">
+    <div class="card-header bg-primary text-white">
+      <strong>Username: {{ profile.user.username }} </strong>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 " align="center">
+          <img src="{{ profile.user_picture }}" class="img-circle img-fluid">
+          <hr>
+          <span data-placement="bottom" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Points Details" data-content="getKarmaDescription()" class="btn btn-primary" >{{ profile.karma_total }} Points <i class="fas fa-chevron-circle-up"></i></span>
+        </div>
+        <div class=" col-md-9 col-lg-9 ">
+          <table class="table table-user-information">
+            <tbody>
+            <tr>
+              <td>Name:</td>
+              <td>{{ profile.user.first_name }} {{ profile.user.last_name }}</td>
+            </tr>
+            <tr>
+              <td>User Bio:</td>
+              <td>{{ profile.user_details }}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{{ profile.user.email }}</td>
+            </tr>
+            <tr>
+              <td>Date of Birth</td>
+              <td>{{ profile.birth_date }}</td>
+            </tr>
+            <tr>
+              <td>Date of Registration</td>
+              <td>{{ profile.user.date_joined }}</td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td>{{ profile.gender }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
+
 </div>

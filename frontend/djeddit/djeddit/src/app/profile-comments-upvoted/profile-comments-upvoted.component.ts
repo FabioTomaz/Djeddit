@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CommentService} from "../comment.service";
+import {ActivatedRoute} from "@angular/router";
+import {Comment} from "../comment";
 
 @Component({
   selector: 'app-profile-comments-upvoted',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileCommentsUpvotedComponent implements OnInit {
 
-  constructor() { }
+  list: Comment[];
+
+  constructor(private service: CommentService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getComments(this.route.snapshot.paramMap.get("username"));
   }
 
+  getComments(username: string): void{
+    this.service.getUserCommentsUpvoted(username).subscribe(comments => this.list = comments);
+  }
 }

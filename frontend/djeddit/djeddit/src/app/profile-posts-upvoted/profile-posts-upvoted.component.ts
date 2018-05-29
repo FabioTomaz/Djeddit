@@ -15,7 +15,7 @@ export class ProfilePostsUpvotedComponent implements OnInit {
   constructor(private route: ActivatedRoute, private postService: PostService) { }
 
   ngOnInit() {
-    this.getPosts(this.route.parent.snapshot.paramMap.get("username"));
+    this.getPosts(this.route.snapshot.paramMap.get("username"));
   }
 
   getPosts(username: string): void {

@@ -32,6 +32,8 @@ import { ProfilePostsUpvotedComponent } from './profile-posts-upvoted/profile-po
 import { ProfilePostsDownvotedComponent } from './profile-posts-downvoted/profile-posts-downvoted.component';
 import { ProfileFriendsComponent } from './profile-friends/profile-friends.component';
 import { CommentPreviewComponent } from './comment-preview/comment-preview.component';
+import { CommentListComponent } from './comment-list/comment-list.component';
+import { TopicListComponent } from './topic-list/topic-list.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { CommentPreviewComponent } from './comment-preview/comment-preview.compo
     ProfilePostsDownvotedComponent,
     ProfileFriendsComponent,
     CommentPreviewComponent,
+    CommentListComponent,
+    TopicListComponent,
   ],
   imports: [
     BrowserModule,

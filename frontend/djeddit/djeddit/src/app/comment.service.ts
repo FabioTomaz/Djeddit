@@ -20,4 +20,19 @@ export class CommentService {
     const url = this.baseUrl + 'comments?topic_id' + topic_id;
     return this.http.get<Comment[]>(url);
   }
+
+  getUserComments(username: string): Observable<Comment[]>{
+    const url = this.baseUrl + "user/" + username + "/comments";
+    return this.http.get<Comment[]>(url);
+  }
+
+  getUserCommentsUpvoted(username: string): Observable<Comment[]>{
+    const url = this.baseUrl + "user/" + username + "/comments/upvoted";
+    return this.http.get<Comment[]>(url);
+  }
+
+  getUserCommentsDownvoted(username: string): Observable<Comment[]>{
+    const url = this.baseUrl + "user/" + username + "/comments/downvoted";
+    return this.http.get<Comment[]>(url);
+  }
 }

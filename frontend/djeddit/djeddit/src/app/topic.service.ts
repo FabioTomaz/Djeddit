@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {Topic} from './topic';
+import {Post} from "./post";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,16 @@ export class TopicService {
 
   getTopics(): Observable<Topic[]> {
     const url = this.baseUrl + 'topics';
+    return this.http.get<Topic[]>(url);
+  }
+
+  getUserTopicsCreated(username: string): Observable<Topic[]>{
+    const url = this.baseUrl + "user/" + username + "/topics/created";
+    return this.http.get<Topic[]>(url);
+  }
+
+  getUserTopicsSubscribed(username: string): Observable<Topic[]>{
+    const url = this.baseUrl + "user/" + username + "/topics";
     return this.http.get<Topic[]>(url);
   }
 }

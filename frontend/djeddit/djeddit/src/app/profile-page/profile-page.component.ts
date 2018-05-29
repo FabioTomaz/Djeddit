@@ -17,7 +17,7 @@ export class ProfilePageComponent implements OnInit{
   constructor(private route: ActivatedRoute, private router: Router, private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.getProfile(this.route.parent.snapshot.paramMap.get("username"));
+    this.getProfile(this.route.snapshot.paramMap.get("username"));
   }
 
   getProfile(username: string){
