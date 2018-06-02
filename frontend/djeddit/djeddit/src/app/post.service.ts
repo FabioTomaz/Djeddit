@@ -15,8 +15,8 @@ export class PostService {
   private baseUrl = 'http://127.0.0.1:8000/ws/';
   constructor(private http: HttpClient) { }
 
-  searchPostsByTitle(title: string): Observable<Post[]>{
-    const url = this.baseUrl + 'search/post?q=' + title;
+  searchPosts(title: string, op: string, from_topic: string, orderby: string ): Observable<Post[]> {
+    const url = this.baseUrl + 'search/post?q=' + title + '&op=' + op + '&from_topic=' + from_topic + '&orderby=' + orderby;
     return this.http.get<Post[]>(url);
   }
 

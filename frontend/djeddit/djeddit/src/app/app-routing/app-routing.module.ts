@@ -27,9 +27,9 @@ const routes: Routes = [
   {path: 'controversial', component: NewPostsComponent, data: {'order': 'controversial'}},
   {path: 'topic/:topic_name', component: TopicPageComponent},
   {path: 'topic/:topic_name/post/:post_id', component: PostPageComponent},
-  {path: 'search/topic', component: SearchTopicComponent},
-  {path: 'search/post', component: SearchPostComponent},
-  {path: 'search/user', component: SearchUserComponent},
+  {path: 'search/topic', component: SearchTopicComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
+  {path: 'search/post', component: SearchPostComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
+  {path: 'search/user', component: SearchUserComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
 
   {path: 'user/:username/page', component: ProfilePageComponent},
   {path: 'user/:username/friends', component: ProfileFriendsComponent},
@@ -52,7 +52,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
   ],
   declarations: []
 })

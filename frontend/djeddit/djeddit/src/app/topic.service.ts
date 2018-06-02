@@ -11,8 +11,8 @@ export class TopicService {
   private baseUrl = 'http://127.0.0.1:8000/ws/';
   constructor(private http: HttpClient) { }
 
-  searchTopicsByName(name: string): Observable<Topic[]>{
-    const url = this.baseUrl + 'search/topic?q=' + name;
+  searchTopics(name: string, user_creator: string, orderby: string): Observable<Topic[]>{
+    const url = this.baseUrl + 'search/topic?q=' + name + '&user_creator=' + user_creator + '&orderby=' + orderby;
     return this.http.get<Topic[]>(url);
   }
 

@@ -1,7 +1,8 @@
-import {User} from "./user";
-import {Post} from "./post";
+import {User} from './user';
+import {Post} from './post';
 
 export class Comment {
+  id: number;
   user: User;
   post: Post;
   date: string;

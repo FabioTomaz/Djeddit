@@ -25,23 +25,30 @@
       <li class="form-inline my-2 my-lg-0 mr-lg-2">
         <div class="input-group">
           <div class="input-group-btn search-panel">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              <span id="search_concept">Filter by</span> <span class="caret"></span>
-            </button>
-            <ul id="filterOptions" class="dropdown-menu" role="menu" ngbDropdownMenu>
-              <div class="dropdown-header">Filter by</div>
-              <li><a id="searchTopicsOption" class="btn dropdown-item active"><i
-                class="far fa-comments"></i> Topics</a></li>
-              <li><a id="searchPostsOption" class="btn dropdown-item"><i class="fas fa-align-left"></i>
-                Posts</a></li>
-              <li><a id="searchUsersOption" class="btn dropdown-item"><i class="fas fa-users"></i>
-                Users</a></li>
-            </ul>
+            <div ngbDropdown class="d-inline-block">
+              <button ngbDropdownToggle type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span id="search_concept">Filter by</span> <span class="caret"></span>
+              </button>
+              <ul id="filterOptions" class="dropdown-menu" role="menu" ngbDropdownMenu #filter>
+
+                <div class="dropdown-header">Filter by</div>
+
+                <li (click)="onOptionsSelected('topic')"><a id="searchTopicsOption" [ngClass]="selectedFilter === 'topic' ? 'btn dropdown-item active' : 'btn dropdown-item'"><i
+                  class="far fa-comments"></i> Topics</a></li>
+
+                <li (click)="onOptionsSelected('post')"><a id="searchPostsOption" [ngClass]="selectedFilter === 'post' ? 'btn dropdown-item active' : 'btn dropdown-item'"><i class="fas fa-align-left"></i>
+                  Posts</a></li>
+
+                <li (click)="onOptionsSelected('user')"><a id="searchUsersOption" [ngClass]="selectedFilter === 'user' ? 'btn dropdown-item active' : 'btn dropdown-item'"><i class="fas fa-users"></i>
+                  Users</a></li>
+
+              </ul>
+            </div>
           </div>
-          <input id="searchQuery" class="form-control input-group-append" type="text"
+          <input id="searchQuery" class="form-control input-group-append" type="text" #queryText
                  placeholder="Search for..." required>
           <span class="input-group-append">
-            <button id="navbarSearchButton" class="btn btn-primary" type="button">
+            <button id="navbarSearchButton" (click)="search(queryText.value)" class="btn btn-primary" type="button">
               <i class="fa fa-search"></i>
             </button>
           </span>
@@ -50,3 +57,4 @@
     </ul>
   </div>
 </nav>
+

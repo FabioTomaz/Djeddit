@@ -13,6 +13,45 @@
 </div>
 <br/>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group" id="adv-search">
+        <input id="filteredSearchQuery" type="text" class="form-control" #query value="{{ q }}" placeholder="Advanced search" />
+        <div class="input-group-btn">
+          <div class="btn-group" role="group">
+            <div class="dropdown dropdown-lg">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+
+                  <select #orderOpt id="select_post" class="form-control">
+                    <option [ngClass]="orderby === 'Highest score' ? 'selected' : '' ">Highest score</option>
+                    <option [ngClass]="orderby === 'Lowest score' ? 'selected' : '' ">Lowest score</option>
+                    <option [ngClass]="orderby === 'Most commented' ? 'selected' : '' ">Most commented</option>
+                    <option [ngClass]="orderby === 'Least commented' ? 'selected' : '' ">Least commented</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label>Original Poster</label>
+                <input value="{{op}}" id="op" class="form-control" type="text" #opQuery />
+              </div>
+              <div class="form-group">
+                <label >From Topic</label>
+                <input value="{{ from_topic }}" id="from_topic" class="form-control" type="text" #topicQuery />
+              </div>
+                </form>
+            </div>
+          </div>
+        </div>
+        <button id="filteredSearch" (click)="searchPosts(query.value, opQuery.value, topicQuery.value, orderOpt.value)" type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<br/>
 <div *ngFor="let post of posts" >
   <app-post-preview [post]="post"></app-post-preview>
   <br>

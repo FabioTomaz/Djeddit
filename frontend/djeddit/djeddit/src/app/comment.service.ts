@@ -16,8 +16,8 @@ export class CommentService {
     return this.http.get<Comment>(url);
   }
 
-  getComments(topic_id: number): Observable<Comment[]> {
-    const url = this.baseUrl + 'comments?topic_id' + topic_id;
+  getCommentsInPost(post_id: number): Observable<Comment[]> {
+    const url = this.baseUrl + 'comments?post_id=' + post_id;
     return this.http.get<Comment[]>(url);
   }
 

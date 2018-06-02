@@ -13,6 +13,43 @@
 </div>
 <br/>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group" id="adv-search">
+        <input id="filteredSearchQuery" type="text" class="form-control" #query value="{{ q }}" placeholder="Advanced search" />
+        <div class="input-group-btn">
+          <div class="btn-group" role="group">
+            <div class="dropdown dropdown-lg">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+
+                    <select #orderOpt id="select_post" class="form-control">
+                      <option [ngClass]="orderby === 'Alphabetical order' ? 'selected' : '' ">Alphabetical order</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input value="{{name}}" id="name" class="form-control" type="text" #nameQuery />
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input value="{{email}}" id="email" class="form-control" type="text" #emailQuery />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <button id="filteredSearch" (click)="searchUsers(query.value, nameQuery.value, emailQuery.value, orderOpt.value)" type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/>
 <div *ngFor="let user of users" >
   <app-profile-preview [profile]="user"></app-profile-preview>
   <br>

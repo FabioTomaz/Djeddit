@@ -13,6 +13,41 @@
 </div>
 <br/>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="input-group" id="adv-search">
+        <input id="filteredSearchQuery" type="text" class="form-control" #query value="{{ q }}" placeholder="Advanced search" />
+        <div class="input-group-btn">
+          <div class="btn-group" role="group">
+            <div class="dropdown dropdown-lg">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+
+                    <select #orderOpt id="select_post" class="form-control">
+                      <option [ngClass]="orderby === 'Alphabetical order' ? 'selected' : '' ">Alphabetical order</option>
+                      <option [ngClass]="orderby === 'Most subscribers' ? 'selected' : '' ">Most subscribers</option>
+                      <option [ngClass]="orderby === 'Least subscribers' ? 'selected' : '' ">Least subscribers</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>User Creator</label>
+                    <input value="{{user_creator}}" id="op" class="form-control" type="text" #creatorQuery />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <button id="filteredSearch" (click)="searchTopics(query.value, creatorQuery.value, orderOpt.value)" type="submit" class="btn btn-primary"><span class="fa fa-search" aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/>
 <div *ngFor="let topic of topics" >
   <app-topic-preview [topic]="topic"></app-topic-preview>
   <br>
