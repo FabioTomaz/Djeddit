@@ -8,7 +8,9 @@ export class AuthenticationService {
 
   private baseUrl = 'http://127.0.0.1:8000/ws/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+  }
 
   login(username: string, password: string) {
     return this.http.post<any>(this.baseUrl + '/ws/login', { username: username, password: password })

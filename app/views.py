@@ -1246,3 +1246,25 @@ def rest_comment(request, comment_id):
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = CommentSerializer(comment)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def rest_login(request):
+    form = AuthenticationForm(request, data=request.POST)
+    if form.is_valid():
+        # Okay, security check complete. Log the user in.
+        auth_login(request, form.get_user())
+        errors = False
+    else:
+        errors = True
+    dict = {
+        'errors': errors,
+    }
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProfileSerializer(profile)
+    return Response(serializer.data)
+
+    return HttpResponse(json.dumps(dict), content_type="application/json")

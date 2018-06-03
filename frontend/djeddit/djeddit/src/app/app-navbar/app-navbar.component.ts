@@ -16,13 +16,14 @@ import {Profile} from "../profile";
 export class AppNavbarComponent implements OnInit {
 
   selectedFilter: string;
-  loggedUser: User = null;
+  userIsLoggedIn: boolean ;
+  loginUser: User;
   createdProfile: Profile;
   returnUrl: string;
 
   // Login form
   loading : boolean = false;
-
+  showPassword : boolean = false;
 
   constructor(private profileService: ProfileService,
               private topicService: TopicService,
@@ -38,12 +39,11 @@ export class AppNavbarComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
 
-  /*search(query: string, filter: string): void {
-    if (filter === 'post') {
-      this.router.navigate(['new']);
-    }*/
+    this.loginUser = new User();
+    this.createdProfile = new Profile();
+    this.userIsLoggedIn = this.checkAuth();
+  }
 
   search(query: string): void {
     this.router.navigate(['/search/' + this.selectedFilter], {queryParams: {q: query}});
@@ -55,13 +55,9 @@ export class AppNavbarComponent implements OnInit {
     this.selectedFilter = option;
   }
 
-  onSubmit(): void{
-    this.login();
-  }
-
   login() {
     this.loading = true;
-    this.authService.login(this.loggedUser.username, this.loggedUser.password)
+    this.authService.login(this.loginUser.username, this.loginUser.password)
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
@@ -70,6 +66,11 @@ export class AppNavbarComponent implements OnInit {
           //this.alertService.error(error);
           this.loading = false;
         });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate([this.returnUrl]);
   }
 
   register() {
@@ -84,6 +85,16 @@ export class AppNavbarComponent implements OnInit {
           //this.alertService.error(error);
           this.loading = false;
         });
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  checkAuth(): boolean {
+    if (localStorage.getItem("currentUser"))
+      return true;
+    return false;
   }
 
   //reference: https://stackoverflow.com/questions/44864303/send-data-through-routing-paths-in-angular
