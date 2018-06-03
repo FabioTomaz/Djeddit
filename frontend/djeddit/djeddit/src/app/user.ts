@@ -5,4 +5,5 @@ export class User {
   last_name: string;
   email: string;
   date_joined: string;
+  password: string;
 }

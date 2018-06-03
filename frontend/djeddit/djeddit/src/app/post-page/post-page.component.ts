@@ -8,7 +8,7 @@ import {Comment} from '../comment';
 @Component({
   selector: 'app-post-page',
   templateUrl: './post-page.component.html',
-  styleUrls: ['./post-page.component.css']
+  styleUrls: ['./post-page.component.css', '../../comments.css', '../../jquery.upvote.css']
 })
 export class PostPageComponent implements OnInit {
 
@@ -21,24 +21,35 @@ export class PostPageComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getPost();
-    this.getCommentsForPost();
-    this.getCommentsForPost();
+    this.getPostAndComments();
   }
 
-  getPost(): void {
+  getPostAndComments(): void {
     const post_id: number = +this.route.snapshot.paramMap.get('post_id');
     this.postService.getPost(post_id).subscribe(post => {this.post = post; });
-    console.log(this.post.title);
+    this.commentService.getCommentsInPost(post_id).subscribe(comments => {this.comments = comments; });
   }
 
   getPostScore(post: Post): number {
     return post.userUpVotesPost.length - post.userDownVotesPost.length;
   }
 
-  getCommentsForPost(): void {
-    const post_id: number = +this.route.snapshot.paramMap.get('post_id');
-    this.commentService.getComments(post_id).subscribe(comments => {this.comments = comments; });
+  getCommentScore(comment: Comment): number {
+    return comment.userUpVotesComments.length - comment.userDownVotesComments.length;
+  }
+
+  // given a comment, returns all replies to that comment
+  // a reply has a number which represents the comment to which is replying.
+  getCommentReplies(comment: Comment): Comment[] {
+    const c: Comment[] = [];
+    let i = 0;
+
+      for (i ; i < this.comments.length; i++) {
+        if (this.comments[i].reply === comment.id) {
+          c.push(this.comments[i]);
+        }
+      }
+    return c;
   }
 
 }

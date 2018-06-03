@@ -1,4 +1,6 @@
 import json
+
+import sys
 from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
@@ -991,7 +993,11 @@ def rest_all_posts(request):
 
 @api_view(['GET'])
 def rest_all_comments(request):
-    comments = Comment.objects.all()
+    if 'post_id' in request.GET:
+        postID = int(request.GET['post_id'])
+        comments = Comment.objects.filter(post__id=postID)
+    else:
+        comments = Comment.objects.all()
     if 'num' in request.GET:
         num = int(request.GET['num'])
         comments = comments[:num]
@@ -1023,10 +1029,22 @@ def rest_all_friends(request):
 
 @api_view(['GET'])
 def rest_search_topics(request):
-    topics = []
-    if 'q' in request.GET:
-        topics = Topic.objects.filter(name__icontains=request.GET['q'])
-    serializer = TopicSerializer(topics, many=True)
+    searchstring = request.GET.get("q", " ")
+    user_creator = request.GET.get("user_creator", " ")
+    orderby = request.GET.get("orderby", " ")
+    t = Topic.objects.all()
+    if searchstring != " ":
+        t = t.filter(name__icontains=searchstring)
+    if user_creator != None or user_creator != " ":
+        t = t.filter(userCreator__username__icontains=user_creator)
+    if orderby != None or orderby != " ":
+        if orderby == "Least subscribers":
+            t = t.annotate(nsubs=Count("profile__subscriptions")).order_by("nsubs")
+        if orderby == "Most subscribers":
+            t = t.annotate(nsubs=Count("profile__subscriptions")).order_by("-nsubs")
+        else:
+            t = t.order_by("name")
+    serializer = TopicSerializer(t, many=True)
     return Response(serializer.data)
 
 
@@ -1039,10 +1057,36 @@ def rest_topic_posts(request, topic):
 
 @api_view(['GET'])
 def rest_search_posts(request):
-    posts = []
-    if 'q' in request.GET:
-        posts = Post.objects.filter(title__icontains=request.GET['q'])
-    serializer = PostSerializer(posts, many=True)
+    searchstring = request.GET.get("q", " ")
+    op = request.GET.get("op", " ")
+    from_topic = request.GET.get("from_topic", " ")
+    orderby = request.GET.get("orderby", " ")
+
+    p = Post.objects.all()
+    if searchstring != " ":
+        p = p.filter(title__icontains=searchstring)
+    if op != None or op != " ":
+        p = p.filter(userOP__username__icontains=op)
+    if from_topic != None or from_topic != " ":
+        p = p.filter(topic__name__icontains=from_topic)
+
+    if orderby != None or orderby != " ":
+        if orderby == "Lowest score":
+            p = p.annotate(numUp=Count("userUpVotesPost")) \
+                .annotate(numDown=Count("userDownVotesPost")) \
+                .annotate(score=F("numUp") - F("numDown")) \
+                .order_by("score")
+        elif orderby == "Most commented":
+            p = p.order_by("-nComments")
+        elif orderby == "Least commented":
+            p = p.order_by("nComments")
+        else:
+            # by default it orders by highest score
+            p = p.annotate(numUp=Count("userUpVotesPost")) \
+                .annotate(numDown=Count("userDownVotesPost")) \
+                .annotate(score=F("numUp") - F("numDown")) \
+                .order_by("-score")
+    serializer = PostSerializer(p, many=True)
     return Response(serializer.data)
 
 
@@ -1055,10 +1099,22 @@ def rest_post_comments(request, post_id):
 
 @api_view(['GET'])
 def rest_search_users(request):
-    users = []
-    if 'q' in request.GET:
-        users = Profile.objects.filter(user__username__icontains=request.GET['q'])
-    serializer = ProfileSerializer(users, many=True)
+    searchstring = request.GET.get("q", " ")
+    name = request.GET.get("name", " ")
+    email = request.GET.get("email", " ")
+    orderby = request.GET.get("orderby", " ")
+
+    p = Profile.objects.all()
+    if searchstring != " ":
+        p = p.filter(user__username__icontains=searchstring)
+    if name != None or name != " ":
+        p = p.filter(Q(user__first_name__icontains=name) | Q(user__last_name__icontains=name))
+    if email != None or email != " ":
+        p = p.filter(user__email__icontains=email)
+
+    if orderby != None or orderby != " ":
+        p = p.order_by("-user__username")
+    serializer = ProfileSerializer(p, many=True)
     return Response(serializer.data)
 
 

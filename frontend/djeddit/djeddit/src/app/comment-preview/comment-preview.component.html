@@ -6,6 +6,6 @@
     {{ comment.text }}
   </div>
   <div class="card-footer text-muted">
-    by <a routerLink="/user/{{ comment.user.username }}/page">{{ comment.user.username }}</a> at {{ comment.date }}
+    by <a routerLink="/user/{{ comment.user.username }}/page">{{ comment.user.username }}</a> at {{ comment.date | date: 'dd/MM/yyyy HH:mm' }}
   </div>
 </div>

@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark" style="-webkit-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); -moz-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75);">
+<nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-dark"
+     style="-webkit-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); -moz-box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75); box-shadow: 0 3px 4px -2px rgba(0,0,0,0.75);">
   <a class="navbar-brand" routerLink="">Djeddit <i class="far fa-comment-dots"></i></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
           aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,28 +26,270 @@
       <li class="form-inline my-2 my-lg-0 mr-lg-2">
         <div class="input-group">
           <div class="input-group-btn search-panel">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              <span id="search_concept">Filter by</span> <span class="caret"></span>
-            </button>
-            <ul id="filterOptions" class="dropdown-menu" role="menu" ngbDropdownMenu>
-              <div class="dropdown-header">Filter by</div>
-              <li><a id="searchTopicsOption" class="btn dropdown-item active"><i
-                class="far fa-comments"></i> Topics</a></li>
-              <li><a id="searchPostsOption" class="btn dropdown-item"><i class="fas fa-align-left"></i>
-                Posts</a></li>
-              <li><a id="searchUsersOption" class="btn dropdown-item"><i class="fas fa-users"></i>
-                Users</a></li>
-            </ul>
+            <div ngbDropdown class="d-inline-block">
+              <button ngbDropdownToggle type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span id="search_concept">Filter by</span> <span class="caret"></span>
+              </button>
+              <ul id="filterOptions" class="dropdown-menu" role="menu" ngbDropdownMenu #filter>
+
+                <div class="dropdown-header">Filter by</div>
+
+                <li (click)="onOptionsSelected('topic')"><a id="searchTopicsOption"
+                                                            [ngClass]="selectedFilter === 'topic' ? 'btn dropdown-item active' : 'btn dropdown-item'"><i
+                  class="far fa-comments"></i> Topics</a></li>
+
+                <li (click)="onOptionsSelected('post')"><a id="searchPostsOption"
+                                                           [ngClass]="selectedFilter === 'post' ? 'btn dropdown-item active' : 'btn dropdown-item'"><i
+                  class="fas fa-align-left"></i>
+                  Posts</a></li>
+
+                <li (click)="onOptionsSelected('user')"><a id="searchUsersOption"
+                                                           [ngClass]="selectedFilter === 'user' ? 'btn dropdown-item active' : 'btn dropdown-item'"><i
+                  class="fas fa-users"></i>
+                  Users</a></li>
+
+              </ul>
+            </div>
           </div>
-          <input id="searchQuery" class="form-control input-group-append" type="text"
+          <input id="searchQuery" class="form-control input-group-append" type="text" #queryText
                  placeholder="Search for..." required>
           <span class="input-group-append">
-            <button id="navbarSearchButton" class="btn btn-primary" type="button">
+            <button id="navbarSearchButton" (click)="search(queryText.value)" class="btn btn-primary" type="button">
               <i class="fa fa-search"></i>
             </button>
           </span>
         </div>
       </li>
+
+      <li class="nav-item dropdown" *ngIf="loggedUsername">
+        <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          Notifications <i class="fa fa-fw fa-bell"></i>
+          <span class="d-lg-none">Alerts
+              <span class="badge badge-pill badge-warning">6 New</span>
+            </span>
+        </a>
+        <ul class="dropdown-menu dropdown-alerts">
+          <li>
+            <a href="#" class="dropdown-item">
+              <div>
+                <i class="fa fa-comment fa-fw"></i> New Comment
+                <span class="pull-right text-muted small">4 minutes ago</span>
+              </div>
+            </a>
+          </li>
+          <li class="dropdown-divider"></li>
+          <li>
+            <a href="#" class="dropdown-item">
+              <div>
+                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                <span class="pull-right text-muted small">12 minutes ago</span>
+              </div>
+            </a>
+          </li>
+          <li class="dropdown-divider"></li>
+          <a href="#" class="dropdown-item">
+            <div>
+              <i class="fa fa-envelope fa-fw"></i> Message Sent
+              <span class="pull-right text-muted small">4 minutes ago</span>
+            </div>
+          </a>
+          <li class="dropdown-divider"></li>
+          <a class="text-center text-muted dropdown-item" href="{% url 'notifications' %}">
+            <strong>View All</strong>
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </ul>
+      </li>
+
+      <li class="nav-item" *ngIf="loggedUser !== null">
+        <a class="nav-link" href="/user/{{ loggedUser.username }}/page">
+          <i class="far fa-user"></i> {{ user.username }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="loggedUser !== null">
+        <a class="nav-link" href="#signIn" data-toggle="modal" data-target="#logoutModal">
+          <i class="fas fa-sign-out-alt"></i>Logout
+        </a>
+      </li>
+
+      <!-- Buttons trigger modal -->
+      <a class="nav-link" *ngIf="loggedUser == null" href="#signIn" data-toggle="modal" data-target="#loginModal">
+        <i class="fas fa-sign-in-alt"></i> Log In
+      </a>
+      <a class="nav-link" *ngIf="loggedUser == null" href="#signUp" data-toggle="modal" data-target="#signupModal">
+        <i class="fas fa-user-plus"></i> Sign Up
+      </a>
     </ul>
   </div>
 </nav>
+
+
+<!-- Log In Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="loginForm" class="form-horizontal" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="container">
+              <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="far fa-user"></i>
+                                            </button>
+                                        </span>
+                <input name="username" [(ngModel)]="loggedUser.username"  #username="ngModel" class="form-control" type="text" placeholder="Username" required>
+              </div>
+              <br>
+
+              <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="fas fa-key"></i>
+                                            </button>
+                                        </span>
+                <input id="login_password" name="password" [(ngModel)]="loggedUser.password" #password="ngModel" class="form-control" type="password"
+                       placeholder="Password" required>
+                <span class="input-group-append">
+                                            <button id="show_hide_password" class="btn btn-primary" type="button">
+                                                <i id="icon_show_hide_password" class="far fa-eye-slash"
+                                                   aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+              </div>
+
+              <div id="loginErrorsLog">
+                <br>
+                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal"
+                  data-dismiss="modal"><i class="fas fa-user-plus"></i> Go to sign up
+          </button>
+          <button id="loginButton" [disabled]="!loginForm.form.valid" type="submit" class="btn btn-success"><i id="loginButtonIcon" [ngClass]="(loading==true)?'fas fa-spinner fa-spin':'fas fa-sign-in-alt'"></i>
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="signupForm" action="{% url 'signup' %}" method="post" class="form-horizontal">
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="far fa-user"></i>
+                                            </button>
+                                        </span>
+                <input name="username" class="form-control" type="text" placeholder="Username" required>
+              </div>
+              <br>
+              <p id="usernameErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+
+              <div class="input-group">
+                                        <span class="input-group-prepend">
+                                            <button class="btn btn-primary" disabled>
+                                                <i class="fas fa-font"></i>
+                                            </button>
+                                        </span>
+                <input name="first_name" class="form-control" type="text" placeholder="First Name" required>
+                <input name="last_name" class="form-control" type="text" placeholder="Last Name" required>
+              </div>
+              <br>
+              <p id="nameErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-primary" type="button" disabled>
+                    <i class="fas fa-envelope"></i>
+                  </button>
+                </div>
+                <input type="email" name="email" class="form-control"
+                       placeholder="Email">
+              </div>
+              <br>
+              <p id="emailErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+
+              <div class="input-group">
+                                                <span class="input-group-prepend">
+                                                    <button class="btn btn-primary" disabled>
+                                                        <i class="fas fa-key"></i>
+                                                    </button>
+                                                </span>
+                <input name="password1" class="form-control" type="password" placeholder="Password"
+                       required>
+              </div>
+              <br>
+              <p id="password1ErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+
+              <div class="input-group">
+                                                <span class="input-group-prepend">
+                                                    <button class="btn btn-primary" disabled>
+                                                        <i class="fas fa-key"></i>
+                                                    </button>
+                                                </span>
+                <input name="password2" class="form-control" type="password"
+                       placeholder="Confirm Password" required>
+              </div>
+              <br>
+              <p id="password2ErrorsMessage" class="validation-summary-errors" style="display: none"></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"
+                  data-dismiss="modal"><i class="fas fa-sign-in-alt"></i> Go to login
+          </button>
+          <button type="submit" class="btn btn-success"><i id="signupButtonIcon" class="fas fa-user-plus"></i>
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Logout Confirmation Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to log out?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" href="{% url 'logout' %}"><i class="fas fa-check"></i> Yes</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="far fa-times-circle"></i> No
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
