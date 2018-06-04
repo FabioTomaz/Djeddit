@@ -1,12 +1,15 @@
-<div class="card bg-white">
-  <div class="card-header bg-dark text-white">
-    <div>
-      <strong>{{ profile_user.username }} friends </strong>
+<app-profile></app-profile>
+<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+  <div class="card bg-white">
+    <div class="card-header bg-dark text-white">
+      <div>
+        <strong>{{ username }} friends </strong>
+      </div>
     </div>
-  </div>
-  <div class="card-body" *ngFor="let friend of friends">
-    <hr>
-    <app-profile-preview></app-profile-preview>
-    <hr>
+    <div class="card-body" *ngFor="let friend of friends">
+      <hr>
+      <app-profile-preview [profile]="friend"></app-profile-preview>
+      <hr>
+    </div>
   </div>
 </div>

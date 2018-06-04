@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from "@angular/platform-browser";
+import {ActivatedRoute} from "@angular/router";
+import {User} from "../user";
+import {ProfileService} from "../profile.service";
+import {Profile} from "../profile";
 
 @Component({
   selector: 'app-profile-friends',
@@ -8,16 +12,21 @@ import {Title} from "@angular/platform-browser";
 })
 export class ProfileFriendsComponent implements OnInit {
 
-  constructor(titleService: Title) {
-    titleService.setTitle("Friends");
+  username: string;
+  friends: Profile[];
+
+  constructor(private titleService: Title, private route: ActivatedRoute, private profileService: ProfileService ) {
+
   }
 
   ngOnInit() {
-    this.getTopics(this.route.snapshot.paramMap.get("username"));
+    this.username = this.route.snapshot.paramMap.get("username");
+    this.getFriends(this.username);
+    this.titleService.setTitle(this.username + " Friends");
   }
 
-  getTopics(username: string): void {
-    this.topicService.getUserTopicsCreated(username).subscribe(topics => {this.topics = topics;});
+  getFriends(username: string): void {
+    this.profileService.getFriends(username).subscribe(users => {this.friends = users;});
   }
 
 }

@@ -1191,7 +1191,7 @@ def rest_user_comments_downvoted(request, username):
 @api_view(['GET'])
 def rest_user_friends(request, username):
     friends = get_user_friends(User.objects.get(username=username).profile)
-    serializer = FriendSerializer(friends, many=True)
+    serializer = ProfileSerializer(friends, many=True)
     return Response(serializer.data)
 
 

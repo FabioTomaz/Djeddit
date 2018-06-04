@@ -8,7 +8,7 @@ from app.models import Topic, Profile, Post, Comment, Report, Friend
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'id', "first_name", "last_name", "email", "date_joined")
+        fields = ('username', 'id', "first_name", "last_name", "email", "date_joined", "profile")
 
 
 class TopicSerializer(serializers.ModelSerializer):
