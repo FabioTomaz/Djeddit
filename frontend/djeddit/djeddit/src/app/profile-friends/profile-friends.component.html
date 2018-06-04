@@ -1,3 +1,12 @@
-<p>
-  profile-friends works!
-</p>
+<div class="card bg-white">
+  <div class="card-header bg-dark text-white">
+    <div>
+      <strong>{{ profile_user.username }} friends </strong>
+    </div>
+  </div>
+  <div class="card-body" *ngFor="let friend of friends">
+    <hr>
+    <app-profile-preview></app-profile-preview>
+    <hr>
+  </div>
+</div>

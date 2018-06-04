@@ -1189,10 +1189,9 @@ def rest_user_comments_downvoted(request, username):
 
 
 @api_view(['GET'])
-def rest_user_friends(request):
-    user_id = request.GET['user_id']
-    posts = Friend.objects.all().filter(current_user=user_id)
-    serializer = FriendSerializer(posts, many=True)
+def rest_user_friends(request, username):
+    friends = get_user_friends(User.objects.get(username=username).profile)
+    serializer = FriendSerializer(friends, many=True)
     return Response(serializer.data)
 
 
@@ -1250,21 +1249,20 @@ def rest_comment(request, comment_id):
 
 @api_view(['POST'])
 def rest_login(request):
-    form = AuthenticationForm(request, data=request.POST)
-    if form.is_valid():
-        # Okay, security check complete. Log the user in.
-        auth_login(request, form.get_user())
-        errors = False
-    else:
-        errors = True
-    dict = {
-        'errors': errors,
-    }
-    try:
-        profile = Profile.objects.get(user__username=username)
-    except Profile.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    serializer = ProfileSerializer(profile)
-    return Response(serializer.data)
+    username = request.data.get('username')
+    password = request.data.get('password')
 
-    return HttpResponse(json.dumps(dict), content_type="application/json")
+    user = authenticate(username=username, password=password)
+
+    if user:
+        try:
+            profile = Profile.objects.get(user__username=username)
+        except Profile.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data)
+    else:
+        return Response(
+            {'error': 'Invalid credentials',
+             'status': 'failed'},
+        )
