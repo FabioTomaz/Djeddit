@@ -33,7 +33,7 @@ export class PostPageComponent implements OnInit {
     this.postService.getPost(post_id).subscribe(post => {
       this.post = post;
       this.commentService.getCommentsInPost(post_id).subscribe(comments => {this.comments = comments;
-        for (let i = 0; i < this.comments; i++){
+        for (let i = 0; i < this.comments.length; i++){
           this.getProfile(comments[i].user.username, i);
         }
       });
