@@ -21,7 +21,7 @@ import {ProfileFriendsComponent} from "../profile-friends/profile-friends.compon
 import {ProfilePostsCreatedComponent} from "../profile-posts-created/profile-posts-created.component";
 
 const routes: Routes = [
-  {path: 'new', component: NewPostsComponent, data: {'order': 'new'}},
+  {path: 'new', component: NewPostsComponent, data: {'order': 'new'}, runGuardsAndResolvers: 'always'},
   {path: 'popular', component: NewPostsComponent, data: {'order': 'popular'}},
   {path: 'top_rated', component: NewPostsComponent, data: {'order': 'top_rated'}},
   {path: 'controversial', component: NewPostsComponent, data: {'order': 'controversial'}},

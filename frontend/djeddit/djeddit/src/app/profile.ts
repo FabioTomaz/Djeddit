@@ -1,7 +1,7 @@
 import {User} from "./user";
 
 export class Profile {
-  user: User;
+  user: User = new User();
   user_details: string;
   birth_date: string;
   registration_date: string;

@@ -116,7 +116,10 @@ urlpatterns = [
                   # user comments
                   path('ws/user/<str:username>/comments/', views.rest_user_comments),
                   path('ws/user/<str:username>/comments/upvoted', views.rest_user_comments_upvoted),
-                  path('ws/user/<str:username>/comments/downvoted', views.rest_user_comments_downvoted),                  path('ws/user_friends', views.rest_user_friends),
+                  path('ws/user/<str:username>/comments/downvoted', views.rest_user_comments_downvoted),
+
+                  # user friends
+                  path('ws/user/<str:username>/friends', views.rest_user_friends),
 
                   path('ws/topic_posts', views.rest_topic_posts),
                   path('ws/post_comments', views.rest_post_comments),
@@ -138,5 +141,8 @@ urlpatterns = [
                   # EDIT
 
                   # DELETE
+
+                  # AUTH
+                  path('ws/login/', views.rest_login),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

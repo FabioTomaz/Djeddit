@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {User} from "./user";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class AuthenticationService {
 
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(this.baseUrl + '/ws/login', { username: username, password: password })
+  login(user: User) {
+    return this.http.post<any>(this.baseUrl + 'login/', user)
       .pipe(user => {
         // login successful if there's a jwt token in the response
         if (user) {

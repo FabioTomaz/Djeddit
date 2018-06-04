@@ -39,10 +39,13 @@ export class AppNavbarComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-    this.loginUser = new User();
-    this.createdProfile = new Profile();
     this.userIsLoggedIn = this.checkAuth();
+    this.createdProfile = new Profile();
+    if(this.userIsLoggedIn){
+      this.loginUser = JSON.parse(localStorage.getItem("currentUser"));
+    }else{
+      this.loginUser = new User();
+    }
   }
 
   search(query: string): void {
@@ -57,10 +60,12 @@ export class AppNavbarComponent implements OnInit {
 
   login() {
     this.loading = true;
-    this.authService.login(this.loginUser.username, this.loginUser.password)
+    this.authService.login(this.loginUser)
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          console.log("heyyy");
+          this.loading = false;
+          location.reload();
         },
         error => {
           //this.alertService.error(error);
@@ -70,7 +75,7 @@ export class AppNavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigate([this.returnUrl]);
+    location.reload();
   }
 
   register() {
