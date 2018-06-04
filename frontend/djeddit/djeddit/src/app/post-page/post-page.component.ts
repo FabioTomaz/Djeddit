@@ -33,7 +33,7 @@ export class PostPageComponent implements OnInit {
     this.postService.getPost(post_id).subscribe(post => {
       this.post = post;
       this.commentService.getCommentsInPost(post_id).subscribe(comments => {this.comments = comments;
-        for (let i = 0; i < this.comments.length; i++){
+        for (let i = 0; i < this.comments.length; i++) {
           this.getProfile(comments[i].user.username, i);
         }
       });
@@ -50,6 +50,7 @@ export class PostPageComponent implements OnInit {
     this.profileService.getProfileByUsername(username).subscribe(profile => {
       profile.user_picture = "http://127.0.0.1:8000" + profile.user_picture;
       this.profiles[i] = profile;
+      console.log(this.profiles[i].user_picture);
     });
   }
 

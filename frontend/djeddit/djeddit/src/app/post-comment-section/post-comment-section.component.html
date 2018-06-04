@@ -1,14 +1,14 @@
 <div class="row">
   <div class="comments-container">
-    <h3 class="text-centert text-muted">Comments: {{ comments.length }} </h3>
+    <h3 class="text-centert text-muted">Comments: </h3>
     <ul id="comments-list" class="comments-list">
-      <div *ngFor="let comment of comments">
+      <div *ngFor="let comment of comments; let i = index">
         <div *ngIf="comment.reply === null">
           <li>
             <div class="comment-main-level">
               <!-- Avatar -->
               <div class="comment-avatar">
-                <img src="" alt="">
+                <img src="{{ reply }}" alt="">
               </div>                        <!-- commentary box -->
               <div class="comment-box border rounded">
                 <div class="comment-head">
