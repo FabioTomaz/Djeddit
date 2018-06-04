@@ -34,6 +34,7 @@ import { ProfileFriendsComponent } from './profile-friends/profile-friends.compo
 import { CommentPreviewComponent } from './comment-preview/comment-preview.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { TopicListComponent } from './topic-list/topic-list.component';
+import { PostCommentSectionComponent } from './post-comment-section/post-comment-section.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { TopicListComponent } from './topic-list/topic-list.component';
     CommentPreviewComponent,
     CommentListComponent,
     TopicListComponent,
+    PostCommentSectionComponent,
   ],
   imports: [
     BrowserModule,

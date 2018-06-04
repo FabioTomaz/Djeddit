@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="comments-container">
+    <h3 class="text-centert text-muted">Comments: {{ comments.length }} </h3>
+    <ul id="comments-list" class="comments-list">
+      <div *ngFor="let comment of comments">
+        <div *ngIf="comment.reply === null">
+          <li>
+            <div class="comment-main-level">
+              <!-- Avatar -->
+              <div class="comment-avatar">
+                <img src="" alt="">
+              </div>                        <!-- commentary box -->
+              <div class="comment-box border rounded">
+                <div class="comment-head">
+                  <div *ngIf="comment.user.username == post.userOP.username; else non_op">
+                  <span class="badge badge-primary">
+                    <a style="color:white"> {{ comment.user.username }}</a>
+                  </span>
+                  </div>
+                  <ng-template #non_op>
+                  <span class="badge badge-secondary">
+                    <a style="color:white">{{ comment.user.username }}
+                    </a>
+                  </span>
+                  </ng-template>
+                  <span> {{ comment.date | date: 'dd/MM/yyyy HH:mm' }}, Score: <p style="display:inline" id="score_{{ comment.id }}">{{ getCommentScore(comment) }}</p></span>
+
+                  <div class="btn-group-sm float-right" role="group" aria-label="...">
+                    <button class="btn btn-dark btn-sm">
+                      <i class="fas fa-reply"></i> Reply
+                    </button>
+                    <button id="downvote_comment_{{ comment.id }}" class="btn">
+                      <i class="fa fa-chevron-down"></i>
+                    </button>
+                    <button id="upvote_comment_{{ comment.id }}" class="btn">
+                      <i class="fa fa-chevron-up"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="comment-content">
+                  {{ comment.text }}
+                </div>
+              </div>
+            </div>
+            <div style="margin-left:90px; display: none" id="add_reply_{{ comment.id }}">
+              <form action="." method="post">
+                <!-- Hidden input for parent comment.id -->
+                <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
+                <button class="btn btn-primary btn-sm" type="submit">Save</button>
+              </form>
+            </div>
+            <div *ngFor="let reply of getCommentReplies(comment)">
+              <ul class="comments-list reply-list">
+                <li>
+                  <!-- Avatar -->
+                  <div class="comment-avatar">
+                    <img src="{{ reply }}" alt="">
+                  </div>
+                  <div class="comment-box">
+                    <div class="comment-head">
+                      <div *ngIf="reply.user.username == post.userOP.username; else non_op">
+                      <span class="badge badge-primary">
+                        <a style="color:white"> {{ reply.user.username }}</a>
+                      </span>
+                      </div>
+                      <ng-template #non_op>
+                      <span class="badge badge-secondary">
+                        <a style="color:white">{{ reply.user.username }}
+                        </a>
+                      </span>
+                      </ng-template>
+                      <span> {{ comment.date | date: 'dd/MM/yyyy HH:mm' }}, Score: <p style="display:inline" id="score_{{ reply.id }}">{{ getCommentScore(reply) }}</p></span>
+
+                      <div class="btn-group-sm float-right" role="group" aria-label="...">
+                        <button id="downvote_comment_{{ reply.id }}" class="btn">
+                          <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button id="upvote_comment_{{ reply.id }}" class="btn">
+                          <i class="fa fa-chevron-up"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="comment-content">
+                      {{ reply.text }}
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </li>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
