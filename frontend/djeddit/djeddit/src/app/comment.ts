@@ -1,5 +1,6 @@
 import {User} from './user';
 import {Post} from './post';
+import {Profile} from './profile';
 
 export class Comment {
   id: number;

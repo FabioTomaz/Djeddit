@@ -1,27 +1,16 @@
 from django.contrib.auth.models import User
 from django.db.models import Count
 from rest_framework import serializers
+from app.models import Topic, Post, Comment, Report, Friend, Profile
 
-from app.models import Topic, Profile, Post, Comment, Report, Friend
-
-
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer2(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'id', "first_name", "last_name", "email", "date_joined", "profile")
-
-
-class TopicSerializer(serializers.ModelSerializer):
-    userCreator = UserSerializer(many=False, read_only=True)
-
-    class Meta:
-        model = Topic
-        fields = ('name', 'rules', 'description', 'userCreator', 'creation_date')
+        fields = ('username', 'id', "first_name", "last_name", "email", "date_joined")
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer(many=False, read_only=True)
-
+    user = UserSerializer2(many=False, read_only=True)
     karma_posts = serializers.SerializerMethodField('get_user_karma_posts')
     karma_comments = serializers.SerializerMethodField('get_user_karma_comments')
     karma_total = serializers.SerializerMethodField('get_user_karma_total')
@@ -73,6 +62,18 @@ class ProfileSerializer(serializers.ModelSerializer):
                   'karma_total'
                   )
 
+class UserSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(many=False, read_only=True)
+    class Meta:
+        model = User
+        fields = ('username', 'id', "first_name", "last_name", "email", "date_joined", "profile")
+
+
+class TopicSerializer(serializers.ModelSerializer):
+    userCreator = UserSerializer(many=False, read_only=True)
+    class Meta:
+        model = Topic
+        fields = ('name', 'rules', 'description', 'userCreator', 'creation_date')
 
 class PostSerializer(serializers.ModelSerializer):
     topic = TopicSerializer(many=False, read_only=True)
@@ -98,7 +99,6 @@ class PostSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
     post = PostSerializer(many=False, read_only=True)
-
     class Meta:
         model = Comment
         fields = ('id',

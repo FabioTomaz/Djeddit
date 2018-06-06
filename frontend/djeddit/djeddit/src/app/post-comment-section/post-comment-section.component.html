@@ -8,7 +8,7 @@
             <div class="comment-main-level">
               <!-- Avatar -->
               <div class="comment-avatar">
-                <img src="{{ reply }}" alt="">
+                <img src="{{ urlBase }}{{ comment.user.profile.user_picture }}" alt="">
               </div>                        <!-- commentary box -->
               <div class="comment-box border rounded">
                 <div class="comment-head">
@@ -54,7 +54,7 @@
                 <li>
                   <!-- Avatar -->
                   <div class="comment-avatar">
-                    <img src="{{ reply }}" alt="">
+                    <img src="{{ urlBase }}{{ reply.user.profile.user_picture }}" alt="">
                   </div>
                   <div class="comment-box">
                     <div class="comment-head">

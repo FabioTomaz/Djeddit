@@ -68,7 +68,7 @@ export class AppNavbarComponent implements OnInit {
           location.reload();
         },
         error => {
-          //this.alertService.error(error);
+          // this.alertService.error(error);
           this.loading = false;
         });
   }

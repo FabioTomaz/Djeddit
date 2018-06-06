@@ -16,10 +16,12 @@ export class PostCommentSectionComponent implements OnInit {
   @Input()comments: Comment[];
   @Input()post: Post;
   @Input()profiles: Profile[];
+  urlBase: String;
 
   constructor() { }
 
   ngOnInit() {
+    this.urlBase = 'http://127.0.0.1:8000';
   }
 
   /*getComments(): void {
@@ -44,7 +46,7 @@ export class PostCommentSectionComponent implements OnInit {
     return c;
   }
 
-  getUserPic(comment: Comment): string {
+  /*getUserPic(comment: Comment): string {
     for (let i = 0 ; i < this.profiles.length; i++) {
       console.log(this.profiles[i].user.username);
       if (comment.user.username === this.profiles[i].user.username) {
@@ -53,6 +55,6 @@ export class PostCommentSectionComponent implements OnInit {
       }
     }
     return '';
-  }
+  }*/
 
 }
