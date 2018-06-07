@@ -61,16 +61,20 @@ export class AppNavbarComponent implements OnInit {
   login() {
     this.loading = true;
     this.authService.login(this.loginUser)
-      .subscribe(
-        data => {
-          console.log("heyyy");
+      .subscribe(user => {
+        // login successful if there's a jwt token in the response
+        if (user) {
+          console.log(user);
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
           this.loading = false;
           location.reload();
-        },
-        error => {
-          //this.alertService.error(error);
+        } else {
           this.loading = false;
-        });
+        }
+
+        return user;
+      });
   }
 
   logout() {
@@ -97,9 +101,7 @@ export class AppNavbarComponent implements OnInit {
   }
 
   checkAuth(): boolean {
-    if (localStorage.getItem("currentUser"))
-      return true;
-    return false;
+    return this.authService.userLoggedIn();
   }
 
   //reference: https://stackoverflow.com/questions/44864303/send-data-through-routing-paths-in-angular

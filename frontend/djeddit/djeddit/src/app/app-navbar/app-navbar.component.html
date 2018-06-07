@@ -127,7 +127,7 @@
                 </span>
               </div>
 
-              <div id="loginErrorsLog">
+              <div id="loginErrorsLog" *ngIf="loading">
                 <br>
                 <p class="validation-summary-errors">Please enter a correct user name and password.</p>
               </div>

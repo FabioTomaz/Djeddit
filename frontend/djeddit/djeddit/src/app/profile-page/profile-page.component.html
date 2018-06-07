@@ -44,6 +44,26 @@
         </div>
       </div>
     </div>
+    <div class="card-footer" *ngIf="userLoggedIn()">
+      <div>
+        <button id="btn_add_friend" class="float-right btn btn-success" (click)="addFriend()" *ngIf="userIsFriend()">
+          <i class="fas fa-user-plus"></i> Add Friend
+        </button>
+        <button id="btn_remove_friend" class="float-right btn btn-danger" (click)="removeFriend()" *ngIf="userIsFriend()">
+          <i class="fas fa-user-times"></i> Remove Friend
+        </button>
+      </div>
+      <div class="float-right" *ngIf="loggedUserEqualsUser()">
+        <a routerLink="" class="btn btn-secondary ">
+          <i class="fas fa-unlock-alt"></i> Change Password
+        </a>
+        <a routerLink="" class="btn btn-secondary ">
+          <i class="fas fa-wrench"></i> Privacy Settings
+        </a>
+        <a routerLink="" class="btn btn-primary ">
+          <i class="fas fa-edit"></i> Edit Profile
+        </a>
+      </div>
+    </div>
   </div>
-
 </div>

@@ -137,7 +137,7 @@ urlpatterns = [
                   path('ws/report/<str:report_id>/', views.rest_report),
 
                   # CREATE
-
+                  pat('ws/profile/create', views.rest_profile_create),
                   # EDIT
 
                   # DELETE

@@ -3,10 +3,8 @@ import json
 import sys
 from django.contrib.auth import authenticate, update_session_auth_hash
 from django.contrib.auth import authenticate
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.db.models import Count, F, Q
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Count, Sum, F
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse, Http404
 from django.http import HttpRequest, HttpResponseRedirect
@@ -17,6 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+import logging, logging.config
 
 from Djeedit.config import pagination
 from app.forms import SignUpForm, UserForm, ProfileForm, ChangePasswordForm, PrivacyForm, reportForm
@@ -1247,6 +1246,8 @@ def rest_comment(request, comment_id):
     return Response(serializer.data)
 
 
+# USER OPERATIONS
+
 @api_view(['POST'])
 def rest_login(request):
     username = request.data.get('username')
@@ -1254,15 +1255,51 @@ def rest_login(request):
 
     user = authenticate(username=username, password=password)
 
+    LOGGING = {
+        'version': 1,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'stream': sys.stdout,
+            }
+        },
+        'root': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        }
+    }
+
+    logging.config.dictConfig(LOGGING)
+
     if user:
+        logging.info(user)
         try:
             profile = Profile.objects.get(user__username=username)
         except Profile.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        logging.info(profile)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
-    else:
-        return Response(
-            {'error': 'Invalid credentials',
-             'status': 'failed'},
-        )
+
+
+@api_view(['POST'])
+def rest_user_change_password(request, username):
+    user = request.data.get("user")
+    form = ChangePasswordForm(user, request.POST)
+    if form.is_valid():
+        user = form.save()
+        return redirect('change_password')
+
+    tparams = {'sidebar': 'user_page', "profile_user": User.objects.get(username=username), "form": form,
+               "friends": get_user_friends(User.objects.get(username=username).profile)}
+
+    return render(request, 'profile_change_password.html', tparams)
+
+
+@api_view(['POST'])
+def rest_profile_create(request):
+    serializer = ProfileSerializer(data =request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

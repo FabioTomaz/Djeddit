@@ -1,0 +1,68 @@
+<form method="post" action="." enctype="multipart/form-data">
+  <div class="card bg-white">
+    <div class="card-header bg-primary text-white">
+      <strong>Edit Profile</strong>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 " align="center">
+          <img src="{{ MEDIA_URL }}{{ user.profile.user_picture }}" class="img-circle img-fluid" id="profile_pic">
+          <input type="file" style="display: none" name="user_picture" id="id_user_picture" accept="image/*"/>
+          <label for="id_user_picture" class="btn btn-info"><i class="fas fa-smile"></i> Select Picture</label>
+        </div>
+        <div class=" col-md-9 col-lg-9 ">
+          <table class="table table-user-information">
+            <tbody>
+            <tr>
+              <td>First Name</td>
+              <td>{{ user_form.first_name }}</td>
+            </tr>
+            <tr>
+              <td>Last Name</td>
+              <td>{{ user_form.last_name }}</td>
+            </tr>
+            <tr>
+              <td>User Bio</td>
+              <td>{{ profile_form.user_details }}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{{ user_form.email }}</td>
+            </tr>
+            <tr>
+              <td>Date of Birth</td>
+              <td>{{ profile_form.birth_date }}</td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td>{{ profile_form.gender }}</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="float-right">
+        <a routerLink="/user/{{ username }}/page" class="btn btn-danger"><i class="fas fa-ban"></i>
+          Cancel</a>
+        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Save</button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+$(document).on("change", "#id_user_picture", function() {
+if (this.files && this.files[0]) {
+var reader = new FileReader();
+
+reader.onload = function(e) {
+$('#profile_pic').attr('src', e.target.result);
+};
+reader.readAsDataURL(this.files[0]);
+}
+});
+{% endblock %}

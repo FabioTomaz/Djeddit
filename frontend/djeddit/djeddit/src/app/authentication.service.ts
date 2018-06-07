@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "./user";
+import {Profile} from "./profile";
+import {Observable} from "rxjs/internal/Observable";
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +16,19 @@ export class AuthenticationService {
   }
 
   login(user: User) {
-    return this.http.post<any>(this.baseUrl + 'login/', user)
-      .pipe(user => {
-        // login successful if there's a jwt token in the response
-        if (user) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
-
-        return user;
-      });
+    return this.http.post<Profile>(this.baseUrl + 'login/', user);
   }
 
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+  }
+
+  userLoggedIn(): boolean{
+    return !!localStorage.getItem("currentUser");
+  }
+
+  getLoggedUser(): Profile{
+    return JSON.parse(localStorage.getItem("currentUser"));
   }
 }

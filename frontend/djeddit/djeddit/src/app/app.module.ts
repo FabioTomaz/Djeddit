@@ -35,6 +35,9 @@ import { CommentPreviewComponent } from './comment-preview/comment-preview.compo
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { PostCommentSectionComponent } from './post-comment-section/post-comment-section.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { UserPrivacyComponent } from './user-privacy/user-privacy.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +71,9 @@ import { PostCommentSectionComponent } from './post-comment-section/post-comment
     CommentListComponent,
     TopicListComponent,
     PostCommentSectionComponent,
+    ChangePasswordComponent,
+    UserPrivacyComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,

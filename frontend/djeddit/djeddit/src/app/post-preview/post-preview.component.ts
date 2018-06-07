@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'app-post-preview',
@@ -9,13 +10,40 @@ import {Post} from '../post';
 export class PostPreviewComponent implements OnInit {
   @Input() post: Post;
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
-  orderByDate(post: Post[]): Post[] {
-    return post.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  checkAuth(): boolean {
+    return this.authService.userLoggedIn();
   }
 
+  checkLoggedUserIsOP(): boolean{
+    return this.authService.getLoggedUser().user.username === this.post.userOP.username;
+  }
+
+  checkUserSaved(): boolean{
+    return this.post.userSaved.includes(this.authService.getLoggedUser().user.id);
+  }
+
+  checkUserHidden(): boolean{
+    return this.post.userHidden.includes(this.authService.getLoggedUser().user.id);
+  }
+
+  unsavePost() {
+
+  }
+
+  savePost() {
+
+  }
+
+  hidePost() {
+
+  }
+
+  showPost() {
+
+  }
 }

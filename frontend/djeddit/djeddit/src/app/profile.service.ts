@@ -31,7 +31,7 @@ export class ProfileService {
   }
 
   create(profile: Profile): Observable<Profile>{
-    const url = this.baseUrl + 'profile';
+    const url = this.baseUrl + 'profile/create';
     return this.http.post<Profile>(url, profile, httpOptions);
   }
 
