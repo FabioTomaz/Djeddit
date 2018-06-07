@@ -5,7 +5,7 @@ export class Profile {
   user_details: string;
   birth_date: string;
   registration_date: string;
-  user_picture: string;
+  user_picture: any;
   gender: string;
   karma_total: number;
   karma_posts: number;

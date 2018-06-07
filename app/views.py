@@ -1282,7 +1282,7 @@ def rest_login(request):
         return Response(serializer.data)
 
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def rest_user_change_password(request, username):
     user = request.data.get("user")
     form = ChangePasswordForm(user, request.POST)
@@ -1296,7 +1296,7 @@ def rest_user_change_password(request, username):
     return render(request, 'profile_change_password.html', tparams)
 
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def rest_profile_create(request):
     serializer = ProfileSerializer(data =request.data)
     if serializer.is_valid():

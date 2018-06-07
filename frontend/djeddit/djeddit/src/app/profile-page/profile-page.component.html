@@ -54,13 +54,13 @@
         </button>
       </div>
       <div class="float-right" *ngIf="loggedUserEqualsUser()">
-        <a routerLink="" class="btn btn-secondary ">
+        <a routerLink="user/{{profile.user.username}}/change_password" class="btn btn-secondary ">
           <i class="fas fa-unlock-alt"></i> Change Password
         </a>
-        <a routerLink="" class="btn btn-secondary ">
+        <a routerLink="user/{{profile.user.username}}/privacy" class="btn btn-secondary ">
           <i class="fas fa-wrench"></i> Privacy Settings
         </a>
-        <a routerLink="" class="btn btn-primary ">
+        <a routerLink="user/{{profile.user.username}}/edit" class="btn btn-primary ">
           <i class="fas fa-edit"></i> Edit Profile
         </a>
       </div>

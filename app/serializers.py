@@ -3,6 +3,7 @@ from django.db.models import Count
 from rest_framework import serializers
 from app.models import Topic, Post, Comment, Report, Friend, Profile
 
+
 class UserSerializer2(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -62,8 +63,10 @@ class ProfileSerializer(serializers.ModelSerializer):
                   'karma_total'
                   )
 
+
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(many=False, read_only=True)
+
     class Meta:
         model = User
         fields = ('username', 'id', "first_name", "last_name", "email", "date_joined", "profile")
@@ -71,9 +74,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 class TopicSerializer(serializers.ModelSerializer):
     userCreator = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Topic
         fields = ('name', 'rules', 'description', 'userCreator', 'creation_date')
+
 
 class PostSerializer(serializers.ModelSerializer):
     topic = TopicSerializer(many=False, read_only=True)
@@ -99,6 +104,7 @@ class PostSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
     post = PostSerializer(many=False, read_only=True)
+
     class Meta:
         model = Comment
         fields = ('id',
