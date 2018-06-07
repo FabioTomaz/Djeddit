@@ -15,10 +15,13 @@ export class PostCommentSectionComponent implements OnInit {
 
   @Input()comments: Comment[];
   @Input()post: Post;
+  @Input()profiles: Profile[];
+  urlBase: String;
 
   constructor() { }
 
   ngOnInit() {
+    this.urlBase = 'http://127.0.0.1:8000';
   }
 
   /*getComments(): void {
@@ -35,7 +38,6 @@ export class PostCommentSectionComponent implements OnInit {
   getCommentReplies(comment: Comment): Comment[] {
     const c: Comment[] = [];
     let i = 0;
-
     for (i ; i < this.comments.length; i++) {
       if (this.comments[i].reply === comment.id) {
         c.push(this.comments[i]);
@@ -43,5 +45,16 @@ export class PostCommentSectionComponent implements OnInit {
     }
     return c;
   }
+
+  /*getUserPic(comment: Comment): string {
+    for (let i = 0 ; i < this.profiles.length; i++) {
+      console.log(this.profiles[i].user.username);
+      if (comment.user.username === this.profiles[i].user.username) {
+        console.log("ifawnihgnsuingbesjkbnaehgbwu");
+        return this.profiles[i].user_picture;
+      }
+    }
+    return '';
+  }*/
 
 }

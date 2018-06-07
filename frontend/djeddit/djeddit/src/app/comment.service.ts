@@ -11,7 +11,7 @@ export class CommentService {
   private baseUrl = 'http://127.0.0.1:8000/ws/';
   constructor(private http: HttpClient) { }
 
-  getComment(comment_id: string): Observable<Comment>{
+  getComment(comment_id: string): Observable<Comment> {
     const url = this.baseUrl + 'comment/' + comment_id;
     return this.http.get<Comment>(url);
   }
