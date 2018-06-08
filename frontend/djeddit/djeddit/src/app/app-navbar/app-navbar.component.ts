@@ -5,7 +5,6 @@ import {PostService} from '../post.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {AuthenticationService} from "../authentication.service";
-import {User} from "../user";
 import {Profile} from "../profile";
 
 @Component({
@@ -17,7 +16,7 @@ export class AppNavbarComponent implements OnInit {
 
   selectedFilter: string;
   userIsLoggedIn: boolean ;
-  loginUser: User;
+  loginProfile: Profile;
   createdProfile: Profile;
   returnUrl: string;
 
@@ -42,9 +41,9 @@ export class AppNavbarComponent implements OnInit {
     this.userIsLoggedIn = this.checkAuth();
     this.createdProfile = new Profile();
     if(this.userIsLoggedIn){
-      this.loginUser = JSON.parse(localStorage.getItem("currentUser"));
+      this.loginProfile = this.authService.getLoggedProfile();
     }else{
-      this.loginUser = new User();
+      this.loginProfile = new Profile();
     }
   }
 
@@ -60,17 +59,20 @@ export class AppNavbarComponent implements OnInit {
 
   login() {
     this.loading = true;
-    this.authService.login(this.loginUser)
-      .subscribe(
-        data => {
-          console.log("heyyy");
+    this.authService.login(this.loginProfile)
+      .subscribe(profile => {
+        // login successful if there's a jwt token in the response
+        if (profile) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(profile));
           this.loading = false;
           location.reload();
-        },
-        error => {
-          // this.alertService.error(error);
+        } else {
           this.loading = false;
-        });
+        }
+
+        return profile;
+      });
   }
 
   logout() {
@@ -87,6 +89,7 @@ export class AppNavbarComponent implements OnInit {
           this.router.navigate(['login']);
         },
         error => {
+          console.log(error);
           //this.alertService.error(error);
           this.loading = false;
         });
@@ -97,11 +100,7 @@ export class AppNavbarComponent implements OnInit {
   }
 
   checkAuth(): boolean {
-    if (localStorage.getItem("currentUser"))
-      return true;
-    return false;
+    return this.authService.userLoggedIn();
   }
-
-  //reference: https://stackoverflow.com/questions/44864303/send-data-through-routing-paths-in-angular
 
 }

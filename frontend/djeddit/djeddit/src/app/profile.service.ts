@@ -31,8 +31,13 @@ export class ProfileService {
   }
 
   create(profile: Profile): Observable<Profile>{
-    const url = this.baseUrl + 'profile';
+    const url = this.baseUrl + 'profile/create';
     return this.http.post<Profile>(url, profile, httpOptions);
+  }
+
+  update(profile: Profile): Observable<any>{
+    const url = this.baseUrl + 'profile/update';
+    return this.http.put(url, profile, httpOptions);
   }
 
   getFriends(username: string): Observable<Profile[]>{

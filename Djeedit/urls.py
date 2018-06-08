@@ -139,6 +139,7 @@ urlpatterns = [
                   # CREATE
                   path('ws/create_topic/', views.create_topic),
                   path('ws/create_post/', views.create_post),
+                  path('ws/profile/create', views.rest_profile_create),
                   # EDIT
 
                   # DELETE

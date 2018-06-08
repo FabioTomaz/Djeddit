@@ -37,8 +37,10 @@ import { TopicListComponent } from './topic-list/topic-list.component';
 import { PostCommentSectionComponent } from './post-comment-section/post-comment-section.component';
 import { CreateTopicComponent } from './create-topic/create-topic.component';
 import { CreatePostComponent } from './create-post/create-post.component';
-import { ReportTopicComponent } from './report-topic/report-topic.component';
 import { ReportPostComponent } from './report-post/report-post.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { UserPrivacyComponent } from './user-privacy/user-privacy.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,9 @@ import { ReportPostComponent } from './report-post/report-post.component';
     CommentListComponent,
     TopicListComponent,
     PostCommentSectionComponent,
+    ChangePasswordComponent,
+    UserPrivacyComponent,
+    UserEditComponent,
     CreateTopicComponent,
     CreatePostComponent,
     ReportPostComponent,

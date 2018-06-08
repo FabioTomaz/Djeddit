@@ -22,6 +22,9 @@ import {ProfilePostsCreatedComponent} from "../profile-posts-created/profile-pos
 import {CreateTopicComponent} from '../create-topic/create-topic.component';
 import {CreatePostComponent} from '../create-post/create-post.component';
 import {ReportPostComponent} from '../report-post/report-post.component';
+import {UserEditComponent} from "../user-edit/user-edit.component";
+import {UserPrivacyComponent} from "../user-privacy/user-privacy.component";
+import {ChangePasswordComponent} from "../change-password/change-password.component";
 
 const routes: Routes = [
   {path: 'new', component: NewPostsComponent, data: {'order': 'new'}, runGuardsAndResolvers: 'always'},
@@ -49,6 +52,9 @@ const routes: Routes = [
   {path: 'user/:username/comments/created', component: ProfileCommentsComponent},
   {path: 'user/:username/comments/upvoted', component: ProfileCommentsUpvotedComponent},
   {path: 'user/:username/comments/downvoted', component: ProfileCommentsDownvotedComponent},
+  {path: 'user/:username/edit', component: UserEditComponent},
+  {path: 'user/:username/privacy', component: UserPrivacyComponent},
+  {path: 'user/:username/change_password', component: ChangePasswordComponent},
   {path: 'user/:username/', redirectTo: 'user/:username/page', pathMatch: 'full'},
 
   {path: 'search', redirectTo: '/search/post?q=', pathMatch : 'full'},

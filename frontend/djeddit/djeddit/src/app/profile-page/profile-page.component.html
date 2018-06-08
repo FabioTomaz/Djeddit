@@ -10,7 +10,7 @@
         <div class="col-md-3 col-lg-3 " align="center">
           <img src="{{ profile.user_picture }}" class="img-circle img-fluid">
           <hr>
-          <span data-placement="bottom" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Points Details" data-content="getKarmaDescription()" class="btn btn-primary" >{{ profile.karma_total }} Points <i class="fas fa-chevron-circle-up"></i></span>
+          <span data-placement="bottom" role="button" tabindex="0" data-toggle="popover" data-trigger="focus" title="Points Details" [attr.data-content]="getKarmaDescription()" class="btn btn-primary">{{ profile.karma_total }} Points <i class="fas fa-chevron-circle-up"></i></span>
         </div>
         <div class=" col-md-9 col-lg-9 ">
           <table class="table table-user-information">
@@ -44,6 +44,26 @@
         </div>
       </div>
     </div>
+    <div class="card-footer" *ngIf="userLoggedIn()">
+      <div>
+        <button id="btn_add_friend" class="float-right btn btn-success" (click)="addFriend()" *ngIf="userIsFriend()">
+          <i class="fas fa-user-plus"></i> Add Friend
+        </button>
+        <button id="btn_remove_friend" class="float-right btn btn-danger" (click)="removeFriend()" *ngIf="userIsFriend()">
+          <i class="fas fa-user-times"></i> Remove Friend
+        </button>
+      </div>
+      <div class="float-right" *ngIf="loggedUserEqualsUser()">
+        <a routerLink="user/{{profile.user.username}}/change_password" class="btn btn-secondary ">
+          <i class="fas fa-unlock-alt"></i> Change Password
+        </a>
+        <a routerLink="user/{{profile.user.username}}/privacy" class="btn btn-secondary ">
+          <i class="fas fa-wrench"></i> Privacy Settings
+        </a>
+        <a routerLink="user/{{profile.user.username}}/edit" class="btn btn-primary ">
+          <i class="fas fa-edit"></i> Edit Profile
+        </a>
+      </div>
+    </div>
   </div>
-
 </div>
