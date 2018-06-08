@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {AuthenticationService} from "../authentication.service";
 import {PostService} from "../post.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-preview',
@@ -12,7 +13,8 @@ export class PostPreviewComponent implements OnInit {
   @Input() post: Post;
 
   constructor(private authService: AuthenticationService,
-              private  postService: PostService) { }
+              private postService: PostService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -75,5 +77,9 @@ export class PostPreviewComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  inProfileHiddenRoute() {
+    return this.router.url === ("/user/" + this.authService.getLoggedProfile().user.username + "/posts/hidden");
   }
 }

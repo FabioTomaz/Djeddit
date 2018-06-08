@@ -26,7 +26,7 @@ import urllib.parse
 from datetime import datetime
 
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
-    FriendSerializer, UserSerializer
+    FriendSerializer, UserSerializer, UserCreationSerializer
 
 
 def mainPage(request):
@@ -1280,10 +1280,13 @@ def rest_user_change_password(request, username):
 
 @api_view(['POST'])
 def rest_profile_create(request):
-    serializer = ProfileSerializer(data=request.data)
+    serializer = UserCreationSerializer(data=request.data)
+    print(request.data)
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        profile = Profile.objects.get(user__username=request.data["username"])
+        profile_serializer = ProfileSerializer(profile)
+        return Response(profile_serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
