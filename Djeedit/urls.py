@@ -142,9 +142,14 @@ urlpatterns = [
                   path('ws/profile/create', views.rest_profile_create),
                   # EDIT
 
-                  # DELETE
 
                   # AUTH
                   path('ws/login/', views.rest_login),
+
+                  # POST OPERATIONS
+                  path('ws/post/<str:post_id>/save', views.rest_post_save),
+                  path('ws/post/<str:post_id>/unsave', views.rest_post_unsave),
+                  path('ws/post/<str:post_id>/hide', views.rest_post_hide),
+                  path('ws/post/<str:post_id>/unhide', views.rest_post_unhide),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1206,8 +1206,6 @@ def rest_topic(request, topic_name):
     return Response(serializer.data)
 
 
-
-
 @api_view(['GET'])
 def rest_post(request, post_id):
     try:
@@ -1282,7 +1280,7 @@ def rest_user_change_password(request, username):
 
 @api_view(['POST'])
 def rest_profile_create(request):
-    serializer = ProfileSerializer(data =request.data)
+    serializer = ProfileSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -1302,6 +1300,7 @@ def rest_profile_update(request):
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['POST'])
 def create_topic(request):
     topic = TopicSerializer(request.data.get('topic'))
@@ -1310,6 +1309,7 @@ def create_topic(request):
         {'status': 'success'},
     )
 
+
 @api_view(['POST'])
 def create_post(request):
     post = PostSerializer(request.data.get('post'))
@@ -1317,3 +1317,51 @@ def create_post(request):
     return Response(
         {'status': 'success'},
     )
+
+
+@csrf_exempt
+def rest_post_save(request, post_id):
+    try:
+        profile = Profile.objects.get(id=request.data)
+        post = Post.objects.get(id=post_id)
+        post.userSaved.add(profile)
+        post.save()
+        return Response(post, status.HTTP_200_OK)
+    except (Post.DoesNotExist, Profile.DoesNotExist):
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@csrf_exempt
+def rest_post_unsave(request, post_id):
+    try:
+        profile = Profile.objects.get(id=request.data)
+        post = Post.objects.get(id=post_id)
+        post.userSaved.remove(profile)
+        post.save()
+        return Response(post, status.HTTP_200_OK)
+    except (Post.DoesNotExist, Profile.DoesNotExist):
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@csrf_exempt
+def rest_post_hide(request, post_id):
+    try:
+        profile = Profile.objects.get(id=request.data)
+        post = Post.objects.get(id=post_id)
+        post.userHidden.add(profile)
+        post.save()
+        return Response(post, status.HTTP_200_OK)
+    except (Post.DoesNotExist, Profile.DoesNotExist):
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@csrf_exempt
+def rest_post_unhide(request, post_id):
+    try:
+        profile = Profile.objects.get(id=request.data)
+        post = Post.objects.get(id=post_id)
+        post.userHidden.remove(profile)
+        post.save()
+        return Response(post, status.HTTP_200_OK)
+    except (Post.DoesNotExist, Profile.DoesNotExist):
+        return Response(status=status.HTTP_404_NOT_FOUND)

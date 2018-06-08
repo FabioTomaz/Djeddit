@@ -81,4 +81,24 @@ export class PostService {
     const url = this.baseUrl + 'create_post';
     return this.http.post<Post>(url, post, httpOptions);
   }
+
+  savePost(postID: number, profile: Profile): Observable<Post>{
+    const url = this.baseUrl + 'post/' + postID + '/save';
+    return this.http.post<Post>(url, profile.user.id, httpOptions);
+  }
+
+  unsavePost(postID: number, profile: Profile): Observable<Post>{
+    const url = this.baseUrl + 'post/' + postID + '/unsave';
+    return this.http.post<Post>(url, profile.user.id, httpOptions);
+  }
+
+  hidePost(postID: number, profile: Profile): Observable<Post>{
+    const url = this.baseUrl + 'post/' + postID + '/hide';
+    return this.http.post<Post>(url, profile.user.id, httpOptions);
+  }
+
+  unhidePost(postID: number, profile: Profile): Observable<Post>{
+    const url = this.baseUrl + 'post/' + postID + '/unhide';
+    return this.http.post<Post>(url, profile.user.id, httpOptions);
+  }
 }

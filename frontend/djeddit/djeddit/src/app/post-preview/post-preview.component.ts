@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {AuthenticationService} from "../authentication.service";
+import {PostService} from "../post.service";
 
 @Component({
   selector: 'app-post-preview',
@@ -10,47 +11,69 @@ import {AuthenticationService} from "../authentication.service";
 export class PostPreviewComponent implements OnInit {
   @Input() post: Post;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService,
+              private  postService: PostService) { }
 
   ngOnInit() {
   }
 
   checkAuth(): boolean {
-    console.log(this.authService.userLoggedIn());
     return this.authService.userLoggedIn();
   }
 
   checkLoggedUserIsOP(): boolean{
-    if(this.checkAuth())
-      return this.authService.getLoggedProfile().user.username === this.post.userOP.username;
-    return false;
+    return this.authService.getLoggedProfile().user.username === this.post.userOP.username;
   }
 
   checkUserSaved(): boolean{
-    if(this.checkAuth())
-      return this.post.userSaved.includes(this.authService.getLoggedProfile().user.id);
-    return false;
+    return this.post.userSaved.includes(this.authService.getLoggedProfile().user.id);
   }
 
   checkUserHidden(): boolean{
-    if(this.checkAuth())
-      return this.post.userHidden.includes(this.authService.getLoggedProfile().user.id);
-    return false;
+    return this.post.userHidden.includes(this.authService.getLoggedProfile().user.id);
   }
 
   unsavePost() {
-
+    this.postService.unsavePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 
   savePost() {
-
+    this.postService.savePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 
   hidePost() {
-
+    this.postService.hidePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 
   showPost() {
-
+    this.postService.unhidePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 }
