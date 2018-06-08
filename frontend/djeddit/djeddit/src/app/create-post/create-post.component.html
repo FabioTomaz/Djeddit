@@ -1,0 +1,56 @@
+<!--{% if not user.is_authenticated %}
+<div class="alert alert-warning" role="alert">
+  You must be signed in to post something!
+</div>
+{% endif %}-->
+<div class="row">
+  <div class="col-8">
+   <!-- {% if edit == True%}
+    <h1>Edit Post from {{ topic.name }}</h1>
+    {% else %}-->
+    <h1>Submit New Post to {{ topic.name }}</h1>
+
+
+    <form [formGroup]="angForm" >
+      <table class="table table-user-information">
+        <tbody>
+        <tr>
+          <td>Title</td>
+          <td>
+            <input [(ngModel)]="post.title" type="text" class="form-control" formControlName="title" maxlength="120">
+            <div *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)" class="alert alert-danger">
+              <div *ngIf="angForm.controls['title'].errors.required">
+                A title for the post is required, and cannot be more than 120 caracters
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Your Post</td>
+          <td>
+            <textarea [(ngModel)]="post.content" type="text" class="form-control" formControlName="post" maxlength="100000"> </textarea>
+            <div *ngIf="angForm.controls['post'].invalid && (angForm.controls['post'].dirty || angForm.controls['post'].touched)" class="alert alert-danger">
+              <div *ngIf="angForm.controls['post'].errors.required">
+                You must add content to your post
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <button (click)="createPost()" [disabled]="!angForm.valid" class="btn btn-success"><i class="fas fa-plus-square"></i>
+        Submit Post</button>
+    </form>
+  </div>
+  <div class="col-4">
+    <br/>
+    <br/>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title"> Remember the rules! </h5>
+        <h6 class="card-subtitle mb-2 text-muted"></h6>
+      </div>
+      <div class="card-body"><p style="white-space:pre-wrap">{{ topic.rules }}</p> </div>
+    </div>
+  </div>
+</div>

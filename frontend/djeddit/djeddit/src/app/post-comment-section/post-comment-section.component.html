@@ -26,7 +26,7 @@
                   <span> {{ comment.date | date: 'dd/MM/yyyy HH:mm' }}, Score: <p style="display:inline" id="score_{{ comment.id }}">{{ getCommentScore(comment) }}</p></span>
 
                   <div class="btn-group-sm float-right" role="group" aria-label="...">
-                    <button class="btn btn-dark btn-sm">
+                    <button (click)="open_close_reply_area( comment.id )" class="btn btn-dark btn-sm">
                       <i class="fas fa-reply"></i> Reply
                     </button>
                     <button id="downvote_comment_{{ comment.id }}" class="btn">
@@ -43,10 +43,14 @@
               </div>
             </div>
             <div style="margin-left:90px; display: none" id="add_reply_{{ comment.id }}">
-              <form action="." method="post">
+              <!--TODO: deactivate this if user is not logged in-->
+              <!--TODO: send reply using service-->
+              <form [formGroup]="replyForm">
                 <!-- Hidden input for parent comment.id -->
                 <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
-                <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                <textarea placeholder="Type your reply here..." type="text" name="comment_reply_{{ comment.id }}"
+                          cols="70" rows="5" class="form-control" formControlName="replyText" maxlength="10000"></textarea>
+                <button [disabled]="!replyForm.valid" class="btn btn-primary btn-sm" >Reply</button>
               </form>
             </div>
             <div *ngFor="let reply of getCommentReplies(comment)">

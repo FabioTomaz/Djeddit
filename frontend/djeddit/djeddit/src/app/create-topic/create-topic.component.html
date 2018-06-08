@@ -1,0 +1,48 @@
+<div class="container">
+<h1>Create New Topic</h1>
+<form [formGroup]="topicForm">
+  <table class="table table-user-information">
+    <tbody>
+    <tr>
+      <td>Topic Name</td>
+      <td>
+        <input type="text" placeholder="Name your topic" class="form-control" formControlName="name" maxlength="80">
+        <div *ngIf="topicForm.controls['name'].invalid && (topicForm.controls['name'].dirty || topicForm.controls['name'].touched)" class="alert alert-danger">
+          <div *ngIf="topicForm.controls['name'].errors.required">
+            You must provide a name for this topic
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Description and Information</td>
+      <td>
+        <textarea type="text" placeholder="Describe here what others should post on this topic..."
+                  class="form-control" formControlName="descr" maxlength="300"></textarea>
+        <div *ngIf="topicForm.controls['descr'].invalid && (topicForm.controls['descr'].dirty || topicForm.controls['descr'].touched)" class="alert alert-danger">
+          <div *ngIf="topicForm.controls['descr'].errors.required">
+            You must provide a description for this topic (what theme or subject it is about and what other should post here)
+          </div>
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td>Rules</td>
+      <td>
+        <input type="text" placeholder="Describe here the rules the users must obey in this topic..."
+               class="form-control" formControlName="rules" maxlength="500">
+        <div *ngIf="topicForm.controls['rules'].invalid && (topicForm.controls['rules'].dirty || topicForm.controls['descr'].touched)" class="alert alert-danger">
+          <div *ngIf="topicForm.controls['rules'].errors.required">
+            You must provide some rules for your topic.
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <button [disabled]="!topicForm.valid" class="btn btn-success"><i class="fas fa-plus-square"></i>
+    Create Topic</button>
+</form>
+</div>

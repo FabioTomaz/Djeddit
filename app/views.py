@@ -1206,6 +1206,8 @@ def rest_topic(request, topic_name):
     return Response(serializer.data)
 
 
+
+
 @api_view(['GET'])
 def rest_post(request, post_id):
     try:
@@ -1299,3 +1301,19 @@ def rest_profile_update(request):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def create_topic(request):
+    topic = TopicSerializer(request.data.get('topic'))
+    topic.save()
+    return Response(
+        {'status': 'success'},
+    )
+
+@api_view(['POST'])
+def create_post(request):
+    post = PostSerializer(request.data.get('post'))
+    post.save()
+    return Response(
+        {'status': 'success'},
+    )

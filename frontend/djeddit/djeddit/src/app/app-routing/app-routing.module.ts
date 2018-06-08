@@ -19,6 +19,9 @@ import {ProfilePostsUpvotedComponent} from "../profile-posts-upvoted/profile-pos
 import {ProfilePostsDownvotedComponent} from "../profile-posts-downvoted/profile-posts-downvoted.component";
 import {ProfileFriendsComponent} from "../profile-friends/profile-friends.component";
 import {ProfilePostsCreatedComponent} from "../profile-posts-created/profile-posts-created.component";
+import {CreateTopicComponent} from '../create-topic/create-topic.component';
+import {CreatePostComponent} from '../create-post/create-post.component';
+import {ReportPostComponent} from '../report-post/report-post.component';
 import {UserEditComponent} from "../user-edit/user-edit.component";
 import {UserPrivacyComponent} from "../user-privacy/user-privacy.component";
 import {ChangePasswordComponent} from "../change-password/change-password.component";
@@ -30,6 +33,9 @@ const routes: Routes = [
   {path: 'controversial', component: NewPostsComponent, data: {'order': 'controversial'}},
   {path: 'topic/:topic_name', component: TopicPageComponent},
   {path: 'topic/:topic_name/post/:post_id', component: PostPageComponent},
+  {path: 'topic/:topic_name/post/:post_id/report', component: ReportPostComponent},
+  {path: 'topic/:topic_name/create_post', component: CreatePostComponent},
+  {path: 'topic/topic_create', component: CreateTopicComponent},
   {path: 'search/topic', component: SearchTopicComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
   {path: 'search/post', component: SearchPostComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
   {path: 'search/user', component: SearchUserComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},

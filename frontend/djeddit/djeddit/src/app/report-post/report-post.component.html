@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-12">
+    <h1 class="text-center">Report Post:</h1>
+    <h4 class="text-center">"{{ post.title }}"</h4>
+    <p style="font-size:15px;color:#5C5C5C;">Please, specify why you think this post should be elimnated.<br/>
+      (Example: Doesn't follow some of all of the rules; This post was stolen from me; It contains personal info, etc</p>
+    <br/>
+    <form [formGroup]="reportForm">
+    <table class="table table-user-information">
+      <tbody>
+      <tr>
+        <td>Comment</td>
+        <td><textarea type="text" class="form-control" formControlName="reportText" maxlength="500"></textarea>
+          <div *ngIf="reportForm.controls['reportText'].invalid && (reportForm.controls['reportText'].dirty || reportForm.controls['reportText'].touched)" class="alert alert-danger">
+            <div *ngIf="reportForm.controls['reportText'].errors.required">
+              You cannot report a post without specifying a reason
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+      </tbody>
+    </table>
+    <button [disabled]="!reportForm.valid" class="btn btn-success"><i class="fas fa-check"></i>
+      Confirm Report</button>
+    </form>
+  </div>
+</div>

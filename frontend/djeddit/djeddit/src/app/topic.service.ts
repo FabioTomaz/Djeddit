@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {Topic} from './topic';
 import {Post} from "./post";
+import {Profile} from './profile';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class TopicService {
   private baseUrl = 'http://127.0.0.1:8000/ws/';
+
   constructor(private http: HttpClient) { }
 
   searchTopics(name: string, user_creator: string, orderby: string): Observable<Topic[]>{
@@ -35,4 +41,10 @@ export class TopicService {
     const url = this.baseUrl + "user/" + username + "/topics";
     return this.http.get<Topic[]>(url);
   }
+
+  createTopic(topic: Topic): Observable<Topic> {
+    const url = this.baseUrl + 'create_topic';
+    return this.http.post<Topic>(url, topic, httpOptions);
+  }
+
 }

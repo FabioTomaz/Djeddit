@@ -18,20 +18,27 @@
   <div class="col-md-4">
     <br/>
     <br/>
-    <div class="row">
-      <!--topic options: create new post, and if topic creator,
-      another options for post reports and edit topic infos -->
+      <div class="row">
+        <div class="col" align="center">
+          <a routerLink="/topic/{{topic.name}}/create_post" class="btn btn-primary">New Post</a>
+        </div>
+        <br/>
     </div>
     <br/>
-    <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title"> Rules </h5>
-            <h6 class="card-subtitle mb-2 text-muted"></h6>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title"> Rules </h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+            </div>
+            <div class="card-body"><p style="white-space:pre-wrap">{{ topic.rules }}</p> </div>
           </div>
-          <div class="card-body"><p style="white-space:pre-wrap">{{ topic.rules }}</p> </div>
         </div>
+      </div>
+      <div class="row">
+
       </div>
     </div>
   </div>
