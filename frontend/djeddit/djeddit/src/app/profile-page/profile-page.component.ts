@@ -49,11 +49,11 @@ export class ProfilePageComponent implements OnInit{
   }
 
   userIsFriend(): boolean{
-    return this.friends.includes(this.authService.getLoggedUser());
+    return this.friends.includes(this.authService.getLoggedProfile());
   }
 
   loggedUserEqualsUser(): boolean{
-    return this.profile.user.username === this.authService.getLoggedUser().user.username;
+    return this.profile.user.username === this.authService.getLoggedProfile().user.username;
   }
 
   userLoggedIn(): boolean{

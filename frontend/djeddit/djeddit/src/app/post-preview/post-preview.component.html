@@ -7,21 +7,20 @@
   </div>
 
   <div class="card-footer">
-    <button class="btn btn-sm btn-dark"><i class="far fa-comment"></i> {{post.nComments}} Commments
-    </button>
+    <button class="btn btn-sm btn-dark"><i class="far fa-comment"></i> {{post.nComments}} Commments</button>
 
     <!--<button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#coll{{ post.id }}"
             aria-expanded="false" aria-controls="collapseExample">
       <i class="fas fa-share-alt"></i> Share
     </button>-->
-    <div *ngIf="checkAuth()">
-      <button type="button" id="unsave_post_{{ post.id }}" (click)="unsavePost()" class="btn btn-sm btn-warning" *ngIf="checkUserSaved()"><i class="fas fa-ban"></i> Don't Save</button>
-      <button type="button" id="save_post_{{ post.id }}" (click)="savePost()" class="btn btn-sm btn-success" *ngIf="!checkUserSaved()"><i class="far fa-save"></i> Save</button>
-      <button type="button" id="hide_post_{{ post.id }}" (click)="hidePost()" class="btn btn-sm btn-danger" *ngIf="!checkUserHidden()"><i class="far fa-eye-slash"></i> Hide</button>
-      <button type="button" id="show_post_{{ post.id }}" (click)="showPost()" class="btn btn-sm btn-secondary" *ngIf="checkUserHidden()"><i class="fas fa-eye"></i> Show</button>
+      <button type="button" id="unsave_post_{{ post.id }}" (click)="unsavePost()" class="btn btn-sm btn-warning" *ngIf="checkAuth() && checkUserSaved()"><i class="fas fa-ban"></i> Don't Save</button>
+      <button type="button" id="save_post_{{ post.id }}" (click)="savePost()" class="btn btn-sm btn-success" *ngIf="checkAuth() && !checkUserSaved()"><i class="far fa-save"></i> Save</button>
+      <button type="button" id="hide_post_{{ post.id }}" (click)="hidePost()" class="btn btn-sm btn-danger" *ngIf="checkAuth() && !checkUserHidden()"><i class="far fa-eye-slash"></i> Hide</button>
+      <button type="button" id="show_post_{{ post.id }}" (click)="showPost()" class="btn btn-sm btn-secondary" *ngIf="checkAuth() && checkUserHidden()"><i class="fas fa-eye"></i> Show</button>
       <a *ngIf="checkLoggedUserIsOP()" routerLink="" class="btn btn-sm btn-outline-primary"><i class="far fa-edit"></i> Edit</a>
-    </div>
     <!--<div class="collapse" id="coll{{ post.id }}">
-
+      <button shareButton="facebook">Share</button>
+      <button shareButton="twitter">Tweet</button>
+      <button shareButton="pinterest">Pin</button>
     </div>-->
 </div>

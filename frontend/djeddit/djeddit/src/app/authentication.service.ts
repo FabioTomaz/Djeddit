@@ -15,8 +15,8 @@ export class AuthenticationService {
 
   }
 
-  login(user: User) {
-    return this.http.post<Profile>(this.baseUrl + 'login/', user);
+  login(profile: Profile) {
+    return this.http.post<Profile>(this.baseUrl + 'login/', profile.user);
   }
 
   logout() {
@@ -28,7 +28,7 @@ export class AuthenticationService {
     return !!localStorage.getItem("currentUser");
   }
 
-  getLoggedUser(): Profile{
+  getLoggedProfile(): Profile{
     return JSON.parse(localStorage.getItem("currentUser"));
   }
 }

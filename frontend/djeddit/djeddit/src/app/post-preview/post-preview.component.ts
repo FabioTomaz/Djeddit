@@ -20,15 +20,15 @@ export class PostPreviewComponent implements OnInit {
   }
 
   checkLoggedUserIsOP(): boolean{
-    return this.authService.getLoggedUser().user.username === this.post.userOP.username;
+    return this.authService.getLoggedProfile().user.username === this.post.userOP.username;
   }
 
   checkUserSaved(): boolean{
-    return this.post.userSaved.includes(this.authService.getLoggedUser().user.id);
+    return this.post.userSaved.includes(this.authService.getLoggedProfile().user.id);
   }
 
   checkUserHidden(): boolean{
-    return this.post.userHidden.includes(this.authService.getLoggedUser().user.id);
+    return this.post.userHidden.includes(this.authService.getLoggedProfile().user.id);
   }
 
   unsavePost() {

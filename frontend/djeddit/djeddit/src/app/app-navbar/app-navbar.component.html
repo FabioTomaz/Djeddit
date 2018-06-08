@@ -63,8 +63,8 @@
 
 
       <li class="nav-item" *ngIf="userIsLoggedIn">
-        <a class="nav-link" routerLink="/user/{{ loginUser.username }}/page">
-          <i class="far fa-user"></i> {{ loginUser.username }}
+        <a class="nav-link" routerLink="/user/{{ loginProfile.user.username }}/page">
+          <i class="far fa-user"></i> {{ loginProfile.user.username }}
         </a>
       </li>
       <li class="nav-item" *ngIf="userIsLoggedIn">
@@ -106,7 +106,7 @@
                     <i class="far fa-user"></i>
                   </button>
                 </span>
-                <input name="username" [(ngModel)]="loginUser.username"  #username="ngModel" class="form-control" type="text" placeholder="Username" required>
+                <input name="username" [(ngModel)]="loginProfile.user.username" #username="ngModel" class="form-control" type="text" placeholder="Username" required>
               </div>
 
               <br>
@@ -117,7 +117,7 @@
                     <i class="fas fa-key"></i>
                   </button>
                 </span>
-                <input id="login_password" name="password" [(ngModel)]="loginUser.password" #password="ngModel" class="form-control" [type]="showPassword ? 'text' : 'password'"
+                <input id="login_password" name="password" [(ngModel)]="loginProfile.user.password" #password="ngModel" class="form-control" [type]="showPassword ? 'text' : 'password'"
                        placeholder="Password" required>
                 <span class="input-group-append">
                   <button id="show_hide_password" class="btn btn-primary" type="button" (click)="toggleShowPassword()">

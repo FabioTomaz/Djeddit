@@ -1257,10 +1257,10 @@ def rest_login(request):
 
     if user:
         try:
-            return_user = User.objects.get(username=username)
+            return_user = Profile.objects.get(user__username=username)
         except Profile.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = UserSerializer(return_user)
+        serializer = ProfileSerializer(return_user)
         return Response(serializer.data)
 
 
