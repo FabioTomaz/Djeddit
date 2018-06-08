@@ -26,7 +26,7 @@ import urllib.parse
 from datetime import datetime
 
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
-    FriendSerializer
+    FriendSerializer, UserSerializer
 
 
 def mainPage(request):
@@ -1255,30 +1255,12 @@ def rest_login(request):
 
     user = authenticate(username=username, password=password)
 
-    LOGGING = {
-        'version': 1,
-        'handlers': {
-            'console': {
-                'class': 'logging.StreamHandler',
-                'stream': sys.stdout,
-            }
-        },
-        'root': {
-            'handlers': ['console'],
-            'level': 'INFO'
-        }
-    }
-
-    logging.config.dictConfig(LOGGING)
-
     if user:
-        logging.info(user)
         try:
-            profile = Profile.objects.get(user__username=username)
+            return_user = User.objects.get(username=username)
         except Profile.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        logging.info(profile)
-        serializer = ProfileSerializer(profile)
+        serializer = UserSerializer(return_user)
         return Response(serializer.data)
 
 
@@ -1296,10 +1278,24 @@ def rest_user_change_password(request, username):
     return render(request, 'profile_change_password.html', tparams)
 
 
-@api_view(['PUT'])
+@api_view(['POST'])
 def rest_profile_create(request):
     serializer = ProfileSerializer(data =request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def rest_profile_update(request):
+    profile_id = request.data['id']
+    try:
+        profile = Profile.objects.get(id=profile_id)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProfileSerializer(profile, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

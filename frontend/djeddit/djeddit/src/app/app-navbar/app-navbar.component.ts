@@ -64,7 +64,6 @@ export class AppNavbarComponent implements OnInit {
       .subscribe(user => {
         // login successful if there's a jwt token in the response
         if (user) {
-          console.log(user);
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.loading = false;
@@ -91,6 +90,7 @@ export class AppNavbarComponent implements OnInit {
           this.router.navigate(['login']);
         },
         error => {
+          console.log(error);
           //this.alertService.error(error);
           this.loading = false;
         });

@@ -19,7 +19,8 @@ export class UserEditComponent implements OnInit {
   ];
 
   constructor(private route: ActivatedRoute,
-              private profileService: ProfileService) { }
+              private profileService: ProfileService,
+              private location: Location) { }
 
   ngOnInit() {
     this.getProfile(this.route.snapshot.paramMap.get("username"));
@@ -36,7 +37,7 @@ export class UserEditComponent implements OnInit {
     this.selectedImage = event.target.files[0];
   }
 
-  onSubmit(){
-
+  onSubmit() {
+    this.profileService.update(this.profile);
   }
 }

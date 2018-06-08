@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPrivacyComponent implements OnInit {
 
+  privacyChoices = [
+    {id: 'N', name: "None"},
+    {id: 'F', name: "Friends"},
+    {id: 'E', name: "Everybody"}
+  ];
+
   constructor() { }
 
   ngOnInit() {
