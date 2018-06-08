@@ -1,10 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {PostService} from '../post.service';
 import {Comment} from '../comment';
 import {Post} from '../post';
 import {ActivatedRoute} from '@angular/router';
 import {CommentService} from '../comment.service';
 import {Profile} from '../profile';
+import {DOCUMENT} from '@angular/common';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-post-comment-section',
@@ -17,11 +19,23 @@ export class PostCommentSectionComponent implements OnInit {
   @Input()post: Post;
   @Input()profiles: Profile[];
   urlBase: String;
+  private replyBox: any;
+  replyForm: FormGroup;
+  reply: Comment;
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) document, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.urlBase = 'http://127.0.0.1:8000';
+    this.createForm();
+    this.reply = new Comment();
+  }
+
+  createForm() {
+    this.replyForm = this.fb.group({
+      replyText: ['', Validators.required]
+    });
+    this.post = new Post();
   }
 
   /*getComments(): void {
@@ -46,15 +60,13 @@ export class PostCommentSectionComponent implements OnInit {
     return c;
   }
 
-  /*getUserPic(comment: Comment): string {
-    for (let i = 0 ; i < this.profiles.length; i++) {
-      console.log(this.profiles[i].user.username);
-      if (comment.user.username === this.profiles[i].user.username) {
-        console.log("ifawnihgnsuingbesjkbnaehgbwu");
-        return this.profiles[i].user_picture;
-      }
+  open_close_reply_area(nComment: number) {
+    this.replyBox = document.getElementById('add_reply_' + nComment);
+    if (this.replyBox.style.display === 'none') {
+      this.replyBox.style.display = 'block';
+    } else {
+      this.replyBox.style.display = 'none';
     }
-    return '';
-  }*/
+  }
 
 }

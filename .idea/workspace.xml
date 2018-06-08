@@ -2,17 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/static/__init__.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-post/create-post.component.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-post/create-post.component.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-post/create-post.component.spec.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-post/create-post.component.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-topic/create-topic.component.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-topic/create-topic.component.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-topic/create-topic.component.spec.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-topic/create-topic.component.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post/report-post.component.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post/report-post.component.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post/report-post.component.spec.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post/report-post.component.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/forms.css" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/serializers.py" afterPath="$PROJECT_DIR$/app/serializers.py" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-navbar/app-navbar.component.ts" />
+      <change beforePath="$PROJECT_DIR$/Djeedit/urls.py" afterPath="$PROJECT_DIR$/Djeedit/urls.py" />
+      <change beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-routing/app-routing.module.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-routing/app-routing.module.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.module.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.module.ts" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/comment.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/comment.service.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/comment.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/comment.ts" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-comment-section/post-comment-section.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-comment-section/post-comment-section.component.html" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-comment-section/post-comment-section.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-comment-section/post-comment-section.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/user.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/user.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post.service.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile/profile.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile/profile.component.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-page/topic-page.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-page/topic-page.component.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic.service.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/index.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,11 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1818">
-              <caret line="107" column="32" lean-forward="false" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+            <state relative-caret-position="455">
+              <caret line="126" column="57" lean-forward="false" selection-start-line="126" selection-start-column="54" selection-end-line="126" selection-end-column="57" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -38,11 +54,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/layout.html">
+      <file leaf-file-name="report_post.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/report_post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7128">
-              <caret line="396" column="23" lean-forward="false" selection-start-line="396" selection-start-column="23" selection-end-line="396" selection-end-column="23" />
+            <state relative-caret-position="738">
+              <caret line="41" column="10" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="41" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/post.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2736">
+              <caret line="152" column="130" lean-forward="false" selection-start-line="152" selection-start-column="120" selection-end-line="152" selection-end-column="130" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_post.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/create_post.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -58,21 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search_layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/search_layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1728">
-              <caret line="96" column="58" lean-forward="false" selection-start-line="96" selection-start-column="58" selection-end-line="96" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="8" column="85" lean-forward="false" selection-start-line="8" selection-start-column="85" selection-end-line="8" selection-end-column="85" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -80,11 +106,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="topic_create.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/topic_create.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="26" column="40" lean-forward="false" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17424">
-              <caret line="997" column="21" lean-forward="false" selection-start-line="997" selection-start-column="21" selection-end-line="997" selection-end-column="21" />
+            <state relative-caret-position="14706">
+              <caret line="846" column="13" lean-forward="false" selection-start-line="846" selection-start-column="4" selection-end-line="846" selection-end-column="13" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -92,31 +128,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Djeedit/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1908">
-              <caret line="112" column="36" lean-forward="false" selection-start-line="112" selection-start-column="36" selection-end-line="112" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/post.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="82" lean-forward="false" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="82" />
+            <state relative-caret-position="2412">
+              <caret line="140" column="53" lean-forward="false" selection-start-line="140" selection-start-column="53" selection-end-line="140" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -136,10 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>response</find>
-      <find>primary</find>
-      <find>rest_frame</find>
-      <find>cors</find>
       <find>Post.objects.get</find>
       <find>rest</find>
       <find>search</find>
@@ -166,6 +178,10 @@
       <find>ProfileSerializer</find>
       <find>comment</find>
       <find>UserSerializer</find>
+      <find>create_top</find>
+      <find>create_topic</find>
+      <find>createPos</find>
+      <find>myFunction</find>
     </findStrings>
     <replaceStrings>
       <replace>sidebar</replace>
@@ -227,11 +243,11 @@
         <option value="$PROJECT_DIR$/Djeedit/settings.py" />
         <option value="$PROJECT_DIR$/templates/post.html" />
         <option value="$PROJECT_DIR$/templates/profile.html" />
-        <option value="$PROJECT_DIR$/Djeedit/urls.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/static/content/serializers_user.py" />
         <option value="$PROJECT_DIR$/app/serializers_user.py" />
         <option value="$PROJECT_DIR$/app/serializers.py" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/Djeedit/urls.py" />
       </list>
     </option>
   </component>
@@ -288,32 +304,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Changed Files">
@@ -381,6 +371,32 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
               <item name="templates" type="cbb8eebc:String" user="templates" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -695,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528099650856</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Corrijido imagens de perfil">
+      <created>1528272553354</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1528272553354</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -708,13 +731,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <frame x="67" y="-4" width="1303" height="780" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24174175" sideWeight="0.5149885" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3093093" sideWeight="0.518063" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3432602" sideWeight="0.4973262" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3093093" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3093093" sideWeight="0.48193696" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23443505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -742,7 +765,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Diversas alteraçoes no layout da pagina. Avanços na pesquisa." />
     <MESSAGE value="Alterações" />
     <MESSAGE value="Diversas Alterações" />
     <MESSAGE value="Alterações no login" />
@@ -767,7 +789,8 @@
     <MESSAGE value="Merge" />
     <MESSAGE value="&lt;Alteraçoes" />
     <MESSAGE value="Alteraçoes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Alteraçoes" />
+    <MESSAGE value="Corrijido imagens de perfil" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrijido imagens de perfil" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -823,13 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/topic_create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="63" column="31" lean-forward="false" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/delete_post_confirmed.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -837,24 +853,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/create_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="45" column="37" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="72" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="68" lean-forward="false" selection-start-line="1" selection-start-column="68" selection-end-line="1" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/report_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -883,7 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6210">
           <caret line="355" column="6" lean-forward="false" selection-start-line="355" selection-start-column="6" selection-end-line="355" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,28 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/topic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="77" column="30" lean-forward="false" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="82" lean-forward="false" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -962,7 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1728">
           <caret line="96" column="58" lean-forward="false" selection-start-line="96" selection-start-column="58" selection-end-line="96" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1047,7 +1025,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7128">
           <caret line="396" column="23" lean-forward="false" selection-start-line="396" selection-start-column="23" selection-end-line="396" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1072,39 +1049,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1818">
-          <caret line="107" column="32" lean-forward="false" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Djeedit/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17424">
-          <caret line="997" column="21" lean-forward="false" selection-start-line="997" selection-start-column="21" selection-end-line="997" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/serializers_user.py" />
-    <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/topic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1908">
-          <caret line="112" column="36" lean-forward="false" selection-start-line="112" selection-start-column="36" selection-end-line="112" selection-end-column="36" />
+        <state relative-caret-position="1224">
+          <caret line="68" column="17" lean-forward="false" selection-start-line="57" selection-start-column="16" selection-end-line="68" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="35" column="108" lean-forward="false" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/create_post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1119,11 +1089,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="8" column="85" lean-forward="false" selection-start-line="8" selection-start-column="85" selection-end-line="8" selection-end-column="85" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/topic_create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="40" lean-forward="false" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2412">
+          <caret line="140" column="53" lean-forward="false" selection-start-line="140" selection-start-column="53" selection-end-line="140" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14706">
+          <caret line="846" column="13" lean-forward="false" selection-start-line="846" selection-start-column="4" selection-end-line="846" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="126" column="57" lean-forward="false" selection-start-line="126" selection-start-column="54" selection-end-line="126" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/report_post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="41" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2736">
+          <caret line="152" column="130" lean-forward="false" selection-start-line="152" selection-start-column="120" selection-end-line="152" selection-end-column="130" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1207,6 +1207,8 @@ def rest_topic(request, topic_name):
     return Response(serializer.data)
 
 
+
+
 @api_view(['GET'])
 def rest_post(request, post_id):
     try:
@@ -1266,3 +1268,19 @@ def rest_login(request):
             {'error': 'Invalid credentials',
              'status': 'failed'},
         )
+
+@api_view(['POST'])
+def create_topic(request):
+    topic = TopicSerializer(request.data.get('topic'))
+    topic.save()
+    return Response(
+        {'status': 'success'},
+    )
+
+@api_view(['POST'])
+def create_post(request):
+    post = PostSerializer(request.data.get('post'))
+    post.save()
+    return Response(
+        {'status': 'success'},
+    )

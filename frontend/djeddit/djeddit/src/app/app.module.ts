@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NewPostsComponent } from './new-posts/new-posts.component';
 import { PostPreviewComponent } from './post-preview/post-preview.component';
 import { TopicPreviewComponent } from './topic-preview/topic-preview.component';
@@ -35,6 +35,10 @@ import { CommentPreviewComponent } from './comment-preview/comment-preview.compo
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { PostCommentSectionComponent } from './post-comment-section/post-comment-section.component';
+import { CreateTopicComponent } from './create-topic/create-topic.component';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { ReportTopicComponent } from './report-topic/report-topic.component';
+import { ReportPostComponent } from './report-post/report-post.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,9 @@ import { PostCommentSectionComponent } from './post-comment-section/post-comment
     CommentListComponent,
     TopicListComponent,
     PostCommentSectionComponent,
+    CreateTopicComponent,
+    CreatePostComponent,
+    ReportPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +82,8 @@ import { PostCommentSectionComponent } from './post-comment-section/post-comment
     FormsModule,
     RouterModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     Title

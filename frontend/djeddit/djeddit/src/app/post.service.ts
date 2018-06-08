@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Post} from "./post";
+import {Profile} from './profile';
+import {Topic} from './topic';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -73,5 +75,10 @@ export class PostService {
   getPostsByControversialOrder() {
     const url = this.baseUrl + 'posts?order=controversial';
     return this.http.get<Post[]>(url);
+  }
+
+  createPost(post: Post): Observable<Post> {
+    const url = this.baseUrl + 'create_post';
+    return this.http.post<Post>(url, post, httpOptions);
   }
 }
