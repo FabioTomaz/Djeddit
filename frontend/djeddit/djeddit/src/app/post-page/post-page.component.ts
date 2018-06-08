@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {PostService} from '../post.service';
 import {Post} from '../post';
 import {ActivatedRoute} from '@angular/router';
@@ -6,11 +6,12 @@ import {CommentService} from '../comment.service';
 import {Comment} from '../comment';
 import {ProfileService} from '../profile.service';
 import {Profile} from '../profile';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-post-page',
   templateUrl: './post-page.component.html',
-  styleUrls: ['./post-page.component.css']
+  styleUrls: ['./post-page.component.css', '../../jquery.upvote.css']
 })
 export class PostPageComponent implements OnInit {
 
@@ -22,7 +23,8 @@ export class PostPageComponent implements OnInit {
     private postService: PostService,
     private commentService: CommentService,
     private profileService: ProfileService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    @Inject(DOCUMENT) document) { }
 
   ngOnInit() {
     this.getPostAndComments();
