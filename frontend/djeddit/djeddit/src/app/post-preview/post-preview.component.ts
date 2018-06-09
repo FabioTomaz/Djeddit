@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {AuthenticationService} from "../authentication.service";
+import {PostService} from "../post.service";
 
 @Component({
   selector: 'app-post-preview',
@@ -10,7 +11,8 @@ import {AuthenticationService} from "../authentication.service";
 export class PostPreviewComponent implements OnInit {
   @Input() post: Post;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService,
+              private  postService: PostService) { }
 
   ngOnInit() {
   }
@@ -32,18 +34,46 @@ export class PostPreviewComponent implements OnInit {
   }
 
   unsavePost() {
-
+    this.postService.unsavePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 
   savePost() {
-
+    this.postService.savePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 
   hidePost() {
-
+    this.postService.hidePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 
   showPost() {
-
+    this.postService.unhidePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
   }
 }

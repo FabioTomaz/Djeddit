@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/djeddit.iml" afterPath="$PROJECT_DIR$/.idea/djeddit.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/static/scripts/jquery.upvote.js" afterPath="$PROJECT_DIR$/app/static/scripts/jquery.upvote.js" />
+      <change beforePath="$PROJECT_DIR$/Djeedit/urls.py" afterPath="$PROJECT_DIR$/Djeedit/urls.py" />
+      <change beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.css" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.css" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" afterPath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/package-lock.json" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/package.json" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/package.json" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-preview/post-preview.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-preview/post-preview.component.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-preview/post-preview.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-preview/post-preview.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post.service.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,97 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2160">
-              <caret line="126" column="57" lean-forward="false" selection-start-line="126" selection-start-column="54" selection-end-line="126" selection-end-column="57" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.upvote.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/static/scripts/jquery.upvote.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="2" lean-forward="false" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report_post.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/report_post.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="41" column="10" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="41" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/post.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="363" column="24" lean-forward="false" selection-start-line="363" selection-start-column="13" selection-end-line="363" selection-end-column="24" />
-              <folding>
-                <element signature="e#1544#1568#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_post.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/create_post.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search_posts.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/search_posts.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="topic_create.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/topic_create.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="26" column="40" lean-forward="false" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14706">
-              <caret line="845" column="13" lean-forward="false" selection-start-line="845" selection-start-column="13" selection-end-line="845" selection-end-column="13" />
+            <state relative-caret-position="188">
+              <caret line="1366" column="57" lean-forward="true" selection-start-line="1366" selection-start-column="57" selection-end-line="1366" selection-end-column="57" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -124,8 +40,38 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2448">
-              <caret line="142" column="24" lean-forward="false" selection-start-line="142" selection-start-column="24" selection-end-line="142" selection-end-column="24" />
+            <state relative-caret-position="402">
+              <caret line="152" column="67" lean-forward="false" selection-start-line="152" selection-start-column="67" selection-end-line="152" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="password.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/forms/templates/django/forms/widgets/password.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="40" lean-forward="false" selection-start-line="0" selection-start-column="40" selection-end-line="0" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile_page.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/profile_page.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-74">
+              <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile_edit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/profile_edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="15" column="79" lean-forward="false" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -145,7 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>search</find>
       <find>include</find>
       <find>body</find>
       <find>footer</find>
@@ -170,11 +115,12 @@
       <find>name</find>
       <find>change_</find>
       <find>signup</find>
-      <find>users</find>
       <find>pa</find>
       <find>profile_edit</find>
       <find>karma</find>
-      <find>upvote_post</find>
+      <find>users</find>
+      <find>save_</find>
+      <find>post_save</find>
     </findStrings>
     <replaceStrings>
       <replace>sidebar</replace>
@@ -235,12 +181,11 @@
         <option value="$PROJECT_DIR$/app/forms.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/Djeedit/settings.py" />
+        <option value="$PROJECT_DIR$/templates/post.html" />
         <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/app/serializers.py" />
         <option value="$PROJECT_DIR$/Djeedit/urls.py" />
         <option value="$PROJECT_DIR$/app/views.py" />
-        <option value="$PROJECT_DIR$/app/static/scripts/jquery.upvote.js" />
-        <option value="$PROJECT_DIR$/templates/post.html" />
       </list>
     </option>
   </component>
@@ -255,8 +200,8 @@
     <handled-path value="$PROJECT_DIR$/frontend/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="-4" />
+    <option name="x" value="511" />
+    <option name="y" value="1" />
     <option name="width" value="653" />
     <option name="height" value="728" />
   </component>
@@ -297,6 +242,32 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Changed Files">
           <expand>
@@ -334,16 +305,94 @@
           <expand>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
               <item name="app" type="cbb8eebc:String" user="app" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="app" type="cbb8eebc:String" user="app" />
+              <item name="static" type="cbb8eebc:String" user="static" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="app" type="cbb8eebc:String" user="app" />
+              <item name="static" type="cbb8eebc:String" user="static" />
+              <item name="content" type="cbb8eebc:String" user="content" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="app" type="cbb8eebc:String" user="app" />
+              <item name="static" type="cbb8eebc:String" user="static" />
+              <item name="images" type="cbb8eebc:String" user="images" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="Djeedit" type="cbb8eebc:String" user="Djeedit" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="frontend" type="cbb8eebc:String" user="frontend" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="frontend" type="cbb8eebc:String" user="frontend" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="frontend" type="cbb8eebc:String" user="frontend" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="frontend" type="cbb8eebc:String" user="frontend" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="src" type="cbb8eebc:String" user="src" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="frontend" type="cbb8eebc:String" user="frontend" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="src" type="cbb8eebc:String" user="src" />
+              <item name="app" type="cbb8eebc:String" user="app" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="media" type="cbb8eebc:String" user="media" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="media" type="cbb8eebc:String" user="media" />
+              <item name="user_data" type="cbb8eebc:String" user="user_data" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="media" type="cbb8eebc:String" user="media" />
+              <item name="user_data" type="cbb8eebc:String" user="user_data" />
+              <item name="pictures" type="cbb8eebc:String" user="pictures" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
               <item name="templates" type="cbb8eebc:String" user="templates" />
             </path>
           </expand>
@@ -351,32 +400,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -703,7 +726,21 @@
       <option name="project" value="LOCAL" />
       <updated>1528410999189</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Alteraçoes">
+      <created>1528422242905</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1528422242905</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Alteraçoes">
+      <created>1528468788146</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1528468788146</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -716,15 +753,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <frame x="57" y="-4" width="1309" height="772" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24174175" sideWeight="0.5149885" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34234235" sideWeight="0.4973262" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3432602" sideWeight="0.4973262" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1966967" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4084084" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20676403" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24369748" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -734,11 +773,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -794,9 +831,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/report_post.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" column="10" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="41" selection-end-column="10" />
-          <folding />
+        <state relative-caret-position="36">
+          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -850,6 +886,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -874,8 +917,7 @@
     <entry file="file://$PROJECT_DIR$/templates/search_posts.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-          <folding />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -897,6 +939,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
           <caret line="95" column="21" lean-forward="false" selection-start-line="80" selection-start-column="16" selection-end-line="95" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -956,6 +999,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -963,6 +1007,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -980,6 +1025,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -987,6 +1033,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -994,6 +1041,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1001,6 +1049,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-54">
           <caret line="18" column="42" lean-forward="true" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,6 +1057,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1015,6 +1065,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1022,6 +1073,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,6 +1081,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="13" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1036,6 +1089,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="310" column="31" lean-forward="false" selection-start-line="310" selection-start-column="31" selection-end-line="310" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1043,6 +1097,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="175" lean-forward="false" selection-start-line="0" selection-start-column="175" selection-end-line="0" selection-end-column="175" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1050,13 +1105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="40" lean-forward="false" selection-start-line="0" selection-start-column="40" selection-end-line="0" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/forms/widgets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="315" column="49" lean-forward="false" selection-start-line="315" selection-start-column="49" selection-end-line="315" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -1065,23 +1113,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="117" column="24" lean-forward="false" selection-start-line="117" selection-start-column="24" selection-end-line="117" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2448">
-          <caret line="142" column="24" lean-forward="false" selection-start-line="142" selection-start-column="24" selection-end-line="142" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1090,6 +1121,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="15" column="79" lean-forward="false" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1101,20 +1133,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
-          <caret line="126" column="57" lean-forward="false" selection-start-line="126" selection-start-column="54" selection-end-line="126" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/profile_page.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-74">
           <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1122,40 +1145,68 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
+    <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14706">
-          <caret line="845" column="13" lean-forward="false" selection-start-line="845" selection-start-column="13" selection-end-line="845" selection-end-column="13" />
+        <state relative-caret-position="162">
+          <caret line="95" column="4" lean-forward="false" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="4" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/forms/widgets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="315" column="49" lean-forward="false" selection-start-line="315" selection-start-column="49" selection-end-line="315" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-540">
+          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/content/site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="211" column="12" lean-forward="false" selection-start-line="211" selection-start-column="12" selection-end-line="211" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/post_preview.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-346">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/scripts/jquery.upvote.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="2" lean-forward="false" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/post.html">
+    <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="363" column="24" lean-forward="false" selection-start-line="363" selection-start-column="13" selection-end-line="363" selection-end-column="24" />
+        <state relative-caret-position="402">
+          <caret line="152" column="67" lean-forward="false" selection-start-line="152" selection-start-column="67" selection-end-line="152" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="1366" column="57" lean-forward="true" selection-start-line="1366" selection-start-column="57" selection-end-line="1366" selection-end-column="57" />
           <folding>
-            <element signature="e#1544#1568#0#HTML" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>

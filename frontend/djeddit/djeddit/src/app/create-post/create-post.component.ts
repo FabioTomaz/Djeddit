@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {PostService} from '../post.service';
 import {Post} from '../post';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms'
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-create-post',
@@ -18,6 +19,7 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private postService: PostService,
               private topicService: TopicService,
+              private authService: AuthenticationService,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
@@ -42,10 +44,12 @@ export class CreatePostComponent implements OnInit {
   }
 
   createPost(): void {
-    //this.post.userOP
+    this.post.userOP = this.authService.getLoggedProfile().user;
     this.post.topic = this.topic;
-    console.log(this.post.title);
-    //this.postService.createPost(this.post);
+    this.postService.createPost(this.post).subscribe(data => {
+      console.log(data);
+      // this.router.navigate(['login']);
+    }, );
   }
 
 

@@ -35,7 +35,7 @@ const routes: Routes = [
   {path: 'topic/:topic_name/post/:post_id', component: PostPageComponent},
   {path: 'topic/:topic_name/post/:post_id/report', component: ReportPostComponent},
   {path: 'topic/:topic_name/create_post', component: CreatePostComponent},
-  {path: 'topic/topic_create', component: CreateTopicComponent},
+  {path: 'topic_create', component: CreateTopicComponent},
   {path: 'search/topic', component: SearchTopicComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
   {path: 'search/post', component: SearchPostComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
   {path: 'search/user', component: SearchUserComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},

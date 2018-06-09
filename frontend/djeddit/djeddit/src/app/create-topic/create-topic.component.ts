@@ -3,6 +3,7 @@ import {TopicService} from '../topic.service';
 import {Topic} from '../topic';
 import {Post} from '../post';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-create-topic',
@@ -15,6 +16,7 @@ export class CreateTopicComponent implements OnInit {
   topicForm: FormGroup;
 
   constructor(private topicService: TopicService,
+              private authService: AuthenticationService,
               private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -32,7 +34,11 @@ export class CreateTopicComponent implements OnInit {
   }
 
   createTopic() {
-    this.topicService.createTopic(this.topic);
+    this.topic.userCreator = this.authService.getLoggedProfile().user;
+    this.topicService.createTopic(this.topic).subscribe(data => {
+      console.log(data);
+      // this.router.navigate(['login']);
+    }, );
   }
 
 }

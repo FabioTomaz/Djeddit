@@ -13,9 +13,9 @@
         <div class="col-2">
           <!-- upvote/downvote post -->
           <div id="topic" class="upvote">
-            <a id="upvote_post" class="upvote" style="cursor: pointer;"></a>
-            <span id="post_score" class="count">{{ getPostScore(post) }}</span>
-            <a id="downvote_post" class="downvote" style="cursor: pointer;"></a>
+            <a id="upvote_post" class="{{upClass}}" style="cursor: pointer;" (click)="upvote_post(post.id)"></a>
+            <span id="post_score" class="count">{{ score }}</span>
+            <a id="downvote_post" class="{{downClass}}" style="cursor: pointer;" (click)="downvote_post(post.id)"></a>
           </div>
         </div>
         <div class="col-10">

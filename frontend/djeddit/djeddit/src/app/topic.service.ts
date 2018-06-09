@@ -43,7 +43,7 @@ export class TopicService {
   }
 
   createTopic(topic: Topic): Observable<Topic> {
-    const url = this.baseUrl + 'create_topic';
+    const url = this.baseUrl + 'create_topic/';
     return this.http.post<Topic>(url, topic, httpOptions);
   }
 
