@@ -152,4 +152,8 @@ urlpatterns = [
                   path('ws/post/<str:post_id>/hide', views.rest_post_hide),
                   path('ws/post/<str:post_id>/unhide', views.rest_post_unhide),
 
+                  # USER OPERATIONS
+                  path('ws/user/<str:username>/add_friend', views.rest_user_add_friend),
+                  path('ws/user/<str:username>/remove_friend', views.rest_user_remove_friend),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

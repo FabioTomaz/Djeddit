@@ -84,21 +84,33 @@ export class PostService {
 
   savePost(postID: number, profile: Profile): Observable<Post>{
     const url = this.baseUrl + 'post/' + postID + '/save';
-    return this.http.post<Post>(url, profile.user.id, httpOptions);
+    let data = {
+      "id": profile.user.id
+    };
+    return this.http.post<Post>(url, data, httpOptions);
   }
 
   unsavePost(postID: number, profile: Profile): Observable<Post>{
     const url = this.baseUrl + 'post/' + postID + '/unsave';
-    return this.http.post<Post>(url, profile.user.id, httpOptions);
+    let data = {
+      "id": profile.user.id
+    };
+    return this.http.post<Post>(url, data, httpOptions);
   }
 
   hidePost(postID: number, profile: Profile): Observable<Post>{
     const url = this.baseUrl + 'post/' + postID + '/hide';
-    return this.http.post<Post>(url, profile.user.id, httpOptions);
+    let data = {
+      "id": profile.user.id
+    };
+    return this.http.post<Post>(url, data, httpOptions);
   }
 
   unhidePost(postID: number, profile: Profile): Observable<Post>{
     const url = this.baseUrl + 'post/' + postID + '/unhide';
-    return this.http.post<Post>(url, profile.user.id, httpOptions);
+    let data = {
+      "id": profile.user.id
+    };
+    return this.http.post<Post>(url, data, httpOptions);
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Profile} from "../profile";
 import {ActivatedRoute} from "@angular/router";
 import {ProfileService} from "../profile.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-user-edit',
@@ -20,10 +21,12 @@ export class UserEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private profileService: ProfileService,
-              private location: Location) { }
+              private location: Location,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.getProfile(this.route.snapshot.paramMap.get("username"));
+    this.titleService.setTitle(this.route.snapshot.paramMap.get("username") + ": Edit Profile");
   }
 
   getProfile(username: string){

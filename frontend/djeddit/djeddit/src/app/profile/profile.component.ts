@@ -12,8 +12,8 @@ import {AuthenticationService} from "../authentication.service";
 export class ProfileComponent implements OnInit {
 
   username: string;
-  profile: Profile;
-  friends: Profile[];
+  profile: Profile = new Profile();
+  friends: Profile[] = [];
 
   constructor(private route: ActivatedRoute,
               private profileService: ProfileService,
@@ -29,86 +29,106 @@ export class ProfileComponent implements OnInit {
     return this.authService.userLoggedIn();
   }
 
+  userIsProfile(){
+    return this.checkAuth() && this.authService.getLoggedProfile().user.id===this.profile.user.id;
+  }
+
   checkCommentsPermission() {
-    switch(this.profile.profile_comments_permission) {
-      case "F": {
-        for(let friend of this.friends){
-          if (this.checkAuth() && friend.user.id === this.authService.getLoggedProfile().user.id)
-            return true;
+    if (this.userIsProfile()){
+      return true;
+    } else {
+      switch(this.profile.profile_comments_permission) {
+        case "F": {
+          for(let friend of this.friends){
+            if (this.checkAuth() && friend.user.id === this.authService.getLoggedProfile().user.id)
+              return true;
+          }
+          return false;
         }
-        return false;
-      }
-      case "E": {
-        return true;
-      }
-      case "N": {
-        return false;
-      }
-      default: {
-        return false;
+        case "E": {
+          return true;
+        }
+        case "N": {
+          return false;
+        }
+        default: {
+          return false;
+        }
       }
     }
   }
 
   checkPostsPermission() {
-    switch(this.profile.profile_posts_permission) {
-      case "F": {
-        for(let friend of this.friends){
-          if (this.checkAuth() && friend.user.id === this.authService.getLoggedProfile().user.id)
-            return true;
+    if (this.userIsProfile()){
+      return true;
+    } else {
+      switch(this.profile.profile_posts_permission) {
+        case "F": {
+          for(let friend of this.friends){
+            if (this.checkAuth() && friend.user.id === this.authService.getLoggedProfile().user.id)
+              return true;
+          }
+          return false;
         }
-        return false;
-      }
-      case "E": {
-        return true;
-      }
-      case "N": {
-        return false;
-      }
-      default: {
-        return false;
+        case "E": {
+          return true;
+        }
+        case "N": {
+          return false;
+        }
+        default: {
+          return false;
+        }
       }
     }
   }
 
   checkTopicsPermission() {
-    switch(this.profile.profile_topics_permission) {
-      case "F": {
-        for(let friend of this.friends){
-          if (this.checkAuth() && friend.user.id === this.authService.getLoggedProfile().user.id)
-            return true;
+    if (this.userIsProfile()){
+      return true;
+    } else {
+      switch (this.profile.profile_topics_permission) {
+        case "F": {
+          for (let friend of this.friends) {
+            if (this.checkAuth() && friend.user.id === this.authService.getLoggedProfile().user.id)
+              return true;
+          }
+          return false;
         }
-        return false;
-      }
-      case "E": {
-        return true;
-      }
-      case "N": {
-        return false;
-      }
-      default: {
-        return false;
+        case "E": {
+          return true;
+        }
+        case "N": {
+          return false;
+        }
+        default: {
+          return false;
+        }
       }
     }
   }
 
   checkFriendsPermission() {
-    switch(this.profile.profile_friends_permission) {
-      case "F": {
-        for(let friend of this.friends){
-          if (this.checkAuth() && friend.user.id === this.authService.getLoggedProfile().user.id)
-            return true;
+    if (this.userIsProfile()){
+      return true;
+    } else {
+      switch (this.profile.profile_friends_permission) {
+        case "F": {
+          for (let friend of this.friends) {
+            if (this.checkAuth() && friend.user.id === this.authService.getLoggedProfile().user.id)
+              return true;
+          }
+          return false;
         }
-        return false;
-      }
-      case "E": {
-        return true;
-      }
-      case "N": {
-        return false;
-      }
-      default: {
-        return false;
+        case "E": {
+          return true;
+        }
+        case "N": {
+          return false;
+        }
+        default: {
+          return false;
+        }
       }
     }
   }

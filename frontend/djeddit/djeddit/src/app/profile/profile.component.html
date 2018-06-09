@@ -20,7 +20,7 @@
         <i class="far fa-comments"></i> Topics
       </a>
       <ul class="sidenav-second-level collapse" id="collapseTopics">
-        <div class="nav-item">
+        <div class="nav-item" *ngIf="userIsProfile()">
           <a routerLink="/topic/" class="nav-link">Create Topic</a>
         </div>
         <div class="nav-item">

@@ -5,6 +5,7 @@ import {Post} from '../post';
 import {TopicService} from '../topic.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-topic-page',
@@ -19,11 +20,13 @@ export class TopicPageComponent implements OnInit {
   constructor(
     private postService: PostService,
     private topicService: TopicService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private titleService: Title) { }
 
   ngOnInit() {
     this.getTopic();
     this.getPosts();
+    this.titleService.setTitle(this.route.snapshot.paramMap.get("topic_name") + " Topic Page");
   }
 
   getTopic(): void {

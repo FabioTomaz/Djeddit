@@ -46,10 +46,10 @@
     </div>
     <div class="card-footer" *ngIf="userLoggedIn()">
       <div>
-        <button id="btn_add_friend" class="float-right btn btn-success" (click)="addFriend()" *ngIf="userIsFriend()">
+        <button id="btn_add_friend" class="float-right btn btn-success" (click)="addFriend()" *ngIf="!isFriend">
           <i class="fas fa-user-plus"></i> Add Friend
         </button>
-        <button id="btn_remove_friend" class="float-right btn btn-danger" (click)="removeFriend()" *ngIf="userIsFriend()">
+        <button id="btn_remove_friend" class="float-right btn btn-danger" (click)="removeFriend()" *ngIf="isFriend">
           <i class="fas fa-user-times"></i> Remove Friend
         </button>
       </div>

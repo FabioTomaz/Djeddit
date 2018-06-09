@@ -1322,49 +1322,76 @@ def create_post(request):
     )
 
 
-@csrf_exempt
+@api_view(['POST'])
 def rest_post_save(request, post_id):
     try:
-        profile = Profile.objects.get(id=request.data)
+        profile = Profile.objects.get(id=request.data["id"])
         post = Post.objects.get(id=post_id)
         post.userSaved.add(profile)
         post.save()
-        return Response(post, status.HTTP_200_OK)
+        serializer = PostSerializer(post)
+        return Response(serializer.data, status.HTTP_200_OK)
     except (Post.DoesNotExist, Profile.DoesNotExist):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-@csrf_exempt
+@api_view(['POST'])
 def rest_post_unsave(request, post_id):
     try:
-        profile = Profile.objects.get(id=request.data)
+        profile = Profile.objects.get(id=request.data["id"])
         post = Post.objects.get(id=post_id)
         post.userSaved.remove(profile)
         post.save()
-        return Response(post, status.HTTP_200_OK)
+        serializer = PostSerializer(post)
+        return Response(serializer.data, status.HTTP_200_OK)
     except (Post.DoesNotExist, Profile.DoesNotExist):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-@csrf_exempt
+@api_view(['POST'])
 def rest_post_hide(request, post_id):
     try:
-        profile = Profile.objects.get(id=request.data)
+        profile = Profile.objects.get(id=request.data["id"])
         post = Post.objects.get(id=post_id)
         post.userHidden.add(profile)
         post.save()
-        return Response(post, status.HTTP_200_OK)
+        serializer = PostSerializer(post)
+        return Response(serializer.data, status.HTTP_200_OK)
     except (Post.DoesNotExist, Profile.DoesNotExist):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-@csrf_exempt
+@api_view(['POST'])
 def rest_post_unhide(request, post_id):
     try:
-        profile = Profile.objects.get(id=request.data)
+        profile = Profile.objects.get(id=request.data["id"])
         post = Post.objects.get(id=post_id)
         post.userHidden.remove(profile)
         post.save()
-        return Response(post, status.HTTP_200_OK)
+        serializer = PostSerializer(post)
+        return Response(serializer.data, status.HTTP_200_OK)
     except (Post.DoesNotExist, Profile.DoesNotExist):
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['POST'])
+def rest_user_add_friend(request, username):
+    print(request.POST)
+    try:
+        owner = Profile.objects.get(user__username=username)
+        new_friend = Profile.objects.get(user__username=request.data["username"])
+        Friend.make_friend(owner, new_friend)
+        return Response(status=status.HTTP_200_OK)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['POST'])
+def rest_user_remove_friend(request, username):
+    try:
+        owner = Profile.objects.get(user__username=username)
+        friend = Profile.objects.get(user__username=request.data["username"])
+        Friend.remove_friend(owner, friend)
+        return Response(status=status.HTTP_200_OK)
+    except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
