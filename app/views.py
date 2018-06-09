@@ -26,7 +26,7 @@ import urllib.parse
 from datetime import datetime
 
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
-    FriendSerializer, UserSerializer, UserCreationSerializer
+    FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer
 
 
 def mainPage(request):
@@ -1292,12 +1292,13 @@ def rest_profile_create(request):
 
 @api_view(['PUT'])
 def rest_profile_update(request):
+    print(request.data)
     profile_id = request.data['id']
     try:
         profile = Profile.objects.get(id=profile_id)
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-    serializer = ProfileSerializer(profile, data=request.data)
+    serializer = PrivacySerializer(profile, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)

@@ -11,8 +11,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class UserEditComponent implements OnInit {
 
-  profile: Profile;
-  selectedImage = null;
+  profile: Profile = new Profile();
   genders = [
     {id: 'M', name: "Male"},
     {id: 'F', name: "Female"},
@@ -21,7 +20,6 @@ export class UserEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private profileService: ProfileService,
-              private location: Location,
               private titleService: Title) { }
 
   ngOnInit() {
@@ -37,7 +35,7 @@ export class UserEditComponent implements OnInit {
   }
 
   onImageSelected(event) {
-    this.selectedImage = event.target.files[0];
+    this.profile.user_picture = event.target.files[0];
   }
 
   onEditProfile() {

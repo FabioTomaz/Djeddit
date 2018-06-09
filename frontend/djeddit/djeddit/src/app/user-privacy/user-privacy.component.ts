@@ -11,7 +11,7 @@ import {Profile} from "../profile";
 })
 export class UserPrivacyComponent implements OnInit {
 
-  profile: Profile;
+  profile: Profile = new Profile();
 
   privacyChoices = [
     {id: 'N', name: "None"},
@@ -25,6 +25,11 @@ export class UserPrivacyComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle(this.route.snapshot.paramMap.get("username") + ": Privacy");
+    this.profileService.getProfileByUsername(this.route.snapshot.paramMap.get("username")).subscribe(
+      (profile) => {
+        this.profile = profile;
+      }
+    )
   }
 
   onChangePrivacy() {

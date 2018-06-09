@@ -8,30 +8,50 @@
         <tbody>
         <tr>
           <td>Users that can see my private information:</td>
-          <td>{{ form.profile_info_permission }}</td>
+          <td>
+            <select name="profile_info_permission" [(ngModel)]="profile.profile_info_permission" class="form-control" required>
+              <option *ngFor="let p of privacyChoices" [ngValue]="p.id">{{p.name}}</option>
+            </select>
+          </td>
         </tr>
         <tr>
           <td>Users that can see my friends in my Profile:</td>
-          <td>{{ form.profile_friends_permission }}</td>
+          <td>
+            <select name="profile_friends_permission" [(ngModel)]="profile.profile_friends_permission" class="form-control" required>
+              <option *ngFor="let p of privacyChoices" [ngValue]="p.id">{{p.name}}</option>
+            </select>
+          </td>
         </tr>
         <tr>
           <td>Users that can see my topics through my profile:</td>
-          <td>{{ form.profile_topics_permission }}</td>
+          <td>
+            <select name="profile_topics_permission" [(ngModel)]="profile.profile_topics_permission" class="form-control" required>
+              <option *ngFor="let p of privacyChoices" [ngValue]="p.id">{{p.name}}</option>
+            </select>
+          </td>
         </tr>
         <tr>
           <td>Users that can see my posts through my profile:</td>
-          <td>{{ form.profile_posts_permission }}</td>
+          <td>
+            <select name="profile_posts_permission" [(ngModel)]="profile.profile_posts_permission" class="form-control" required>
+              <option *ngFor="let p of privacyChoices" [ngValue]="p.id">{{p.name}}</option>
+            </select>
+          </td>
         </tr>
         <tr>
           <td>Users that can see my comments through my profile:</td>
-          <td>{{ form.profile_comments_permission }}</td>
+          <td>
+            <select name="profile_comments_permission" [(ngModel)]="profile.profile_comments_permission" class="form-control" required>
+              <option *ngFor="let p of privacyChoices" [ngValue]="p.id">{{p.name}}</option>
+            </select>
+          </td>
         </tr>
         </tbody>
       </table>
     </div>
     <div class="card-footer">
       <div class="float-right">
-        <a routerLink="/user/{{ username }}/page" class="btn btn-danger"><i class="fas fa-ban"></i>
+        <a routerLink="/user/{{ profile.user.username }}/page" class="btn btn-danger"><i class="fas fa-ban"></i>
           Cancel</a>
         <button type="submit" class="btn btn-success" [disabled]="!privacyForm.form.valid"><i class="fas fa-check"></i> Save Privacy Settings</button>
       </div>
