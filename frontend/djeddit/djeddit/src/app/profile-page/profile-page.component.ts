@@ -17,6 +17,7 @@ export class ProfilePageComponent implements OnInit{
   profile: Profile = new Profile();
   friends: Profile[] = [];
   isFriend: boolean = false;
+  isUser: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -39,6 +40,7 @@ export class ProfilePageComponent implements OnInit{
           if (friend.user.id === this.authService.getLoggedProfile().user.id)
             this.isFriend = true;
         }
+        this.isUser = this.profile.user.username === this.authService.getLoggedProfile().user.username;
       });
     });
   }
@@ -69,12 +71,37 @@ export class ProfilePageComponent implements OnInit{
     )
   }
 
-  loggedUserEqualsUser(): boolean{
-    return this.profile.user.username === this.authService.getLoggedProfile().user.username;
-  }
-
   userLoggedIn(): boolean{
     return this.authService.userLoggedIn();
+  }
+
+  userIsProfile(){
+    return this.userLoggedIn() && this.authService.getLoggedProfile().user.id===this.profile.user.id;
+  }
+
+  checkInfoPermission() {
+    if (this.userIsProfile()){
+      return true;
+    } else {
+      switch(this.profile.profile_info_permission) {
+        case "F": {
+          for(let friend of this.friends){
+            if (this.userLoggedIn() && friend.user.id === this.authService.getLoggedProfile().user.id)
+              return true;
+          }
+          return false;
+        }
+        case "E": {
+          return true;
+        }
+        case "N": {
+          return false;
+        }
+        default: {
+          return false;
+        }
+      }
+    }
   }
 
 }

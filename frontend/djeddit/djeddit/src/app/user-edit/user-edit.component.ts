@@ -40,7 +40,14 @@ export class UserEditComponent implements OnInit {
     this.selectedImage = event.target.files[0];
   }
 
-  onSubmit() {
-    this.profileService.update(this.profile);
+  onEditProfile() {
+    this.profileService.update(this.profile).subscribe(
+      () => {
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 }
