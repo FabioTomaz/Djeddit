@@ -12,10 +12,10 @@
     </li>
   </ul>
   <ul class="nav nav-pills flex-column">
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="checkFriendsPermission()">
       <a class="nav-link" routerLinkActive="active" routerLink="/user/{{username}}/friends"><i class="fas fa-users"></i> Friends</a>
     </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right">
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" *ngIf="checkTopicsPermission()">
       <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTopics">
         <i class="far fa-comments"></i> Topics
       </a>
@@ -31,7 +31,7 @@
         </div>
       </ul>
     </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right">
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" *ngIf="checkPostsPermission()">
       <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePosts">
         <i class="fas fa-align-left"></i> Posts
       </a>
@@ -53,7 +53,7 @@
         </div>
       </ul>
     </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right">
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" *ngIf="checkCommentsPermission()">
       <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComments">
         <i class="far fa-comment-alt"></i> Comments
       </a>
