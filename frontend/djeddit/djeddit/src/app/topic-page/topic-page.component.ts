@@ -24,9 +24,8 @@ export class TopicPageComponent implements OnInit {
     private postService: PostService,
     private topicService: TopicService,
     private route: ActivatedRoute,
-    private titleService: Title) { }
+    private titleService: Title,
     private authService: AuthenticationService,
-    private route: ActivatedRoute,
     private location: Location) { }
 
   ngOnInit() {

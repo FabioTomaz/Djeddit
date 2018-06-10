@@ -48,10 +48,10 @@
         <button type="button" id="hide_post" [hidden]="!isUserLogged"
                 class="btn btn-sm btn-danger"><i class="far fa-eye-slash"></i> Hide
         </button>
-        <a href="" [hidden]="!checkIfItIsUserOP"
+        <a href="" [hidden]="!checkIfItIsUserOP && !isUserLogged"
         class="btn btn-sm btn-outline-primary"><i class="far fa-edit"></i> Edit
         </a>
-        <a href="" [hidden]="!checkIfItIsUserOP"
+        <a href="" [hidden]="!checkIfItIsUserOP && !isUserLogged"
         class="btn btn-sm btn-outline-primary"><i class="far fa-trash-alt"></i> Remove
         </a>
 

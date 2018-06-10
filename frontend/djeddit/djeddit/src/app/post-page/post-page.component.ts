@@ -95,53 +95,60 @@ export class PostPageComponent implements OnInit {
   }
 
   upvote_post(post_id: number) {
-    if (this.upClass === 'upvote upvote-on') { // if user has previously upvoted, remove upvote
-      this.upClass = 'upvote';
-      this.score--;   // -1 upvote
-    } else {
-      this.upClass = 'upvote upvote-on';
-      this.score++;
-      if (this.downClass === 'downvote downvote-on') { // remove downvote, and upvote
-        this.downClass = 'downvote';
+    if (this.isUserLogged) {
+      if (this.upClass === 'upvote upvote-on') { // if user has previously upvoted, remove upvote
+        this.upClass = 'upvote';
+        this.score--;   // -1 upvote
+      } else {
+        this.upClass = 'upvote upvote-on';
         this.score++;
+        if (this.downClass === 'downvote downvote-on') { // remove downvote, and upvote
+          this.downClass = 'downvote';
+          this.score++;
+        }
       }
-
+      const vote = JSON.stringify({
+        post_id: this.post.id, voter: this.authService.getLoggedProfile().user.id,
+        vote: 'up'
+      });
+      console.log(vote);
+      this.postService.votePost(vote, this.post.id).subscribe(data => {
+        // console.log(JSON.stringify(data));
+        console.log(data);
+      }, (err) => {
+        console.log(err);
+      });
     }
-    const vote = JSON.stringify({ post_id: this.post.id, voter: this.authService.getLoggedProfile().user.id,
-      vote: 'up' });
-    console.log(vote);
-    this.postService.votePost(vote, this.post.id).subscribe(data => {
-      // console.log(JSON.stringify(data));
-      console.log(data);
-    }, (err) => {
-      console.log(err);
-    });
   }
 
   downvote_post(post_id: number) {
-    const upbtn = document.getElementById('upvote_post');
-    const downbtn = document.getElementById('downvote_post');
+    if (this.isUserLogged) {
+      const upbtn = document.getElementById('upvote_post');
+      const downbtn = document.getElementById('downvote_post');
 
-    if (this.downClass === 'downvote downvote-on') { // remove downvote
-      this.downClass = 'downvote';
-      this.score++;
-    } else {
-      this.downClass = ('downvote downvote-on');
-      this.score--;
-      if (this.upClass === 'upvote upvote-on') { // remove upvote, and downvote
-        this.upClass = ('upvote');
+      if (this.downClass === 'downvote downvote-on') { // remove downvote
+        this.downClass = 'downvote';
+        this.score++;
+      } else {
+        this.downClass = ('downvote downvote-on');
         this.score--;
+        if (this.upClass === 'upvote upvote-on') { // remove upvote, and downvote
+          this.upClass = ('upvote');
+          this.score--;
+        }
       }
+      const vote = JSON.stringify({
+        post_id: this.post.id, voter: this.authService.getLoggedProfile().user.id,
+        vote: 'down'
+      });
+      console.log(vote);
+      this.postService.votePost(vote, this.post.id).subscribe(data => {
+        // console.log(JSON.stringify(data));
+        console.log(data);
+      }, (err) => {
+        console.log(err);
+      });
     }
-    const vote = JSON.stringify({ post_id: this.post.id, voter: this.authService.getLoggedProfile().user.id,
-      vote: 'down' });
-    console.log(vote);
-    this.postService.votePost(vote, this.post.id).subscribe(data => {
-      // console.log(JSON.stringify(data));
-      console.log(data);
-    }, (err) => {
-      console.log(err);
-    });
   }
 
   sendComment() {
@@ -159,7 +166,7 @@ export class PostPageComponent implements OnInit {
     }
   }
 
-  checkIfItIsUserOP(): boolean{
+  checkIfItIsUserOP(): boolean {
     if (!this.isUserLogged) {
       return false;
     } else {
