@@ -2,6 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-search-post',
@@ -17,9 +18,11 @@ export class SearchPostComponent implements OnInit {
 
   constructor(private postService: PostService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Search Posts: " + this.activatedRoute.snapshot.queryParams['q']);
     this.q = this.activatedRoute.snapshot.queryParams['q'];
     this.orderby = this.activatedRoute.snapshot.queryParams['orderby'];
     this.op = this.activatedRoute.snapshot.queryParams['op'];

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Post} from '../post';
 import {PostService} from '../post.service';
 import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-new-posts',
@@ -12,10 +13,13 @@ export class NewPostsComponent implements OnInit {
 
   posts: Post[];
 
-  constructor(private postService: PostService, private route: ActivatedRoute) { }
+  constructor(private postService: PostService,
+              private route: ActivatedRoute,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.getPosts();
+    this.titleService.setTitle("Djeddit Posts");
   }
 
   getPosts(): void {

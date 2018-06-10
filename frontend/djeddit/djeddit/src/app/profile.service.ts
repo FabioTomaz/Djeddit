@@ -42,6 +42,13 @@ export class ProfileService {
     return this.http.post<Profile>(url, profile, httpOptions);
   }
 
+  image_update(userID, image: File): Observable<any>{
+    const url = this.baseUrl + 'profile/' + userID + '/update/image';
+    let fd = new FormData();
+    fd.append("user_picture", image, image.name);
+    return this.http.put(url, fd, httpOptions);
+  }
+
   privacy_update(profile: Profile): Observable<any>{
     const url = this.baseUrl + 'profile/update/privacy';
     return this.http.put(url, profile, httpOptions);
@@ -76,10 +83,10 @@ export class ProfileService {
   changePassword(username: string, oldPassword: string, newPassword: string): Observable<any>{
     const url = this.baseUrl + 'user/' + username + '/change_password';
     let data = {
-      "oldPassword": oldPassword,
-      "newPassword": newPassword
+      "old_password": oldPassword,
+      "new_password": newPassword
     };
-    return this.http.post<any>(url, data, httpOptions);
+    return this.http.put(url, data, httpOptions);
   }
 
 }

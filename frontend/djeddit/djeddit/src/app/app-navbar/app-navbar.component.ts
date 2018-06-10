@@ -20,10 +20,12 @@ export class AppNavbarComponent implements OnInit {
   loginProfile: Profile;
   createdUser: User;
   returnUrl: string;
+  loginErrors: string;
 
   // Login form
   loading : boolean = false;
   showPassword : boolean = false;
+  confirmPasswordField: string;
 
   constructor(private profileService: ProfileService,
               private topicService: TopicService,

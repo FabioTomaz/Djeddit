@@ -29,6 +29,8 @@ from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, 
     FriendSerializer, UserSerializer, UserCreationSerializer, TopicCreationSerializer, PostCreationSerializer, \
     CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer, \
     ReportCreationSerializer
+    CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer, \
+    ProfileInfoSerializer, ProfileImageSerializer, ChangePasswordSerializer
 
 
 def mainPage(request):
@@ -1274,20 +1276,6 @@ def rest_login(request):
         return Response(serializer.data)
 
 
-@api_view(['PUT'])
-def rest_user_change_password(request, username):
-    user = request.data.get("user")
-    form = ChangePasswordForm(user, request.POST)
-    if form.is_valid():
-        user = form.save()
-        return redirect('change_password')
-
-    tparams = {'sidebar': 'user_page', "profile_user": User.objects.get(username=username), "form": form,
-               "friends": get_user_friends(User.objects.get(username=username).profile)}
-
-    return render(request, 'profile_change_password.html', tparams)
-
-
 @api_view(['POST'])
 def rest_profile_create(request):
     serializer = UserCreationSerializer(data=request.data)
@@ -1297,6 +1285,28 @@ def rest_profile_create(request):
         profile = Profile.objects.get(user__username=request.data["username"])
         profile_serializer = ProfileSerializer(profile)
         return Response(profile_serializer.data, status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def rest_change_password(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ChangePasswordSerializer(data=request.data)
+
+    if serializer.is_valid():
+        # Check old password
+        old_password = serializer.data.get("old_password")
+        if not user.check_password(old_password):
+            return Response({"old_password": ["Wrong password."]},
+                            status=status.HTTP_400_BAD_REQUEST)
+        # set_password also hashes the password that the user will get
+        user.set_password(serializer.data.get("new_password"))
+        user.object.save()
+        return Response(status=status.HTTP_200_OK)
+
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -1317,13 +1327,30 @@ def rest_profile_privacy_update(request):
 
 @api_view(['PUT'])
 def rest_profile_update(request):
-    print(request.data)
     profile_id = request.data['id']
     try:
         profile = Profile.objects.get(id=profile_id)
+        user = User.objects.get(id=profile_id)
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-    serializer = ProfileSerializer(profile, data=request.data)
+    profile_serializer = ProfileInfoSerializer(profile, data=request.data)
+    user_serializer = UserSerializer(user, data=request.data["user"])
+    if profile_serializer.is_valid():
+        if user_serializer.is_valid():
+            profile_serializer.save()
+            user_serializer.save()
+            return Response(profile_serializer.data)
+        return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def rest_profile_image_update(request, user_id):
+    try:
+        profile = Profile.objects.get(id=user_id)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProfileImageSerializer(profile, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
@@ -1362,18 +1389,18 @@ def rest_topic_update(request):
 def create_topic(request):
     userC = request.data['userCreator']
     user = User(username=userC['username'], id=userC['id'],
-                          first_name=userC['first_name'], last_name=userC['last_name'],
-                          email=userC['email'], date_joined=userC['date_joined'])
+                first_name=userC['first_name'], last_name=userC['last_name'],
+                email=userC['email'], date_joined=userC['date_joined'])
     topic = Topic(name=request.data['name'], userCreator=user,
                   description=request.data['description'], rules=request.data['rules'])
-    #print(request.data)
+    # print(request.data)
     topicS = TopicCreationSerializer(data=request.data)
     if topicS.is_valid():
-    #if Topic.objects.filter(name__iexact=request.data['name']).exists():  # topic with same name exists
-        #return Response({'status': 'alreadyCreated'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        # if Topic.objects.filter(name__iexact=request.data['name']).exists():  # topic with same name exists
+        # return Response({'status': 'alreadyCreated'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         topic.save()
         return Response(topicS.data, status=status.HTTP_200_OK)
-    #print(topicS.errors)
+    # print(topicS.errors)
     return Response(topicS.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -1395,12 +1422,13 @@ def create_post(request):
     print(postS.errors)
     return Response(postS.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['POST'])
 def create_comment(request):
-    #print(request.data)
-    user = User.objects.get(id= request.data['user']['id'])
-    post = Post.objects.get(id= request.data['post']['id'])
-    if( request.data['reply'] == None):
+    # print(request.data)
+    user = User.objects.get(id=request.data['user']['id'])
+    post = Post.objects.get(id=request.data['post']['id'])
+    if (request.data['reply'] == None):
         reply = None
     else:
         reply = Comment.objects.get(id=request.data['reply'])
@@ -1411,13 +1439,14 @@ def create_comment(request):
         # return Response({'status': 'alreadyCreated'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         comment.save()
         return Response(commentS.data, status=status.HTTP_200_OK)
-    #print(commentS.errors)
+    # print(commentS.errors)
     return Response(commentS.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['POST'])
 def rest_vote_post(request, post_id):
     print(request.data)
-    post = Post.objects.get(id = request.data['post_id'])
+    post = Post.objects.get(id=request.data['post_id'])
     profile = Profile.objects.get(id=request.data['voter'])
     vote = request.data['vote']
     if vote == 'up':
@@ -1455,8 +1484,8 @@ def rest_vote_post(request, post_id):
 
 @api_view(['POST'])
 def rest_vote_comment(request):
-    #print(request.data)
-    comment = Comment.objects.get(id = request.data['comment_id'])
+    # print(request.data)
+    comment = Comment.objects.get(id=request.data['comment_id'])
     profile = Profile.objects.get(id=request.data['voter'])
     vote = request.data['vote']
     if vote == "up":
@@ -1491,6 +1520,7 @@ def rest_vote_comment(request):
                 comment.save()
     return Response(status=status.HTTP_200_OK)
 
+
 @api_view(['POST'])
 def rest_topic_subs(request):
     print(request.data)
@@ -1507,13 +1537,15 @@ def rest_topic_subs(request):
         return Response(status=status.HTTP_200_OK)
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['POST'])
 def increment_click(request):
-    #print(request.data)
+    # print(request.data)
     post = Post.objects.get(id=request.data['post_id'])
     post.clicks += 1
     post.save()
     return Response(status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 def report_post(request):

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Topic} from '../topic';
 import {TopicService} from '../topic.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-search-topic',
@@ -15,9 +16,11 @@ export class SearchTopicComponent implements OnInit {
   orderby: string;
   constructor(private topicService: TopicService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Search Topics: " + this.activatedRoute.snapshot.queryParams['q']);
     this.q = this.activatedRoute.snapshot.queryParams['q'];
     this.orderby = this.activatedRoute.snapshot.queryParams['orderby'];
     this.user_creator = this.activatedRoute.snapshot.queryParams['user_creator'];

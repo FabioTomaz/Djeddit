@@ -18,6 +18,7 @@ export class UserEditComponent implements OnInit {
     {id: 'F', name: "Female"},
     {id: 'N', name: "None"}
   ];
+  errors = {};
 
   constructor(private route: ActivatedRoute,
               private profileService: ProfileService,
@@ -40,15 +41,23 @@ export class UserEditComponent implements OnInit {
     let reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
-    }
-
-    reader.readAsDataURL(this.profile.user_picture)
+    };
+    this.profileService.image_update(this.profile.user.id, file.item(0)).subscribe(
+      () => {
+        reader.readAsDataURL(file.item(0));
+        alert("Sucessfully Updated Image!");
+      },
+        (error) => {
+        console.log(error);
+          alert(error);
+      }
+    )
   }
 
   onEditProfile() {
     this.profileService.update(this.profile).subscribe(
       () => {
-
+        alert("Profile Sucessfully updated!");
       },
       (error) => {
         console.log(error);

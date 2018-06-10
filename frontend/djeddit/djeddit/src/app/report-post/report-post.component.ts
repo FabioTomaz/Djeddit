@@ -7,6 +7,7 @@ import {TopicService} from '../topic.service';
 import {PostService} from '../post.service';
 import {AuthenticationService} from '../authentication.service';
 import {ReportService} from '../report.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-report-post',
@@ -19,6 +20,7 @@ export class ReportPostComponent implements OnInit {
   post: Post;
   isUserLogged: boolean;
   constructor(private fb: FormBuilder,
+              private titleService: Title,
               private routeActive: ActivatedRoute,
               private reportService: ReportService,
               private authService: AuthenticationService,
@@ -40,9 +42,12 @@ export class ReportPostComponent implements OnInit {
     });
   }
 
+
   getPost(): void {
     const post_id: string = this.routeActive.snapshot.paramMap.get('post_id');
     this.postService.getPost(+post_id).subscribe(post => {this.post = post; });
+    this.titleService.setTitle("Report Post: " + this.post.title);
+
   }
 
   sendReport() {

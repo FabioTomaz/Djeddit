@@ -46,6 +46,7 @@ import { TopicCreationStatusComponent } from './topic-creation-status/topic-crea
 import { ReportPostConfirmationComponent } from './report-post-confirmation/report-post-confirmation.component';
 import { ReportListComponent } from './report-list/report-list.component';
 import { PostDeleteConfirmComponent } from './post-delete-confirm/post-delete-confirm.component';
+import { EqualValidatorDirective } from './equal-validator.directive';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { PostDeleteConfirmComponent } from './post-delete-confirm/post-delete-co
     ReportPostConfirmationComponent,
     ReportListComponent,
     PostDeleteConfirmComponent,
+    EqualValidatorDirective,
   ],
   imports: [
     BrowserModule,

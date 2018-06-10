@@ -144,6 +144,7 @@ urlpatterns = [
                   path('ws/create_comment/', views.create_comment),
 
                   # EDIT
+                  path('ws/profile/<str:user_id>/update/image', views.rest_profile_image_update),
                   path('ws/profile/update/privacy', views.rest_profile_privacy_update),
                   path('ws/profile/update', views.rest_profile_update),
                   path('ws/post/update', views.rest_post_update),
@@ -170,6 +171,6 @@ urlpatterns = [
                   # USER OPERATIONS
                   path('ws/user/<str:username>/add_friend', views.rest_user_add_friend),
                   path('ws/user/<str:username>/remove_friend', views.rest_user_remove_friend),
-                  path('ws/user/<str:username>/change_password/', views.user_change_password, name="user_change_password"),
+                  path('ws/user/<str:username>/change_password', views.rest_change_password, name="user_change_password"),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
