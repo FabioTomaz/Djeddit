@@ -163,6 +163,6 @@ urlpatterns = [
                   # USER OPERATIONS
                   path('ws/user/<str:username>/add_friend', views.rest_user_add_friend),
                   path('ws/user/<str:username>/remove_friend', views.rest_user_remove_friend),
-                  path('ws/user/<str:username>/change_password/', views.user_change_password, name="user_change_password"),
+                  path('ws/user/<str:username>/change_password', views.rest_change_password, name="user_change_password"),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

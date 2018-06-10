@@ -11,8 +11,6 @@ import {Title} from "@angular/platform-browser";
 export class ChangePasswordComponent implements OnInit {
 
   username: string;
-  oldPassowrd: string;
-  newPassoword: string;
   oldPasswordString: string;
   confirmNewPasswordString: string;
   newPasswordString: string;
@@ -27,12 +25,15 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onChangePassword() {
-    this.profileService.changePassword(this.username, this.oldPassowrd, this.newPassoword).subscribe(
+    this.profileService.changePassword(this.username, this.oldPasswordString, this.newPasswordString).subscribe(
       () => {
-
+        alert("Successfully updated password!");
       },
       (error) => {
-        alert(error);
+        console.log(error);
+        for (let key of error.error){
+          alert(key + ": " + error.error[key]);
+        }
       }
     )
   }

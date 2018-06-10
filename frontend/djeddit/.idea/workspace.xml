@@ -26,6 +26,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="user-edit.component.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/djeddit/src/app/user-edit/user-edit.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="app-navbar.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djeddit/src/app/app-navbar/app-navbar.component.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,11 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="change-password.component.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.css">
+      <file leaf-file-name="profile.service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/djeddit/src/app/profile.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="114">
+              <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,17 +77,17 @@
       <file leaf-file-name="change-password.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
+            <state relative-caret-position="405">
               <caret line="27" column="112" lean-forward="true" selection-start-line="27" selection-start-column="112" selection-end-line="27" selection-end-column="112" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="change-password.component.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="change-password.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+            <state relative-caret-position="174">
+              <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -194,7 +209,6 @@
         <option value="$PROJECT_DIR$/djeddit/src/app/user-privacy/user-privacy.component.css" />
         <option value="$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.css" />
         <option value="$PROJECT_DIR$/djeddit/src/styles.css" />
-        <option value="$PROJECT_DIR$/djeddit/src/app/profile.service.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/create-topic/create-topic.component.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/new-posts/new-posts.component.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/post-page/post-page.component.ts" />
@@ -214,7 +228,6 @@
         <option value="$PROJECT_DIR$/djeddit/src/app/report-post/report-post.component.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/user-privacy/user-privacy.component.html" />
         <option value="$PROJECT_DIR$/djeddit/src/app/user-edit/user-edit.component.html" />
-        <option value="$PROJECT_DIR$/djeddit/src/app/user-edit/user-edit.component.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/user-privacy/user-privacy.component.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/equal-validator.directive.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/app-navbar/app-navbar.component.css" />
@@ -223,7 +236,9 @@
         <option value="$PROJECT_DIR$/djeddit/src/app/app-navbar/app-navbar.component.html" />
         <option value="$PROJECT_DIR$/djeddit/src/app/create-post/create-post.component.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.html" />
+        <option value="$PROJECT_DIR$/djeddit/src/app/profile.service.ts" />
         <option value="$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.ts" />
+        <option value="$PROJECT_DIR$/djeddit/src/app/user-edit/user-edit.component.ts" />
       </list>
     </option>
   </component>
@@ -519,12 +534,12 @@
       <workItem from="1528272359999" duration="6736000" />
       <workItem from="1528305201371" duration="27500000" />
       <workItem from="1528573627202" duration="8077000" />
-      <workItem from="1528629800015" duration="15626000" />
+      <workItem from="1528629800015" duration="17556000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233559000" />
+    <option name="totallyTimeSpent" value="235489000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -856,16 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djeddit/src/app/user-edit/user-edit.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/djeddit/src/app/user-privacy/user-privacy.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -887,13 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -937,16 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djeddit/src/app/profile.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="80" column="6" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/djeddit/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
@@ -959,15 +947,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
+        <state relative-caret-position="405">
           <caret line="27" column="112" lean-forward="true" selection-start-line="27" selection-start-column="112" selection-end-line="27" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/djeddit/src/app/change-password/change-password.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        <state relative-caret-position="174">
+          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djeddit/src/app/profile.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djeddit/src/app/user-edit/user-edit.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>

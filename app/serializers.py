@@ -39,36 +39,9 @@ class ChangePasswordSerializer(serializers.Serializer):
 
 
 class ProfileInfoSerializer(serializers.ModelSerializer):
-    user = UserSerializer2(many=False)
-
-    def update(self, instance, validated_data):
-        gender = validated_data.get('gender', instance.gender)
-        birth_date = validated_data.get('birth_date', instance.birth_date)
-        user_details = validated_data.get('user_details', instance.user_details)
-        user = validated_data.get('user', instance.user)
-
-        # Unless the application properly enforces that this field is
-        # always set, the follow could raise a `DoesNotExist`, which
-        # would need to be handled.
-
-        instance_user = instance.user
-        instance_user.email = user.email
-        instance_user.first_name = user.first_name
-        instance_user.last_name = user.last_name
-        instance_user.save()
-
-        instance.gender = gender
-        instance.birth_date = birth_date
-        instance.user_details = user_details
-        instance.gender = gender
-        instance.save()
-
-        return instance
-
     class Meta:
         model = Profile
         fields = ('id',
-                  'user',
                   'user_details',
                   'birth_date',
                   'gender',
