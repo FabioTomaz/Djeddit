@@ -47,4 +47,29 @@ export class ProfileService {
     return this.http.get<Profile[]>(url);
   }
 
+  addFriend(username: string, friend: string): Observable<any>{
+    const url = this.baseUrl + 'user/' + username + '/add_friend';
+    let data = {
+      "username": friend
+    };
+    return this.http.post<any>(url, data, httpOptions);
+  }
+
+  removeFriend(username: string, friend: string): Observable<any>{
+    const url = this.baseUrl + 'user/' + username + '/remove_friend';
+    let data = {
+      "username": friend
+    };
+    return this.http.post<any>(url, data, httpOptions);
+  }
+
+  changePassword(username: string, oldPassword: string, newPassword: string): Observable<any>{
+    const url = this.baseUrl + 'user/' + username + '/change_password';
+    let data = {
+      "oldPassword": oldPassword,
+      "newPassword": newPassword
+    };
+    return this.http.post<any>(url, data, httpOptions);
+  }
+
 }

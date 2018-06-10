@@ -10,11 +10,24 @@ import {ActivatedRoute} from "@angular/router";
 export class ChangePasswordComponent implements OnInit {
 
   username: string;
+  oldPassowrd: string;
+  newPassoword: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private profileService: ProfileService) { }
 
   ngOnInit() {
     this.username = this.route.snapshot.paramMap.get("username");
   }
 
+  onChangePassword() {
+    this.profileService.changePassword(this.username, this.oldPassowrd, this.newPassoword).subscribe(
+      () => {
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
 }

@@ -6,6 +6,7 @@ import {TopicService} from '../topic.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {AuthenticationService} from '../authentication.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-topic-page',
@@ -22,6 +23,8 @@ export class TopicPageComponent implements OnInit {
   constructor(
     private postService: PostService,
     private topicService: TopicService,
+    private route: ActivatedRoute,
+    private titleService: Title) { }
     private authService: AuthenticationService,
     private route: ActivatedRoute,
     private location: Location) { }
@@ -31,6 +34,7 @@ export class TopicPageComponent implements OnInit {
     this.isUserLogged = this.authService.userLoggedIn();
     this.getTopic();
     this.getPosts();
+    this.titleService.setTitle(this.route.snapshot.paramMap.get("topic_name") + " Topic Page");
     if (this.isUserLogged) {
       this.isUserSubs = this.checkIfSubscribed();
     }

@@ -10,6 +10,19 @@ class UserSerializer2(serializers.ModelSerializer):
         fields = ('username', 'id', "first_name", "last_name", "email", "date_joined")
 
 
+class PrivacySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = (
+                  'id',
+                  'profile_info_permission',
+                  'profile_friends_permission',
+                  'profile_topics_permission',
+                  'profile_posts_permission',
+                  'profile_comments_permission',
+                  )
+
+
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer2(many=False, read_only=True)
     karma_posts = serializers.SerializerMethodField('get_user_karma_posts')

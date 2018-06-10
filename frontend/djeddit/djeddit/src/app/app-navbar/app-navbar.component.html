@@ -192,7 +192,7 @@
                   </button>
                 </div>
                 <input type="email" name="email" [(ngModel)]="createdUser.email"  class="form-control"
-                       placeholder="Email">
+                       placeholder="Email" required>
               </div>
               <br>
               <p id="emailErrorsMessage" class="validation-summary-errors" style="display: none"></p>
@@ -227,7 +227,7 @@
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"
                   data-dismiss="modal"><i class="fas fa-sign-in-alt"></i> Go to login
           </button>
-          <button type="submit" class="btn btn-success"><i id="signupButtonIcon" class="fas fa-user-plus"></i>
+          <button type="submit" class="btn btn-success" [disabled]="!signUpForm.form.valid"><i id="signupButtonIcon" class="fas fa-user-plus"></i>
             Sign Up
           </button>
         </div>
