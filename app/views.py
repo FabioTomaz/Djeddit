@@ -1329,6 +1329,34 @@ def rest_profile_update(request):
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['PUT'])
+def rest_post_update(request):
+    print(request.data)
+    post_id = request.data['id']
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = PostSerializer(post, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def rest_topic_update(request):
+    print(request.data)
+    topic_name = request.data['name']
+    try:
+        topic = Topic.objects.get(name=topic_name)
+    except Topic.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = TopicSerializer(topic, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['POST'])
 def create_topic(request):
@@ -1586,3 +1614,12 @@ def rest_user_remove_friend(request, username):
         return Response(status=status.HTTP_200_OK)
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def rest_post_delete(request):
+    try:
+        post = Post.objects.get(id = request.data['id'])
+    except (Post.DoesNotExist):
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    post.delete()
+    return Response(status=status.HTTP_200_OK)

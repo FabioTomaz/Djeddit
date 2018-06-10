@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {PostService} from '../post.service';
 import {Post} from '../post';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CommentService} from '../comment.service';
 import {Comment} from '../comment';
 import {ProfileService} from '../profile.service';
@@ -24,19 +24,23 @@ export class PostPageComponent implements OnInit {
   upClass: string;
   downClass: string;
   isUserLogged: boolean;
+  isUserOP: boolean;
 
   constructor(
     private postService: PostService,
     private commentService: CommentService,
     private profileService: ProfileService,
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthenticationService,
     @Inject(DOCUMENT) document) { }
 
   ngOnInit() {
+    this.post = new Post();
     this.isUserLogged = this.authService.userLoggedIn();
     this.comment = new Comment();
     this.comment.text = '';
+    this.isUserOP = false;
     this.getPostAndComments();
   }
 
@@ -58,6 +62,7 @@ export class PostPageComponent implements OnInit {
     this.postService.getPost(post_id).subscribe(post => {
       this.post = post;
       this.increaseNClicks();
+      this.isUserOP = this.checkIfItIsUserOP();
       if (this.authService.userLoggedIn()) {
         const user_id = this.authService.getLoggedProfile().user.id;
         for (let i = 0; i < this.post.userUpVotesPost.length; i++) {
@@ -171,6 +176,62 @@ export class PostPageComponent implements OnInit {
         return true;
       }
       return false;
+  }
+
+  checkUserSaved(): boolean {
+    return this.post.userSaved.includes(this.authService.getLoggedProfile().user.id);
+  }
+
+  checkUserHidden(): boolean {
+    return this.post.userHidden.includes(this.authService.getLoggedProfile().user.id);
+  }
+
+  unsavePost() {
+    this.postService.unsavePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  savePost() {
+    this.postService.savePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  hidePost() {
+    this.postService.hidePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  showPost() {
+    this.postService.unhidePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
+      (result) => {
+        this.post = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  inProfileHiddenRoute() {
+    return this.router.url === ('/user/' + this.authService.getLoggedProfile().user.username + '/posts/hidden');
   }
 
 }

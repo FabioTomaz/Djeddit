@@ -17,6 +17,7 @@ export class CreatePostComponent implements OnInit {
   post: Post;
   angForm: FormGroup;
   isUserLogged: boolean;
+  isEdit: string;
 
   constructor(private postService: PostService,
               private topicService: TopicService,
@@ -29,7 +30,15 @@ export class CreatePostComponent implements OnInit {
     this.isUserLogged = false;
     this.isUserLogged = this.authService.userLoggedIn();
     this.getTopic();
+    this.isEdit = this.route.snapshot.queryParams['edit'];
+    console.log('--------->' +this.route.snapshot.queryParams['edit']);
+
+    if (this.isEdit) {
+      this.postService.getPost(this.route.snapshot.queryParams['post_id']).subscribe(data =>
+      this.post = data);
+    }
     this.createForm();
+
   }
 
   createForm() {
@@ -48,15 +57,24 @@ export class CreatePostComponent implements OnInit {
   createPost(): void {
     this.post.userOP = this.authService.getLoggedProfile().user;
     this.post.topic = this.topic;
-    this.postService.createPost(this.post).subscribe(data => {
-      console.log('data');
-      console.log(data);
-      if (data) {
-        this.router.navigate(['topic/' + this.topic.name + '/create_post_status'], { queryParams: { success: false } } );
-      }
-    }, (err) => {
-      this.router.navigate(['topic/' + this.topic.name + '/create_post_status'], { queryParams: { success: false } } );
-    });
+    if (this.isEdit === 'false') {
+      this.postService.createPost(this.post).subscribe(data => {
+        console.log(data);
+        this.router.navigate(['topic/' + this.topic.name + '/create_post_status'], {queryParams: {success: true}});
+      }, (err) => {
+        this.router.navigate(['topic/' + this.topic.name + '/create_post_status'], {queryParams: {success: false}});
+      });
+    } else if (this.isEdit === 'true') {
+      this.postService.updatePost(this.post).subscribe(data => {
+        console.log(data);
+        if (data) {
+          this.router.navigate(['topic/' + this.topic.name + '/post/' + this.post.id]);
+        }
+      }, (err) => {
+        this.router.navigate(['topic/' + this.topic.name + '/create_post_status'], {queryParams: {success: false}});
+      });
+    }
+
   }
 
 

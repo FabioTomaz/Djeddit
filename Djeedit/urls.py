@@ -146,6 +146,11 @@ urlpatterns = [
                   # EDIT
                   path('ws/profile/update/privacy', views.rest_profile_privacy_update),
                   path('ws/profile/update', views.rest_profile_update),
+                  path('ws/post/update', views.rest_post_update),
+                  path('ws/topic/update', views.rest_topic_update),
+
+                  #DELETE
+                  path('ws/post/delete', views.rest_post_delete),
 
                   # AUTH
                   path('ws/login/', views.rest_login),

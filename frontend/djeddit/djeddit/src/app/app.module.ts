@@ -45,6 +45,7 @@ import { PostCreationStatusComponent } from './post-creation-status/post-creatio
 import { TopicCreationStatusComponent } from './topic-creation-status/topic-creation-status.component';
 import { ReportPostConfirmationComponent } from './report-post-confirmation/report-post-confirmation.component';
 import { ReportListComponent } from './report-list/report-list.component';
+import { PostDeleteConfirmComponent } from './post-delete-confirm/post-delete-confirm.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { ReportListComponent } from './report-list/report-list.component';
     TopicCreationStatusComponent,
     ReportPostConfirmationComponent,
     ReportListComponent,
+    PostDeleteConfirmComponent,
   ],
   imports: [
     BrowserModule,
