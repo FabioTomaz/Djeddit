@@ -141,6 +141,7 @@ urlpatterns = [
                   path('ws/create_post/', views.create_post),
                   path('ws/profile/create', views.rest_profile_create),
                   # EDIT
+                  path('ws/profile/update/privacy', views.rest_profile_privacy_update),
                   path('ws/profile/update', views.rest_profile_update),
 
                   # AUTH

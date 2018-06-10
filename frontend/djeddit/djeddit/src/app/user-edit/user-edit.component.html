@@ -6,8 +6,8 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-3 col-lg-3 " align="center">
-          <img [src]="profile.user_picture.toString()" class="img-circle img-fluid" id="profile_pic">
-          <input type="file" style="display: none" name="user_picture" id="id_user_picture" (change)="onImageSelected($event)" accept="image/*"/>
+          <img [src]="imageUrl" class="img-circle img-fluid" id="profile_pic">
+          <input type="file" #Image style="display: none" name="user_picture" id="id_user_picture" (change)="onImageSelected($event.target.files)" accept="image/*"/>
           <label for="id_user_picture" class="btn btn-info"><i class="fas fa-smile"></i> Select Picture</label>
         </div>
         <div class=" col-md-9 col-lg-9 ">
@@ -51,7 +51,7 @@
       <div class="float-right">
         <a routerLink="/user/{{ profile.user.username }}/page" class="btn btn-danger"><i class="fas fa-ban"></i>
           Cancel</a>
-        <button type="submit" class="btn btn-success"  [disabled]="!editForm.form.valid"><i class="fas fa-check"></i> Save</button>
+        <button type="submit" class="btn btn-success"  [disabled]="Image.value=='' || !editForm.form.valid"><i class="fas fa-check"></i> Save</button>
       </div>
     </div>
   </div>

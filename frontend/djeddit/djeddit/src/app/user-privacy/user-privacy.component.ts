@@ -33,7 +33,7 @@ export class UserPrivacyComponent implements OnInit {
   }
 
   onChangePrivacy() {
-    this.profileService.update(this.profile).subscribe(
+    this.profileService.privacy_update(this.profile).subscribe(
       () => {
 
       },
