@@ -6,6 +6,7 @@ import {PostService} from '../post.service';
 import {Post} from '../post';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-create-post',
@@ -22,11 +23,13 @@ export class CreatePostComponent implements OnInit {
               private authService: AuthenticationService,
               private router: Router,
               private route: ActivatedRoute,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.getTopic();
     this.createForm();
+    this.titleService.setTitle("Create Post");
   }
 
   createForm() {

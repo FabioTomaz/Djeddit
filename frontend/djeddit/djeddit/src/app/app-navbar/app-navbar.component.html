@@ -203,8 +203,8 @@
                     <i class="fas fa-key"></i>
                   </button>
                 </span>
-                <input name="password1" [(ngModel)]="createdUser.password" class="form-control" type="password" placeholder="Password"
-                       required>
+                <input name="password" [(ngModel)]="createdUser.password" class="form-control" type="password" placeholder="Password"
+                       required validateEqual="confirmPassword" reverse="true">
               </div>
               <br>
               <p id="password1ErrorsMessage" class="validation-summary-errors" style="display: none"></p>
@@ -215,11 +215,12 @@
                     <i class="fas fa-key"></i>
                   </button>
                 </span>
-                <input name="password2" class="form-control" type="password"
-                       placeholder="Confirm Password" required>
+                <input name="confirmPassword" [(ngModel)]="confirmPasswordField" class="form-control" type="password"
+                       placeholder="Confirm Password" required validateEqual="password" #confirmPassword="ngModel">
+                <p [hidden]="confirmPassword.valid || (confirmPassword.pristine && !signUpForm.submitted)" class="validation-summary-errors">
+                  Password mismatch
+                </p>
               </div>
-              <br>
-              <p id="password2ErrorsMessage" class="validation-summary-errors" style="display: none"></p>
             </div>
           </div>
         </div>

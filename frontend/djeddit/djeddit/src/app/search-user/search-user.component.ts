@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProfileService} from '../profile.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Profile} from '../profile';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-search-user',
@@ -17,9 +18,11 @@ export class SearchUserComponent implements OnInit {
 
   constructor(private profileService: ProfileService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Search Users: " + this.activatedRoute.snapshot.queryParams['q']);
     this.q = this.activatedRoute.snapshot.queryParams['q'];
     this.orderby = this.activatedRoute.snapshot.queryParams['orderby'];
     this.name = this.activatedRoute.snapshot.queryParams['name'];

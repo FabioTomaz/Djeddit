@@ -39,6 +39,7 @@ export class UserPrivacyComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        alert(error);
       }
     )
   }

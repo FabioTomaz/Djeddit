@@ -1,58 +1,61 @@
-<form method="post" action="." enctype="multipart/form-data" #editForm="ngForm" (submit)="editForm.form.valid && onEditProfile()">
-  <div class="card bg-white">
-    <div class="card-header bg-primary text-white">
-      <strong>Edit Profile</strong>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-3 col-lg-3 " align="center">
-          <img [src]="imageUrl" class="img-circle img-fluid" id="profile_pic">
-          <input type="file" #Image style="display: none" name="user_picture" id="id_user_picture" (change)="onImageSelected($event.target.files)" accept="image/*"/>
-          <label for="id_user_picture" class="btn btn-info"><i class="fas fa-smile"></i> Select Picture</label>
-        </div>
-        <div class=" col-md-9 col-lg-9 ">
-          <table class="table table-user-information">
-            <tbody>
-            <tr>
-              <td>First Name</td>
-              <td><input type="text" name="user.first_name" class="form-control" [(ngModel)]="profile.user.first_name" required></td>
-            </tr>
-            <tr>
-              <td>Last Name</td>
-              <td><input type="text" name="user.last_name" class="form-control" [(ngModel)]="profile.user.last_name" required></td>
-            </tr>
-            <tr>
-              <td>User Bio</td>
-              <td><input type="text" name="user_details" class="form-control" [(ngModel)]="profile.user_details" required></td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td><input type="text" name="user.email" class="form-control" [(ngModel)]="profile.user.email" required></td>
-            </tr>
-            <tr>
-              <td>Date of Birth</td>
-              <td><input type="date" name="birth_date" class="form-control" [(ngModel)]="profile.birth_date" required></td>
-            </tr>
-            <tr>
-              <td>Gender</td>
-              <td>
-                <select name="gender" [(ngModel)]="profile.gender" class="form-control" required>
-                  <option *ngFor="let g of genders" [ngValue]="g.id">{{g.name}}</option>
-                </select>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+<app-profile></app-profile>
+<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+  <form method="post" action="." enctype="multipart/form-data" #editForm="ngForm" (submit)="editForm.form.valid && onEditProfile()">
+    <div class="card bg-white">
+      <div class="card-header bg-primary text-white">
+        <strong>Edit Profile</strong>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 " align="center">
+            <img [src]="imageUrl" class="img-circle img-fluid" id="profile_pic">
+            <input type="file" #Image style="display: none" name="user_picture" id="id_user_picture" (change)="onImageSelected($event.target.files)" accept="image/*"/>
+            <label for="id_user_picture" class="btn btn-info"><i class="fas fa-smile"></i> Select Picture</label>
+          </div>
+          <div class=" col-md-9 col-lg-9 ">
+            <table class="table table-user-information">
+              <tbody>
+              <tr>
+                <td>First Name</td>
+                <td><input type="text" name="user.first_name" class="form-control" [(ngModel)]="profile.user.first_name" required></td>
+              </tr>
+              <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="user.last_name" class="form-control" [(ngModel)]="profile.user.last_name" required></td>
+              </tr>
+              <tr>
+                <td>User Bio</td>
+                <td><input type="text" name="user_details" class="form-control" [(ngModel)]="profile.user_details" required></td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td><input type="text" name="user.email" class="form-control" [(ngModel)]="profile.user.email" required></td>
+              </tr>
+              <tr>
+                <td>Date of Birth</td>
+                <td><input type="date" name="birth_date" class="form-control" [(ngModel)]="profile.birth_date" required></td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td>
+                  <select name="gender" [(ngModel)]="profile.gender" class="form-control" required>
+                    <option *ngFor="let g of genders" [ngValue]="g.id">{{g.name}}</option>
+                  </select>
+                </td>
+              </tr>
+              </tbody>
+            </table>
 
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="float-right">
+          <a routerLink="/user/{{ profile.user.username }}/page" class="btn btn-danger"><i class="fas fa-ban"></i>
+            Cancel</a>
+          <button type="submit" class="btn btn-success"  [disabled]="!editForm.form.valid"><i class="fas fa-check"></i> Save</button>
         </div>
       </div>
     </div>
-    <div class="card-footer">
-      <div class="float-right">
-        <a routerLink="/user/{{ profile.user.username }}/page" class="btn btn-danger"><i class="fas fa-ban"></i>
-          Cancel</a>
-        <button type="submit" class="btn btn-success"  [disabled]="Image.value=='' || !editForm.form.valid"><i class="fas fa-check"></i> Save</button>
-      </div>
-    </div>
-  </div>
-</form>
+  </form>
+</div>

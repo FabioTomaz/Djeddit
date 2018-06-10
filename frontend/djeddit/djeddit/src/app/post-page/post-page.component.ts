@@ -8,6 +8,7 @@ import {ProfileService} from '../profile.service';
 import {Profile} from '../profile';
 import {DOCUMENT} from '@angular/common';
 import {AuthenticationService} from '../authentication.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-post-page',
@@ -31,9 +32,10 @@ export class PostPageComponent implements OnInit {
     private profileService: ProfileService,
     private route: ActivatedRoute,
     private authService: AuthenticationService,
+    private titleService: Title,
     @Inject(DOCUMENT) document) { }
 
-  ngOnInit() {
+  ngOnInit(){
     this.isUserLogged = this.authService.userLoggedIn();
     this.comment = new Comment();
     this.comment.text = '';
@@ -57,6 +59,7 @@ export class PostPageComponent implements OnInit {
     this.downClass = 'downvote';
     this.postService.getPost(post_id).subscribe(post => {
       this.post = post;
+      this.titleService.setTitle("Post: " + this.post.title );
       this.increaseNClicks();
       if (this.authService.userLoggedIn()) {
         const user_id = this.authService.getLoggedProfile().user.id;

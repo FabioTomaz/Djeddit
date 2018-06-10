@@ -27,7 +27,8 @@ from datetime import datetime
 
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
     FriendSerializer, UserSerializer, UserCreationSerializer, TopicCreationSerializer, PostCreationSerializer, \
-    CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer
+    CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer, \
+    ProfileInfoSerializer, ProfileImageSerializer, ChangePasswordSerializer
 
 
 def mainPage(request):
@@ -1292,6 +1293,28 @@ def rest_profile_create(request):
 
 
 @api_view(['PUT'])
+def rest_change_password(request):
+    user_id = request.data['id']
+    try:
+        user = User.objects.get(id=user_id)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ChangePasswordSerializer(data=request.data)
+
+    if serializer.is_valid():
+        # Check old password
+        old_password = serializer.data.get("old_password")
+        if not user.check_password(old_password):
+            return Response({"old_password": ["Wrong password."]},
+                            status=status.HTTP_400_BAD_REQUEST)
+        # set_password also hashes the password that the user will get
+        user.set_password(serializer.data.get("new_password"))
+        user.object.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
 def rest_profile_privacy_update(request):
     print(request.data)
     profile_id = request.data['id']
@@ -1314,7 +1337,20 @@ def rest_profile_update(request):
         profile = Profile.objects.get(id=profile_id)
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-    serializer = ProfileSerializer(profile, data=request.data)
+    serializer = ProfileInfoSerializer(profile, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def rest_profile_image_update(request, user_id):
+    try:
+        profile = Profile.objects.get(id=user_id)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProfileImageSerializer(profile, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)

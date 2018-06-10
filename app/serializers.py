@@ -14,13 +14,73 @@ class PrivacySerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-                  'id',
-                  'profile_info_permission',
-                  'profile_friends_permission',
-                  'profile_topics_permission',
-                  'profile_posts_permission',
-                  'profile_comments_permission',
+            'id',
+            'profile_info_permission',
+            'profile_friends_permission',
+            'profile_topics_permission',
+            'profile_posts_permission',
+            'profile_comments_permission',
+        )
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    Serializer for password change endpoint.
+    """
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass
+
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+
+class ProfileInfoSerializer(serializers.ModelSerializer):
+    user = UserSerializer2(many=False)
+
+    def update(self, instance, validated_data):
+        gender = validated_data.get('gender', instance.gender)
+        birth_date = validated_data.get('birth_date', instance.birth_date)
+        user_details = validated_data.get('user_details', instance.user_details)
+        user = validated_data.get('user', instance.user)
+
+        # Unless the application properly enforces that this field is
+        # always set, the follow could raise a `DoesNotExist`, which
+        # would need to be handled.
+
+        instance_user = instance.user
+        instance_user.email = user.email
+        instance_user.first_name = user.first_name
+        instance_user.last_name = user.last_name
+        instance_user.save()
+
+        instance.gender = gender
+        instance.birth_date = birth_date
+        instance.user_details = user_details
+        instance.gender = gender
+        instance.save()
+
+        return instance
+
+    class Meta:
+        model = Profile
+        fields = ('id',
+                  'user',
+                  'user_details',
+                  'birth_date',
+                  'gender',
                   )
+
+
+class ProfileImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = (
+            'user_picture'
+        )
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -110,11 +170,14 @@ class TopicSerializer(serializers.ModelSerializer):
         model = Topic
         fields = ('name', 'rules', 'description', 'userCreator', 'creation_date')
 
+
 class TopicCreationSerializer(serializers.ModelSerializer):
     userCreator = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Topic
         fields = ('name', "rules", "description", "userCreator")
+
 
 class PostSerializer(serializers.ModelSerializer):
     topic = TopicSerializer(many=False, read_only=True)
@@ -135,6 +198,7 @@ class PostSerializer(serializers.ModelSerializer):
                   'userOP',
                   'nComments',
                   )
+
 
 class PostCreationSerializer(serializers.ModelSerializer):
     topic = TopicSerializer(many=False, read_only=True)
@@ -165,6 +229,7 @@ class CommentSerializer(serializers.ModelSerializer):
                   'reply',
                   'nReplies'
                   )
+
 
 class CommentCreationSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)

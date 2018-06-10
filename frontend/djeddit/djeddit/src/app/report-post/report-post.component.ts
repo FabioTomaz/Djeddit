@@ -5,6 +5,7 @@ import {Report} from '../report';
 import {ActivatedRoute} from '@angular/router';
 import {TopicService} from '../topic.service';
 import {PostService} from '../post.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-report-post',
@@ -17,7 +18,8 @@ export class ReportPostComponent implements OnInit {
   post: Post;
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
-              private postService: PostService) { }
+              private postService: PostService,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.createForm();
@@ -32,7 +34,10 @@ export class ReportPostComponent implements OnInit {
 
   getTopic(): void {
     const post_id: string = this.route.snapshot.paramMap.get('post_id');
-    this.postService.getPost(+post_id).subscribe(post => {this.post = post; });
+    this.postService.getPost(+post_id).subscribe(post => {
+      this.post = post;
+      this.titleService.setTitle("Report Post: " + this.post.title);
+    });
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from "../profile.service";
 import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-change-password',
@@ -12,12 +13,17 @@ export class ChangePasswordComponent implements OnInit {
   username: string;
   oldPassowrd: string;
   newPassoword: string;
+  oldPasswordString: string;
+  confirmNewPasswordString: string;
+  newPasswordString: string;
 
   constructor(private route: ActivatedRoute,
-              private profileService: ProfileService) { }
+              private profileService: ProfileService,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.username = this.route.snapshot.paramMap.get("username");
+    this.titleService.setTitle(this.username + ": Change Password");
   }
 
   onChangePassword() {
@@ -26,7 +32,7 @@ export class ChangePasswordComponent implements OnInit {
 
       },
       (error) => {
-        console.log(error);
+        alert(error);
       }
     )
   }

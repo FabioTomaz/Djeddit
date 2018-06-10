@@ -5,6 +5,7 @@ import {Post} from '../post';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../authentication.service';
 import {ActivatedRoute, Route, Router} from '@angular/router';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-create-topic',
@@ -20,11 +21,13 @@ export class CreateTopicComponent implements OnInit {
               private authService: AuthenticationService,
               private route: ActivatedRoute,
               private router: Router,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.topic = new Topic();
     this.createForm();
+    this.titleService.setTitle("Create Topic");
   }
   createForm() {
     this.topicForm = this.fb.group({

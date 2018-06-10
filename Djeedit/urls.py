@@ -143,6 +143,7 @@ urlpatterns = [
                   path('ws/create_comment/', views.create_comment),
 
                   # EDIT
+                  path('ws/profile/<str:user_id>/update/image', views.rest_profile_image_update),
                   path('ws/profile/update/privacy', views.rest_profile_privacy_update),
                   path('ws/profile/update', views.rest_profile_update),
 
