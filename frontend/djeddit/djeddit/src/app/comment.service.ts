@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Comment} from "./comment";
+import {Topic} from './topic';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -38,5 +39,15 @@ export class CommentService {
   getUserCommentsDownvoted(username: string): Observable<Comment[]>{
     const url = this.baseUrl + "user/" + username + "/comments/downvoted";
     return this.http.get<Comment[]>(url);
+  }
+
+  createComment(comment: Comment): Observable<Comment> {
+    const url = this.baseUrl + 'create_comment/';
+    return this.http.post<Comment>(url, comment, httpOptions);
+  }
+
+  voteComment(vote: string): Observable<string> {
+    const url = this.baseUrl + 'vote_comment';
+    return this.http.post<string>(url, vote, httpOptions);
   }
 }

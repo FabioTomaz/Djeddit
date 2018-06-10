@@ -1,4 +1,4 @@
-<div class="card border-secondary" id="post_n_{{post.title}}">
+<div class="card border-secondary" id="post_n_{{post.title}}" *ngIf="!checkAuth() || (checkAuth() && !checkUserHidden()) || (checkAuth() && inProfileHiddenRoute())">
   <div class="card-body">
     <div class="card-title"><a routerLink="/topic/{{post.topic.name}}/post/{{post.id}}">{{post.title}}</a>
     </div>

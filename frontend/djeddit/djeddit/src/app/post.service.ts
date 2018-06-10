@@ -102,8 +102,13 @@ export class PostService {
     return this.http.post<Post>(url, profile.user.id, httpOptions);
   }
 
-  votePost(postID: number, profile: Profile, vote: string) {
-    const url = this.baseUrl + 'post/' + postID + '/vote_post';
-    return this.http.post<Post>(url, profile, httpOptions);
+  votePost(vote: string, post_id): Observable<string> {
+    const url = this.baseUrl + 'post/' + post_id + '/vote_post';
+    return this.http.post<string>(url, vote, httpOptions);
+  }
+
+  incrementClick(click: string): Observable<string> {
+    const url = this.baseUrl + 'increment_click';
+    return this.http.post<string>(url, click, httpOptions);
   }
 }

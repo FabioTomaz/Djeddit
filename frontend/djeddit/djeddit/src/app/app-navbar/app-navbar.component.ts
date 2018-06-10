@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {AuthenticationService} from "../authentication.service";
 import {Profile} from "../profile";
+import {User} from "../user";
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +18,7 @@ export class AppNavbarComponent implements OnInit {
   selectedFilter: string;
   userIsLoggedIn: boolean ;
   loginProfile: Profile;
-  createdProfile: Profile;
+  createdUser: User;
   returnUrl: string;
 
   // Login form
@@ -39,7 +40,7 @@ export class AppNavbarComponent implements OnInit {
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.userIsLoggedIn = this.checkAuth();
-    this.createdProfile = new Profile();
+    this.createdUser = new User();
     if(this.userIsLoggedIn){
       this.loginProfile = this.authService.getLoggedProfile();
     }else{
@@ -58,7 +59,6 @@ export class AppNavbarComponent implements OnInit {
   }
 
   login() {
-    this.loading = true;
     this.authService.login(this.loginProfile)
       .subscribe(profile => {
         // login successful if there's a jwt token in the response
@@ -82,15 +82,14 @@ export class AppNavbarComponent implements OnInit {
 
   register() {
     this.loading = true;
-    this.profileService.create(this.createdProfile)
+    this.profileService.create(this.createdUser)
       .subscribe(
-        data => {
-          //this.alertService.success('Registration successful', true);
-          this.router.navigate(['login']);
+        profile => {
+          localStorage.setItem('currentUser', JSON.stringify(profile));
+          location.reload();
         },
         error => {
           console.log(error);
-          //this.alertService.error(error);
           this.loading = false;
         });
   }

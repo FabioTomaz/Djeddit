@@ -5,6 +5,12 @@
       <p class="lead my-3">{{topic.description}}</p>
     </div>
   </div>
+
+  <div [hidden]="!isUserLogged" class="col" align="right">
+    <button (click)="subscribeTopic()" [hidden]="isUserSubs" class="btn btn-success btn-sm">Subscribe</button>
+    <button (click)="subscribeTopic()" [hidden]="!isUserSubs" class="btn btn-warning btn-sm">Unsubscribe</button>
+  </div>
+
 </div>
 
 <div class="row">
@@ -20,7 +26,7 @@
     <br/>
       <div class="row">
         <div class="col" align="center">
-          <a routerLink="/topic/{{topic.name}}/create_post" class="btn btn-primary">New Post</a>
+          <a [hidden]="!isUserLogged" routerLink="/topic/{{topic.name}}/create_post" class="btn btn-primary">New Post</a>
         </div>
         <br/>
     </div>

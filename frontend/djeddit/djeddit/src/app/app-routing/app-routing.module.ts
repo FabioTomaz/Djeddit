@@ -25,6 +25,8 @@ import {ReportPostComponent} from '../report-post/report-post.component';
 import {UserEditComponent} from "../user-edit/user-edit.component";
 import {UserPrivacyComponent} from "../user-privacy/user-privacy.component";
 import {ChangePasswordComponent} from "../change-password/change-password.component";
+import {PostCreationStatusComponent} from '../post-creation-status/post-creation-status.component';
+import {TopicCreationStatusComponent} from '../topic-creation-status/topic-creation-status.component';
 
 const routes: Routes = [
   {path: 'new', component: NewPostsComponent, data: {'order': 'new'}, runGuardsAndResolvers: 'always'},
@@ -35,7 +37,9 @@ const routes: Routes = [
   {path: 'topic/:topic_name/post/:post_id', component: PostPageComponent},
   {path: 'topic/:topic_name/post/:post_id/report', component: ReportPostComponent},
   {path: 'topic/:topic_name/create_post', component: CreatePostComponent},
+  {path: 'topic/:topic_name/create_post_status', component: PostCreationStatusComponent},
   {path: 'topic_create', component: CreateTopicComponent},
+  {path: 'topic_create_status', component: TopicCreationStatusComponent},
   {path: 'search/topic', component: SearchTopicComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
   {path: 'search/post', component: SearchPostComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
   {path: 'search/user', component: SearchUserComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},

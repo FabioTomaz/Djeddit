@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Profile} from "./profile";
+import {User} from "./user";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -30,7 +31,8 @@ export class ProfileService {
     return this.http.get<Profile[]>(url);
   }
 
-  create(profile: Profile): Observable<Profile>{
+  create(profile: User): Observable<Profile>{
+    console.log(profile);
     const url = this.baseUrl + 'profile/create';
     return this.http.post<Profile>(url, profile, httpOptions);
   }

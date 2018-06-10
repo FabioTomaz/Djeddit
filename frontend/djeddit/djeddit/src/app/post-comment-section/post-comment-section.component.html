@@ -23,16 +23,16 @@
                     </a>
                   </span>
                   </ng-template>
-                  <span> {{ comment.date | date: 'dd/MM/yyyy HH:mm' }}, Score: <p style="display:inline" id="score_{{ comment.id }}">{{ getCommentScore(comment) }}</p></span>
+                  <span> {{ comment.date | date: 'dd/MM/yyyy HH:mm' }}, Score: <p style="display:inline" id="score_{{ comment.id }}">{{ scores.get(comment.id)}}</p></span>
 
                   <div class="btn-group-sm float-right" role="group" aria-label="...">
-                    <button (click)="open_close_reply_area( comment.id )" class="btn btn-dark btn-sm">
+                    <button [disabled]="!isUserLogged" (click)="open_close_reply_area( comment.id )" class="btn btn-dark btn-sm">
                       <i class="fas fa-reply"></i> Reply
                     </button>
-                    <button id="downvote_comment_{{ comment.id }}" class="btn">
+                    <button (click)="downvote_post(comment.id)" id="downvote_comment_{{ comment.id }}" class="{{ votes.get('downvote_comment_' + comment.id)}}">
                       <i class="fa fa-chevron-down"></i>
                     </button>
-                    <button id="upvote_comment_{{ comment.id }}" class="btn">
+                    <button (click)="upvote_post(comment.id)" id="upvote_comment_{{ comment.id }}" class="{{votes.get('upvote_comment_'+comment.id)}}">
                       <i class="fa fa-chevron-up"></i>
                     </button>
                   </div>
@@ -44,15 +44,15 @@
             </div>
             <div style="margin-left:90px; display: none" id="add_reply_{{ comment.id }}">
               <!--TODO: deactivate this if user is not logged in-->
-              <!--TODO: send reply using service-->
               <form [formGroup]="replyForm">
                 <!-- Hidden input for parent comment.id -->
                 <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
-                <textarea placeholder="Type your reply here..." type="text" name="comment_reply_{{ comment.id }}"
+                <textarea  [(ngModel)]="reply.text" placeholder="Type your reply here..." type="text" name="comment_reply_{{ comment.id }}"
                           cols="70" rows="5" class="form-control" formControlName="replyText" maxlength="10000"></textarea>
-                <button [disabled]="!replyForm.valid" class="btn btn-primary btn-sm" >Reply</button>
+                <button (click)="sendReply(comment.id)" [disabled]="!replyForm.valid" class="btn btn-primary btn-sm" >Reply</button>
               </form>
             </div>
+
             <div *ngFor="let reply of getCommentReplies(comment)">
               <ul class="comments-list reply-list">
                 <li>
@@ -73,13 +73,13 @@
                         </a>
                       </span>
                       </ng-template>
-                      <span> {{ comment.date | date: 'dd/MM/yyyy HH:mm' }}, Score: <p style="display:inline" id="score_{{ reply.id }}">{{ getCommentScore(reply) }}</p></span>
+                      <span> {{ comment.date | date: 'dd/MM/yyyy HH:mm' }}, Score: <p style="display:inline" id="score_{{ reply.id }}"> {{ scores.get(reply.id)}}</p></span>
 
                       <div class="btn-group-sm float-right" role="group" aria-label="...">
-                        <button id="downvote_comment_{{ reply.id }}" class="btn">
+                        <button (click)="downvote_post(reply.id)" id="downvote_comment_{{ reply.id }}" class="{{ votes.get('downvote_comment_' + reply.id)}}">
                           <i class="fa fa-chevron-down"></i>
                         </button>
-                        <button id="upvote_comment_{{ reply.id }}" class="btn">
+                        <button (click)="upvote_post(reply.id)" id="upvote_comment_{{ reply.id }}" class="{{ votes.get('upvote_comment_' + reply.id)}}">
                           <i class="fa fa-chevron-up"></i>
                         </button>
                       </div>

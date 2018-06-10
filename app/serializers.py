@@ -11,7 +11,7 @@ class UserSerializer2(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer2(many=False, read_only=False)
+    user = UserSerializer2(many=False, read_only=True)
     karma_posts = serializers.SerializerMethodField('get_user_karma_posts')
     karma_comments = serializers.SerializerMethodField('get_user_karma_comments')
     karma_total = serializers.SerializerMethodField('get_user_karma_total')
@@ -65,24 +65,47 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(many=False, read_only=False)
+    profile = ProfileSerializer(many=False, read_only=True, required=False)
 
     class Meta:
         model = User
         fields = ('username', 'id', "first_name", "last_name", "email", "date_joined", "profile")
 
 
+class UserCreationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', "first_name", "last_name", "email", "password")
+
+    def create(self, validated_data):
+        user = User(
+            email=validated_data['email'],
+            username=validated_data['username'],
+            first_name=validated_data["first_name"],
+            last_name=validated_data["last_name"],
+        )
+        user.set_password(validated_data["password"])
+        user.is_active = True
+        user.save()
+        return user
+
+
 class TopicSerializer(serializers.ModelSerializer):
-    userCreator = UserSerializer(many=False, read_only=False)
+    userCreator = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = Topic
         fields = ('name', 'rules', 'description', 'userCreator', 'creation_date')
 
+class TopicCreationSerializer(serializers.ModelSerializer):
+    userCreator = UserSerializer(many=False, read_only=True)
+    class Meta:
+        model = Topic
+        fields = ('name', "rules", "description", "userCreator")
 
 class PostSerializer(serializers.ModelSerializer):
-    topic = TopicSerializer(many=False, read_only=False)
-    userOP = UserSerializer(many=False, read_only=False)
+    topic = TopicSerializer(many=False, read_only=True)
+    userOP = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = Post
@@ -100,10 +123,22 @@ class PostSerializer(serializers.ModelSerializer):
                   'nComments',
                   )
 
+class PostCreationSerializer(serializers.ModelSerializer):
+    topic = TopicSerializer(many=False, read_only=True)
+    userOP = UserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Post
+        fields = ('topic',
+                  'title',
+                  'content',
+                  'userOP',
+                  )
+
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = UserSerializer(many=False, read_only=False)
-    post = PostSerializer(many=False, read_only=False)
+    user = UserSerializer(many=False, read_only=True)
+    post = PostSerializer(many=False, read_only=True)
 
     class Meta:
         model = Comment
@@ -116,6 +151,18 @@ class CommentSerializer(serializers.ModelSerializer):
                   'text',
                   'reply',
                   'nReplies'
+                  )
+
+class CommentCreationSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+    post = PostSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = ('user',
+                  'post',
+                  'text',
+                  'reply'
                   )
 
 

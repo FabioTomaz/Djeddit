@@ -30,38 +30,38 @@
     </div>
     <div class="card-footer">
       <div class="btn-group" role="group" aria-label="Action Buttons">
-        <button type="button" class="btn btn-sm btn-dark" data-toggle="collapse"
+        <button type="button" class="btn btn-sm btn-dark" data-toggle="collapse" [hidden]="!isUserLogged"
                 data-target="#coll2"
                 aria-expanded="false" aria-controls="collapseExample2">
           <i class="far fa-comment"></i> Comment
         </button>
         <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse"
-                data-target="#coll1"
+                data-target="#coll1" [hidden]="!isUserLogged"
                 aria-expanded="false" aria-controls="collapseExample">
           <i class="fas fa-share-alt"></i> Share
         </button>
-        <button type="button" id="unsave_post"
+        <button type="button" id="unsave_post" [hidden]="!isUserLogged"
                 class="btn btn-sm btn-warning"><i
           class="fas fa-ban"></i> Don't Save
         </button>
-        <button type="button" id="save_post"
+        <button type="button" id="save_post" [hidden]="!isUserLogged"
                 class="btn btn-sm btn-success"><i class="far fa-save"></i> Save
         </button>
-        <button type="button" id="hide_post"
+        <button type="button" id="hide_post" [hidden]="!isUserLogged"
                 class="btn btn-sm btn-danger"><i class="far fa-eye-slash"></i> Hide
         </button>
-        <a href=""
+        <a href="" [hidden]="!checkIfItIsUserOP"
         class="btn btn-sm btn-outline-primary"><i class="far fa-edit"></i> Edit
         </a>
-        <a href=""
+        <a href="" [hidden]="!checkIfItIsUserOP"
         class="btn btn-sm btn-outline-primary"><i class="far fa-trash-alt"></i> Remove
         </a>
 
         <!--users cant report their own posts..-->
-        <a href=""
+        <a href="" [hidden]="checkIfItIsUserOP"
         class="btn btn-sm btn-outline-primary"><i class="far fa-flag"></i> Report
         </a>
-        <button type="button" id="show_post"
+        <button type="button" id="show_post" [hidden]="!isUserLogged"
                 class="btn btn-sm btn-secondary"><i
           class="fas fa-eye"></i> Show
         </button>
@@ -72,17 +72,17 @@
       </div>
       <div class="collapse" id="coll2">
         <br>
-        <form action="." method="post">
+
 
           <div class="card bg-white text-center">
             <div class="card-header" style="align-content: center">
-
+              <textarea [(ngModel)]="comment.text" type="text" placeholder="Your comment here..."
+                        class="form-control" minlength="0" maxlength="10000"></textarea>
             </div>
             <div class="card-footer">
-              <button class="btn btn-light float-right" type="submit">Send <i class="far fa-paper-plane"></i></button>
+              <button (click)="sendComment()" class="btn btn-light float-right" type="submit">Send <i class="far fa-paper-plane"></i></button>
             </div>
-          </div>
-        </form>
+            </div>
       </div>
     </div>
   </div>

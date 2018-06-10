@@ -17,11 +17,13 @@ import {AuthenticationService} from '../authentication.service';
 export class PostPageComponent implements OnInit {
 
   post: Post;
+  comment: Comment;
   comments: Comment[];
   profiles: Profile[];
   score: number;
   upClass: string;
   downClass: string;
+  isUserLogged: boolean;
 
   constructor(
     private postService: PostService,
@@ -32,7 +34,21 @@ export class PostPageComponent implements OnInit {
     @Inject(DOCUMENT) document) { }
 
   ngOnInit() {
+    this.isUserLogged = this.authService.userLoggedIn();
+    this.comment = new Comment();
+    this.comment.text = '';
     this.getPostAndComments();
+  }
+
+  increaseNClicks() {
+    const click = JSON.stringify({ post_id: this.post.id});
+    console.log(click);
+    this.postService.incrementClick(click).subscribe(data => {
+      // console.log(JSON.stringify(data));
+      console.log(data);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   getPostAndComments(): void {
@@ -41,6 +57,7 @@ export class PostPageComponent implements OnInit {
     this.downClass = 'downvote';
     this.postService.getPost(post_id).subscribe(post => {
       this.post = post;
+      this.increaseNClicks();
       if (this.authService.userLoggedIn()) {
         const user_id = this.authService.getLoggedProfile().user.id;
         for (let i = 0; i < this.post.userUpVotesPost.length; i++) {
@@ -90,7 +107,15 @@ export class PostPageComponent implements OnInit {
       }
 
     }
-    // send request with post score increment
+    const vote = JSON.stringify({ post_id: this.post.id, voter: this.authService.getLoggedProfile().user.id,
+      vote: 'up' });
+    console.log(vote);
+    this.postService.votePost(vote, this.post.id).subscribe(data => {
+      // console.log(JSON.stringify(data));
+      console.log(data);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   downvote_post(post_id: number) {
@@ -108,7 +133,41 @@ export class PostPageComponent implements OnInit {
         this.score--;
       }
     }
-    // send request to downvote post
+    const vote = JSON.stringify({ post_id: this.post.id, voter: this.authService.getLoggedProfile().user.id,
+      vote: 'down' });
+    console.log(vote);
+    this.postService.votePost(vote, this.post.id).subscribe(data => {
+      // console.log(JSON.stringify(data));
+      console.log(data);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  sendComment() {
+    if (this.comment.text !== '') {
+      this.comment.user = this.authService.getLoggedProfile().user;
+      this.comment.post = this.post;
+      this.comment.reply = null;
+      this.commentService.createComment(this.comment).subscribe(data => {
+        if (data) {
+          location.reload();
+        }
+      }, (err) => {
+        console.log(err);
+      });
+    }
+  }
+
+  checkIfItIsUserOP(): boolean{
+    if (!this.isUserLogged) {
+      return false;
+    } else {
+      if (this.post.userOP === this.authService.getLoggedProfile().user){
+        return true;
+      }
+      return false;
+    }
   }
 
 }

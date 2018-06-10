@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {Topic} from './topic';
-import {Post} from "./post";
-import {Profile} from './profile';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -45,6 +43,11 @@ export class TopicService {
   createTopic(topic: Topic): Observable<Topic> {
     const url = this.baseUrl + 'create_topic/';
     return this.http.post<Topic>(url, topic, httpOptions);
+  }
+
+  subscribeTopic(subs: string): Observable<string> {
+    const url = this.baseUrl + 'subscribe_topic';
+    return this.http.post<string>(url, subs, httpOptions);
   }
 
 }
