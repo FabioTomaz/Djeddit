@@ -35,8 +35,10 @@ export class PostCommentSectionComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.comments = [];
     this.urlBase = 'http://127.0.0.1:8000';
     this.reply = new Comment();
+    this.loggedUser = new Profile();
     this.votes = new Map();
     this.scores = new Map();
     this.createForm();

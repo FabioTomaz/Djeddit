@@ -28,7 +28,7 @@ from datetime import datetime
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
     FriendSerializer, UserSerializer, UserCreationSerializer, TopicCreationSerializer, PostCreationSerializer, \
     CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer, \
-    ReportCreationSerializer
+    ReportCreationSerializer,\
     CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer, \
     ProfileInfoSerializer, ProfileImageSerializer, ChangePasswordSerializer
 

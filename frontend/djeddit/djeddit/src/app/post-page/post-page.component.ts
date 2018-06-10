@@ -180,6 +180,13 @@ export class PostPageComponent implements OnInit {
       }
       return false;
   }
+  checkAuth(): boolean {
+    return this.authService.userLoggedIn();
+  }
+
+  checkLoggedUserIsOP(): boolean{
+    return this.authService.getLoggedProfile().user.username === this.post.userOP.username;
+  }
 
   checkUserSaved(): boolean {
     return this.post.userSaved.includes(this.authService.getLoggedProfile().user.id);
