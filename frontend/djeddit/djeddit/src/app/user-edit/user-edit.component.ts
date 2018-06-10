@@ -12,6 +12,7 @@ import {Title} from "@angular/platform-browser";
 export class UserEditComponent implements OnInit {
 
   profile: Profile = new Profile();
+  imageUrl: string;
   genders = [
     {id: 'M', name: "Male"},
     {id: 'F', name: "Female"},
@@ -30,12 +31,18 @@ export class UserEditComponent implements OnInit {
   getProfile(username: string){
     this.profileService.getProfileByUsername(username).subscribe((profile) => {
         this.profile = profile;
-        this.profile.user_picture = "http://127.0.0.1:8000" + this.profile.user_picture;
+        this.imageUrl = "http://127.0.0.1:8000" + this.profile.user_picture;
     });
   }
 
-  onImageSelected(event) {
-    this.profile.user_picture = event.target.files[0];
+  onImageSelected(file: FileList) {
+    this.profile.user_picture = file.item(0);
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    }
+
+    reader.readAsDataURL(this.profile.user_picture)
   }
 
   onEditProfile() {

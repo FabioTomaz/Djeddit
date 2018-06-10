@@ -1301,7 +1301,7 @@ def rest_profile_create(request):
 
 
 @api_view(['PUT'])
-def rest_profile_update(request):
+def rest_profile_privacy_update(request):
     print(request.data)
     profile_id = request.data['id']
     try:
@@ -1309,6 +1309,21 @@ def rest_profile_update(request):
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = PrivacySerializer(profile, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def rest_profile_update(request):
+    print(request.data)
+    profile_id = request.data['id']
+    try:
+        profile = Profile.objects.get(id=profile_id)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProfileSerializer(profile, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)

@@ -2,37 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-list/report-list.component.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-list/report-list.component.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-list/report-list.component.spec.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-list/report-list.component.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post-confirmation/report-post-confirmation.component.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post-confirmation/report-post-confirmation.component.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post-confirmation/report-post-confirmation.component.spec.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post-confirmation/report-post-confirmation.component.ts" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Djeedit/urls.py" afterPath="$PROJECT_DIR$/Djeedit/urls.py" />
-      <change beforePath="$PROJECT_DIR$/app/serializers.py" afterPath="$PROJECT_DIR$/app/serializers.py" />
       <change beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-routing/app-routing.module.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app-routing/app-routing.module.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.module.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/authentication.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/authentication.service.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-post/create-post.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-post/create-post.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-post/create-post.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-post/create-post.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-topic/create-topic.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-topic/create-topic.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-topic/create-topic.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/create-topic/create-topic.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" afterPath="$PROJECT_DIR$/frontend/djeddit/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/change-password/change-password.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/change-password/change-password.component.html" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/profile.service.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post/report-post.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post/report-post.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post/report-post.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-post/report-post.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report-preview/report-preview.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report.service.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/report.service.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-page/topic-page.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-page/topic-page.component.html" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-page/topic-page.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-page/topic-page.component.ts" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-preview/topic-preview.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/topic-preview/topic-preview.component.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/user-edit/user-edit.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/user-edit/user-edit.component.html" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/user-edit/user-edit.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/user-edit/user-edit.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/user-privacy/user-privacy.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/user-privacy/user-privacy.component.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,97 +25,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="1461" column="0" lean-forward="false" selection-start-line="1461" selection-start-column="0" selection-end-line="1461" selection-end-column="0" />
+            <state relative-caret-position="18">
+              <caret line="1306" column="0" lean-forward="false" selection-start-line="1306" selection-start-column="0" selection-end-line="1306" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="topic.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/topic.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1116">
-              <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Djeedit/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report_post_confirmation.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/report_post_confirmation.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report_post.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/report_post.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="161" column="59" lean-forward="true" selection-start-line="161" selection-start-column="59" selection-end-line="161" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="topic_created_success.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/topic_created_success.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3438">
-              <caret line="194" column="60" lean-forward="false" selection-start-line="194" selection-start-column="60" selection-end-line="194" selection-end-column="60" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,6 +43,28 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2430">
+              <caret line="141" column="45" lean-forward="false" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,6 +83,15 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>friends</find>
+      <find>profile</find>
+      <find>rest_user_fr</find>
+      <find>comment</find>
+      <find>profileserializer</find>
+      <find>profile_friends</find>
+      <find>rest_user_friends</find>
+      <find>login</find>
+      <find>user_friends</find>
       <find>rest_login</find>
       <find>name</find>
       <find>change_</find>
@@ -185,17 +111,8 @@
       <find>remove_friend</find>
       <find>add_fri</find>
       <find>ws/profile</find>
-      <find>change_password</find>
       <find>profile_update</find>
-      <find>PostP</find>
-      <find>reports</find>
-      <find>rest_all_reports</find>
-      <find>reports/</find>
-      <find>report</find>
-      <find>handle</find>
-      <find>rest_handle_report</find>
-      <find>subscription</find>
-      <find>subs</find>
+      <find>change_password</find>
     </findStrings>
     <replaceStrings>
       <replace>sidebar</replace>
@@ -260,8 +177,8 @@
         <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/views.py" />
         <option value="$PROJECT_DIR$/app/serializers.py" />
-        <option value="$PROJECT_DIR$/Djeedit/urls.py" />
         <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/Djeedit/urls.py" />
       </list>
     </option>
   </component>
@@ -318,33 +235,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Changed Files">
           <expand>
@@ -382,28 +272,67 @@
           <expand>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
               <item name="app" type="cbb8eebc:String" user="app" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
-              <item name="app" type="cbb8eebc:String" user="app" />
-              <item name="static" type="cbb8eebc:String" user="static" />
-            </path>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
               <item name="Djeedit" type="cbb8eebc:String" user="Djeedit" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="djeedit" type="cbb8eebc:String" user="djeedit" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
               <item name="templates" type="cbb8eebc:String" user="templates" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="venv" type="cbb8eebc:String" user="venv" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="venv" type="cbb8eebc:String" user="venv" />
+              <item name="lib" type="cbb8eebc:String" user="lib" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="djeddit" type="cbb8eebc:String" user="djeddit" />
+              <item name="venv" type="cbb8eebc:String" user="venv" />
+              <item name="lib" type="cbb8eebc:String" user="lib" />
+              <item name="python3.6" type="cbb8eebc:String" user="python3.6" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="Djeedit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djeedit" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djeedit" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -791,21 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528567210308</updated>
     </task>
-    <task id="LOCAL-00046" summary="merge">
-      <created>1528631345376</created>
+    <task id="LOCAL-00046" summary="Alteraçoes">
+      <created>1528584085044</created>
       <option name="number" value="00046" />
       <option name="presentableId" value="LOCAL-00046" />
       <option name="project" value="LOCAL" />
-      <updated>1528631345376</updated>
+      <updated>1528584085044</updated>
     </task>
-    <task id="LOCAL-00047" summary="correçoes">
-      <created>1528632712803</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1528632712803</updated>
-    </task>
-    <option name="localTasksCounter" value="48" />
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TodoView">
@@ -818,7 +740,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="511" y="1" width="1303" height="780" extended-state="6" />
+    <frame x="511" y="1" width="1311" height="780" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24174175" sideWeight="0.5149885" order="7" side_tool="true" content_ui="tabs" />
@@ -826,7 +748,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4084084" sideWeight="0.48501152" order="2" side_tool="false" content_ui="tabs" x="65" y="326" width="1301" height="105" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24365872" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24369748" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -853,6 +775,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Diversas alteraçoes no layout da pagina. Avanços na pesquisa." />
+    <MESSAGE value="Alterações" />
+    <MESSAGE value="Diversas Alterações" />
     <MESSAGE value="Alterações no login" />
     <MESSAGE value="Correção de commit" />
     <MESSAGE value="Merge branch 'master' of https://code.ua.pt/git/djeedit&#10;&#10;# Conflicts:&#10;#&#9;Djeedit/__pycache__/__init__.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/settings.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/urls.cpython-36.pyc&#10;#&#9;Djeedit/__pycache__/wsgi.cpython-36.pyc&#10;#&#9;Djeedit/urls.py&#10;#&#9;app/__pycache__/__init__.cpython-36.pyc&#10;#&#9;app/__pycache__/admin.cpython-36.pyc&#10;#&#9;app/__pycache__/apps.cpython-36.pyc&#10;#&#9;app/__pycache__/forms.cpython-36.pyc&#10;#&#9;app/__pycache__/models.cpython-36.pyc&#10;#&#9;app/__pycache__/views.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/0001_initial.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/0002_auto_20180323_1926.cpython-36.pyc&#10;#&#9;app/migrations/__pycache__/__init__.cpython-36.pyc&#10;#&#9;app/views.py&#10;#&#9;db.sqlite3&#10;#&#9;templates/layout.html&#10;#&#9;venv/lib/python3.6/__pycache__/site.cpython-36.pyc" />
@@ -875,10 +800,7 @@
     <MESSAGE value="Merge" />
     <MESSAGE value="&lt;Alteraçoes" />
     <MESSAGE value="Alteraçoes" />
-    <MESSAGE value="criaçao de topicos, posts, comentarios votes e posts e comentarios, e incrementar nº de clicks no post concluido. Alguns botoes sao agr ocultados caso se esteja sem sessao iniciado ou n se seja o dono do post" />
-    <MESSAGE value="merge" />
-    <MESSAGE value="correçoes" />
-    <option name="LAST_COMMIT_MESSAGE" value="correçoes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alteraçoes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -887,6 +809,56 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/topic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="77" column="30" lean-forward="false" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/search_topics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/search_layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="6" lean-forward="false" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/search_posts.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1013,9 +985,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/topic_created_success.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1158,6 +1129,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/images/sad.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1171,93 +1152,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/create_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/report_post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Djeedit/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/report_post_confirmation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3438">
-          <caret line="194" column="60" lean-forward="false" selection-start-line="194" selection-start-column="60" selection-end-line="194" selection-end-column="60" />
+        <state relative-caret-position="234">
+          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Djeedit/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5526">
-          <caret line="307" column="46" lean-forward="false" selection-start-line="307" selection-start-column="30" selection-end-line="307" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/topic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1116">
-          <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Djeedit/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="161" column="59" lean-forward="true" selection-start-line="161" selection-start-column="59" selection-end-line="161" selection-end-column="59" />
+        <state relative-caret-position="2430">
+          <caret line="141" column="45" lean-forward="false" selection-start-line="141" selection-start-column="45" selection-end-line="141" selection-end-column="45" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="1461" column="0" lean-forward="false" selection-start-line="1461" selection-start-column="0" selection-end-line="1461" selection-end-column="0" />
+        <state relative-caret-position="18">
+          <caret line="1306" column="0" lean-forward="false" selection-start-line="1306" selection-start-column="0" selection-end-line="1306" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

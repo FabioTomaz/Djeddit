@@ -144,6 +144,7 @@ urlpatterns = [
                   path('ws/create_comment/', views.create_comment),
 
                   # EDIT
+                  path('ws/profile/update/privacy', views.rest_profile_privacy_update),
                   path('ws/profile/update', views.rest_profile_update),
 
                   # AUTH
