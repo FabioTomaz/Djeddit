@@ -1,7 +1,7 @@
-<div class="card border-secondary">
+<div [hidden]="solved" class="card border-secondary">
   <div class="card-body">
-    <div class="card-title">Report submitted by <a href="#">{{ report.user }}
-      </a> for post <a href="#">{{ report.post.title }}</a></div>
+    <div class="card-title">Report submitted
+      for post <a routerLink="/topic/{{report.post.topic.name}}/post/{{report.post.id}}">{{ report.post.title }}</a></div>
     <h6 class="card-subtitle text-muted">
       Complain: {{ report.comment }}
     </h6>

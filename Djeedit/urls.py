@@ -97,7 +97,7 @@ urlpatterns = [
                   path('ws/profiles', views.rest_all_profiles),
                   path('ws/posts', views.rest_all_posts),
                   path('ws/comments', views.rest_all_comments),
-                  path('ws/reports', views.rest_all_reports),
+                  path('ws/reports/<str:topic_name>', views.rest_all_reports),
                   path('ws/friends', views.rest_all_friends),
 
                   # GET SOME
@@ -133,6 +133,7 @@ urlpatterns = [
                   path('ws/topic/<str:topic_name>/', views.rest_topic),
                   path('ws/post/<str:post_id>/', views.rest_post),
                   path('ws/profile/<str:username>/', views.rest_profile),
+                  path('ws/profile/<int:id>', views.rest_profile_id),
                   path('ws/comment/<str:comment_id>/', views.rest_comment),
                   path('ws/report/<str:report_id>/', views.rest_report),
 
@@ -157,6 +158,8 @@ urlpatterns = [
                   path('ws/vote_comment', views.rest_vote_comment),
                   path('ws/subscribe_topic', views.rest_topic_subs),
                   path('ws/increment_click', views.increment_click),
+                  path('ws/report_post', views.report_post),
+                  path('ws/handle_report', views.rest_handle_report),
 
                   # USER OPERATIONS
                   path('ws/user/<str:username>/add_friend', views.rest_user_add_friend),

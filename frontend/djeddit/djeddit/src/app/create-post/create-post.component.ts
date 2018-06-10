@@ -16,6 +16,7 @@ export class CreatePostComponent implements OnInit {
   topic: Topic;
   post: Post;
   angForm: FormGroup;
+  isUserLogged: boolean;
 
   constructor(private postService: PostService,
               private topicService: TopicService,
@@ -25,6 +26,8 @@ export class CreatePostComponent implements OnInit {
               private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.isUserLogged = false;
+    this.isUserLogged = this.authService.userLoggedIn();
     this.getTopic();
     this.createForm();
   }

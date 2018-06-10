@@ -26,7 +26,10 @@
     <br/>
       <div class="row">
         <div class="col" align="center">
-          <a [hidden]="!isUserLogged" routerLink="/topic/{{topic.name}}/create_post" class="btn btn-primary">New Post</a>
+          <button [hidden]="!isUserLogged" routerLink="/topic/{{topic.name}}/create_post" class="btn btn-primary">New Post</button>
+          <br/>
+          <br/>
+          <button [hidden]="!isUserLogged || !isCreator" routerLink="/topic/{{topic.name}}/report_post_list" class="btn btn-danger">View Pending Reports</button><br/><br/>
         </div>
         <br/>
     </div>

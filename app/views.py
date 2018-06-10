@@ -27,7 +27,8 @@ from datetime import datetime
 
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
     FriendSerializer, UserSerializer, UserCreationSerializer, TopicCreationSerializer, PostCreationSerializer, \
-    CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer
+    CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer, \
+    ReportCreationSerializer
 
 
 def mainPage(request):
@@ -1006,8 +1007,8 @@ def rest_all_comments(request):
 
 
 @api_view(['GET'])
-def rest_all_reports(request):
-    reports = Report.objects.all()
+def rest_all_reports(request, topic_name):
+    reports = Report.objects.filter(post__topic__name=topic_name)
     if 'num' in request.GET:
         num = int(request.GET['num'])
         reports = reports[:num]
@@ -1226,6 +1227,14 @@ def rest_profile(request, username):
     serializer = ProfileSerializer(profile)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def rest_profile_id(request, id):
+    try:
+        profile = Profile.objects.get(user__id=id)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProfileSerializer(profile)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def rest_report(request, report_id):
@@ -1462,6 +1471,32 @@ def increment_click(request):
     post.clicks += 1
     post.save()
     return Response(status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def report_post(request):
+    print(request.data)
+    post = Post.objects.get(id=request.data['post']['id'])
+    user = User.objects.get(id=request.data['user'])
+    report = Report(post=post, user=user, comment=request.data['comment'])
+    reportS = ReportCreationSerializer(data=request.data)
+    if reportS.is_valid():
+        report.save()
+        return Response(status=status.HTTP_200_OK)
+    print(reportS.errors)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def rest_handle_report(request):
+    print(request.data)
+    report = Report.objects.get(id=request.data["report_id"])
+    action = request.data["action"]
+    if action == "refuse":  # the post will not be eliminated, only the report
+        report.delete()
+    elif action == "accept":  # post and report will be eliminated
+        report.post.delete()
+        report.delete()
+    return Response(status=status.HTTP_200_OK)
+
 
 @api_view(['POST'])
 def rest_post_save(request, post_id):

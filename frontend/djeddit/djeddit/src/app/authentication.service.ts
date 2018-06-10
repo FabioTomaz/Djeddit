@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {User} from "./user";
-import {Profile} from "./profile";
-import {Observable} from "rxjs/internal/Observable";
+import {HttpClient} from '@angular/common/http';
+import {User} from './user';
+import {Profile} from './profile';
+import {Observable} from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +24,15 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
   }
 
-  userLoggedIn(): boolean{
-    return !!localStorage.getItem("currentUser");
+  userLoggedIn(): boolean {
+    return !!localStorage.getItem('currentUser');
   }
 
-  getLoggedProfile(): Profile{
-    return JSON.parse(localStorage.getItem("currentUser"));
+  getLoggedProfile(): Profile {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  updateLoggedProfile(profile: Profile) {
+    localStorage.setItem('currentUser', JSON.stringify(profile));
   }
 }

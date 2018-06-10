@@ -1,4 +1,7 @@
-<div class="container">
+<div [hidden]="isUserLogged">
+  <p>You must be logged in to create a new topic</p>
+</div>
+<div [hidden]="!isUserLogged" class="container">
 <h1>Create New Topic</h1>
 <form [formGroup]="topicForm">
   <table class="table table-user-information">

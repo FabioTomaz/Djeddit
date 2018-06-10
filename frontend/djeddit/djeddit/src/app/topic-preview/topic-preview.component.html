@@ -1,6 +1,6 @@
 <div class="card border-secondary">
   <div class="card-header">
-    <a class="card-link" href="#">{{ topic.name }}</a>
+    <a class="card-link" routerLink="/topic/{{topic.name}}/">{{ topic.name }}</a>
     <div class="card-subtitle text-muted"> This community was created at {{ topic.creation_date }}, by <a routerLink="/user/{{ topic.userCreator.username }}/page">{{ topic.userCreator.username }}</a> </div>
   </div>
 

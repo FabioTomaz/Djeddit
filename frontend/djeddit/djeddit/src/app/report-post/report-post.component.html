@@ -1,4 +1,11 @@
-<div class="row">
+<div [hidden]="isUserLogged" class="row">
+  <div class="col-12">
+    <h1 class="text-center">Report Post:</h1>
+    <h4 class="text-center">"{{ post.title }}"</h4>
+    <p style="font-size:15px;color:#5C5C5C;"> You must be logged in to report a post</p>   <br/>
+</div>
+</div>
+<div [hidden]="!isUserLogged" class="row">
   <div class="col-12">
     <h1 class="text-center">Report Post:</h1>
     <h4 class="text-center">"{{ post.title }}"</h4>
@@ -10,7 +17,7 @@
       <tbody>
       <tr>
         <td>Comment</td>
-        <td><textarea type="text" class="form-control" formControlName="reportText" maxlength="500"></textarea>
+        <td><textarea [(ngModel)]="report.comment" type="text" class="form-control" formControlName="reportText" maxlength="500"></textarea>
           <div *ngIf="reportForm.controls['reportText'].invalid && (reportForm.controls['reportText'].dirty || reportForm.controls['reportText'].touched)" class="alert alert-danger">
             <div *ngIf="reportForm.controls['reportText'].errors.required">
               You cannot report a post without specifying a reason
@@ -21,8 +28,9 @@
       <tr>
       </tbody>
     </table>
-    <button [disabled]="!reportForm.valid" class="btn btn-success"><i class="fas fa-check"></i>
+    <button (click)="sendReport()" [disabled]="!reportForm.valid" class="btn btn-success"><i class="fas fa-check"></i>
       Confirm Report</button>
     </form>
   </div>
 </div>
+

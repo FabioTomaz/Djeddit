@@ -167,14 +167,10 @@ export class PostPageComponent implements OnInit {
   }
 
   checkIfItIsUserOP(): boolean {
-    if (!this.isUserLogged) {
-      return false;
-    } else {
-      if (this.post.userOP === this.authService.getLoggedProfile().user){
+      if (this.post.userOP === this.authService.getLoggedProfile().user) {
         return true;
       }
       return false;
-    }
   }
 
 }

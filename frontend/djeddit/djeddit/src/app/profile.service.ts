@@ -26,6 +26,11 @@ export class ProfileService {
     return this.http.get<Profile>(url);
   }
 
+  getProfileByID(id: number): Observable<Profile> {
+    const url = this.baseUrl + 'profile/' + id;
+    return this.http.get<Profile>(url);
+  }
+
   getProfiles(): Observable<Profile[]>{
     const url = this.baseUrl + 'profiles';
     return this.http.get<Profile[]>(url);

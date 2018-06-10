@@ -15,6 +15,7 @@ export class CreateTopicComponent implements OnInit {
 
   topic: Topic;
   topicForm: FormGroup;
+  isUserLogged: boolean;
 
   constructor(private topicService: TopicService,
               private authService: AuthenticationService,
@@ -24,6 +25,8 @@ export class CreateTopicComponent implements OnInit {
 
   ngOnInit() {
     this.topic = new Topic();
+    this.isUserLogged = false;
+    this.isUserLogged = this.authService.userLoggedIn();
     this.createForm();
   }
   createForm() {

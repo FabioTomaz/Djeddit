@@ -43,6 +43,8 @@ import { UserPrivacyComponent } from './user-privacy/user-privacy.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { PostCreationStatusComponent } from './post-creation-status/post-creation-status.component';
 import { TopicCreationStatusComponent } from './topic-creation-status/topic-creation-status.component';
+import { ReportPostConfirmationComponent } from './report-post-confirmation/report-post-confirmation.component';
+import { ReportListComponent } from './report-list/report-list.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,8 @@ import { TopicCreationStatusComponent } from './topic-creation-status/topic-crea
     ReportPostComponent,
     PostCreationStatusComponent,
     TopicCreationStatusComponent,
+    ReportPostConfirmationComponent,
+    ReportListComponent,
   ],
   imports: [
     BrowserModule,

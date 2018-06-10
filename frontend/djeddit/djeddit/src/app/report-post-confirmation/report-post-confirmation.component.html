@@ -1,0 +1,23 @@
+
+<div [hidden]="!success" class="container" style="align-content: center">
+  <div class="row text-center">
+    <div class="col-12">
+      <br><br> <h2 style="color:#0fad00">The post has been reported!</h2>
+      <p style="font-size:20px;color:#5C5C5C;">This topic's creator will decide if the post should or not be removed.</p>
+      <p style="font-size:17px;color:#5C5C5C;">We thank you for trying to make Djeddit a better place!</p>
+      <a routerLink="/topic/{{topic_name}}/post/{{post_id}}" class="btn btn-success">    Return to post     </a>
+      <br><br>
+    </div>
+  </div>
+</div>
+
+<div [hidden]="success" class="container" style="align-content: center">
+  <div class="row text-center">
+    <div class="col-12">
+      <br><br> <h2 style="color:#0fad00">There was a problem reporting this post!</h2>
+      <p style="font-size:20px;color:#5C5C5C;">Please, try again later</p>
+      <a routerLink="/topic/{{topic_name}}/post/{{post_id}}" class="btn btn-success">    Return to post     </a>
+      <br><br>
+    </div>
+  </div>
+</div>
