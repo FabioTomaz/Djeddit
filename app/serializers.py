@@ -78,7 +78,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(many=False, read_only=True)
+    profile = ProfileSerializer(many=False, read_only=True, required=False)
 
     class Meta:
         model = User
@@ -110,6 +110,11 @@ class TopicSerializer(serializers.ModelSerializer):
         model = Topic
         fields = ('name', 'rules', 'description', 'userCreator', 'creation_date')
 
+class TopicCreationSerializer(serializers.ModelSerializer):
+    userCreator = UserSerializer(many=False, read_only=True)
+    class Meta:
+        model = Topic
+        fields = ('name', "rules", "description", "userCreator")
 
 class PostSerializer(serializers.ModelSerializer):
     topic = TopicSerializer(many=False, read_only=True)
@@ -131,6 +136,18 @@ class PostSerializer(serializers.ModelSerializer):
                   'nComments',
                   )
 
+class PostCreationSerializer(serializers.ModelSerializer):
+    topic = TopicSerializer(many=False, read_only=True)
+    userOP = UserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Post
+        fields = ('topic',
+                  'title',
+                  'content',
+                  'userOP',
+                  )
+
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
@@ -149,10 +166,22 @@ class CommentSerializer(serializers.ModelSerializer):
                   'nReplies'
                   )
 
-
-class ReportSerializer(serializers.ModelSerializer):
+class CommentCreationSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
     post = PostSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = ('user',
+                  'post',
+                  'text',
+                  'reply'
+                  )
+
+
+class ReportSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=False)
+    post = PostSerializer(many=False, read_only=False)
 
     class Meta:
         model = Report

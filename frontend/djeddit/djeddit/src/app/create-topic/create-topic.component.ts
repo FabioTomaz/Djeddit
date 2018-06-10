@@ -3,6 +3,8 @@ import {TopicService} from '../topic.service';
 import {Topic} from '../topic';
 import {Post} from '../post';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../authentication.service';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-topic',
@@ -15,6 +17,9 @@ export class CreateTopicComponent implements OnInit {
   topicForm: FormGroup;
 
   constructor(private topicService: TopicService,
+              private authService: AuthenticationService,
+              private route: ActivatedRoute,
+              private router: Router,
               private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -32,7 +37,16 @@ export class CreateTopicComponent implements OnInit {
   }
 
   createTopic() {
-    this.topicService.createTopic(this.topic);
+    this.topic.userCreator = this.authService.getLoggedProfile().user;
+    this.topicService.createTopic(this.topic).subscribe(data => {
+      // console.log(JSON.stringify(data));
+      if (data) {
+        this.router.navigate(['topic_create_status'], { queryParams: { topic: data.name } } );
+      }
+    }, (err) => {
+      console.log(err);
+      this.router.navigate(['topic_create_status'], { queryParams: { topic: '' } } );
+    });
   }
 
 }

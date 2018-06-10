@@ -26,7 +26,8 @@ import urllib.parse
 from datetime import datetime
 
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
-    FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer
+    FriendSerializer, UserSerializer, UserCreationSerializer, TopicCreationSerializer, PostCreationSerializer, \
+    CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer
 
 
 def mainPage(request):
@@ -1322,21 +1323,160 @@ def rest_profile_update(request):
 
 @api_view(['POST'])
 def create_topic(request):
-    topic = TopicSerializer(request.data.get('topic'))
-    topic.save()
-    return Response(
-        {'status': 'success'},
-    )
+    userC = request.data['userCreator']
+    user = User(username=userC['username'], id=userC['id'],
+                          first_name=userC['first_name'], last_name=userC['last_name'],
+                          email=userC['email'], date_joined=userC['date_joined'])
+    topic = Topic(name=request.data['name'], userCreator=user,
+                  description=request.data['description'], rules=request.data['rules'])
+    #print(request.data)
+    topicS = TopicCreationSerializer(data=request.data)
+    if topicS.is_valid():
+    #if Topic.objects.filter(name__iexact=request.data['name']).exists():  # topic with same name exists
+        #return Response({'status': 'alreadyCreated'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        topic.save()
+        return Response(topicS.data, status=status.HTTP_200_OK)
+    #print(topicS.errors)
+    return Response(topicS.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
 def create_post(request):
-    post = PostSerializer(request.data.get('post'))
-    post.save()
-    return Response(
-        {'status': 'success'},
-    )
+    userC = request.data['userOP']
+    user = User(username=userC['username'], id=userC['id'],
+                first_name=userC['first_name'], last_name=userC['last_name'],
+                email=userC['email'], date_joined=userC['date_joined'])
+    t = Topic.objects.get(name=request.data['topic']['name'])
+    post = Post(title=request.data['title'], content=request.data['content'], userOP=user, topic=t)
+    print(request.data)
+    postS = PostCreationSerializer(data=request.data)
+    if postS.is_valid():
+        # if Topic.objects.filter(name__iexact=request.data['name']).exists():  # topic with same name exists
+        # return Response({'status': 'alreadyCreated'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        post.save()
+        return Response(postS.data, status=status.HTTP_200_OK)
+    print(postS.errors)
+    return Response(postS.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+def create_comment(request):
+    #print(request.data)
+    user = User.objects.get(id= request.data['user']['id'])
+    post = Post.objects.get(id= request.data['post']['id'])
+    if( request.data['reply'] == None):
+        reply = None
+    else:
+        reply = Comment.objects.get(id=request.data['reply'])
+    comment = Comment(user=user, post=post, reply=reply, text=request.data['text'])
+    commentS = CommentCreationSerializer(data=request.data)
+    if commentS.is_valid():
+        # if Topic.objects.filter(name__iexact=request.data['name']).exists():  # topic with same name exists
+        # return Response({'status': 'alreadyCreated'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        comment.save()
+        return Response(commentS.data, status=status.HTTP_200_OK)
+    #print(commentS.errors)
+    return Response(commentS.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def rest_vote_post(request, post_id):
+    print(request.data)
+    post = Post.objects.get(id = request.data['post_id'])
+    profile = Profile.objects.get(id=request.data['voter'])
+    vote = request.data['vote']
+    if vote == 'up':
+        if profile in post.userUpVotesPost.all():
+            post.userUpVotesPost.remove(profile)
+            profile.post_user_up.remove(post)
+            profile.save()
+            post.save()
+        else:
+            post.userUpVotesPost.add(profile)
+            post.save()
+            # check if there is downvote, if so, delete it
+            if profile in post.userDownVotesPost.all():
+                post.userDownVotesPost.remove(profile)
+                profile.post_user_down.remove(post)
+                profile.save()
+                post.save()
+    elif vote == "down":
+        if profile in post.userDownVotesPost.all():
+            post.userDownVotesPost.remove(profile)
+            profile.post_user_down.remove(post)
+            profile.save()
+            post.save()
+        else:
+            post.userDownVotesPost.add(profile)
+            post.save()
+            # check if there is upvote, if so, delete it
+            if profile in post.userUpVotesPost.all():
+                post.userUpVotesPost.remove(profile)
+                profile.post_user_up.remove(post)
+                profile.save()
+                post.save()
+    return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def rest_vote_comment(request):
+    #print(request.data)
+    comment = Comment.objects.get(id = request.data['comment_id'])
+    profile = Profile.objects.get(id=request.data['voter'])
+    vote = request.data['vote']
+    if vote == "up":
+        if profile in comment.userUpVotesComments.all():
+            comment.userUpVotesComments.remove(profile)
+            profile.comment_user_up.remove(comment)
+            profile.save()
+            comment.save()
+        else:
+            comment.userUpVotesComments.add(profile)
+            comment.save()
+            # check if there is downvote, if so, delete it
+            if profile in comment.userDownVotesComments.all():
+                comment.userDownVotesComments.remove(profile)
+                profile.comment_user_down.remove(comment)
+                profile.save()
+                comment.save()
+    elif vote == "down":
+        if profile in comment.userDownVotesComments.all():
+            comment.userDownVotesComments.remove(profile)
+            profile.comment_user_down.remove(comment)
+            profile.save()
+            comment.save()
+        else:
+            comment.userDownVotesComments.add(profile)
+            comment.save()
+            # check if there is upvote, if so, delete it
+            if profile in comment.userUpVotesComments.all():
+                comment.userUpVotesComments.remove(profile)
+                profile.comment_user_up.remove(comment)
+                profile.save()
+                comment.save()
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def rest_topic_subs(request):
+    print(request.data)
+    topic = Topic.objects.get(name=request.data['topic_name'])
+    profile = Profile.objects.get(id=request.data['voter'])
+    action = request.data['state']
+    if action == 'subs':
+        profile.subscriptions.add(topic)  # add this topic to his list of subscribed topics
+        profile.save()
+        return Response(status=status.HTTP_200_OK)
+    if action == 'unsubs':
+        profile.subscriptions.remove(topic)
+        profile.save()
+        return Response(status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def increment_click(request):
+    #print(request.data)
+    post = Post.objects.get(id=request.data['post_id'])
+    post.clicks += 1
+    post.save()
+    return Response(status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def rest_post_save(request, post_id):

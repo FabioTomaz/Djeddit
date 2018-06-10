@@ -140,6 +140,8 @@ urlpatterns = [
                   path('ws/create_topic/', views.create_topic),
                   path('ws/create_post/', views.create_post),
                   path('ws/profile/create', views.rest_profile_create),
+                  path('ws/create_comment/', views.create_comment),
+
                   # EDIT
                   path('ws/profile/update/privacy', views.rest_profile_privacy_update),
                   path('ws/profile/update', views.rest_profile_update),
@@ -152,6 +154,10 @@ urlpatterns = [
                   path('ws/post/<str:post_id>/unsave', views.rest_post_unsave),
                   path('ws/post/<str:post_id>/hide', views.rest_post_hide),
                   path('ws/post/<str:post_id>/unhide', views.rest_post_unhide),
+                  path('ws/post/<int:post_id>/vote_post', views.rest_vote_post),
+                  path('ws/vote_comment', views.rest_vote_comment),
+                  path('ws/subscribe_topic', views.rest_topic_subs),
+                  path('ws/increment_click', views.increment_click),
 
                   # USER OPERATIONS
                   path('ws/user/<str:username>/add_friend', views.rest_user_add_friend),

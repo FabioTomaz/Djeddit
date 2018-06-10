@@ -41,6 +41,8 @@ import { ReportPostComponent } from './report-post/report-post.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { UserPrivacyComponent } from './user-privacy/user-privacy.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { PostCreationStatusComponent } from './post-creation-status/post-creation-status.component';
+import { TopicCreationStatusComponent } from './topic-creation-status/topic-creation-status.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     CreateTopicComponent,
     CreatePostComponent,
     ReportPostComponent,
+    PostCreationStatusComponent,
+    TopicCreationStatusComponent,
   ],
   imports: [
     BrowserModule,

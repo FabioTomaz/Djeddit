@@ -1,0 +1,28 @@
+<div [hidden]="!success">
+  <div class="container" style="align-content: center">
+    <div class="row text-center">
+      <div class="col-12">
+        <br><br> <h2 style="color:#0fad00">Success!</h2>
+        <h3>Your post has been submited!</h3>
+        <p style="font-size:20px;color:#5C5C5C;">You can go to your topic and start posting!
+        </p>
+        <a routerLink="/topic/{{topic_name}}" class="btn btn-success">   Go to topic page! </a>
+        <br><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [hidden]="success">
+
+  <div class="container" style="align-content: center">
+    <div class="row text-center">
+      <div class="col-12">
+        <br><br> <h2 style="color:#ff1a1a">Failure!</h2>
+        <h3>There was a problem creating your topic!</h3>
+        <p style="font-size:20px;color:#5C5C5C;">Try changing the name of your topic, there may be a topic with that name already!
+        </p>
+        <br><br>
+      </div>
+    </div>
+  </div>

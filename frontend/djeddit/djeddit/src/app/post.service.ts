@@ -78,7 +78,7 @@ export class PostService {
   }
 
   createPost(post: Post): Observable<Post> {
-    const url = this.baseUrl + 'create_post';
+    const url = this.baseUrl + 'create_post/';
     return this.http.post<Post>(url, post, httpOptions);
   }
 
@@ -112,5 +112,15 @@ export class PostService {
       "id": profile.user.id
     };
     return this.http.post<Post>(url, data, httpOptions);
+  }
+
+  votePost(vote: string, post_id): Observable<string> {
+    const url = this.baseUrl + 'post/' + post_id + '/vote_post';
+    return this.http.post<string>(url, vote, httpOptions);
+  }
+
+  incrementClick(click: string): Observable<string> {
+    const url = this.baseUrl + 'increment_click';
+    return this.http.post<string>(url, click, httpOptions);
   }
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Topic} from '../topic';
 import {TopicService} from '../topic.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../post.service';
 import {Post} from '../post';
-import { FormGroup,  FormBuilder,  Validators } from '@angular/forms'
+import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-create-post',
@@ -18,6 +19,8 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private postService: PostService,
               private topicService: TopicService,
+              private authService: AuthenticationService,
+              private router: Router,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
@@ -28,8 +31,6 @@ export class CreatePostComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      //tried to add here a Validator.maxLength .. but the form is never valid. Instead, i defined
-      //that validot in the field
       title: ['', Validators.required],
       post: ['', Validators.required ]
     });
@@ -42,10 +43,17 @@ export class CreatePostComponent implements OnInit {
   }
 
   createPost(): void {
-    //this.post.userOP
+    this.post.userOP = this.authService.getLoggedProfile().user;
     this.post.topic = this.topic;
-    console.log(this.post.title);
-    //this.postService.createPost(this.post);
+    this.postService.createPost(this.post).subscribe(data => {
+      console.log('data');
+      console.log(data);
+      if (data) {
+        this.router.navigate(['topic/' + this.topic.name + '/create_post_status'], { queryParams: { success: false } } );
+      }
+    }, (err) => {
+      this.router.navigate(['topic/' + this.topic.name + '/create_post_status'], { queryParams: { success: false } } );
+    });
   }
 
 
