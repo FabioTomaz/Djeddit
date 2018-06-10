@@ -27,8 +27,7 @@ from datetime import datetime
 
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
     FriendSerializer, UserSerializer, UserCreationSerializer, TopicCreationSerializer, PostCreationSerializer, \
-    CommentCreationSerializer
-    FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer
+    CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer
 
 
 def mainPage(request):
