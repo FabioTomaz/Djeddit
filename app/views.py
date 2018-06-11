@@ -1647,7 +1647,7 @@ def rest_user_remove_friend(request, username):
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-@api_view(['GET'])
+@api_view(['POST'])
 def rest_post_delete(request):
     try:
         post = Post.objects.get(id = request.data['id'])

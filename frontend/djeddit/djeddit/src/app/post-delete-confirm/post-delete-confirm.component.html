@@ -4,7 +4,7 @@
       <br><br> <h2 style="color:#0fad00">Are you sure you want to delete this post?</h2>
       <p style="font-size:25px;color:#5C5C5C;">Every vote and comments will be eliminated and you cannot undo this action.
         This action will also affect your karma points</p>
-      <a href="" class="btn btn-danger">    Yes, im sure i want to delete it     </a>
+      <button (click)="delete()" class="btn btn-danger">    Yes, im sure i want to delete it     </button>
       <a routerLink="/topic/{{topic_name}}/post/{{post_id}}" class="btn btn-success">    No, take me back     </a>
       <br><br>
     </div>
