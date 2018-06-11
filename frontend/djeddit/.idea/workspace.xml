@@ -26,7 +26,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.service.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profile.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djeddit/src/app/profile.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
@@ -34,6 +34,36 @@
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app-navbar.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/djeddit/src/app/app-navbar/app-navbar.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-435">
+              <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post-preview.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/djeddit/src/app/post-preview/post-preview.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="95" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="95" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post-preview.component.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/djeddit/src/app/post-preview/post-preview.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="55" column="7" lean-forward="true" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -444,12 +474,12 @@
       <workItem from="1528272359999" duration="6736000" />
       <workItem from="1528305201371" duration="27500000" />
       <workItem from="1528573627202" duration="8077000" />
-      <workItem from="1528629800015" duration="19845000" />
+      <workItem from="1528629800015" duration="21218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="237778000" />
+    <option name="totallyTimeSpent" value="239151000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -462,7 +492,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="56" y="-11" width="1311" height="780" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.236822" />
@@ -510,20 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/djeddit/src/app/post-preview/post-preview.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/djeddit/src/app/post-preview/post-preview.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="95" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="95" />
         </state>
       </provider>
     </entry>
@@ -818,16 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/djeddit/src/app/app-navbar/app-navbar.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-472">
-          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/djeddit/src/app/app-navbar/app-navbar.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
@@ -896,6 +901,30 @@
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djeddit/src/app/app-navbar/app-navbar.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-435">
+          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djeddit/src/app/post-preview/post-preview.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="95" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djeddit/src/app/post-preview/post-preview.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="55" column="7" lean-forward="true" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
         </state>
       </provider>
     </entry>
