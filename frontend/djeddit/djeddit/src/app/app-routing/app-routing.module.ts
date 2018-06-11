@@ -27,6 +27,9 @@ import {UserPrivacyComponent} from "../user-privacy/user-privacy.component";
 import {ChangePasswordComponent} from "../change-password/change-password.component";
 import {PostCreationStatusComponent} from '../post-creation-status/post-creation-status.component';
 import {TopicCreationStatusComponent} from '../topic-creation-status/topic-creation-status.component';
+import {ReportPostConfirmationComponent} from '../report-post-confirmation/report-post-confirmation.component';
+import {ReportListComponent} from '../report-list/report-list.component';
+import {PostDeleteConfirmComponent} from '../post-delete-confirm/post-delete-confirm.component';
 
 const routes: Routes = [
   {path: 'new', component: NewPostsComponent, data: {'order': 'new'}, runGuardsAndResolvers: 'always'},
@@ -34,8 +37,11 @@ const routes: Routes = [
   {path: 'top_rated', component: NewPostsComponent, data: {'order': 'top_rated'}},
   {path: 'controversial', component: NewPostsComponent, data: {'order': 'controversial'}},
   {path: 'topic/:topic_name', component: TopicPageComponent},
+  {path: 'topic/:topic_name/report_post_list', component: ReportListComponent},
   {path: 'topic/:topic_name/post/:post_id', component: PostPageComponent},
   {path: 'topic/:topic_name/post/:post_id/report', component: ReportPostComponent},
+  {path: 'topic/:topic_name/post/:post_id/report_status', component: ReportPostConfirmationComponent},
+  {path: 'topic/:topic_name/post/:post_id/remove', component: PostDeleteConfirmComponent},
   {path: 'topic/:topic_name/create_post', component: CreatePostComponent},
   {path: 'topic/:topic_name/create_post_status', component: PostCreationStatusComponent},
   {path: 'topic_create', component: CreateTopicComponent},

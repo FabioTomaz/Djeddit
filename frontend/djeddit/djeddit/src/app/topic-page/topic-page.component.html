@@ -26,7 +26,14 @@
     <br/>
       <div class="row">
         <div class="col" align="center">
-          <a [hidden]="!isUserLogged" routerLink="/topic/{{topic.name}}/create_post" class="btn btn-primary">New Post</a>
+          <a [hidden]="!isUserLogged" href="/topic/{{topic.name}}/create_post?edit=false" class="btn btn-primary">New Post</a>
+          <br/>
+          <br/>
+          <a href="/topic_create?edit=true&topic_name={{topic.name}}"
+             [hidden]="!isUserLogged || !isCreator" class="btn btn-warning">Edit Topic</a>
+          <br/>
+          <br/>
+          <button [hidden]="!isUserLogged || !isCreator" routerLink="/topic/{{topic.name}}/report_post_list" class="btn btn-danger">View Pending Reports</button><br/><br/>
         </div>
         <br/>
     </div>

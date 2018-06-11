@@ -14,7 +14,11 @@ export class PostCreationStatusComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.success = this.route.snapshot.queryParams['success'];
+    if (this.route.snapshot.queryParams['success'] === 'false'){
+      this.success = false;
+    } else {
+      this.success = true;
+    }
     this.topic_name = this.route.snapshot.paramMap.get('topic_name');
   }
 

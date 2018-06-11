@@ -6,7 +6,8 @@ import {TopicService} from '../topic.service';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {AuthenticationService} from '../authentication.service';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
+import {Profile} from '../profile';
 
 @Component({
   selector: 'app-topic-page',
@@ -19,6 +20,7 @@ export class TopicPageComponent implements OnInit {
   posts: Post[];
   isUserLogged: boolean;
   isUserSubs: boolean;
+  isCreator: boolean
 
   constructor(
     private postService: PostService,
@@ -29,19 +31,22 @@ export class TopicPageComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
+    this.topic = new Topic();
     this.isUserSubs = false;
     this.isUserLogged = this.authService.userLoggedIn();
     this.getTopic();
     this.getPosts();
-    this.titleService.setTitle(this.route.snapshot.paramMap.get("topic_name") + " Topic Page");
-    if (this.isUserLogged) {
-      this.isUserSubs = this.checkIfSubscribed();
-    }
+    this.titleService.setTitle(this.route.snapshot.paramMap.get('topic_name') + ' Topic Page');
   }
 
   getTopic(): void {
     const topic_name: string = this.route.snapshot.paramMap.get('topic_name');
-    this.topicService.getTopic(topic_name).subscribe(topic => {this.topic = topic; });
+    this.topicService.getTopic(topic_name).subscribe(topic => {this.topic = topic;
+      if (this.isUserLogged) {
+        this.isUserSubs = this.checkIfSubscribed();
+        this.isCreator = this.checkIfItIsCreator();
+      }
+    });
   }
 
   getPosts(): void {
@@ -55,7 +60,7 @@ export class TopicPageComponent implements OnInit {
 
   subscribeTopic() {
     let subs: string;
-    //if user is subscribed, unsubscribe and vice versa
+    // if user is subscribed, unsubscribe and vice versa
     if (this.isUserSubs) {
       subs = JSON.stringify({ topic_name: this.topic.name, voter: this.authService.getLoggedProfile().user.id,
         state: 'unsubs' });
@@ -65,10 +70,26 @@ export class TopicPageComponent implements OnInit {
     }
     this.topicService.subscribeTopic(subs).subscribe(data => {
       console.log(JSON.stringify(data));
-      if (this.isUserSubs) {
+      let p: Profile;
+      p = this.authService.getLoggedProfile();
+      if (this.isUserSubs) { //it was an unsubscribe
         this.isUserSubs = false;
-      } else {
+        let s: string[];
+        s = [];
+        //remove the subs
+        for (let i = 0; i < p.subscriptions.length; i++) {
+          if (p.subscriptions[i] !== this.topic.name) {
+            s.push(p.subscriptions[i]);
+          }
+        }
+        p.subscriptions = s;
+        this.authService.updateLoggedProfile(p);
+
+      } else {  //it was a subscribe
         this.isUserSubs = true;
+        p.subscriptions.push(this.topic.name);//add another subs to the logged user
+        this.authService.updateLoggedProfile(p);
+
       }
     }, (err) => {
       console.log(err);
@@ -86,15 +107,12 @@ export class TopicPageComponent implements OnInit {
     return false;
   }
 
-  checkIfItIsCreator(): boolean{
-    if (!this.isUserLogged) {
-      return false;
-    } else {
-      if (this.topic.userCreator === this.authService.getLoggedProfile().user) {
+  checkIfItIsCreator(): boolean {
+      if (this.topic.userCreator.id === this.authService.getLoggedProfile().user.id) {
         return true;
       }
+      console.log(this.topic.userCreator.id === this.authService.getLoggedProfile().user.id)
       return false;
-    }
   }
 
 }

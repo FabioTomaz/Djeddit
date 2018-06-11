@@ -123,4 +123,14 @@ export class PostService {
     const url = this.baseUrl + 'increment_click';
     return this.http.post<string>(url, click, httpOptions);
   }
+
+  updatePost(post: Post): Observable<any> {
+    const url = this.baseUrl + 'post/update';
+    return this.http.put(url, post, httpOptions);
+  }
+
+  removePost(post: string): Observable<string> {
+    const url = this.baseUrl + 'post/delete';
+    return this.http.post<string>(url, post, httpOptions);
+  }
 }

@@ -38,31 +38,17 @@
                 aria-expanded="false" aria-controls="collapseExample">
           <i class="fas fa-share-alt"></i> Share
         </button>
-        <button type="button" id="unsave_post" [hidden]="!isUserLogged"
-                class="btn btn-sm btn-warning"><i
-          class="fas fa-ban"></i> Don't Save
-        </button>
-        <button type="button" id="save_post" [hidden]="!isUserLogged"
-                class="btn btn-sm btn-success"><i class="far fa-save"></i> Save
-        </button>
-        <button type="button" id="hide_post" [hidden]="!isUserLogged"
-                class="btn btn-sm btn-danger"><i class="far fa-eye-slash"></i> Hide
-        </button>
-        <a href="" [hidden]="!checkIfItIsUserOP && !isUserLogged"
+        <a href="/topic/{{post.topic.name}}/create_post?edit=true&post_id={{post.id}}" *ngIf="!isUserOP && isUserLogged"
         class="btn btn-sm btn-outline-primary"><i class="far fa-edit"></i> Edit
         </a>
-        <a href="" [hidden]="!checkIfItIsUserOP && !isUserLogged"
+        <a href="topic/{{post.topic.name}}/post/{{post.id}}/remove" *ngIf="!isUserOP && isUserLogged"
         class="btn btn-sm btn-outline-primary"><i class="far fa-trash-alt"></i> Remove
         </a>
 
         <!--users cant report their own posts..-->
-        <a href="" [hidden]="checkIfItIsUserOP"
+        <a href="topic/{{post.topic.name}}/post/{{post.id}}/report" *ngIf="isUserOP && isUserLogged"
         class="btn btn-sm btn-outline-primary"><i class="far fa-flag"></i> Report
         </a>
-        <button type="button" id="show_post" [hidden]="!isUserLogged"
-                class="btn btn-sm btn-secondary"><i
-          class="fas fa-eye"></i> Show
-        </button>
       </div>
       <div class="collapse" id="coll1">
         <br>

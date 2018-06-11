@@ -16,6 +16,8 @@ export class CreateTopicComponent implements OnInit {
 
   topic: Topic;
   topicForm: FormGroup;
+  isUserLogged: boolean;
+  isEdit: string;
 
   constructor(private topicService: TopicService,
               private authService: AuthenticationService,
@@ -26,6 +28,13 @@ export class CreateTopicComponent implements OnInit {
 
   ngOnInit() {
     this.topic = new Topic();
+    this.isUserLogged = false;
+    this.isUserLogged = this.authService.userLoggedIn();
+    this.isEdit = this.route.snapshot.queryParams['edit'];
+    if (this.isEdit) {
+      this.topicService.getTopic(this.route.snapshot.queryParams['topic_name']).subscribe(data =>
+        this.topic = data);
+    }
     this.createForm();
     this.titleService.setTitle("Create Topic");
   }
@@ -41,15 +50,27 @@ export class CreateTopicComponent implements OnInit {
 
   createTopic() {
     this.topic.userCreator = this.authService.getLoggedProfile().user;
-    this.topicService.createTopic(this.topic).subscribe(data => {
-      // console.log(JSON.stringify(data));
-      if (data) {
-        this.router.navigate(['topic_create_status'], { queryParams: { topic: data.name } } );
-      }
-    }, (err) => {
-      console.log(err);
-      this.router.navigate(['topic_create_status'], { queryParams: { topic: '' } } );
-    });
+    if (this.isEdit === 'false') {
+      this.topicService.createTopic(this.topic).subscribe(data => {
+        // console.log(JSON.stringify(data));
+        if (data) {
+          this.router.navigate(['topic_create_status'], {queryParams: {topic: data.name}});
+        }
+      }, (err) => {
+        console.log(err);
+        this.router.navigate(['topic_create_status'], {queryParams: {topic: ''}});
+      });
+    } else {
+      this.topicService.updateTopic(this.topic).subscribe(data => {
+        // console.log(JSON.stringify(data));
+        if (data) {
+          this.router.navigate(['topic/' + this.topic.name]);
+        }
+      }, (err) => {
+        console.log(err);
+        this.router.navigate(['topic_create_status'], {queryParams: {topic: ''}});
+      });
+    }
   }
 
 }

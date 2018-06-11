@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnChanges, OnInit} from '@angular/core';
 import {PostService} from '../post.service';
 import {Post} from '../post';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CommentService} from '../comment.service';
 import {Comment} from '../comment';
 import {ProfileService} from '../profile.service';
@@ -15,7 +15,7 @@ import {Title} from "@angular/platform-browser";
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.css', '../../jquery.upvote.css']
 })
-export class PostPageComponent implements OnInit {
+export class PostPageComponent implements OnInit, OnChanges {
 
   post: Post;
   comment: Comment;
@@ -25,21 +25,27 @@ export class PostPageComponent implements OnInit {
   upClass: string;
   downClass: string;
   isUserLogged: boolean;
+  isUserOP: boolean;
 
   constructor(
     private postService: PostService,
     private commentService: CommentService,
     private profileService: ProfileService,
     private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthenticationService,
     private titleService: Title,
     @Inject(DOCUMENT) document) { }
 
-  ngOnInit(){
+  ngOnInit() {
+    this.post = new Post();
     this.isUserLogged = this.authService.userLoggedIn();
     this.comment = new Comment();
     this.comment.text = '';
     this.getPostAndComments();
+  }
+
+  ngOnChanges() {
   }
 
   increaseNClicks() {
@@ -61,6 +67,7 @@ export class PostPageComponent implements OnInit {
       this.post = post;
       this.titleService.setTitle("Post: " + this.post.title );
       this.increaseNClicks();
+      this.isUserOP = this.checkIfItIsUserOP();
       if (this.authService.userLoggedIn()) {
         const user_id = this.authService.getLoggedProfile().user.id;
         for (let i = 0; i < this.post.userUpVotesPost.length; i++) {
@@ -170,14 +177,10 @@ export class PostPageComponent implements OnInit {
   }
 
   checkIfItIsUserOP(): boolean {
-    if (!this.isUserLogged) {
-      return false;
-    } else {
-      if (this.post.userOP === this.authService.getLoggedProfile().user){
+      if (this.post.userOP === this.authService.getLoggedProfile().user) {
         return true;
       }
       return false;
-    }
   }
 
 }

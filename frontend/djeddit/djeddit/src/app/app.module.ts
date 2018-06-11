@@ -43,6 +43,9 @@ import { UserPrivacyComponent } from './user-privacy/user-privacy.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { PostCreationStatusComponent } from './post-creation-status/post-creation-status.component';
 import { TopicCreationStatusComponent } from './topic-creation-status/topic-creation-status.component';
+import { ReportPostConfirmationComponent } from './report-post-confirmation/report-post-confirmation.component';
+import { ReportListComponent } from './report-list/report-list.component';
+import { PostDeleteConfirmComponent } from './post-delete-confirm/post-delete-confirm.component';
 import { EqualValidatorDirective } from './equal-validator.directive';
 
 @NgModule({
@@ -85,6 +88,9 @@ import { EqualValidatorDirective } from './equal-validator.directive';
     ReportPostComponent,
     PostCreationStatusComponent,
     TopicCreationStatusComponent,
+    ReportPostConfirmationComponent,
+    ReportListComponent,
+    PostDeleteConfirmComponent,
     EqualValidatorDirective,
   ],
   imports: [

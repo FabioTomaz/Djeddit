@@ -230,6 +230,16 @@ class ReportSerializer(serializers.ModelSerializer):
                   'accepted'
                   )
 
+class ReportCreationSerializer(serializers.ModelSerializer):
+    post = PostSerializer(many=False, read_only=False)
+
+    class Meta:
+        model = Report
+        fields = ('post',
+                  'user',
+                  'comment'
+                  )
+
 
 class FriendSerializer(serializers.ModelSerializer):
     current_user = ProfileSerializer(many=False, read_only=True)

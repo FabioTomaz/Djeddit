@@ -28,6 +28,8 @@ from datetime import datetime
 from app.serializers import TopicSerializer, ProfileSerializer, PostSerializer, CommentSerializer, ReportSerializer, \
     FriendSerializer, UserSerializer, UserCreationSerializer, TopicCreationSerializer, PostCreationSerializer, \
     CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer, \
+    ReportCreationSerializer,\
+    CommentCreationSerializer, FriendSerializer, UserSerializer, UserCreationSerializer, PrivacySerializer, \
     ProfileInfoSerializer, ProfileImageSerializer, ChangePasswordSerializer
 
 
@@ -1007,8 +1009,8 @@ def rest_all_comments(request):
 
 
 @api_view(['GET'])
-def rest_all_reports(request):
-    reports = Report.objects.all()
+def rest_all_reports(request, topic_name):
+    reports = Report.objects.filter(post__topic__name=topic_name)
     if 'num' in request.GET:
         num = int(request.GET['num'])
         reports = reports[:num]
@@ -1227,6 +1229,14 @@ def rest_profile(request, username):
     serializer = ProfileSerializer(profile)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def rest_profile_id(request, id):
+    try:
+        profile = Profile.objects.get(user__id=id)
+    except Profile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProfileSerializer(profile)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def rest_report(request, report_id):
@@ -1341,6 +1351,34 @@ def rest_profile_image_update(request, user_id):
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = ProfileImageSerializer(profile, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def rest_post_update(request):
+    print(request.data)
+    post_id = request.data['id']
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = PostSerializer(post, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+def rest_topic_update(request):
+    print(request.data)
+    topic_name = request.data['name']
+    try:
+        topic = Topic.objects.get(name=topic_name)
+    except Topic.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = TopicSerializer(topic, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
@@ -1510,6 +1548,32 @@ def increment_click(request):
 
 
 @api_view(['POST'])
+def report_post(request):
+    print(request.data)
+    post = Post.objects.get(id=request.data['post']['id'])
+    user = User.objects.get(id=request.data['user'])
+    report = Report(post=post, user=user, comment=request.data['comment'])
+    reportS = ReportCreationSerializer(data=request.data)
+    if reportS.is_valid():
+        report.save()
+        return Response(status=status.HTTP_200_OK)
+    print(reportS.errors)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def rest_handle_report(request):
+    print(request.data)
+    report = Report.objects.get(id=request.data["report_id"])
+    action = request.data["action"]
+    if action == "refuse":  # the post will not be eliminated, only the report
+        report.delete()
+    elif action == "accept":  # post and report will be eliminated
+        report.post.delete()
+        report.delete()
+    return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
 def rest_post_save(request, post_id):
     try:
         profile = Profile.objects.get(id=request.data["id"])
@@ -1582,3 +1646,12 @@ def rest_user_remove_friend(request, username):
         return Response(status=status.HTTP_200_OK)
     except Profile.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+def rest_post_delete(request):
+    try:
+        post = Post.objects.get(id = request.data['id'])
+    except (Post.DoesNotExist):
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    post.delete()
+    return Response(status=status.HTTP_200_OK)
