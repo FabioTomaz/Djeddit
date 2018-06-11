@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a0abf8b-1040-4c0e-a438-20eb8a191e2b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/djeddit.iml" afterPath="$PROJECT_DIR$/.idea/djeddit.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-comment-section/post-comment-section.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-comment-section/post-comment-section.component.ts" />
+      <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.html" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.html" />
       <change beforePath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.ts" afterPath="$PROJECT_DIR$/frontend/djeddit/djeddit/src/app/post-page/post-page.component.ts" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -788,7 +785,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528668930817</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="ediçoes de topicos e de posts adicionadas&#10;correçoes gerais">
+      <created>1528672995785</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1528672995785</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TodoView">
@@ -852,7 +856,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Alterações" />
     <MESSAGE value="Diversas Alterações" />
     <MESSAGE value="Alterações no login" />
     <MESSAGE value="Correção de commit" />
@@ -877,7 +880,8 @@
     <MESSAGE value="&lt;Alteraçoes" />
     <MESSAGE value="Alteraçoes" />
     <MESSAGE value="ediçoes de topicos e de posts adicionadas&#10;correçoes gerais" />
-    <option name="LAST_COMMIT_MESSAGE" value="ediçoes de topicos e de posts adicionadas&#10;correçoes gerais" />
+    <MESSAGE value="haweahe" />
+    <option name="LAST_COMMIT_MESSAGE" value="haweahe" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

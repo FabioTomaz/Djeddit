@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnChanges, OnInit} from '@angular/core';
 import {PostService} from '../post.service';
 import {Post} from '../post';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -15,7 +15,7 @@ import {Title} from "@angular/platform-browser";
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.css', '../../jquery.upvote.css']
 })
-export class PostPageComponent implements OnInit {
+export class PostPageComponent implements OnInit, OnChanges {
 
   post: Post;
   comment: Comment;
@@ -26,6 +26,9 @@ export class PostPageComponent implements OnInit {
   downClass: string;
   isUserLogged: boolean;
   isUserOP: boolean;
+  isHidden: boolean;
+  isSaved: boolean;
+  loggedUser: Profile;
 
   constructor(
     private postService: PostService,
@@ -44,6 +47,11 @@ export class PostPageComponent implements OnInit {
     this.comment.text = '';
     this.isUserOP = false;
     this.getPostAndComments();
+    this.isHidden = this.checkUserHidden();
+    this.isSaved = this.checkUserSaved();
+  }
+
+  ngOnChanges() {
   }
 
   increaseNClicks() {
@@ -180,6 +188,7 @@ export class PostPageComponent implements OnInit {
       }
       return false;
   }
+
   checkAuth(): boolean {
     return this.authService.userLoggedIn();
   }
@@ -188,11 +197,11 @@ export class PostPageComponent implements OnInit {
     return this.authService.getLoggedProfile().user.username === this.post.userOP.username;
   }
 
-  checkUserSaved(): boolean {
+  checkUserSaved(): boolean{
     return this.post.userSaved.includes(this.authService.getLoggedProfile().user.id);
   }
 
-  checkUserHidden(): boolean {
+  checkUserHidden(): boolean{
     return this.post.userHidden.includes(this.authService.getLoggedProfile().user.id);
   }
 
@@ -200,8 +209,9 @@ export class PostPageComponent implements OnInit {
     this.postService.unsavePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
       (result) => {
         this.post = result;
+        console.log(result);
       },
-      (error) => {
+      (error)=>{
         console.log(error);
       }
     );
@@ -211,8 +221,10 @@ export class PostPageComponent implements OnInit {
     this.postService.savePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
       (result) => {
         this.post = result;
+        console.log(result);
+
       },
-      (error) => {
+      (error)=>{
         console.log(error);
       }
     );
@@ -222,8 +234,10 @@ export class PostPageComponent implements OnInit {
     this.postService.hidePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
       (result) => {
         this.post = result;
+        console.log(result);
+
       },
-      (error) => {
+      (error)=>{
         console.log(error);
       }
     );
@@ -233,15 +247,17 @@ export class PostPageComponent implements OnInit {
     this.postService.unhidePost(this.post.id, this.authService.getLoggedProfile()).subscribe(
       (result) => {
         this.post = result;
+        console.log(result);
+
       },
-      (error) => {
+      (error)=>{
         console.log(error);
       }
     );
   }
 
   inProfileHiddenRoute() {
-    return this.router.url === ('/user/' + this.authService.getLoggedProfile().user.username + '/posts/hidden');
+    return this.router.url === ("/user/" + this.authService.getLoggedProfile().user.username + "/posts/hidden");
   }
 
 }
