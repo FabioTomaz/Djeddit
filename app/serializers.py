@@ -52,7 +52,7 @@ class ProfileImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            'user_picture'
+            'user_picture',
         )
 
 

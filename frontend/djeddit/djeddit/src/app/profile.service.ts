@@ -41,7 +41,7 @@ export class ProfileService {
     const url = this.baseUrl + 'profile/' + userID + '/update/image';
     let fd = new FormData();
     fd.append("user_picture", image, image.name);
-    return this.http.put(url, fd, httpOptions);
+    return this.http.post(url, fd);
   }
 
   privacy_update(profile: Profile): Observable<any>{

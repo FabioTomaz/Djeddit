@@ -1334,7 +1334,7 @@ def rest_profile_update(request):
     return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT'])
+@api_view(['POST'])
 def rest_profile_image_update(request, user_id):
     try:
         profile = Profile.objects.get(id=user_id)

@@ -1,6 +1,6 @@
 <app-profile></app-profile>
 <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-  <form method="post" action="." enctype="multipart/form-data" #editForm="ngForm" (submit)="editForm.form.valid && onEditProfile()">
+  <form #editForm="ngForm" (submit)="onEditProfile()">
     <div class="card bg-white">
       <div class="card-header bg-primary text-white">
         <strong>Edit Profile</strong>
